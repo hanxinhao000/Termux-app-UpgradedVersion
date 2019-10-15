@@ -24,7 +24,7 @@
 
 ## If you are going to distribute the application, a source code must be freely available in order to be GPLv3 compliant.
 
-## GPLv3
+## Please follow the GPLv3
 
 # ------Function
 
@@ -46,5 +46,6 @@
 ## 3.termux-float:https://github.com/termux/termux-float
 ## 4.AnLinux     :https://github.com/EXALAB/AnLinux-App
 ## 5.other       :Thank you to all the authors cited in the project
+
 
 
