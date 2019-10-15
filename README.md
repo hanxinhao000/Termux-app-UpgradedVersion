@@ -4,13 +4,14 @@
 
 # img 
 
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/1702015bf4e1cc464b2cee85658dcd2.jpg"  height="360" width="720">
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/1702015bf4e1cc464b2cee85658dcd2.jpg"  height="720" width="360">
 
-<img src="(https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/2c0806ab578ab360ba85d0863f70755.jpg"  height="360" width="720">
+<img src="(https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/2c0806ab578ab360ba85d0863f70755.jpg" height="720" width="360">
 
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/82abdf7f5b82cb56bd69aa9c26bc156.jpg"  height="360" width="720">
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/82abdf7f5b82cb56bd69aa9c26bc156.jpg" height="720" width="360">
 
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/Termux%20-%200.75.90.jpg"  height="360" width="720">
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/Termux%20-%200.75.90.jpg" 
+height="720" width="360">
 
 
 
