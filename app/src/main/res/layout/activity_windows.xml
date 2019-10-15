@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#1BBC9B"
+    android:layout_height="match_parent"
+    tools:context="main.java.com.termux.activity.WindowsActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:id="@+id/title_window"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="请选择一个镜像"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:text="请将所有windows或者linux镜像放到\n[sdcard -> /xinhao/windows]下\n不能保存你使用过的数据，关机还原,关闭运行的镜像，请大退Termux"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/list_view"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

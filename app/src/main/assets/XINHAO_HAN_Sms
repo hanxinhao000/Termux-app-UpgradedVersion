@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/sh
+
+echo -------------------------------
+echo       XINHAO_HAN_SMS         
+echo -------------------------------
+echo
+echo
+echo     XINHAO_HAN_SMS GETING....
+touch /data/data/com.termux/files/usr/tmp/sms.socket
+
+cat /data/data/com.termux/files/usr/tmp/sms.xh
+
+echo "smsFile -> /usr/tmp/sms.xh"

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="vertical"
+    tools:context="main.java.com.termux.activity.LinuxDeployActivity">
+
+
+    <TextView
+        android:id="@+id/activity_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="LinuxDeploy实验功能\n所有功能都必须挂VPN否则很慢"
+        android:textColor="#0f0"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="28dp"
+        android:background="#0f0"
+        android:gravity="center"
+        android:textColor="#0f0"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+
+
+            <LinearLayout
+                android:id="@+id/ubuntu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icon_ubuntu" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:src="@drawable/jingzhi"
+                        android:id="@+id/ubuntu_jinzhi"
+                        android:visibility="gone"
+                        android:layout_height="match_parent" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/ubuntu_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+
+                    android:text="安装ubuntu\n[可以安装]"
+                    android:textColor="#0f0" />
+
+            </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/kail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/linux" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:id="@+id/kail_jinzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装kail\n[可以安装]"
+                android:textColor="#0f0" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/archlinux"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/archlinux" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:id="@+id/archlinux_jinzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装archlinux\n[可以安装]"
+                android:textColor="#0f0" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/debian"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/debian" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:id="@+id/debian_jinzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:layout_marginTop="10dp"
+                android:text="安装debian\n[可以安装]"
+                android:id="@+id/debian_text"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/alpine"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/linux" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:id="@+id/alpine_jinzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:layout_marginTop="10dp"
+                android:text="安装alpine\n[可以安装]"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/huohu"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/lixian" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:id="@+id/lixian_jinzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装离线包\n[可以安装]"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/start"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/qidong" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="启动系统\n[启动你的系统]"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/linux" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:layout_marginTop="10dp"
+                android:text="安装alpine\n[可以安装]"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/lixian" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:src="@drawable/jingzhi"
+
+                    android:visibility="gone"
+                    android:layout_height="match_parent" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#0f0"
+                android:layout_marginTop="10dp"
+                android:text="安装离线包\n[可以安装]"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

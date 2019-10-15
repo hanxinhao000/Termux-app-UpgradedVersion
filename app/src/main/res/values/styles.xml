@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- See https://developer.android.com/training/material/theme.html for how to customize the Material theme. -->
+    <!-- NOTE: Cannot use "Light." since it hides the terminal scrollbar on the default black background. -->
+    <style name="Theme.Termux" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:colorPrimary">#FF000000</item>
+        <item name="android:windowBackground">@android:color/black</item>
+
+        <!-- Seen in buttons on left drawer: -->
+        <item name="android:colorAccent">#212121</item>
+        <item name="android:alertDialogTheme">@style/TermuxAlertDialogStyle</item>
+        <!-- Avoid action mode toolbar pushing down terminal content when
+             selecting text on pre-6.0 (non-floating toolbar). -->
+        <item name="android:windowActionModeOverlay">true</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <!-- https://developer.android.com/training/tv/start/start.html#transition-color -->
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+    </style>
+
+	<style name="TermuxAlertDialogStyle" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+	    <!-- Seen in buttons on alert dialog: -->
+        <item name="android:colorAccent">#212121</item>
+    </style>
+
+
+    <!--
+     Base application theme, dependent on API level. This theme is replaced
+     by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+ -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <declare-styleable name="CheckBox">
+        <attr name="checkbox_color" format="color"/>
+        <attr name="unchecked_color" format="color"/>
+        <attr name="disabled_color" format="color"/>
+        <attr name="border_color" format="color"/>
+        <attr name="checkbox_size" format="dimension"/>
+        <attr name="invisible_in_unchecked_state" format="boolean"/>
+        <attr name="checked_drawable" format="reference"/>
+        <attr name="unchecked_drawable" format="reference"/>
+        <attr name="show_border_in_check_state" format="boolean"></attr>
+    </declare-styleable>
+
+    <style name="MyToolbar" parent="android:Widget">
+        <item name="titleTextAppearance">@style/ToolBarTitle</item>
+        <!--<item name="subtitleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle</item>-->
+        <item name="android:minHeight">48dp</item>
+        <item name="titleMargins">4dp</item>
+        <item name="maxButtonHeight">56dp</item>
+        <item name="collapseIcon">?attr/homeAsUpIndicator</item>
+        <!--<item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>-->
+        <item name="contentInsetStart">16dp</item>
+        <!--<item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>-->
+        <!--<item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>-->
+    </style>
+
+    <style name="ToolBarTitle" parent="android:Widget">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="TermuxAlertDialogStyle">
+        <!--对话框按钮文字颜色-->
+        <item name="colorAccent">@color/color_48baf3</item>
+        <!--&lt;!&ndash;对话框内容文字颜色&ndash;&gt;-->
+        <!--<item name="android:textColorPrimary">#FFFFFF</item>-->
+        <!--&lt;!&ndash;对话框背景色&ndash;&gt;-->
+        <!--<item name="android:background">#5fa3d0</item>-->
+    </style>
+
+    <style name="listItemBackground">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="dialogDetailsPrimaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="dialogDetailsSecondaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_back</item> <!-- 如果要改变背景颜色请更改此处,我这个默认加了弧度-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:backgroundDimEnabled">true</item> <!-- 背景模糊 -->
+    </style>
+
+</resources>

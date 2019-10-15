@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/color_48baf3"
+    android:padding="14dp"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:text="请注意,出现[end]在关闭此窗口,不要在安装过程中退出!"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:src="@drawable/guanbi"
+            android:id="@+id/guanbi"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="20dp" />
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:id="@+id/msg"
+            android:layout_height="match_parent" />
+
+
+    </ScrollView>
+
+
+</LinearLayout>

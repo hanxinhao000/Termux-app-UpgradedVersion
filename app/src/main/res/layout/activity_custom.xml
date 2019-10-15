@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="main.java.com.termux.activity.CustomActivity">
+
+
+    <TextView
+        android:id="@+id/title_window"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="请选择一种布局"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+    <RelativeLayout
+        android:id="@+id/guanfang_key"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/qinghua"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="官方布局"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="轻触以一键切换到官方键盘布局"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:id="@+id/qinghua"
+            android:layout_centerVertical="true"
+            android:src="@drawable/guangfang_key"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+    <RelativeLayout
+        android:id="@+id/termux_key"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/mogai"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="魔改Termux布局"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="轻触以一键切换到魔改键盘布局"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:id="@+id/mogai"
+            android:layout_centerVertical="true"
+            android:src="@drawable/termux_key"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+    <RelativeLayout
+        android:id="@+id/ziding_key"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/ziding"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="导入底部布局配置文件"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:id="@+id/ziding"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ziding"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+
+
+</LinearLayout>

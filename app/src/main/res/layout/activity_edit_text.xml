@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    tools:context=".app.EditTextActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_above="@+id/textStartCommd"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:text="123 \n123"
+            android:textSize="16sp"
+            android:id="@+id/text"
+            android:background="@null"
+            android:layout_marginTop="30dp"
+            android:padding="20dp"
+            android:gravity="left|top"
+            android:layout_height="match_parent" />
+
+
+    </ScrollView>
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:id="@+id/textStartCommd"
+        android:visibility="gone"
+        android:textColor="#fff"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:src="@drawable/rc_ac_sd_card_icon"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:id="@+id/save"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

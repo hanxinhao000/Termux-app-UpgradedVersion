@@ -1,0 +1,47 @@
+#!/data/data/com.termux/files/usr/bin/sh
+
+start() {
+    cd /data/data/com.termux/files/usr/bin/ && sh showfile.sh
+    clear
+    echo '==================================='
+    echo 'One Evolution DDOS'
+    echo '//"ddos/cmd help" for command//'
+    echo '==================================='
+    exit 1
+}
+
+show_help() {
+        cd /data/data/com.termux/files/usr/bin/ && sh showfile.sh
+        clear
+        echo '======================================='
+        echo 'DEFAULT COMMAND :  / ddos \'
+	echo 'Usage: -command- attack [webtarget]'
+        echo 'Script by OneEvolution'
+        echo 'Support: (First step,Team cyber traffic)'
+        echo 'Command : attack,help,upgrade,ping'
+        echo 'attack = -command- attack (target)'
+        echo 'Upgrade/Reset, = ddos res'
+        echo 'change name = -command- cn (name) [reset will undo it]'
+        echo '-v for check version'
+        echo 'brutal = -command- brutal [ip target]'
+        echo 'ping = -command- ping (target)'
+        echo 'Make sure you have installed python2'
+        echo '======================================='
+	exit 1
+}
+
+if [ $# = 0 ]; then start; fi
+CMD="$1"
+shift 1
+
+case "$CMD" in
+        cn*) clear && cd /data/data/com.termux/files/usr/bin && mv ddos $@;;
+        attack*) clear && cd /data/data/com.termux/files/usr/bin && python2 ddoser $@;;
+        brutal*) clear && cd /data/data/com.termux/files/usr/bin && python3 ddosbrute -s $@;;
+	help*) clear && show_help;;
+        -v*) clear && cd /data/data/com.termux/files/usr/bin && cat version;;
+        ping*) clear && ping $@;;
+        res*) clear && cd $HOME && mkdir upgrade && cd upgrade && git clone https://github.com/RioBithub/ddos-termux && clear && cd ddos-termux && cd source && cp * /data/data/com.termux/files/usr/bin && cd /data/data/com.termux/files/usr/bin && chmod 777 * && echo '------' && echo success reclone ddos-termux && echo '------' && cd $HOME && rm -rf upgrade;;
+	*) clear && echo "Unknown command: '$CMD' (run 'ddos help' for usage information)";;
+esac
+

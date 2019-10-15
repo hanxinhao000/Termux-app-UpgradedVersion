@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+
+-->
+<resources>
+
+    <!--
+         ***************************
+	     About information
+	     ***************************
+
+    -->
+
+
+    <!-- Automatically filled in by Launchpad: -->
+    <string name="about_translators">Launchpad Contributions:
+  Gál László https://launchpad.net/~gal-laszlo
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  Szabolcs Arnoczki https://launchpad.net/~arnoczkis</string>
+
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Fájlok kezelése az SD kártyán az OI Fájlkezelővel.</string>
+
+    <!--
+         ***************************
+	     Applicatio-specific strings
+	     ***************************
+
+    -->
+    <!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI Fájlkezelő</string>
+    <string name="menu_delete">Törlés</string>
+    <string name="menu_rename">Átnevezés</string>
+
+    <string name="menu_send">Küldés</string>
+    <string name="menu_open">Megnyitás</string>
+    <string name="menu_move">Kivágás</string>
+    <string name="menu_copy">Másolás</string>
+    <string name="menu_details">Részletek</string>
+    <string name="menu_more">További lehetőségek</string>
+    <string name="menu_compress">Tömörítés (ZIP)</string>
+    <string name="menu_extract">Kicsomagolás (ZIP)</string>
+    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_exclude_from_media_scan">Kizárás a médiafigyelésből.</string>
+    <string name="menu_bookmark">Könyvjelző</string>
+    <string name="create_new_folder">Új mappa létrehozása</string>
+    <string name="folder_name">Mappa neve</string>
+    <string name="this_folder_is_empty">Ez a mappa üres.</string>
+    <string name="really_delete">Valóban törölni akarod ezt: %s?</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Néhűny opció nem működhet.</string>
+    <string name="show_warning_again">Mutassa újra az értesítést.</string>
+
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">Valóban törölni akarod ezt a(z) %d fájlt?</string>
+    <string name="multiselect_title">Több fájl kiválasztása</string>
+    <string name="pick_title">File picker</string>
+
+    <!-- Strings for details table -->
+    <string name="details_type">Fájltípus</string>
+    <string name="details_type_folder">Mappa</string>
+    <string name="details_type_file">Fájl</string>
+    <string name="details_type_other">Egyéb</string>
+    <string name="details_size">Méret</string>
+    <string name="details_permissions">Engedélyek</string>
+    <string name="details_hidden">Rejtett</string>
+    <string name="details_lastmodified">Utoljára módosítva</string>
+    <string name="details_yes">Igen</string>
+    <string name="details_no">Nem</string>
+
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s másolat</string>
+
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">%2$s %1$d másolat</string>
+    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="error_generic">Hiba történt:</string>
+    <string name="error_media_scan">A médiavizsgálat beállításait nem lehet megváltoztatni.</string>
+    <string name="send_not_available">A küldéshez nem áll rendelkezésre egyetlen alkalmazás sem.</string>
+    <string name="application_not_available">Nem áll rendelkezésre alkalmazás.</string>
+
+    <!--
+         ***************************
+	     Preferences
+	     ***************************
+
+    -->
+    <!-- Menu item for Settings -->
+    <string name="settings">Beállítások</string>
+
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Speciális funkciók</string>
+    <string name="preference_mediascan_title">Kizárás a médiafigyelésből.</string>
+    <string name="preference_mediascan_summary_on">Mutassa a "Kizárás a médiavizsgálatból" menüpontot.</string>
+    <string name="preference_mediascan_summary_off">Ne mutassa a "Kizárás a médiavizsgálatból" menüpontot.</string>
+    <string name="preference_showallwarning_title">Minden értesítés mutatása</string>
+    <string name="preference_showallwarning_summary_on">Minden figyelmeztető értesítés mutatása</string>
+    <string name="preference_showallwarning_summary_off">Értesítések némítása</string>
+    <string name="preference_displayhiddenfiles_title">Rejtett fájlok megjelenítése</string>
+    <string name="preference_displayhiddenfiles_summary_on">Rejtett fájlok megjelenítése</string>
+    <string name="preference_displayhiddenfiles_summary_off">Rejtett fájlok eltüntetése</string>
+    <string name="preference_sort_settings">Rendezési beállítások</string>
+    <string name="preference_sortby">Rendezés a következő szerint</string>
+    <string name="preference_sortby_ascending">Emelkedő sorrendben</string>
+    <string name="preference_sortby_ascending_summary_on">Rendezés emelkedő sorrendben</string>
+    <string name="preference_sortby_ascending_summary_off">Csökkenő sorrendben</string>
+
+    <string-array name="preference_sortby_names">
+        <item>Név</item>
+        <item>Méret</item>
+        <item>Utoljára módosítva</item>
+        <item>File extension</item>
+    </string-array>
+
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
+
+    <!--
+         ***************************
+   		 Strings for the \'Save as\' feature
+    	 ***************************
+
+    -->
+    <string name="saveas_no_file_picked">Nem választott ki semmilyen fájlt.</string>
+    <string name="saveas_error">Hiba történt.</string>
+    <string name="saveas_file_saved">Fájl sikeresen mentve.</string>
+
+    <!--
+         ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          ***************************
+
+    -->
+    <string name="compressing_success">Sikeres tömörítés</string>
+    <string name="compressing_error">A tömörítés sikertelen</string>
+    <string name="extracting_success">Sikeres kicsomagolás</string>
+    <string name="extracting_error">A kicsomagolás sikertelen</string>
+    <string name="extracting">Kicsomagolás...</string>
+    <string name="compressing">Tömörítés...</string>
+
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Könyvjelzők</string>
+    <string name="menu_search">Keresés</string>
+    <string name="menu_create_folder">Mappa létrehozása</string>
+    <string name="menu_paste">Beillesztés</string>
+    <string name="menu_multiselect">Több kijelölése</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="menu_donate">Donate</string>
+    <string name="menu_create_shortcut">Parancsikon létrehozása</string>
+    <string name="send_chooser_title">Küldés a következőt használva</string>
+    <string name="menu_check_all">Összes megjelölése</string>
+    <string name="menu_uncheck_all">Kijelölések törlése</string>
+
+    <!-- Multi selection action strings -->
+    <string name="selected">kijelölve</string>
+    <string name="no_selection">Nincsenek fájlok kijelölve</string>
+    <string name="bookmark_empty">Nincsenek könyvjelzők hozzáadva</string>
+    <string name="bookmark_added">Könyvjelző hozzáadva</string>
+    <string name="bookmark_already_exists">Ez a fájl már hozzá van adva a könyvjelzőkhöz</string>
+    <string name="bookmarks">Könyvjelzők</string>
+
+    <!-- Search related -->
+    <string name="search_hint">Fájlok keresése</string>
+    <string name="query_error">Hiba a keresés közben</string>
+    <string name="search_settings_descr">Fájlok és mappák a tárolón</string>
+    <string name="preference_search_title">Előzmények törlése</string>
+    <string name="preference_search_category">Keresés</string>
+    <string name="preference_search_dialog_message">Törli az előzményeket?</string>
+    <string name="search_history_cleared">Előzmények törölve</string>
+
+    <!-- icon content description -->
+    <string name="item_icon">Fájl ikon</string>
+
+    <!-- list layout -->
+    <string name="scanning">Vizsgálat...</string>
+
+    <!-- Dialogs -->
+    <string name="delete_success">Sikeresen törölve</string>
+    <string name="delete_failure">Néhány fájl nem került törlésre</string>
+    <string name="deleting">Törlés...</string>
+    <string name="rename_success">Sikeres átnevezés</string>
+    <string name="rename_failure">Átnevezés sikertelen</string>
+    <string name="loading">Betöltés...</string>
+    <string name="create_dir_success">Mappa sikeresen létrehozva</string>
+    <string name="create_dir_failure">Mappa létrehozása sikertelen</string>
+    <string name="compressed_file_name">Zip fájl neve</string>
+    <string name="file_exists">A fájl létezik</string>
+    <string name="overwrite_question">Felülírja a régi fájlt?</string>
+    <string name="directory_pick">Válassza ki a jelenlegi mappát</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
+
+    <!-- CopyHelper statuses -->
+    <string name="copying">Másolás...</string>
+    <string name="copied">Másolás sikeres</string>
+    <string name="copy_error">Néhány fájl másolása sikertelen!</string>
+    <string name="moving">Áthelyezés...</string>
+    <string name="moved">Áthelyezés sikeres</string>
+    <string name="move_error">Néhány fájl áthelyezése sikertelen!</string>
+    <string name="nothing_to_paste">Beillesztés sikertelen. Először másoljon, vagy vágjon ki fájlokat.</string>
+
+    <plurals name="clipboard_info_items_to_copy">
+        <item quantity="one">%1$d item to copy</item>
+        <item quantity="other">%1$d items to copy</item>
+    </plurals>
+    <plurals name="clipboard_info_items_to_move">
+        <item quantity="one">%1$d item to move</item>
+        <item quantity="other">%1$d items to move</item>
+    </plurals>
+
+    <string name="clipboard_undo">Undo</string>
+    <string name="clipboard_dismiss">Dismiss</string>
+    <string name="preference_usebestmatch_title">Use best app for icons</string>
+    <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
+    <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+
+</resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<MimeTypes>
+    <!-- Image types -->
+    <type
+        extension=".png"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/png"/>
+    <type
+        extension=".gif"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/gif"/>
+    <type
+        extension=".jpg"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/jpeg"/>
+    <type
+        extension=".jpeg"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/jpeg"/>
+    <type
+        extension=".bmp"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/bmp"/>
+    <type
+        extension=".svg"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/svg+xml"/>
+
+    <!-- Audio types -->
+    <type
+        extension=".mp3"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/mpeg"/>
+    <type
+        extension=".wav"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/x-wav"/>
+    <type
+        extension=".ogg"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="application/ogg"/>
+    <type
+        extension=".mid"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/midi"/>
+    <type
+        extension=".midi"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/midi"/>
+    <type
+        extension=".amr"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/amr"/>
+    <type
+        extension=".aac"
+        icon="@drawable/ic_launcher_audio"
+        mimetype="audio/x-aac"/> <!-- NOT IN WEBKIT -->
+
+    <!-- Video types -->
+    <type
+        extension=".mpeg"
+        icon="@drawable/ic_launcher_video"
+        mimetype="video/mpeg"/>
+    <type
+        extension=".3gp"
+        icon="@drawable/ic_launcher_video"
+        mimetype="video/3gpp"/>
+
+    <!-- Package types -->
+    <type
+        extension=".jar"
+        icon="@drawable/ic_launcher_archive"
+        mimetype="application/java-archive"/>
+    <type
+        extension=".zip"
+        icon="@drawable/ic_launcher_archive"
+        mimetype="application/zip"/>
+    <type
+        extension=".rar"
+        icon="@drawable/ic_launcher_archive"
+        mimetype="application/rar"/>
+    <type
+        extension=".gz"
+        icon="@drawable/ic_launcher_archive"
+        mimetype="application/gzip"/> <!-- NOT IN WEBKIT -->
+
+    <!-- Web browser types -->
+    <type
+        extension=".htm"
+        icon="@drawable/ic_launcher_text_html"
+        mimetype="text/html"/>
+    <type
+        extension=".html"
+        icon="@drawable/ic_launcher_text_html"
+        mimetype="text/html"/>
+    <type
+        extension=".php"
+        icon="@drawable/ic_launcher_file"
+        mimetype="text/php "/> <!-- NOT IN WEBKIT -->
+
+    <!-- Text types -->
+    <type
+        extension=".txt"
+        icon="@drawable/ic_launcher_text_plain"
+        mimetype="text/plain"/>
+    <type
+        extension=".csv"
+        icon="@drawable/ic_launcher_text_csv"
+        mimetype="text/csv"/>
+    <type
+        extension=".xml"
+        icon="@drawable/ic_launcher_text_xml"
+        mimetype="text/xml"/>
+
+    <!-- Android specific -->
+    <type
+        extension=".apk"
+        icon="@drawable/ic_launcher_android_package"
+        mimetype="application/vnd.android.package-archive"/>
+
+    <!-- Books -->
+    <type
+        extension=".epub"
+        icon="@drawable/ic_launcher_text_plain"
+        mimetype="application/epub+zip"/>
+    <type
+        extension=".chm"
+        icon="@drawable/ic_launcher_text_plain"
+        mimetype="application/vnd.ms-htmlhelp"/>
+    <type
+        extension=".pdf"
+        icon="@drawable/ic_launcher_text_plain"
+        mimetype="application/pdf"/>
+    <type
+        extension=".mobi"
+        icon="@drawable/ic_launcher_text_plain"
+        mimetype="application/x-mobipocket-ebook"/>
+
+    <!-- Maps -->
+    <type
+        extension=".itn"
+        icon="@drawable/ic_launcher_map"
+        mimetype="application/octet-stream"/>
+
+</MimeTypes>
