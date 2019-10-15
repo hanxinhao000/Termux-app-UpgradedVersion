@@ -1,6 +1,6 @@
 # Termux upgrade version
  
-- [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
+- # [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
 
 # img 
 
