@@ -39,7 +39,7 @@
 ## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
 ## 3.termux-float:https://github.com/termux/termux-float
 ## 4.AnLinux     :https://github.com/EXALAB/AnLinux-App
-## 5.other       :感谢所有该项目所参阅的作者
+## 5.其他       :感谢所有该项目所参阅的作者
 
 
 
