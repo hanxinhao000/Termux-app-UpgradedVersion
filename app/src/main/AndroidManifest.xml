@@ -47,12 +47,13 @@
         android:banner="@drawable/banner"
         android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backupscheme"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/home"
         android:label="@string/application_name"
+
         android:largeHeap="true"
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label">
+        tools:replace="android:label,android:theme">
         <activity android:name="main.java.com.termux.activity.KeyConfigActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name="main.java.com.termux.activity.CustomActivity"

@@ -6,6 +6,7 @@ public class TermuxData {
 
     private static TermuxData mTermuxData;
     public int isB_R;
+    public int config;
     public File mFile;
 
 

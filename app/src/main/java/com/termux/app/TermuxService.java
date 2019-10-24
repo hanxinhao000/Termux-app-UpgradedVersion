@@ -109,7 +109,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
      */
     boolean mWantsToStop = false;
 
-    @SuppressLint("Wakelock")
+    @SuppressLint({"Wakelock", "InvalidWakeLockTag"})
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         TAGRUN = "XINHAO_HAN";

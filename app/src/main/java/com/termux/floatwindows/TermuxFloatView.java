@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.OnScaleGestureListener;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
@@ -127,11 +128,18 @@ public class TermuxFloatView extends LinearLayout {
         }
         layoutParams.format = PixelFormat.RGBA_8888;
 
+
         layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
         TermuxFloatPrefs.applySavedGeometry(getContext(), layoutParams);
 
         mWindowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        //  mWindowManager.addView(View.inflate(getContext(), R.layout.window_yuan, null), layoutParams);
         mWindowManager.addView(this, layoutParams);
+
+
+
+
+
         imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         showTouchKeyboard();
     }
@@ -174,7 +182,7 @@ public class TermuxFloatView extends LinearLayout {
         setAlpha(newValue ? ALPHA_MOVING : (withFocus ? ALPHA_FOCUS : ALPHA_NOT_FOCUS));
         if (newValue) {
             Toast toast = Toast.makeText(getContext(), R.string.after_long_press, Toast.LENGTH_SHORT);
-           // toast.setGravity(Gravity.CENTER, 0, 0);
+            // toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
     }

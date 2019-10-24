@@ -15,6 +15,11 @@ import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
 import java.io.File;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 
 public class SystemUtil {
@@ -139,4 +144,27 @@ public class SystemUtil {
             return 0;
         }
     }
+
+
+    public static String getLocalIpAddress() {
+        String ip = "127.0.0.1";
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                .getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                    .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        ip = inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return ip;
+    }
 }
+
+

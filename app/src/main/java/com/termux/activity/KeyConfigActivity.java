@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import main.java.com.termux.adapter.WindowAdapter;
+import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.utils.SaveData;
 
 public class KeyConfigActivity extends AppCompatActivity {
@@ -63,7 +64,14 @@ public class KeyConfigActivity extends AppCompatActivity {
 
                     new JSONArray(content);
 
-                    SaveData.saveData("key_box", content);
+                    if (TermuxData.getInstall().config == 0) {
+
+                        SaveData.saveData("key_box", content);
+
+                    } else {
+                        SaveData.saveData("key_box_r", content);
+                    }
+
 
                     Toast.makeText(KeyConfigActivity.this, "更改配置文件布局成功!等下次启动之后就会更改布局了", Toast.LENGTH_SHORT).show();
 

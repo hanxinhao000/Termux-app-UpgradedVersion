@@ -3,8 +3,17 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:focusable="true"
+    android:id="@+id/termux_layout"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:id="@+id/video_view"
+        android:visibility="gone"
+        android:background="#00000000"
+        android:layout_height="match_parent" />
+
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -17,8 +26,6 @@
             android:id="@+id/terminal_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
             android:focusableInTouchMode="true"
             android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
             android:scrollbars="vertical" />
@@ -60,17 +67,56 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="10dp"
-
                             android:text="功能/可上下滑动"
                             android:textColor="#fff"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="版本:[0.76(75).05]"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_jiagou"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="架构:[无法读取]"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/text_ip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="IP:[无法读取]"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
                         <LinearLayout
                             android:id="@+id/file_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -171,6 +217,117 @@
 
 
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+
+                        <LinearLayout
+                            android:id="@+id/color_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/yanse_ziti" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="更改颜色\n[字体/键盘/背景]\n[长按恢复默认颜色]"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/back_color" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="更改背景[图片]\n[长按恢复默认黑色]"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+
+                        <LinearLayout
+                            android:id="@+id/video_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/video_image" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="更改动态背景[视频]\n[长按恢复默认黑色]"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
 
 
                         <TextView
@@ -279,6 +436,79 @@
 
                         </LinearLayout>
 
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+                        <LinearLayout
+                            android:id="@+id/start_end_command"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/kaiguan" />
+
+
+                            <TextView
+                                android:id="@+id/start_end_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="启用/关闭 开机命令[开]"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+
+                        <LinearLayout
+                            android:id="@+id/android_support"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/android_error" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="一键修复\n[libandroid-support.so]\n[not found 错误]\n[AARCH64 支持]\n[测试功能,如果还会继续报错,请反馈作者]"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="1px"
@@ -335,19 +565,18 @@
                                 <ImageView
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
-                                    android:layout_centerVertical="true"
                                     android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
                                     android:src="@drawable/icon_fedora" />
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_centerVertical="true"
                                     android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
                                     android:src="@drawable/jingzhi" />
 
                             </RelativeLayout>
-
 
 
                             <TextView
@@ -424,7 +653,7 @@
                                 android:layout_marginBottom="20dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="自定义底部键盘"
+                                android:text="自定义[底部/侧右边]键盘"
                                 android:textColor="#fff"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
@@ -436,7 +665,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:background="#3fff" />
-
 
 
                         <TextView
@@ -474,7 +702,6 @@
                         </LinearLayout>
 
 
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="1px"
@@ -508,8 +735,6 @@
                                 android:visibility="visible" />
 
                         </LinearLayout>
-
-
 
 
                         <TextView
@@ -818,6 +1043,78 @@
             </RelativeLayout>
         </LinearLayout>
 
+
+        <!-- 右侧滑动栏 -->
+
+        <RelativeLayout
+            android:id="@+id/main_right_drawer_layout"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#AA1BBC9B"
+
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <ListView
+                        android:id="@+id/item_select"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/item_key_linux"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="自带\n键盘"
+                        android:textColor="#fff" />
+
+                    <Button
+                        android:id="@+id/item_key_user"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="用户\n导入\n键盘"
+                        android:textColor="#fff" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/item_key"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <androidx.viewpager.widget.ViewPager
@@ -881,7 +1178,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.75.90]"
+            android:text="Termux[0.76(75).05]"
             android:textColor="#fff"
             android:textSize="28sp" />
 
@@ -991,6 +1288,146 @@
         android:textColor="#000"
         android:textSize="18sp"
         android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/color"
+        android:layout_width="350dp"
+        android:layout_height="420dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/dialog_back_clolr">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/android_error" />
+
+
+        <com.madrapps.pikolo.RGBColorPicker
+            android:id="@+id/rgb_color"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgb_color"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#3fff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="请选择变化信息:"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="文字"
+
+                    android:id="@+id/wenzi"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/wenzijianpan"
+                    android:text="文字 + 底部键盘"
+                    android:textColor="#CC0099"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#3fff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="键盘"
+                    android:id="@+id/jianpan"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/beijin"
+                    android:text="背景"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#3fff" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
 
 
 </RelativeLayout>

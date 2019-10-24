@@ -1347,27 +1347,46 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                             int l = 0;
 
-                            int i = 0;
+                            int i[] = {0};
+
+                            boolean [] xianshi = {true};
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    while(xianshi[0]){
+
+                                        try {
+                                            Thread.sleep(10);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                myDialog[0].getDialog_pro_prog().setProgress(i[0]);
+                                                myDialog[0].getDialog_pro().setText((i[0] / 1024 / 1024 * 1.0) + "MB/" + (fileOnline.length() / 1024 / 1024 * 1.0) + "MB]");
+                                                Log.e("XINHAO_HAN", "run: " + "我还在运行..." );
+                                            }
+                                        });
+
+
+                                    }
+                                }
+                            }).start();
+
                             while ((l = fileInputStream.read(b)) != -1) {
 
 
-                                i += l;
+                                i[0] += l;
 
-                                int finalI = i;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        myDialog[0].getDialog_pro_prog().setProgress(finalI);
-                                        myDialog[0].getDialog_pro().setText((finalI / 1024 / 1024 * 1.0) + "MB/" + (fileOnline.length() / 1024 / 1024 * 1.0) + "MB]");
-                                    }
-                                });
                                 fileOutputStream.write(b, 0, l);
 
                             }
                             fileOutputStream.flush();
                             fileInputStream.close();
                             fileOutputStream.close();
-
+                            xianshi[0] = false;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {

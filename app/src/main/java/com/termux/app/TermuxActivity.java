@@ -18,10 +18,15 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
@@ -42,9 +47,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -56,6 +61,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,13 +72,27 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
+
+
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.madrapps.pikolo.ColorPicker;
+import com.madrapps.pikolo.RGBColorPicker;
+import com.madrapps.pikolo.listeners.OnColorSelectionListener;
+
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
 import com.termux.terminal.TerminalSession;
 import com.termux.terminal.TerminalSession.SessionChangedCallback;
 import com.termux.terminal.TextStyle;
+import com.termux.view.TerminalRenderer;
 import com.termux.view.TerminalView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -100,15 +120,18 @@ import main.java.com.termux.activity.RepairActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
 import main.java.com.termux.activity.WindowsActivity;
+import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
+import main.java.com.termux.floatwindows.FloatView;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
+import main.java.com.termux.utils.SystemUtil;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
 
@@ -204,13 +227,29 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private AnimatorSet mRightOutSet;
     private AnimatorSet mLeftInSet;
     private ListView listView;
+    private ListView lv;
+    private ViewPager viewPager;
 
     @Override
     protected void onResume() {
         super.onResume();
         String redD = SaveData.getData("redD");
+
         if (redD.equals("red")) {
             red.setVisibility(View.GONE);
+        }
+
+        if (!video_view.isPlaying()) {
+
+            video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.setVolume(0f, 0f);
+                    mp.start();
+//                        mVideoView.start();
+                }
+            });
         }
     }
 
@@ -363,6 +402,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         ///data/data/com.termux/files/home/jails/ubuntu/ubuntu.sh
 
+        String start_end = SaveData.getData("start_end");
+
+        if (start_end.equals("end")) {
+            return;
+        }
+
         if (TermuxService.TAGRUN != null)
             return;
 
@@ -492,7 +537,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
 
         msg.setText("开始启动mysql");
-        mSettings = new TermuxPreferences(this);
+
 
         mTerminalView = findViewById(R.id.terminal_view);
         mTerminalView.setOnKeyListener(new TermuxViewClient(this));
@@ -724,6 +769,30 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                 if (position == 0) {
                     layout = mExtraKeysView = (ExtraKeysView) inflater.inflate(R.layout.extra_keys_main, collection, false);
                     mExtraKeysView.reload(mSettings.mExtraKeys, ExtraKeysView.defaultCharDisplay);
+
+                    String back_color_view = SaveData.getData("back_color_view");
+
+                    if (!back_color_view.equals("def")) {
+
+                        int back_color_view1 = Integer.parseInt(SaveData.getData("back_color_view"));
+                        mExtraKeysView.setBackgroundColor(back_color_view1);
+                    }
+
+
+                    String image_back = SaveData.getData("image_back");
+
+                    Log.e("XINHAO_HAN", "instantiateItem: " + image_back);
+                    if (!image_back.equals("def")) {
+                        mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
+                    }
+
+                    String video_back = SaveData.getData("video_back");
+
+                    if (!video_back.equals("def")) {
+                        mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
+                    }
+
+
                 } else {
                     layout = inflater.inflate(R.layout.extra_keys_right, collection, false);
                     final EditText editText = layout.findViewById(R.id.text_input);
@@ -742,6 +811,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                         return true;
                     });
                 }
+
+
                 collection.addView(layout);
                 return layout;
             }
@@ -765,7 +836,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         });
 
         View newSessionButton = findViewById(R.id.new_session_button);
-        newSessionButton.setOnClickListener(v -> addNewSession(false, null));
+        newSessionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewSession(false, null);
+                qiehuan(0);
+            }
+        });
         newSessionButton.setOnLongClickListener(v -> {
             DialogUtils.textInput(TermuxActivity.this, R.string.session_new_named_title, null, R.string.session_new_named_positive_button,
                 text -> addNewSession(false, text), R.string.new_session_failsafe, text -> addNewSession(true, text)
@@ -841,8 +918,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
             }
         }).start();
-
-
     }
 
 
@@ -887,8 +962,147 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
+
+
+        Log.e("返回的图片", "requestCode: " + requestCode);
+        Log.e("返回的图片", "resultCode: " + resultCode);
+        switch (requestCode) {
+
+
+            case REQUEST_SELECT_IMAGES_CODE:
+
+
+                List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+
+                if (selectList == null || selectList.size() == 0) {
+                    return;
+                }
+
+
+                // 例如 LocalMedia 里面返回三种path
+                // 1.media.getPath(); 为原图path
+                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true  注意：音视频除外
+                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true  注意：音视频除外
+
+
+                try {
+
+                    String compressPath = selectList.get(0).getCompressPath();
+
+                    Log.e("XINHAO_HAN", "onActivityResult: " + compressPath);
+
+
+                    try {
+                        video_view.setVisibility(View.GONE);
+                        video_view.stopPlayback();
+                        SaveData.saveData("video_back", "def");
+                    } catch (Exception e) {
+
+                    }
+
+                    Bitmap bitmap = BitmapFactory.decodeFile(compressPath);
+
+                    SaveData.saveData("image_back", compressPath);
+
+                    termux_layout.setBackground(new BitmapDrawable(bitmap));
+
+                    mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    if (viewPager != null)
+                        viewPager.setBackgroundColor(Color.parseColor("#44000000"));
+                } catch (Exception e) {
+
+
+                }
+
+                break;
+
+            case REQUEST_SELECT_IMAGES_CODE_VIDEO:
+
+
+                List<LocalMedia> selectList1 = PictureSelector.obtainMultipleResult(data);
+
+                if (selectList1 == null || selectList1.size() == 0) {
+                    return;
+                }
+
+
+                // 例如 LocalMedia 里面返回三种path
+                // 1.media.getPath(); 为原图path
+                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true  注意：音视频除外
+                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true  注意：音视频除外
+
+
+                try {
+
+                    String compressPath = selectList1.get(0).getPath();
+
+                    Log.e("XINHAO_HAN", "onActivityResult: " + compressPath);
+
+                    SaveData.saveData("video_back", compressPath);
+
+
+                    termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
+
+                    mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    SaveData.saveData("image_back", "def");
+
+                    //termux_layout.setBackground(new BitmapDrawable(bitmap));
+
+                    video_view.setVisibility(View.VISIBLE);
+
+                    video_view.setVideoPath(compressPath);
+
+                   // video_view.start();
+
+                    video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.setVolume(0f, 0f);
+                            mp.start();
+//                        mVideoView.start();
+                        }
+                    });
+
+                    video_view.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                        @Override
+                        public void onCompletion(MediaPlayer mPlayer) {
+                            mPlayer.start();
+                            mPlayer.setLooping(true);
+                        }
+                    });
+/*
+
+                    video_view.pause();
+
+                    video_view.resume();
+*/
+
+
+                    termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
+
+                    mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                    if (viewPager != null)
+                        viewPager.setBackgroundColor(Color.parseColor("#44000000"));
+                } catch (Exception e) {
+
+
+                }
+                break;
+
+        }
+
     }
 
     private File mFileSystem = new File(Environment.getExternalStorageDirectory(), "/xinhao/system");
@@ -965,16 +1179,484 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private LinearLayout unfedora_linux_gui_btn;
     private LinearLayout windows;
     private LinearLayout key_ziding;
+    private LinearLayout start_end_command;
+    private LinearLayout android_support;
+
+    private TextView start_end_text;
+
+    private boolean start_end;
+
+    private ListView item_select;
+
+    private ListView item_key;
+
+    private Button item_key_linux;
+    private Button item_key_user;
+
+
+    private TextView text_jiagou;
+    private TextView text_ip;
+
+
+    private TextView wenzi;
+    private TextView wenzijianpan;
+    private TextView jianpan;
+    private TextView beijin;
+
+
+    boolean mIsUsingBlackUI;
+
+    private ColorPicker colorPicker;
+    private RelativeLayout color;
+
+    private ImageView close;
+
+    private RGBColorPicker rgb_color;
+
+
+    private LinearLayout color_btn;
+    private LinearLayout function_ll;
+    private LinearLayout back_btn;
+    private LinearLayout video_btn;
+
+    private VideoView video_view;
+
+    private RelativeLayout termux_layout;
+
+    private static final int REQUEST_SELECT_IMAGES_CODE = 199501;
+    private static final int REQUEST_SELECT_IMAGES_CODE_VIDEO = 199403;
 
     @Override
     public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
+        mSettings = new TermuxPreferences(this);
+        mIsUsingBlackUI = mSettings.isUsingBlackUI();
+        if (mIsUsingBlackUI) {
+            this.setTheme(R.style.Theme_Termux_Black);
+        } else {
+            this.setTheme(R.style.Theme_Termux);
+        }
 
+
+        super.onCreate(bundle);
+        getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
+
+        rgb_color = findViewById(R.id.rgb_color);
+        color = findViewById(R.id.color);
+        wenzi = findViewById(R.id.wenzi);
+        wenzijianpan = findViewById(R.id.wenzijianpan);
+        jianpan = findViewById(R.id.jianpan);
+        beijin = findViewById(R.id.beijin);
+        function_ll = findViewById(R.id.function_ll);
+
+        video_view = findViewById(R.id.video_view);
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        video_view.setLayoutParams(layoutParams);
+
+
+        video_btn = findViewById(R.id.video_btn);
+
+        color_btn = findViewById(R.id.color_btn);
+
+        back_btn = findViewById(R.id.back_btn);
+
+        termux_layout = findViewById(R.id.termux_layout);
+
+        File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/img/");
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!file.exists()) {
+                    boolean mkdirs = file.mkdirs();
+
+                    if (!mkdirs) {
+                        Toast.makeText(TermuxActivity.this, "内存卡不可访问!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+                // 进入相册 以下是例子：用不到的api可以不写
+                PictureSelector.create(TermuxActivity.this)
+                    .openGallery(PictureConfig.TYPE_IMAGE)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    //.theme()//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
+                    .maxSelectNum(1)// 最大图片选择数量 int
+                    .minSelectNum(0)// 最小选择数量 int
+                    .imageSpanCount(4)// 每行显示个数 int
+                    .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                    .previewImage(true)// 是否可预览图片 true or false
+                    .previewVideo(false)// 是否可预览视频 true or false
+                    .enablePreviewAudio(false) // 是否可播放音频 true or false
+                    .isCamera(true)// 是否显示拍照按钮 true or false
+                    .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                    .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                    .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+                    .setOutputCameraPath("/CustomPath")// 自定义拍照保存路径,可不填
+                    .enableCrop(false)// 是否裁剪 true or false
+                    .compress(true)// 是否压缩 true or false
+                    // .glideOverride()// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                    // .withAspectRatio()// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                    .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
+                    .isGif(true)// 是否显示gif图片 true or false
+                    //.compressSavePath(file.getAbsolutePath())//压缩图片保存地址
+                    // .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+                    // .circleDimmedLayer(false)// 是否圆形裁剪 true or false
+                    // .showCropFrame()// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                    // .showCropGrid()// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                    // .openClickSound()// 是否开启点击声音 true or false
+                    // .selectionMedia()// 是否传入已选图片 List<LocalMedia> list
+                    //.previewEggs()// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
+                    // .cropCompressQuality()// 裁剪压缩质量 默认90 int
+                    .minimumCompressSize(100)// 小于100kb的图片不压缩
+                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                    //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效 int
+                    // .rotateEnabled() // 裁剪是否可旋转图片 true or false
+                    // .scaleEnabled()// 裁剪是否可放大缩小图片 true or false
+                    // .videoQuality()// 视频录制质量 0 or 1 int
+                    .videoMaxSecond(15)// 显示多少秒以内的视频or音频也可适用 int
+                    .videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
+                    // .recordVideoSecond()//视频秒数录制 默认60s int
+                    .isDragFrame(false)// 是否可拖动裁剪框(固定)
+                    .forResult(REQUEST_SELECT_IMAGES_CODE);//结果回调onActivityResult code
+
+
+                Toast.makeText(TermuxActivity.this, "不要选择过大[过长]的背景,否则会造成卡顿", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+
+
+        video_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // 进入相册 以下是例子：用不到的api可以不写
+                PictureSelector.create(TermuxActivity.this)
+                    .openGallery(PictureConfig.TYPE_VIDEO)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    //.theme()//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
+                    .maxSelectNum(1)// 最大图片选择数量 int
+                    .minSelectNum(0)// 最小选择数量 int
+                    .imageSpanCount(4)// 每行显示个数 int
+                    .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                    .previewImage(false)// 是否可预览图片 true or false
+                    .previewVideo(true)// 是否可预览视频 true or false
+                    .enablePreviewAudio(false) // 是否可播放音频 true or false
+                    .isCamera(true)// 是否显示拍照按钮 true or false
+                    .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                    .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                    .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+                    .setOutputCameraPath("/CustomPath")// 自定义拍照保存路径,可不填
+                    .enableCrop(false)// 是否裁剪 true or false
+                    .compress(true)// 是否压缩 true or false
+                    // .glideOverride()// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                    // .withAspectRatio()// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                    .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
+                    .isGif(true)// 是否显示gif图片 true or false
+                    //.compressSavePath(file.getAbsolutePath())//压缩图片保存地址
+                    // .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+                    // .circleDimmedLayer(false)// 是否圆形裁剪 true or false
+                    // .showCropFrame()// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                    // .showCropGrid()// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                    // .openClickSound()// 是否开启点击声音 true or false
+                    // .selectionMedia()// 是否传入已选图片 List<LocalMedia> list
+                    //.previewEggs()// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
+                    // .cropCompressQuality()// 裁剪压缩质量 默认90 int
+                    .minimumCompressSize(100)// 小于100kb的图片不压缩
+                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                    //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效 int
+                    // .rotateEnabled() // 裁剪是否可旋转图片 true or false
+                    // .scaleEnabled()// 裁剪是否可放大缩小图片 true or false
+                    // .videoQuality()// 视频录制质量 0 or 1 int
+                    .videoMaxSecond(15)// 显示多少秒以内的视频or音频也可适用 int
+                    .videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
+                    // .recordVideoSecond()//视频秒数录制 默认60s int
+                    .isDragFrame(false)// 是否可拖动裁剪框(固定)
+                    .forResult(REQUEST_SELECT_IMAGES_CODE_VIDEO);//结果回调onActivityResult code
+
+
+            }
+        });
+
+
+        video_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                try {
+
+                    video_view.setVisibility(View.GONE);
+                    video_view.stopPlayback();
+                    SaveData.saveData("video_back", "def");
+                } catch (Exception e) {
+
+                }
+
+
+                return true;
+            }
+        });
+
+        back_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                setTextColorView(Color.parseColor("#ffffff"));
+                SaveData.saveData("text_color_view", "def");
+                setKeyColorView(Color.parseColor("#ffffff"));
+                SaveData.saveData("key_color_view", "def");
+                setBackColorView(Color.parseColor("#000000"));
+                SaveData.saveData("back_color_view", "def");
+                fun_all.setBackgroundColor(Color.parseColor("#1BBC9B"));
+                function_ll.setBackgroundColor(Color.parseColor("#1BBC9B"));
+                lv.setBackgroundColor(Color.parseColor("#1BBC9B"));
+
+                SaveData.saveData("image_back", "def");
+
+                termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
+
+                Toast.makeText(TermuxActivity.this, "已恢复默认", Toast.LENGTH_SHORT).show();
+
+                return true;
+            }
+        });
+
+        color_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+                color.setVisibility(View.VISIBLE);
+
+                Toast.makeText(TermuxActivity.this, "长按此按钮恢复设置!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        color_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                setTextColorView(Color.parseColor("#ffffff"));
+                SaveData.saveData("text_color_view", "def");
+                setKeyColorView(Color.parseColor("#ffffff"));
+                SaveData.saveData("key_color_view", "def");
+                setBackColorView(Color.parseColor("#000000"));
+                SaveData.saveData("back_color_view", "def");
+                fun_all.setBackgroundColor(Color.parseColor("#1BBC9B"));
+                function_ll.setBackgroundColor(Color.parseColor("#1BBC9B"));
+                lv.setBackgroundColor(Color.parseColor("#1BBC9B"));
+                Toast.makeText(TermuxActivity.this, "已恢复默认", Toast.LENGTH_SHORT).show();
+
+                return true;
+            }
+        });
+
+
+        rgb_color.setColorSelectionListener(new OnColorSelectionListener() {
+            @Override
+            public void onColorSelected(int i) {
+
+                switch (indexColor) {
+
+                    case 0:
+                        setTextColorView(i);
+                        SaveData.saveData("text_color_view", i + "");
+                        break;
+                    case 1:
+                        setTextColorView(i);
+                        SaveData.saveData("text_color_view", i + "");
+                        setKeyColorView(i);
+                        SaveData.saveData("key_color_view", i + "");
+                        break;
+                    case 2:
+                        setKeyColorView(i);
+                        SaveData.saveData("key_color_view", i + "");
+
+                        break;
+                    case 3:
+                        setBackColorView(i);
+                        SaveData.saveData("back_color_view", i + "");
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onColorSelectionStart(int i) {
+
+            }
+
+            @Override
+            public void onColorSelectionEnd(int i) {
+
+
+            }
+        });
+
+        wenzi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColorText(0);
+            }
+        });
+        wenzijianpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColorText(1);
+            }
+        });
+        jianpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColorText(2);
+            }
+        });
+
+        beijin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColorText(3);
+            }
+        });
+
+        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                color.setVisibility(View.GONE);
+            }
+        });
+
+
+        color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         termux_run = findViewById(R.id.termux_run);
 
+        text_jiagou = findViewById(R.id.text_jiagou);
+
+        text_ip = findViewById(R.id.text_ip);
+
         quanping = findViewById(R.id.quanping);
+
+        item_key_linux = findViewById(R.id.item_key_linux);
+
+        item_key_user = findViewById(R.id.item_key_user);
+
+        item_select = findViewById(R.id.item_select);
+
+        item_key = findViewById(R.id.item_key);
+
+        text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
+
+        text_ip.setText("[IP地址:" + SystemUtil.getLocalIpAddress() + "]");
+
+        android_support = findViewById(R.id.android_support);
+
+        android_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("慎重警告");
+
+                ab.setMessage("如果你的系统能正常运行，切勿点击!");
+
+                ab.setNeutralButton("我考虑好了", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                        writerFile("libandroid-support.so", new File("/data/data/com.termux/files/usr/lib/libandroid-support.so"), 2048);
+
+                        try {
+                            Runtime.getRuntime().exec("chmod 777 /data/data/com.termux/files/usr/lib/libandroid-support.so");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(TermuxActivity.this, "修复成功,请重启后尝试", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                ab.setPositiveButton("我还没考虑好", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                    }
+                });
+
+                ab.show();
+
+
+            }
+        });
+
+
+        getDrawer().addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                text_ip.setText("[IP地址:" + SystemUtil.getLocalIpAddress() + "]");
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
+        initAdapter();
+
+        start_end_text = findViewById(R.id.start_end_text);
+        start_end_command = findViewById(R.id.start_end_command);
+
+        String start_end = SaveData.getData("start_end");
+
+        if (start_end.equals("end")) {
+            start_end_text.setText("启用/关闭\n开机命令[关]\n[如果没有开机命令,请忽略]");
+            TermuxActivity.this.start_end = true;
+        } else {
+            start_end_text.setText("启用/关闭\n开机命令[开]\n[如果没有开机命令,请忽略]");
+            TermuxActivity.this.start_end = false;
+        }
+
+        start_end_command.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (TermuxActivity.this.start_end) {
+                    start_end_text.setText("启用/关闭\n开机命令[开]\n[如果没有开机命令,请忽略]");
+                    SaveData.saveData("start_end", "start");
+                } else {
+                    start_end_text.setText("启用/关闭\n开机命令[关]\n[如果没有开机命令,请忽略]");
+                    SaveData.saveData("start_end", "end");
+                }
+
+                TermuxActivity.this.start_end = !TermuxActivity.this.start_end;
+
+            }
+        });
+
 
         mingxie = findViewById(R.id.mingxie);
         key_ziding = findViewById(R.id.key_ziding);
@@ -1047,7 +1729,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                             myDialog.show();
 
 
-                            File file = new File("/data/data/com.termux/files/home/xinhao_fedora/");
+                            File file = new File("/data/data/com.termux/files/home/fedora_full/");
 
                             if (!file.exists()) {
                                 file.mkdirs();
@@ -1071,25 +1753,44 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
                                         int l = 0;
 
-                                        int t = 0;
+                                        int t[] = {0};
+
+                                        final boolean[] xianshi = {true};
+
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                while (xianshi[0]) {
+
+                                                    try {
+                                                        Thread.sleep(10);
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+                                                    TermuxApplication.mHandler.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            myDialog.getDialog_title().setText("正在复制文件到工作区域\n如果复制很慢请耐心等待\n页面刷新可能有延时\n可能一直卡在某个数,但是内部复制没停\n如果没有耐心，大退app重新执行[不建议!!!]");
+
+                                                            myDialog.getDialog_pro().setText((t[0] / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
+
+                                                            myDialog.getDialog_pro_prog().setProgress(t[0]);
+
+                                                            Log.e("XINHAO_HAN", "run: " + "我还在运行");
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }).start();
 
                                         while ((l = fileInputStream.read(bytes)) != -1) {
-                                            t += l;
+                                            t[0] += l;
                                             fileOutputStream.write(bytes, 0, l);
-
-                                            int finalT = t;
-                                            TermuxApplication.mHandler.post(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    myDialog.getDialog_title().setText("正在复制文件到工作区域\n如果复制很慢请耐心等待\n页面刷新可能有延时\n可能一直卡在某个数,但是内部复制没停\n如果没有耐心，大退app重新执行[不建议!!!]");
-
-                                                    myDialog.getDialog_pro().setText((finalT / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
-
-                                                    myDialog.getDialog_pro_prog().setProgress(finalT);
-                                                }
-                                            });
                                         }
 
+                                        xianshi[0] = false;
                                         fileInputStream.close();
                                         fileOutputStream.flush();
                                         fileOutputStream.close();
@@ -1220,6 +1921,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             @Override
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
+
                 startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
             }
         });
@@ -1267,6 +1969,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             }
         });
 
+        sess_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                qiehuan(0);
+                addNewSession(false, null);
+                return true;
+            }
+        });
 
         fun_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1307,6 +2018,382 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
 
         // startActivity(new Intent(this,TestActivity.class));
+
+
+
+
+       /* case 0:
+        setTextColorView(i);
+        SaveData.saveData("text_color_view", i + "");
+        break;
+        case 1:
+        setTextColorView(i);
+        SaveData.saveData("text_color_view", i + "");
+        setKeyColorView(i);
+        SaveData.saveData("key_color_view", i + "");
+        break;
+        case 2:
+        setKeyColorView(i);
+        SaveData.saveData("key_color_view", i + "");
+
+        break;
+        case 3:
+        setBackColorView(i);
+        SaveData.saveData("back_color_view", i + "");
+        break;*/
+
+        String text_color_view = SaveData.getData("text_color_view");
+        String key_color_view = SaveData.getData("key_color_view");
+        String back_color_view = SaveData.getData("back_color_view");
+        String video_back = SaveData.getData("video_back");
+
+        try {
+            if (!text_color_view.equals("def")) {
+                TerminalRenderer.COLOR_TEXT = Integer.parseInt(SaveData.getData("text_color_view"));
+                mTerminalView.invalidate();
+
+            }
+
+            if (!key_color_view.equals("def")) {
+                ExtraKeysView.TEXT_COLOR = Integer.parseInt(SaveData.getData("key_color_view"));
+                //   mExtraKeysView.setColorButton();
+            }
+
+            if (!back_color_view.equals("def")) {
+                int back_color_view1 = Integer.parseInt(SaveData.getData("back_color_view"));
+                mTerminalView.setBackgroundColor(back_color_view1);
+                fun_all.setBackgroundColor(back_color_view1);
+                function_ll.setBackgroundColor(back_color_view1);
+
+            }
+
+
+            String image_back = SaveData.getData("image_back");
+            if (!image_back.equals("def")) {
+                Bitmap bitmap = BitmapFactory.decodeFile(image_back);
+                termux_layout.setBackground(new BitmapDrawable(bitmap));
+                mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+                //  fun_all.setBackgroundColor(Color.parseColor("#22000000"));
+                //   function_ll.setBackgroundColor(Color.parseColor("#22000000"));
+                //   getDrawer().setBackgroundColor(Color.parseColor("#22000000"));
+            }
+
+            if (!video_back.equals("def")) {
+                mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+
+                video_view.setVisibility(View.VISIBLE);
+                video_view.setVideoPath(video_back);
+
+
+                video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mp.setVolume(0f, 0f);
+                        mp.start();
+//                        mVideoView.start();
+                    }
+                });
+
+
+                //video_view.start();
+
+                video_view.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mPlayer) {
+                        mPlayer.start();
+                        mPlayer.setLooping(true);
+                    }
+                });
+
+
+            }
+
+            Log.e("XINHAO_HAN_VIDEO", "video_back: " + video_back);
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+
+    //设置文字颜色
+    private void setTextColorView(int color) {
+
+        TerminalRenderer.COLOR_TEXT = color;
+
+        mTerminalView.invalidate();
+
+    }
+
+    //设置背景颜色
+    private void setBackColorView(int color) {
+
+
+        String image_back = SaveData.getData("image_back");
+        String video_back = SaveData.getData("video_back");
+        if (image_back.equals("def") && video_back.equals("def")) {
+            mTerminalView.setBackgroundColor(color);
+            mExtraKeysView.setBackgroundColor(color);
+        } else {
+            //  Toast.makeText(this, "你已设置背景图,无法再次设置背景颜色!", Toast.LENGTH_SHORT).show();
+        }
+
+
+        fun_all.setBackgroundColor(color);
+        function_ll.setBackgroundColor(color);
+        lv.setBackgroundColor(color);
+
+    }
+
+    //设置键盘
+    private void setKeyColorView(int color) {
+        ExtraKeysView.TEXT_COLOR = color;
+        mExtraKeysView.setColorButton();
+
+        mExtraKeysView.invalidate();
+
+    }
+
+    private int indexColor = 1;
+
+    private void setColorText(int index) {
+
+        indexColor = index;
+        wenzi.setTextColor(Color.parseColor("#ffffff"));
+        wenzijianpan.setTextColor(Color.parseColor("#ffffff"));
+        jianpan.setTextColor(Color.parseColor("#ffffff"));
+        beijin.setTextColor(Color.parseColor("#ffffff"));
+
+        switch (index) {
+
+            case 0:
+                wenzi.setTextColor(Color.parseColor("#CC0099"));
+                break;
+            case 1:
+                wenzijianpan.setTextColor(Color.parseColor("#CC0099"));
+                break;
+            case 2:
+                jianpan.setTextColor(Color.parseColor("#CC0099"));
+                break;
+            case 3:
+                beijin.setTextColor(Color.parseColor("#CC0099"));
+                break;
+
+
+        }
+
+    }
+
+    private void initAdapter() {
+
+
+       /* private ListView item_select;
+
+        private ListView item_key;
+        */
+
+
+
+       /* private Button item_key_linux;
+        private Button item_key_user;*/
+
+        String key_box_r = SaveData.getData("key_box_r");
+        ArrayList<String> arrayList = new ArrayList<>();
+        if ("def".equals(key_box_r)) {
+            // arrayList.add("TAB");
+            // arrayList.add("ESC");
+            //  arrayList.add("CTRL");
+            //  arrayList.add("ALT");
+            arrayList.add("pkg update");
+            arrayList.add("pkg install ");
+            arrayList.add("pkg uninstall ");
+            arrayList.add("apt-get install ");
+            arrayList.add("apt-get remove  ");
+            arrayList.add("apt-get update  ");
+            arrayList.add("clang");
+            arrayList.add("%d");
+            arrayList.add("include");
+            arrayList.add("%s");
+            arrayList.add("intmain");
+            arrayList.add("%f");
+            arrayList.add("printf(\"\")");
+            arrayList.add("#");
+            arrayList.add("!");
+            arrayList.add("return 0;");
+            arrayList.add("void");
+            arrayList.add("main");
+            arrayList.add("int");
+            arrayList.add("float");
+            arrayList.add("double");
+            arrayList.add("long");
+            arrayList.add("char");
+            arrayList.add("String");
+            arrayList.add("");
+
+            arrayList.add(" -y \n");
+            arrayList.add("vim");
+            arrayList.add(":wq!");
+            arrayList.add(":q!");
+
+            arrayList.add("|");
+            arrayList.add("[");
+            arrayList.add("]");
+            //  arrayList.add("HOME");
+            //  arrayList.add("UP");
+            //  arrayList.add("END");
+            arrayList.add(":w");
+            arrayList.add("^");
+            arrayList.add("(");
+            arrayList.add(")");
+            //  arrayList.add("LEFT");
+            //  arrayList.add("DOWN");
+            //  arrayList.add("RIGHT");
+            arrayList.add("=");
+            arrayList.add("/");
+            arrayList.add("-");
+            arrayList.add("-");
+            arrayList.add("+");
+            arrayList.add("\"");
+            arrayList.add("{");
+            arrayList.add("}");
+            arrayList.add("<");
+            arrayList.add("*");
+            arrayList.add(">");
+            arrayList.add(",");
+            arrayList.add(";");
+            arrayList.add(":");
+            arrayList.add("%");
+            arrayList.add("/**/");
+            arrayList.add("./");
+            arrayList.add("$");
+            arrayList.add("&&");
+            arrayList.add("||");
+            arrayList.add("\n");
+
+        } else {
+
+
+            try {
+                JSONArray arr = new JSONArray(key_box_r);
+                String[][] mExtraKeys = new String[arr.length()][];
+
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONArray line = arr.getJSONArray(i);
+                    mExtraKeys[i] = new String[line.length()];
+                    for (int j = 0; j < line.length(); j++) {
+                        mExtraKeys[i][j] = line.getString(j);
+
+                        arrayList.add(mExtraKeys[i][j]);
+                    }
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                arrayList.add("pkg update");
+                arrayList.add("pkg install ");
+                arrayList.add("pkg uninstall ");
+                arrayList.add("apt-get install ");
+                arrayList.add("apt-get remove  ");
+                arrayList.add("apt-get update  ");
+                arrayList.add("clang");
+                arrayList.add("%d");
+                arrayList.add("include");
+                arrayList.add("%s");
+                arrayList.add("intmain");
+                arrayList.add("%f");
+                arrayList.add("printf(\"\")");
+                arrayList.add("#");
+                arrayList.add("!");
+                arrayList.add("return 0;");
+                arrayList.add("void");
+                arrayList.add("main");
+                arrayList.add("int");
+                arrayList.add("float");
+                arrayList.add("double");
+                arrayList.add("long");
+                arrayList.add("char");
+                arrayList.add("String");
+                arrayList.add("");
+
+                arrayList.add(" -y \n");
+                arrayList.add("vim");
+                arrayList.add(":wq!");
+                arrayList.add(":q!");
+
+                arrayList.add("|");
+                arrayList.add("[");
+                arrayList.add("]");
+                //  arrayList.add("HOME");
+                //  arrayList.add("UP");
+                //  arrayList.add("END");
+                arrayList.add(":w");
+                arrayList.add("^");
+                arrayList.add("(");
+                arrayList.add(")");
+                //  arrayList.add("LEFT");
+                //  arrayList.add("DOWN");
+                //  arrayList.add("RIGHT");
+                arrayList.add("=");
+                arrayList.add("/");
+                arrayList.add("-");
+                arrayList.add("-");
+                arrayList.add("+");
+                arrayList.add("\"");
+                arrayList.add("{");
+                arrayList.add("}");
+                arrayList.add("<");
+                arrayList.add("*");
+                arrayList.add(">");
+                arrayList.add(",");
+                arrayList.add(";");
+                arrayList.add(":");
+                arrayList.add("%");
+                arrayList.add("/**/");
+                arrayList.add("./");
+                arrayList.add("$");
+                arrayList.add("&&");
+                arrayList.add("||");
+                arrayList.add("\n");
+                Toast.makeText(this, "出现错误!使用默认键盘", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+
+        ItemSelectAdapter itemSelectAdapter = new ItemSelectAdapter(arrayList);
+
+        item_key.setAdapter(itemSelectAdapter);
+
+
+        item_key.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                mTerminalView.sendTextToTerminal(arrayList.get(position));
+
+            }
+        });
+
+
+        item_key_linux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        item_key_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
@@ -3436,12 +4523,25 @@ Solaris(APP美化)
     }
 
     void toggleShowExtraKeys() {
-        final ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         final boolean showNow = mSettings.toggleShowExtraKeys(TermuxActivity.this);
         viewPager.setVisibility(showNow ? View.VISIBLE : View.GONE);
         if (showNow && viewPager.getCurrentItem() == 1) {
             // Focus the text input view if just revealed.
             findViewById(R.id.text_input).requestFocus();
+        }
+
+        try {
+            String image_back = SaveData.getData("image_back");
+            if (!image_back.equals("def")) {
+
+                viewPager.setBackgroundColor(Color.parseColor("#44000000"));
+                //  fun_all.setBackgroundColor(Color.parseColor("#22000000"));
+                //   function_ll.setBackgroundColor(Color.parseColor("#22000000"));
+                //   getDrawer().setBackgroundColor(Color.parseColor("#22000000"));
+            }
+        } catch (Exception e) {
+
         }
     }
 
@@ -3915,9 +5015,16 @@ Solaris(APP美化)
         final int indexOfSession = mTermService.getSessions().indexOf(session);
         showToast(toToastTitle(session), false);
         mListViewAdapter.notifyDataSetChanged();
-        final ListView lv = findViewById(R.id.left_drawer_list);
+        lv = findViewById(R.id.left_drawer_list);
         lv.setItemChecked(indexOfSession, true);
         lv.smoothScrollToPosition(indexOfSession);
+        String back_color_view = SaveData.getData("back_color_view");
+        if (!back_color_view.equals("def")) {
+            int back_color_view1 = Integer.parseInt(SaveData.getData("back_color_view"));
+            lv.setBackgroundColor(back_color_view1);
+
+
+        }
     }
 
     @Override
@@ -4419,4 +5526,16 @@ Solaris(APP美化)
 
 
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (video_view.isPlaying()) {
+            video_view.pause();
+        }
+
+    }
+
+
 }

@@ -168,4 +168,99 @@
         android:background="#fff" />
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+    <RelativeLayout
+        android:id="@+id/ziding_key_you"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/zidingyou"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="导入右边键盘配置文件[不支持功能键,如 TAB ALT CTRL]"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]\n[在主屏幕,滑动右侧边缘滑动唤醒]"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:id="@+id/zidingyou"
+            android:layout_centerVertical="true"
+            android:src="@drawable/youbian_key"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+    <RelativeLayout
+        android:id="@+id/ziding_key_def"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/zidingyou_def"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="恢复默认右边键盘配置文件"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="点击恢复默认的右边键盘文件\n[在主屏幕,滑动右侧边缘滑动唤醒]"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:id="@+id/zidingyou_def"
+            android:layout_centerVertical="true"
+            android:src="@drawable/daoru_def"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#fff" />
+
 </LinearLayout>

@@ -26,7 +26,7 @@ public class TermuxFloatPrefs {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         layout.x = prefs.getInt(PREF_X, 200);
         layout.y = prefs.getInt(PREF_Y, 200);
-        layout.width = prefs.getInt(PREF_WIDTH, 500);
-        layout.height = prefs.getInt(PREF_HEIGHT, 800);
+        layout.width = prefs.getInt(PREF_WIDTH, 841);
+        layout.height = prefs.getInt(PREF_HEIGHT, 924);
     }
 }

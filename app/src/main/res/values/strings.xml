@@ -389,8 +389,8 @@
     <string name="qemu_exposed_ports_key">qemu_exposed_ports</string>
 
 
-    <string name="initial_instruction_toast">长按在窗口上移动或调整大小\n\n双击和拖动手指改变字体大小</string>
-    <string name="after_long_press">拖动到指定位置并缩放</string>
+    <string name="initial_instruction_toast">长按在窗口上移动\n\n长按在窗口上缩放手势,缩放窗口大小</string>
+    <string name="after_long_press">拖动到指定位置\n\n缩放手势,缩放窗口大小</string>
 
     <string name="draw_overlay_permission_explanation">这个应用程序需要权限来绘制覆盖。</string>
     <string name="grant_permission">授予许可</string>

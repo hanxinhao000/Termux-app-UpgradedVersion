@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.os.UserManager;
@@ -27,7 +26,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +54,7 @@ import main.java.com.termux.view.MyDialog;
  * <p/>
  * (5.2) For every other zip entry, extract it into $STAGING_PREFIX and set execute permissions if necessary.
  */
-final class TermuxInstaller {
+public final class TermuxInstaller {
 
     /**
      * Performs setup if necessary.
@@ -528,7 +526,7 @@ final class TermuxInstaller {
 
     //192.168.1.4:1995/file?filename=apk
 
-    private static String determineTermuxArchName() {
+    public static String determineTermuxArchName() {
         // Note that we cannot use System.getProperty("os.arch") since that may give e.g. "aarch64"
         // while a 64-bit runtime may not be installed (like on the Samsung Galaxy S5 Neo).
         // Instead we search through the supported abi:s on the device, see:

@@ -1,5 +1,6 @@
 package main.java.com.termux.floatwindows;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,10 +17,13 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +33,10 @@ import com.termux.R;
 import com.termux.terminal.TerminalSession;
 
 import java.io.File;
+
+import main.java.com.termux.app.TermuxActivity;
+import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.filemanage.filemanager.util.UIUtils;
 
 public class TermuxFloatService extends Service {
 
@@ -101,6 +109,7 @@ public class TermuxFloatService extends Service {
         floatingWindow.initializeFloatingWindow();
         floatingWindow.mTerminalView.setTextSize(mFontSize);
 
+
         TerminalSession session = createTermSession();
         floatingWindow.mTerminalView.attachSession(session);
 
@@ -116,6 +125,46 @@ public class TermuxFloatService extends Service {
 
         mFloatingWindow = floatingWindow;
 
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                TermuxApplication.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        setViewAnimaStop(mFloatingWindow, new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+
+                                setVisible(false);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+                        });
+                    }
+                });
+            }
+        }).start();
+
         Toast toast = Toast.makeText(this, R.string.initial_instruction_toast, Toast.LENGTH_LONG);
        // toast.setGravity(Gravity.CENTER, 0, 0);
         TextView v = toast.getView().findViewById(android.R.id.message);
@@ -123,6 +172,72 @@ public class TermuxFloatService extends Service {
         toast.show();
 
         startForeground(NOTIFICATION_ID, buildNotification());
+
+
+        FloatView.showFloatView(this, R.layout.window_yuan);
+
+        FloatView.setOnClickListener(new FloatView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // final String intentAction = mVisibleWindow ? ACTION_HIDE : ACTION_SHOW;
+
+                if(mVisibleWindow){
+                    //目前处于显示
+                   // setVisible(false);
+
+                    setViewAnimaStop(mFloatingWindow, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+
+                            setVisible(false);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+                }else{
+                    //目前处于隐藏
+                    setVisible(true);
+                    setViewAnima(mFloatingWindow, new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+
+
+                }
+            }
+        });
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -186,10 +301,36 @@ public class TermuxFloatService extends Service {
 
     private void setVisible(boolean newVisibility) {
         mVisibleWindow = newVisibility;
+
+
         mFloatingWindow.setVisibility(newVisibility ? View.VISIBLE : View.GONE);
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFICATION_ID, buildNotification());
     }
 
+
+    public void setViewAnima(View view,Animator.AnimatorListener animatorListener) {
+
+        Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, 0, 0,
+            0, (float) Math.hypot(view.getWidth(), view.getHeight()));
+        circularReveal.setDuration(500);
+
+        circularReveal.addListener(animatorListener);
+        circularReveal.setInterpolator(new AccelerateInterpolator());
+        circularReveal.start();
+
+    }
+
+    public void setViewAnimaStop(View view,Animator.AnimatorListener animatorListener) {
+
+        Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, view.getWidth(), view.getHeight(),
+            (float) Math.hypot(view.getWidth(), view.getHeight()),0 );
+        circularReveal.setDuration(500);
+
+        circularReveal.addListener(animatorListener);
+        circularReveal.setInterpolator(new AccelerateInterpolator());
+        circularReveal.start();
+
+    }
     public void changeFontSize(boolean increase) {
         mFontSize += (increase ? 1 : -1) * 2;
         mFontSize = Math.max(MIN_FONTSIZE, mFontSize);

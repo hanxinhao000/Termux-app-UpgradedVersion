@@ -26,7 +26,7 @@ import androidx.annotation.IntDef;
 
 import main.java.com.termux.utils.SaveData;
 
-final class TermuxPreferences {
+public final class TermuxPreferences {
 
     @IntDef({BELL_VIBRATE, BELL_BEEP, BELL_IGNORE})
     @Retention(RetentionPolicy.SOURCE)
@@ -124,6 +124,12 @@ final class TermuxPreferences {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.edit().putString(FONTSIZE_KEY, Integer.toString(mFontSize)).apply();
     }
+    private String mUseDarkUI;
+    boolean isUsingBlackUI() {
+        return mUseDarkUI.toLowerCase().equals("true");
+    }
+
+
 
     boolean isScreenAlwaysOn() {
         return mScreenAlwaysOn;
@@ -175,6 +181,8 @@ final class TermuxPreferences {
                 mBellBehaviour = BELL_VIBRATE;
                 break;
         }
+
+        mUseDarkUI = props.getProperty("use-black-ui", "false");
 
         try {
             //key_box

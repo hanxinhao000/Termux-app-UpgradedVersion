@@ -6,7 +6,6 @@ import main.java.com.termux.adapter.CreateSystemAdapter;
 import main.java.com.termux.app.TermuxService;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.ReadSystemBean;
-import main.java.com.termux.bean.UpDateBean;
 
 import android.content.DialogInterface;
 import android.content.Intent;

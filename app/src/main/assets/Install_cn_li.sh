@@ -16,7 +16,7 @@ pkg install proot tar wget git p7zip -y
 # 创建本地目录并且获取文件
 echo "正在创建目录..."
 #mkdir ~/fedora_cn
-cd ~/xinhao_fedora
+cd ~/fedora_full
 echo "正在获取镜像并解压缩..."
 #wget $ADDRESS -O fedora.7z
 7z x fedora.7z
