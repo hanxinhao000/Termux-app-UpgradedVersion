@@ -173,6 +173,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
                 }
             });
+            ab.setPositiveButton("现在不安装", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ab.create().dismiss();
+                    finish();
+                }
+            });
 
             ab.show();
 

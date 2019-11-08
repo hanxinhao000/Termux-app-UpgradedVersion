@@ -241,7 +241,7 @@ public class BackupActivity extends Activity {
                     TermuxActivity.startCmmd(name);
                 }
 
-                runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {//15710762843
                     @Override
                     public void run() {
                         Toast.makeText(BackupActivity.this, "恢复完成!", Toast.LENGTH_SHORT).show();
@@ -301,7 +301,6 @@ public class BackupActivity extends Activity {
 
         Date date = new Date();
         String format = mSimpleDateFormat.format(date);
-
 
         new Thread(new Runnable() {
             @Override

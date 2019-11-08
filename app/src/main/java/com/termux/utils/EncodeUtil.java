@@ -71,24 +71,33 @@ public class EncodeUtil {
      * @param bis
      * @return
      */
-    private static boolean isUTF8( BufferedInputStream bis) throws Exception {
-        bis.reset();
-
-        //读取第一个字节
-        int code = bis.read();
-        do {
-            BitSet bitSet = convert2BitSet(code);
-            //判断是否为单字节
-            if (bitSet.get(0)) {//多字节时，再读取N个字节
-                if (!checkMultiByte(bis, bitSet)) {//未检测通过,直接返回
-                    return false;
-                }
-            } else {
-                //单字节时什么都不用做，再次读取字节
+    private static boolean isUTF8(BufferedInputStream bis) throws Exception {
+        try {
+            try {
+                bis.reset();
+            }catch (Exception e){
+                bis.mark(bis.available());
             }
-            code = bis.read();
-        } while (code != -1);
-        return true;
+
+
+            //读取第一个字节
+            int code = bis.read();
+            do {
+                BitSet bitSet = convert2BitSet(code);
+                //判断是否为单字节
+                if (bitSet.get(0)) {//多字节时，再读取N个字节
+                    if (!checkMultiByte(bis, bitSet)) {//未检测通过,直接返回
+                        return false;
+                    }
+                } else {
+                    //单字节时什么都不用做，再次读取字节
+                }
+                code = bis.read();
+            } while (code != -1);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
@@ -127,7 +136,7 @@ public class EncodeUtil {
      * @param bitSet
      * @return
      */
-    private static int getCountOfSequential( BitSet bitSet) {
+    private static int getCountOfSequential(BitSet bitSet) {
         int count = 0;
         for (int i = 0; i < BYTE_SIZE; i++) {
             if (bitSet.get(i)) {

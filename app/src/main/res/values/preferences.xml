@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="fontsize" translatable="false">10</string>
+    <string name="maxlines" translatable="false">100</string>
+</resources>

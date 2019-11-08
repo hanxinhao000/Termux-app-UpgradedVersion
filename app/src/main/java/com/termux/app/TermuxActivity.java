@@ -79,6 +79,7 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.madrapps.pikolo.ColorPicker;
+import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 
@@ -115,6 +116,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import main.java.com.termux.activity.CustomActivity;
+import main.java.com.termux.activity.FunAddActivity;
 import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.RepairActivity;
 import main.java.com.termux.activity.SwitchActivity;
@@ -1059,7 +1061,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
                     video_view.setVideoPath(compressPath);
 
-                   // video_view.start();
+                    // video_view.start();
 
                     video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
@@ -1211,13 +1213,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
     private ImageView close;
 
-    private RGBColorPicker rgb_color;
+    private HSLColorPicker rgb_color;
 
 
     private LinearLayout color_btn;
     private LinearLayout function_ll;
     private LinearLayout back_btn;
     private LinearLayout video_btn;
+    private LinearLayout fun_all_btn;
 
     private VideoView video_view;
 
@@ -1250,6 +1253,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         function_ll = findViewById(R.id.function_ll);
 
         video_view = findViewById(R.id.video_view);
+
+        findViewById(R.id.fun_all_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TermuxActivity.this, FunAddActivity.class));
+            }
+        });
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);

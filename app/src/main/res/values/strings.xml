@@ -403,4 +403,7 @@
     <string name="copy_text">复制</string>
     <string name="text_selection_more">更多…</string>
 
+    <string name="updating_env_message">更新操作环境中...</string>
+    <string name="toast_updating_env_error">操作环境更新错误!</string>
+
 </resources>

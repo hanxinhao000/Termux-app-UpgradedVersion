@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="main.java.com.termux.activity.FunAddActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#1BBC9B"
+        android:gravity="center"
+        android:text="欢迎来到软件大厅"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_above="@+id/home_bottom_navigation"
+            android:layout_height="match_parent" />
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:id="@+id/home_bottom_navigation"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_height="60dp">
+
+            <LinearLayout android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/home_navigation"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:src="@drawable/ruanjian_home"
+                    android:id="@+id/image_home"
+                    android:layout_height="25dp"/>
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="软件"
+                    android:textColor="#000"
+                    android:id="@+id/text_home"
+                    android:textSize="14sp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/customer_service_navigation"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:src="@drawable/tuxing_home"
+                    android:id="@+id/image_customer_service"
+                    android:layout_height="25dp"/>
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="图形"
+                    android:textColor="#000"
+                    android:id="@+id/text_customer_service"
+                    android:textSize="14sp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/order_navigation"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:src="@drawable/jiaoben_home"
+                    android:id="@+id/image_order"
+                    android:layout_height="25dp"/>
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="脚本"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:id="@+id/text_order"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/personal_center_navigation"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:src="@drawable/lishi_home"
+                    android:id="@+id/image_personal_center"
+                    android:layout_height="25dp"/>
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="管理"
+                    android:textColor="#000"
+                    android:id="@+id/text_personal_center"
+                    android:textSize="14sp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

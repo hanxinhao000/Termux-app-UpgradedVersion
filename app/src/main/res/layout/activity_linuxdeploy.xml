@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    android:padding="20dp"
+    tools:context="main.java.com.termux.linux_deploy.LinuxdeployActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/sc"
+        android:layout_above="@+id/boom_ll"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginBottom="20dp"
+            android:text="欢迎安装linuxDeploy图形系统[ubuntu]\n\n数据包提供:WINLOG([老群员]虚拟机总监[群管理])"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </ScrollView>
+
+
+
+    <LinearLayout
+        android:id="@+id/boom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/start_linux"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/start"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/boom_ll"
+                android:layout_marginBottom="20dp"
+                android:text="启动"
+                android:layout_marginTop="2dp"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/install_linux"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/install_linuxdepoly"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/boom_ll"
+                android:layout_marginBottom="20dp"
+                android:text="安装"
+                android:layout_marginTop="2dp"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/remove_linux"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:src="@drawable/uninstall_remove"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/boom_ll"
+                android:layout_marginBottom="20dp"
+                android:text="卸载"
+                android:layout_marginTop="2dp"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

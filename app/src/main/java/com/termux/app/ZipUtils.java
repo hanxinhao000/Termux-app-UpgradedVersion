@@ -45,8 +45,8 @@ public class ZipUtils {
      *                    4
      * @param destDirPath 解压后的目标文件夹
      *                    5
-     * @throws  解压失败会抛出运行时异常
-     *                          6
+     *
+     *
      */
 
     public static void unZip(File srcFile, String destDirPath, ZipNameListener zipNameListener) throws RuntimeException {
@@ -67,10 +67,14 @@ public class ZipUtils {
         ZipFile zipFile = null;
 
         try {
-            String fileEncode = EncodeUtil.getEncode(srcFile.getAbsolutePath(), true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                zipFile = new ZipFile(srcFile, Charset.forName(fileEncode));
-            } else {
+            try {
+                String fileEncode = EncodeUtil.getEncode(srcFile.getAbsolutePath(), true);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    zipFile = new ZipFile(srcFile, Charset.forName(fileEncode));
+                } else {
+                    zipFile = new ZipFile(srcFile);
+                }
+            }catch (Exception e){
                 zipFile = new ZipFile(srcFile);
             }
 

@@ -26,16 +26,24 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_SMS" /> <!--  发送消息 -->
-    <uses-permission android:name="android.permission.SEND_SMS" /> <!--  阅读消息 -->
-    <uses-permission android:name="android.permission.READ_SMS" /> <!--  写入消息 -->
-    <uses-permission android:name="android.permission.WRITE_SMS" /> <!-- 接收消息 -->
+    <uses-permission android:name="android.permission.READ_SMS" />       <!--  发送消息 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />       <!--  阅读消息 -->
+    <uses-permission android:name="android.permission.READ_SMS" />       <!--  写入消息 -->
+    <uses-permission android:name="android.permission.WRITE_SMS" />      <!--  接收消息 -->
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -49,12 +57,19 @@
         android:fullBackupContent="@xml/backupscheme"
         android:icon="@drawable/home"
         android:label="@string/application_name"
-
         android:largeHeap="true"
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-        <activity android:name="main.java.com.termux.activity.KeyConfigActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name="main.java.com.termux.linux_deploy.LinuxdeployActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name="main.java.com.termux.activity.FunAddActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="main.java.com.termux.activity.KeyConfigActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.CustomActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -253,6 +268,13 @@
             android:name="org.openintents.distribution.EulaActivity"
             android:theme="@style/Theme.AppCompat"
             tools:ignore="NewApi" />
+
+        <service
+            android:name="main.java.com.termux.linux_deploy.ExecService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <activity
             android:name="org.openintents.distribution.NewVersionActivity"
             android:theme="@style/Theme.AppCompat"

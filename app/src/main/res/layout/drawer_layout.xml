@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="版本:[0.76(75).05]"
+                            android:text="版本:[0.76(75).09]"
                             android:textColor="#fff"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -133,6 +133,39 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="打开linux目录"
+                                android:textColor="#fff"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#3fff" />
+
+                        <LinearLayout
+                            android:id="@+id/fun_all_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/add_fun" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="新增功能集合\n[后续新增功能都在这里添加]"
                                 android:textColor="#fff"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -1178,7 +1211,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.76(75).05]"
+            android:text="Termux[0.76(75).09]"
             android:textColor="#fff"
             android:textSize="28sp" />
 
@@ -1308,7 +1341,7 @@
             android:src="@drawable/android_error" />
 
 
-        <com.madrapps.pikolo.RGBColorPicker
+        <com.madrapps.pikolo.HSLColorPicker
             android:id="@+id/rgb_color"
             android:layout_width="230dp"
             android:layout_height="230dp"
