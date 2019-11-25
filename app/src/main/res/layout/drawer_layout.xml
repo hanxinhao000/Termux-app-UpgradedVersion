@@ -414,6 +414,39 @@
                                         android:background="#3fff" />
 
                                     <LinearLayout
+                                        android:id="@+id/fun_core_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/github" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="项目开源地址\n[本项目已开源]"
+                                            android:textColor="#fff"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+                                    <LinearLayout
                                         android:id="@+id/fun_all_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"

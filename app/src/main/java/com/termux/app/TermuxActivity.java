@@ -1263,6 +1263,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout linux_root_btn;
 
     private LinearLayout linux_data;
+    private LinearLayout fun_core_btn;
 
     private TextView system_text;
     private TextView meihua_text;
@@ -1296,6 +1297,20 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         meihua_group = findViewById(R.id.meihua_group);
         gongju_group = findViewById(R.id.gongju_group);
         other_group = findViewById(R.id.other_group);
+        fun_core_btn = findViewById(R.id.fun_core_btn);
+
+
+        other.add(fun_core_btn);
+
+        fun_core_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setData(Uri.parse("https://github.com/hanxinhao000/Termux-app-UpgradedVersion"));//Url 就是你要打开的网址
+                intent.setAction(Intent.ACTION_VIEW);
+               startActivity(intent); //启动浏览器
+            }
+        });
 
         linux_root_btn = findViewById(R.id.linux_root_btn);
 
