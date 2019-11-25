@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/boom">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:id="@+id/def_linear"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:checked="true"
+                        android:id="@+id/def_checkbox"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/def_img" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="使用busyBox恢复/解压tar"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/termux_linear"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:checked="false"
+                        android:id="@+id/termux_checkbox"
+                        android:layout_height="wrap_content" />
+
+
+                    <RelativeLayout
+                        android:layout_width="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="40dp">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/lc_land" />
+
+                        <ProgressBar
+                            android:layout_width="20dp"
+                            android:id="@+id/pro"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="gone"
+                            android:layout_height="20dp" />
+
+                    </RelativeLayout>
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="使用内置termux环境进行恢复/解压tar"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/boom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

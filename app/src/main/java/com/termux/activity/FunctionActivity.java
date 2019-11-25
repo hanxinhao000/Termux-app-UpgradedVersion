@@ -47,7 +47,7 @@ public class FunctionActivity extends AppCompatActivity {
 
         relativeLayout = findViewById(R.id.sms);
         welcome_String = findViewById(R.id.welcome_String);
-        list_String = findViewById(R.id.list_String);
+        list_String = findViewById(R.id.list_String);//
         list_main = findViewById(R.id.list_main);
         list_qinghua = findViewById(R.id.list_qinghua);
         install_userland = findViewById(R.id.install_userland);

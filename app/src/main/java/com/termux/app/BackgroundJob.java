@@ -103,7 +103,7 @@ public final class BackgroundJob {
         }
     }
 
-    static String[] buildEnvironment(boolean failSafe, String cwd) {
+    public static String[] buildEnvironment(boolean failSafe, String cwd) {
         new File(TermuxService.HOME_PATH).mkdirs();
 
         if (cwd == null) cwd = TermuxService.HOME_PATH;
@@ -111,6 +111,7 @@ public final class BackgroundJob {
         List<String> environment = new ArrayList<>();
 
         environment.add("TERM=xterm-256color");
+
         environment.add("HOME=" + TermuxService.HOME_PATH);
         environment.add("PREFIX=" + TermuxService.PREFIX_PATH);
         environment.add("BOOTCLASSPATH" + System.getenv("BOOTCLASSPATH"));
@@ -166,7 +167,7 @@ public final class BackgroundJob {
         }
     }
 
-    static String[] setupProcessArgs(String fileToExecute, String[] args) {
+    public static String[] setupProcessArgs(String fileToExecute, String[] args) {
         // The file to execute may either be:
         // - An elf file, in which we execute it directly.
         // - A script file without shebang, which we execute with our standard shell $PREFIX/bin/sh instead of the

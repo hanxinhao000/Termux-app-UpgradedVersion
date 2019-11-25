@@ -80,7 +80,6 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
-import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 
 import com.termux.R;
@@ -115,22 +114,27 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import main.java.com.termux.activity.BackNewActivity;
+import main.java.com.termux.activity.BackRestoreActivity;
 import main.java.com.termux.activity.CustomActivity;
 import main.java.com.termux.activity.FunAddActivity;
 import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.RepairActivity;
+import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
+import main.java.com.termux.activity.UbuntuListActivity;
 import main.java.com.termux.activity.WindowsActivity;
+import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
-import main.java.com.termux.floatwindows.FloatView;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
 import main.java.com.termux.listener.SmsMsgListener;
+import main.java.com.termux.service.BackService;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
@@ -138,6 +142,7 @@ import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
 
 import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
+import static main.java.com.termux.service.BackService.BACK_FILES;
 
 /**
  * A terminal emulator activity.
@@ -149,7 +154,7 @@ import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
  * </ul>
  * about memory leaks.
  */
-public final class TermuxActivity extends Activity implements ServiceConnection {
+public final class TermuxActivity extends Activity implements ServiceConnection, View.OnClickListener {
 
     public static final String TERMUX_FAILSAFE_SESSION_ACTION = "com.termux.app.failsafe_session";
 
@@ -170,6 +175,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private static final int INSTALL_PACKAGES_REQUESTCODE = 20000;
     private static final int GET_UNKNOWN_APP_SOURCES = 20001;
     private static final int REQUEST_WRITE = 33333;
+
 
     /**
      * The main view of the activity showing the terminal. Initialized in onCreate().
@@ -231,6 +237,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private ListView listView;
     private ListView lv;
     private ViewPager viewPager;
+    private View viewById;
+    private View fun_all_btn1;
+    private View toggle_keyboard_button;
+
+    private static TermuxActivity mTermuxActivity;
+
+    public static TermuxActivity getTermux() {
+
+        return mTermuxActivity;
+    }
 
     @Override
     protected void onResume() {
@@ -293,17 +309,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
      */
     @TargetApi(Build.VERSION_CODES.M)
     public boolean ensureStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUESTCODE_PERMISSION_STORAGE);
-                return false;
-            }
-        } else {
-            // Always granted before Android 6.0.
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             return true;
+        } else {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUESTCODE_PERMISSION_STORAGE);
+            return false;
         }
+
     }
 
 
@@ -535,6 +548,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
     private RelativeLayout lay_r;
 
+
     private void temp(boolean istrue) {
 
 
@@ -543,6 +557,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         mTerminalView = findViewById(R.id.terminal_view);
         mTerminalView.setOnKeyListener(new TermuxViewClient(this));
+
 
         lay_r = findViewById(R.id.lay_r);
         msg.setText("mysql 已启动");
@@ -838,6 +853,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         });
 
         View newSessionButton = findViewById(R.id.new_session_button);
+        other.add(newSessionButton);
         newSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -852,11 +868,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             return true;
         });
 
-        findViewById(R.id.toggle_keyboard_button).setOnClickListener(v -> {
+        toggle_keyboard_button = findViewById(R.id.toggle_keyboard_button);
+        other.add(toggle_keyboard_button);
+
+        toggle_keyboard_button.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
             getDrawer().closeDrawers();
         });
+
 
         findViewById(R.id.toggle_keyboard_button).setOnLongClickListener(v -> {
             toggleShowExtraKeys();
@@ -1229,6 +1249,29 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private static final int REQUEST_SELECT_IMAGES_CODE = 199501;
     private static final int REQUEST_SELECT_IMAGES_CODE_VIDEO = 199403;
 
+    private ArrayList<View> os = new ArrayList<>();
+    private ArrayList<View> meihua = new ArrayList<>();
+    private ArrayList<View> tool = new ArrayList<>();
+    private ArrayList<View> other = new ArrayList<>();
+
+    private LinearLayout ziyuan_group;
+    private LinearLayout meihua_group;
+    private LinearLayout gongju_group;
+    private LinearLayout other_group;
+    private LinearLayout linux_data_jisu;
+    private LinearLayout linux_gui_list_btn;
+    private LinearLayout linux_root_btn;
+
+    private LinearLayout linux_data;
+
+    private TextView system_text;
+    private TextView meihua_text;
+    private TextView tool_text;
+    private TextView other_text;
+
+
+
+
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new TermuxPreferences(this);
@@ -1241,8 +1284,127 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
 
         super.onCreate(bundle);
+
+        mTermuxActivity = this;
+        //  CoreLinux.getInstall().startCoreLinux(this);
+
+
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
+
+        ziyuan_group = findViewById(R.id.ziyuan_group);
+        meihua_group = findViewById(R.id.meihua_group);
+        gongju_group = findViewById(R.id.gongju_group);
+        other_group = findViewById(R.id.other_group);
+
+        linux_root_btn = findViewById(R.id.linux_root_btn);
+
+        os.add(linux_root_btn);
+
+        linux_root_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+            }
+        });
+
+        linux_gui_list_btn = findViewById(R.id.linux_gui_list_btn);
+        os.add(linux_gui_list_btn);
+
+        linux_gui_list_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TermuxActivity.this, UbuntuListActivity.class));
+            }
+        });
+
+        ziyuan_group.setOnClickListener(this);
+        meihua_group.setOnClickListener(this);
+        gongju_group.setOnClickListener(this);
+        other_group.setOnClickListener(this);
+
+        system_text = findViewById(R.id.system_text);
+        meihua_text = findViewById(R.id.meihua_text);
+        tool_text = findViewById(R.id.tool_text);
+        other_text = findViewById(R.id.other_text);
+        linux_data_jisu = findViewById(R.id.linux_data_jisu);
+
+        linux_data = findViewById(R.id.linux_data);
+
+        linux_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, RestoreActivity.class));
+            }
+        });
+
+
+        os.add(linux_data);
+        os.add(linux_data_jisu);
+        tool.add(linux_data);
+        tool.add(linux_data_jisu);
+
+        linux_data_jisu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, BackNewActivity.class));
+                if(true){
+                    return;
+                }
+                Toast.makeText(TermuxActivity.this, "备份/恢复功能正在维护中...", Toast.LENGTH_SHORT).show();
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("请选择");
+
+                ab.setMessage("请选择你需要的操作\n\n备份/恢复 \n\n一定要加入白名单,或者保持在本程序页面!!!!否则系统可能会杀掉本程序,那么你的备份/恢复 又得重来!!!!\n\n\n请选择一项 \n备份将在后台运行,备份完成将会通过:\n1.弹窗\n2.通知栏\n方式提供给您\n\n备份目录在:[sdcard ->/xinhao/data/目录下\n\n恢复包,也请将放置到该目录下]");
+
+                ab.setPositiveButton("备份", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (new File(Environment.getExternalStorageDirectory(), "/xinhao/data/").listFiles() == null) {
+
+                            Toast.makeText(TermuxActivity.this, "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Intent intent = new Intent(TermuxActivity.this, BackService.class);
+
+                        intent.setAction(BACK_FILES);
+
+                        startService(intent);
+                    }
+                });
+                ab.setNegativeButton("恢复", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (new File(Environment.getExternalStorageDirectory(), "/xinhao/data/").listFiles() == null) {
+
+                            Toast.makeText(TermuxActivity.this, "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        startActivity(new Intent(TermuxActivity.this,BackRestoreActivity.class));
+                        termux_run.setVisibility(View.VISIBLE);
+                      /*  termux_run.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(TermuxActivity.this, "不允许，任何操作!切不能长时间离开,本程序页面", Toast.LENGTH_SHORT).show();
+                            }
+                        });*/
+                    }
+                });
+
+                ab.show();
+
+            }
+        });
 
         rgb_color = findViewById(R.id.rgb_color);
         color = findViewById(R.id.color);
@@ -1254,13 +1416,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         video_view = findViewById(R.id.video_view);
 
-        findViewById(R.id.fun_all_btn).setOnClickListener(new View.OnClickListener() {
+        fun_all_btn1 = findViewById(R.id.fun_all_btn);
+
+        other.add(fun_all_btn1);
+
+        fun_all_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 startActivity(new Intent(TermuxActivity.this, FunAddActivity.class));
             }
         });
+
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
@@ -1275,6 +1442,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         color_btn = findViewById(R.id.color_btn);
 
         back_btn = findViewById(R.id.back_btn);
+
+        meihua.add(video_btn);
+        meihua.add(color_btn);
+        meihua.add(back_btn);
 
         termux_layout = findViewById(R.id.termux_layout);
 
@@ -1554,6 +1725,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         termux_run = findViewById(R.id.termux_run);
 
+        termux_run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TermuxActivity.this, "不允许，任何操作!切不能长时间离开,本程序页面", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        if (BackService.RES_ISRUN) {
+            termux_run.setVisibility(View.VISIBLE);
+        }
+
         text_jiagou = findViewById(R.id.text_jiagou);
 
         text_ip = findViewById(R.id.text_ip);
@@ -1568,11 +1750,31 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         item_key = findViewById(R.id.item_key);
 
-        text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
+        if (TermuxInstaller.determineTermuxArchName().equals("aarch64")) {
+            text_jiagou.setTextColor(Color.parseColor("#ffffff"));
+            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
+
+        }
+
+        if (TermuxInstaller.determineTermuxArchName().equals("arm")) {
+            text_jiagou.setTextColor(Color.YELLOW);
+            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[提醒:当前架构[可能存在](只是可能)兼容性问题]");
+
+        }
+
+        //x86_64
+
+        if (TermuxInstaller.determineTermuxArchName().equals("x86_64") || TermuxInstaller.determineTermuxArchName().equals("i686")) {
+            text_jiagou.setTextColor(Color.RED);
+            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[警告:当前架构不支持群(所有)数据包]");
+
+        }
+
 
         text_ip.setText("[IP地址:" + SystemUtil.getLocalIpAddress() + "]");
 
         android_support = findViewById(R.id.android_support);
+        other.add(android_support);
 
         android_support.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1640,6 +1842,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         start_end_text = findViewById(R.id.start_end_text);
         start_end_command = findViewById(R.id.start_end_command);
+        tool.add(start_end_command);
 
         String start_end = SaveData.getData("start_end");
 
@@ -1670,7 +1873,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
 
         mingxie = findViewById(R.id.mingxie);
+        other.add(mingxie);
         key_ziding = findViewById(R.id.key_ziding);
+
+        meihua.add(key_ziding);
 
         key_ziding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1681,6 +1887,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         });
 
         windows = findViewById(R.id.windows);
+        os.add(windows);
 
         windows.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1693,7 +1900,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         fedora_linux_gui_btn = findViewById(R.id.fedora_linux_gui_btn);
         unfedora_linux_gui_btn = findViewById(R.id.unfedora_linux_gui_btn);
 
+        os.add(fedora_linux_gui_btn);
+        os.add(unfedora_linux_gui_btn);
+
         quanping.findViewById(R.id.quanping);
+        tool.add(quanping);
 
         quanping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1925,8 +2136,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         });
 
         x86_64 = findViewById(R.id.x86_64);
+        os.add(x86_64);
 
         xuanfu = findViewById(R.id.xuanfu);
+
+        tool.add(xuanfu);
 
         xuanfu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1936,8 +2150,41 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                 startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
             }
         });
+        int[] i = new int[1];
+
+        xuanfu.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                // stopService(new Intent(TermuxActivity.this, TermuxFloatService.class));
+
+                i[0]++;
+
+                if (i[0] > 3) {
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+                    ab.setTitle("关于");
+                    ab.setMessage("软件制作:XINHAO_HAN\n作者姓名:韩**\n软件类型:termux功能集合\n项目开始时间:2019年7月11日\n集合外部资源:github.com/谷歌\n开发地点:西安雁塔区");
+                    ab.setPositiveButton("进入后台管理", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            startActivity(new Intent(TermuxActivity.this, XINHAO_HANActivity.class));
+                            ab.create().dismiss();
+                        }
+                    });
+                    ab.show();
+                    i[0] = 0;
+                }
+
+
+                return true;
+            }
+        });
 
         linux_quanxian_btn = findViewById(R.id.linux_quanxian_btn);
+
+        other.add(linux_quanxian_btn);
 
         x86_64.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1946,6 +2193,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             }
         });
         linux_gui_btn = findViewById(R.id.linux_gui_btn);
+        os.add(linux_gui_btn);
 
         linux_quanxian_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2127,7 +2375,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         }
 
-
+        index_group(0);
     }
 
 
@@ -2649,8 +2897,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         setting = findViewById(R.id.setting);
         repair = findViewById(R.id.repair);
         repair_bl = findViewById(R.id.repair_bl);
+        tool.add(repair_bl);
+        os.add(repair);
+        os.add(repair_bl);
         function_btn = findViewById(R.id.function_btn);
+        tool.add(function_btn);
         linux_system_btn = findViewById(R.id.linux_system_btn);
+        os.add(linux_system_btn);
 
         linux_system_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2703,6 +2956,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         download_text = findViewById(R.id.download_text);
 
         switch_btn = findViewById(R.id.switch_btn);
+        tool.add(switch_btn);
 
         function_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2911,15 +3165,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("请注意");
+                ab.setTitle("提示");
 
-                ab.setMessage("如果你都开始尝试暴力修复了，\n成功率 30%\n如果暴力修复还是不能解决，那就下载恢复包吧\n但是不保证你装的某些东西会正常工作 \n这个是你在无法进入系统的\n时候使用的\n没事，别手痒点这个，系统\n能正常进入，不要点这个试着玩\n是否开始？");
+                ab.setMessage("修复各种错误 \n\n1.dpkg 无法使用\n2.xxx.so not fount\n3.pkg无法使用\n4.更多错误");
 
                 ab.setNegativeButton("开始进行", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        TermuxInstaller.setupIfNeededbl(TermuxActivity.this, new Runnable() {
+                      /*  TermuxInstaller.setupIfNeeded(TermuxActivity.this, new Runnable() {
                             @Override
                             public void run() {
                                 runOnUiThread(new Runnable() {
@@ -2930,11 +3184,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                                     }
                                 });
                             }
+                        });*/
+
+                        getDrawer().openDrawer(Gravity.LEFT);
+
+                        TermuxInstaller.setupIfNeeded3("正在修复...", TermuxActivity.this, new Runnable() {
+                            @Override
+                            public void run() {
+
+                                Toast.makeText(TermuxActivity.this, "修复成功!请重启APP", Toast.LENGTH_SHORT).show();
+                            }
                         });
+                        ab.create().dismiss();
                     }
                 });
 
-                ab.setPositiveButton("不要进行暴力恢复", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton("我想稍后修复", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -2989,6 +3254,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             }
         });
 
+        tool.add(file_btn);
         file_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -2998,6 +3264,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                 startActivity(intent);
             }
         });
+
+        tool.add(setting);
+        os.add(setting);
 
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -4825,7 +5094,7 @@ Solaris(APP美化)
     }
 
     @Nullable
-    TerminalSession getCurrentTermSession() {
+    public TerminalSession getCurrentTermSession() {
         if (mTerminalView != null) {
             return mTerminalView.getCurrentSession();
         } else {
@@ -5544,6 +5813,114 @@ Solaris(APP美化)
         super.onPause();
         if (video_view.isPlaying()) {
             video_view.pause();
+        }
+
+    }
+
+    /*
+    *
+    * (R.id.ziyuan_group)
+(R.id.meihua_group)
+(R.id.gongju_group)
+R.id.other_group);
+    *
+    *
+    * */
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+
+            case R.id.ziyuan_group:
+                index_group(0);
+                break;
+            case R.id.meihua_group:
+                index_group(1);
+                break;
+            case R.id.gongju_group:
+                index_group(2);
+                break;
+            case R.id.other_group:
+                index_group(3);
+                break;
+
+        }
+
+    }
+
+
+    /*
+    *
+    *
+    * system_text;
+meihua_text;
+tool_text;
+other_text;
+    *
+    * */
+
+    private void index_group(int index) {
+
+
+        system_text.setTextColor(Color.parseColor("#ffffff"));
+        meihua_text.setTextColor(Color.parseColor("#ffffff"));
+        tool_text.setTextColor(Color.parseColor("#ffffff"));
+        other_text.setTextColor(Color.parseColor("#ffffff"));
+
+        for (int i = 0; i < os.size(); i++) {
+
+            os.get(i).setVisibility(View.GONE);
+        }
+
+        for (int i = 0; i < meihua.size(); i++) {
+
+            meihua.get(i).setVisibility(View.GONE);
+        }
+
+        for (int i = 0; i < tool.size(); i++) {
+
+            tool.get(i).setVisibility(View.GONE);
+        }
+
+        for (int i = 0; i < other.size(); i++) {
+
+            other.get(i).setVisibility(View.GONE);
+        }
+
+        switch (index) {
+
+
+            case 0:
+                system_text.setTextColor(Color.parseColor("#FF6EC7"));
+                for (int i = 0; i < os.size(); i++) {
+
+                    os.get(i).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 1:
+                meihua_text.setTextColor(Color.parseColor("#FF6EC7"));
+                for (int i = 0; i < meihua.size(); i++) {
+
+                    meihua.get(i).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 2:
+                tool_text.setTextColor(Color.parseColor("#FF6EC7"));
+                for (int i = 0; i < tool.size(); i++) {
+
+                    tool.get(i).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < other.size(); i++) {
+
+                    other.get(i).setVisibility(View.VISIBLE);
+                }
+                other_text.setTextColor(Color.parseColor("#FF6EC7"));
+                break;
+
         }
 
     }

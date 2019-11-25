@@ -1,5 +1,7 @@
 package com.termux.terminal;
 
+import android.util.Log;
+
 import java.util.Arrays;
 
 /**
@@ -37,6 +39,8 @@ public final class TerminalRow {
         mHasNonOneWidthOrSurrogateChars |= line.mHasNonOneWidthOrSurrogateChars;
         final int x1 = line.findStartOfColumn(sourceX1);
         final int x2 = line.findStartOfColumn(sourceX2);
+
+        Log.e("XINHAO_HAN01", "copyInterval: " + Arrays.toString(line.mText ) );
         boolean startingFromSecondHalfOfWideChar = (sourceX1 > 0 && line.wideDisplayCharacterStartingAt(sourceX1 - 1));
         final char[] sourceChars = (this == line) ? Arrays.copyOf(line.mText, line.mText.length) : line.mText;
         int latestNonCombiningWidth = 0;
@@ -189,19 +193,22 @@ public final class TerminalRow {
                 System.arraycopy(text, 0, newText, 0, oldStartOfColumnIndex + oldCharactersUsedForColumn);
                 System.arraycopy(text, oldNextColumnIndex, newText, newNextColumnIndex, oldCharactersAfterColumn);
                 mText = text = newText;
+                Log.e("XINHAO_HAN02", "copyInterval: " + Arrays.toString(mText ) );
             } else {
                 System.arraycopy(text, oldNextColumnIndex, text, newNextColumnIndex, oldCharactersAfterColumn);
+                Log.e("XINHAO_HAN02.1", "copyInterval: " + Arrays.toString(text ) );
             }
         } else if (javaCharDifference < 0) {
             // Shift the rest of the line left.
             System.arraycopy(text, oldNextColumnIndex, text, newNextColumnIndex, mSpaceUsed - oldNextColumnIndex);
+            Log.e("XINHAO_HAN03", "copyInterval: " + Arrays.toString(text) );
         }
         mSpaceUsed += javaCharDifference;
 
         // Store char. A combining character is stored at the end of the existing contents so that it modifies them:
         //noinspection ResultOfMethodCallIgnored - since we already now how many java chars is used.
         Character.toChars(codePoint, text, oldStartOfColumnIndex + (newIsCombining ? oldCharactersUsedForColumn : 0));
-
+        Log.e("XINHAO_HAN04", "copyInterval: " + Arrays.toString(text) );
         if (oldCodePointDisplayWidth == 2 && newCodePointDisplayWidth == 1) {
             // Replace second half of wide char with a space. Which mean that we actually add a ' ' java character.
             if (mSpaceUsed + 1 > text.length) {
@@ -209,8 +216,10 @@ public final class TerminalRow {
                 System.arraycopy(text, 0, newText, 0, newNextColumnIndex);
                 System.arraycopy(text, newNextColumnIndex, newText, newNextColumnIndex + 1, mSpaceUsed - newNextColumnIndex);
                 mText = text = newText;
+                Log.e("XINHAO_HAN05", "copyInterval: " + Arrays.toString(mText) );
             } else {
                 System.arraycopy(text, newNextColumnIndex, text, newNextColumnIndex + 1, mSpaceUsed - newNextColumnIndex);
+                Log.e("XINHAO_HAN06", "copyInterval: " + Arrays.toString(text) );
             }
             text[newNextColumnIndex] = ' ';
 
@@ -229,6 +238,7 @@ public final class TerminalRow {
 
                 // Shift the array leftwards.
                 System.arraycopy(text, newNextNextColumnIndex, text, newNextColumnIndex, mSpaceUsed - newNextNextColumnIndex);
+                Log.e("XINHAO_HAN07", "copyInterval: " + Arrays.toString(text) );
                 mSpaceUsed -= nextLen;
             }
         }

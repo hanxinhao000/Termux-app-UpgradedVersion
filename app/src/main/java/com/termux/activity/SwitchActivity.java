@@ -63,6 +63,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
         readFile();
       //  testJson();
 
+
     }
 
 
@@ -252,6 +253,10 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
         });
 
 
+
+
+
+
     }
 
     //全部flase
@@ -304,7 +309,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setAdapter(ArrayList<ReadSystemBean> arrayList) {
 
-        createSystemAdapter = new CreateSystemAdapter(arrayList);
+        createSystemAdapter = new CreateSystemAdapter(arrayList,this);
 
         list.setAdapter(createSystemAdapter);
 

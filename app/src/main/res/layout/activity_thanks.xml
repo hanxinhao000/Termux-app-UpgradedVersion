@@ -19,7 +19,7 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:text="ubuntu图形:\n\n特此鸣谢:userland\n地址:https://github.com/CypherpunkArmory/UserLAnd\n\n悬浮窗口[重要鸣谢!]:Leonid Plyushch\n个人主页:https://github.com/xeffyr\nmp3:paulumi项目地址:https://github.com/paulumi/Ekualizers-Music\n\n鸣谢termux\n项目地址:https://github.com/termux/termux-app \n\n等等提供脚本的作者\n\n本APP只是整合了所有资源\n遵循所有原作者的协议\n\n切勿在各大应用商店发布\n\n法律责任由发布者承担(全部法律)\n\n再次声明\n\n本程序只是学习交流使用,切勿超出适用范围!!!\n\n如果在使用当中出现的任何法律责任，由使用者承担!\n\n您下载或使用,即代表了您同意本页面所有条件!"
+            android:text="赞助[只是技术帮助](排名不分先后):\nOuter[¥:2] | QQ:8387**536\n\nubuntu图形:\n\n特此鸣谢:userland\n地址:https://github.com/CypherpunkArmory/UserLAnd\n\n悬浮窗口[重要鸣谢!]:Leonid Plyushch\n个人主页:https://github.com/xeffyr\nmp3:paulumi项目地址:https://github.com/paulumi/Ekualizers-Music\n\n鸣谢termux\n项目地址:https://github.com/termux/termux-app \n\n等等提供脚本的作者\n\n本APP只是整合了所有资源\n遵循所有原作者的协议\n\n切勿在各大应用商店发布\n\n法律责任由发布者承担(全部法律)\n\n再次声明\n\n本程序只是学习交流使用,切勿超出适用范围!!!\n\n如果在使用当中出现的任何法律责任，由使用者承担!\n\n您下载或使用,即代表了您同意本页面所有条件!"
             android:layout_height="match_parent" />
 
 

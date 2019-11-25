@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_above="@+id/boom"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="版本信息:\n版本说明[由WINLOG提供(提供者)]\ndebian版本IMbian1(buster)\n-修复 启动后自动启动xtem终端的问题\n-更换 使用深度终端代替xterm终端\n-加入 全中文环境，userland版本2.6.5以上无需手动设置中文\n-更换 使用midori浏览器(支持html5在线视频)代替了打不开的firfox及chromium\n-修复 桌面工具栏无默认程序的问题\n-升级 所有软件至最新20191123\n-加入 对https～apt的支持\n-更换 中科大源为清华大学源(https)\n\n提供者:"
+                    android:textColor="#fff"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/winlog" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="WINLOG/[老群员]虚拟机总监[群管理]\nQQ:224682**49"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/ll_title2"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="日志:"
+                    android:id="@+id/msg"
+
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+        </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/boom"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:id="@+id/start_linux"
+                    android:visibility="gone"
+                    android:text="启动"
+                    android:textStyle="bold"
+                    android:layout_height="40dp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:id="@+id/install_linux"
+                    android:text="安装"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_height="40dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

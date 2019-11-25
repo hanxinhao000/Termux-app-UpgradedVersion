@@ -91,6 +91,8 @@ public class TermuxFloatView extends LinearLayout {
     public void initializeFloatingWindow() {
         mTerminalView = findViewById(R.id.terminal_view);
         mTerminalView.setOnKeyListener(new TermuxFloatViewClient(this));
+
+
     }
 
     @Override
@@ -193,6 +195,7 @@ public class TermuxFloatView extends LinearLayout {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         if (isInLongPressState) {
             mScaleDetector.onTouchEvent(event);
             if (mScaleDetector.isInProgress()) return true;
@@ -205,6 +208,8 @@ public class TermuxFloatView extends LinearLayout {
                     break;
                 case MotionEvent.ACTION_UP:
                     updateLongPressMode(false);
+
+
                     break;
             }
             return true;

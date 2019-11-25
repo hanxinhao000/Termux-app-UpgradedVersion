@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="标题1"
         android:textColor="#fff"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:text="标题1"
         android:textColor="#fff"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
 

@@ -6,6 +6,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,8 +20,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+
+import androidx.annotation.RequiresApi;
 
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
@@ -59,7 +63,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
 
     public static String TAGRUN = null;
 
-    private static final String ACTION_STOP_SERVICE = "com.termux.service_stop";
+    public static final String ACTION_STOP_SERVICE = "com.termux.service_stop";
     private static final String ACTION_LOCK_WAKE = "com.termux.service_wake_lock";
     private static final String ACTION_UNLOCK_WAKE = "com.termux.service_wake_unlock";
     /**
@@ -109,6 +113,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
      */
     boolean mWantsToStop = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"Wakelock", "InvalidWakeLockTag"})
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -130,6 +135,20 @@ public final class TermuxService extends Service implements SessionChangedCallba
                 mWifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, EmulatorDebug.LOG_TAG);
                 mWifiLock.acquire();
 
+               // updateNotification();
+                String packageName = getPackageName();
+                if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                    Intent whitelist = new Intent();
+                    whitelist.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    whitelist.setData(Uri.parse("package:" + packageName));
+                    whitelist.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    try {
+                        startActivity(whitelist);
+                    } catch (ActivityNotFoundException e) {
+                        Log.e(EmulatorDebug.LOG_TAG, "Failed to call ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS", e);
+                    }
+                }
                 updateNotification();
             }
         } else if (ACTION_UNLOCK_WAKE.equals(action)) {

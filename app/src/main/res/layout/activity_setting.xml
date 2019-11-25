@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="当前版本:0.76(75).09"
+                        android:text="当前版本:0.82.18"
                         android:textColor="#fff"
                         android:textSize="24sp" />
 
@@ -90,16 +90,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="备份当前操作Linux"
-                        android:textColor="#fff"
+                        android:text="备份当前操作Linux[不推荐一般用户使用]"
+                        android:textColor="@android:color/holo_red_dark"
                         android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="点击备份当前linux \n备份目录:/sdcard/xinhao/system/"
-                        android:textColor="#fff"
+                        android:text="点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]"
+                        android:textColor="@android:color/holo_red_dark"
                         android:textSize="18sp" />
 
 
@@ -139,7 +139,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="恢复当前操作Linux"
+                        android:text="恢复当前操作Linux[恢复群数据包/扩展包]"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 

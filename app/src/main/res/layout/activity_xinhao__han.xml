@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    tools:context="main.java.com.termux.activity.XINHAO_HANActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:text="ubuntu安全密码(安装):jrql"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:text="当前版本:0.82.18"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                android:id="@+id/back_res"
+                android:text="已废弃的备份/恢复[急速][点击我]"
+                android:textSize="14sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:text="为自己的梦想坚持而努力[内核显示器]"
+                android:layout_height="wrap_content" />
+
+
+            <com.termux.view.TerminalView
+                android:layout_width="match_parent"
+                android:id="@+id/termux_view"
+                android:layout_height="500dp" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

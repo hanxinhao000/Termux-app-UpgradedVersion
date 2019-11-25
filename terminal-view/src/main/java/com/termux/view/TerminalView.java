@@ -406,6 +406,8 @@ public final class TerminalView extends View {
                 }
             }
 
+           // getText();
+
             inputCodePoint(codePoint, ctrlHeld, false);
         }
     }
@@ -776,6 +778,10 @@ public final class TerminalView extends View {
             }
 
             // If left alt, send escape before the code point to make e.g. Alt+B and Alt+F work in readline:
+            Log.e("XINHAO_HAN", "codePoint: " + codePoint);
+            Log.e("XINHAO_HAN", "altDown: " + altDown);
+            Log.e("XINHAO_HAN", "text1: " + getText1());
+            Log.e("XINHAO_HAN", "text: " + getText());
             mTermSession.writeCodePoint(altDown, codePoint);
         }
     }
@@ -837,6 +843,8 @@ public final class TerminalView extends View {
         int newRows = Math.max(4, (viewHeight - mRenderer.mFontLineSpacingAndAscent) / mRenderer.mFontLineSpacing);
 
         if (mEmulator == null || (newColumns != mEmulator.mColumns || newRows != mEmulator.mRows)) {
+            Log.e("XINHAO_HAN111", "newColumns: " + newColumns );
+            Log.e("XINHAO_HAN111", "newRows: " + newRows );
             mTermSession.updateSize(newColumns, newRows);
             mEmulator = mTermSession.getEmulator();
 
@@ -1017,6 +1025,9 @@ public final class TerminalView extends View {
 
     public CharSequence getText() {
         return mEmulator.getScreen().getSelectedText(0, mTopRow, mEmulator.mColumns, mTopRow + mEmulator.mRows);
+    }
+    public CharSequence getText1() {
+        return mEmulator.getScreen().getTranscriptText();
     }
 
 }

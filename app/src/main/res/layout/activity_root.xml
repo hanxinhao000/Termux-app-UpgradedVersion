@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#1BBC9B"
+    android:layout_height="match_parent"
+    tools:context="main.java.com.termux.activity.RootActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="[root功能页面]本页面需要你手机root"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="28dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:textColor="#0f0"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ubuntu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+
+
+                android:layout_height="40dp"
+                android:src="@drawable/iso_jx" />
+
+            <TextView
+                android:id="@+id/ubuntu_text_root"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="运行linuxDeploy镜像\n[默认设置好所有配置]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/kail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ubuntu_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装ubuntu\n[已禁用,请用离线安装]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/archlinux"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/kaiji" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装Termux\n[本软件原版系统]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

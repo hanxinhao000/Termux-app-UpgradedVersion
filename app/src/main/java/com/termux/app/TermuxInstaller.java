@@ -81,6 +81,8 @@ public final class TermuxInstaller {
 
         myDialog.setCancelable(false);
 
+        Log.e("XINHAO_HAN", "setupIfNeeded: " + "弹出dialog");
+
         TextView dialog_title = myDialog.getDialog_title();
 
         dialog_title.setText("正在安装[群:714730084]...\n不挂vpn是比较绝望(慢)的...\n本程序已稳定,除非出现和官方一样的BUG");
@@ -107,18 +109,18 @@ public final class TermuxInstaller {
 
                     InputStream inputStream = null;
 
-                    Log.e("XINHAO_HAN", "高版本: " +  determineTermuxArchName());
+                    Log.e("XINHAO_HAN", "高版本: " + determineTermuxArchName());
                     if ("aarch64".equals(determineTermuxArchName())) {
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
                             inputStream = activity.getAssets().open("bootstrap-aarch64_d.zip");
 
-                            Log.e("XINHAO_HAN", "高版本: " +  inputStream);
+                            Log.e("XINHAO_HAN", "高版本: " + inputStream);
                         }
                     }
 
-                    Log.e("XINHAO_HAN", "外边: " +  inputStream);
+                    Log.e("XINHAO_HAN", "外边: " + inputStream);
                     try (ZipInputStream zipInput = new ZipInputStream(inputStream == null ? zipUrl.openStream() : inputStream)) {
 
                         ZipEntry zipEntry;
@@ -222,6 +224,281 @@ public final class TermuxInstaller {
 
             }
         }).start();
+
+
+
+
+
+    /*    final ProgressDialog progress = ProgressDialog.show(activity, null, activity.getString(R.string.bootstrap_installer_body), true, false);
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    final String STAGING_PREFIX_PATH = TermuxService.FILES_PATH + "/usr-staging";
+                    final File STAGING_PREFIX_FILE = new File(STAGING_PREFIX_PATH);
+
+                    if (STAGING_PREFIX_FILE.exists()) {
+                        deleteFolder(STAGING_PREFIX_FILE);
+                    }
+
+                    final byte[] buffer = new byte[8096];
+                    final List<Pair<String, String>> symlinks = new ArrayList<>(50);
+
+                    final URL zipUrl = determineZipUrl();
+                    try (ZipInputStream zipInput = new ZipInputStream(zipUrl.openStream())) {
+                        ZipEntry zipEntry;
+                        while ((zipEntry = zipInput.getNextEntry()) != null) {
+
+                            Log.e("XINHAO_HAN", "run: " + zipEntry.getSize());
+
+                            if (zipEntry.getName().equals("SYMLINKS.txt")) {
+                                BufferedReader symlinksReader = new BufferedReader(new InputStreamReader(zipInput));
+                                String line;
+                                while ((line = symlinksReader.readLine()) != null) {
+                                    String[] parts = line.split("←");
+                                    if (parts.length != 2)
+                                        throw new RuntimeException("Malformed symlink line: " + line);
+                                    String oldPath = parts[0];
+                                    String newPath = STAGING_PREFIX_PATH + "/" + parts[1];
+                                    symlinks.add(Pair.create(oldPath, newPath));
+
+                                    ensureDirectoryExists(new File(newPath).getParentFile());
+                                }
+                            } else {
+                                String zipEntryName = zipEntry.getName();
+                                File targetFile = new File(STAGING_PREFIX_PATH, zipEntryName);
+                                boolean isDirectory = zipEntry.isDirectory();
+
+                                ensureDirectoryExists(isDirectory ? targetFile : targetFile.getParentFile());
+
+                                if (!isDirectory) {
+                                    try (FileOutputStream outStream = new FileOutputStream(targetFile)) {
+                                        int readBytes;
+                                        while ((readBytes = zipInput.read(buffer)) != -1)
+                                            outStream.write(buffer, 0, readBytes);
+                                    }
+                                    if (zipEntryName.startsWith("bin/") || zipEntryName.startsWith("libexec") || zipEntryName.startsWith("lib/apt/methods")) {
+                                        //noinspection OctalInteger
+                                        Os.chmod(targetFile.getAbsolutePath(), 0700);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (symlinks.isEmpty())
+                        throw new RuntimeException("No SYMLINKS.txt encountered");
+                    for (Pair<String, String> symlink : symlinks) {
+                        Os.symlink(symlink.first, symlink.second);
+                    }
+
+                    if (!STAGING_PREFIX_FILE.renameTo(PREFIX_FILE)) {
+                        throw new RuntimeException("Unable to rename staging folder");
+                    }
+
+                    activity.runOnUiThread(whenDone);
+                } catch (final Exception e) {
+                    Log.e(EmulatorDebug.LOG_TAG, "Bootstrap error", e);
+                    activity.runOnUiThread(() -> {
+                        try {
+                            new AlertDialog.Builder(activity).setTitle(R.string.bootstrap_error_title).setMessage(R.string.bootstrap_error_body)
+                                .setNegativeButton(R.string.bootstrap_error_abort, (dialog, which) -> {
+                                    dialog.dismiss();
+                                    activity.finish();
+                                }).setPositiveButton(R.string.bootstrap_error_try_again, (dialog, which) -> {
+                                dialog.dismiss();
+                                TermuxInstaller.setupIfNeeded(activity, whenDone);
+                            }).show();
+                        } catch (WindowManager.BadTokenException e1) {
+                            // Activity already dismissed - ignore.
+                        }
+                    });
+                } finally {
+                    activity.runOnUiThread(() -> {
+                        try {
+                            progress.dismiss();
+                        } catch (RuntimeException e) {
+                            // Activity already dismissed - ignore.
+                        }
+                    });
+                }
+            }
+        }.start();*/
+    }
+
+
+    public static void setupIfNeeded3(String title, final Activity activity, final Runnable whenDone) {
+        // Termux can only be run as the primary user (device owner) since only that
+        // account has the expected file system paths. Verify that:
+        UserManager um = (UserManager) activity.getSystemService(Context.USER_SERVICE);
+        boolean isPrimaryUser = um.getSerialNumberForUser(android.os.Process.myUserHandle()) == 0;
+        if (!isPrimaryUser) {
+            new AlertDialog.Builder(activity).setTitle(R.string.bootstrap_error_title).setMessage(R.string.bootstrap_error_not_primary_user_message)
+                .setOnDismissListener(dialog -> System.exit(0)).setPositiveButton(android.R.string.ok, null).show();
+            return;
+        }
+
+        final File PREFIX_FILE = new File(TermuxService.PREFIX_PATH);
+      /*  if (PREFIX_FILE.isDirectory()) {
+            whenDone.run();
+            return;
+        }*/
+
+
+        MyDialog myDialog = new MyDialog(activity);
+
+        myDialog.setCancelable(false);
+
+        Log.e("XINHAO_HAN", "setupIfNeeded: " + "弹出dialog");
+
+        TextView dialog_title = myDialog.getDialog_title();
+
+        dialog_title.setText(title + " [群:714730084]...\n不挂vpn是比较绝望(慢)的...\n本程序已稳定,除非出现和官方一样的BUG");
+
+        myDialog.getDialog_pro_prog().setMax(2066);
+
+        myDialog.show();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final String STAGING_PREFIX_PATH = TermuxService.FILES_PATH + "/usr";
+                    //  final File STAGING_PREFIX_FILE = new File(STAGING_PREFIX_PATH);
+
+                   /* if (STAGING_PREFIX_FILE.exists()) {
+                        deleteFolder(STAGING_PREFIX_FILE);
+                    }*/
+
+                    final byte[] buffer = new byte[8096];
+                    final List<Pair<String, String>> symlinks = new ArrayList<>(50);
+
+                    final URL zipUrl = determineZipUrl();
+
+                    InputStream inputStream = null;
+
+                    Log.e("XINHAO_HAN", "高版本: " + determineTermuxArchName());
+                    if ("aarch64".equals(determineTermuxArchName())) {
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+                            inputStream = activity.getAssets().open("bootstrap-aarch64_d.zip");
+
+                            Log.e("XINHAO_HAN", "高版本: " + inputStream);
+                        }
+                    }
+
+                    Log.e("XINHAO_HAN", "外边: " + inputStream);
+                    try (ZipInputStream zipInput = new ZipInputStream(inputStream == null ? zipUrl.openStream() : inputStream)) {
+
+                        ZipEntry zipEntry;
+                        int i = 0;
+                        while ((zipEntry = zipInput.getNextEntry()) != null) {
+
+                            i++;
+
+                            Log.e("XINHAO_HAN_JS", "run: " + i);
+                            int finalI = i;
+                            TermuxApplication.mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myDialog.getDialog_pro_prog().setProgress(finalI);
+                                }
+                            });
+
+                            Log.e("XINHAO_HAN", "run: " + zipEntry.getSize());
+
+
+                            ZipEntry finalZipEntry = zipEntry;
+                            TermuxApplication.mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myDialog.getDialog_pro().setText(finalZipEntry.getName());
+                                }
+                            });
+
+                            if (zipEntry.getName().equals("SYMLINKS.txt")) {
+                                BufferedReader symlinksReader = new BufferedReader(new InputStreamReader(zipInput));
+                                String line;
+                                while ((line = symlinksReader.readLine()) != null) {
+                                    String[] parts = line.split("←");
+                                    if (parts.length != 2)
+                                        throw new RuntimeException("Malformed symlink line: " + line);
+                                    String oldPath = parts[0];
+                                    String newPath = STAGING_PREFIX_PATH + "/" + parts[1];
+                                    symlinks.add(Pair.create(oldPath, newPath));
+
+                                    ensureDirectoryExists(new File(newPath).getParentFile());
+                                }
+                            } else {
+                                String zipEntryName = zipEntry.getName();
+                                File targetFile = new File(STAGING_PREFIX_PATH, zipEntryName);
+                                boolean isDirectory = zipEntry.isDirectory();
+
+                                ensureDirectoryExists(isDirectory ? targetFile : targetFile.getParentFile());
+
+                                if (!isDirectory) {
+                                    try {
+                                        FileOutputStream outStream = new FileOutputStream(targetFile);
+                                        int readBytes;
+                                        while ((readBytes = zipInput.read(buffer)) != -1)
+                                            outStream.write(buffer, 0, readBytes);
+
+                                        if (zipEntryName.startsWith("bin/") || zipEntryName.startsWith("libexec") || zipEntryName.startsWith("lib/apt/methods")) {
+                                            //noinspection OctalInteger
+                                            Os.chmod(targetFile.getAbsolutePath(), 0700);
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (symlinks.isEmpty())
+                        throw new RuntimeException("No SYMLINKS.txt encountered");
+                    for (Pair<String, String> symlink : symlinks) {
+                        Os.symlink(symlink.first, symlink.second);
+                    }
+
+                    //  if (!STAGING_PREFIX_FILE.renameTo(PREFIX_FILE)) {
+                    throw new RuntimeException("Unable to rename staging folder");
+                    // }
+
+                   // activity.runOnUiThread(whenDone);
+                } catch (final Exception e) {
+                    Log.e(EmulatorDebug.LOG_TAG, "Bootstrap error", e);
+                    activity.runOnUiThread(() -> {
+                        try {
+                            myDialog.dismiss();
+                            new AlertDialog.Builder(activity).setTitle("修复成功!").setMessage("你必须重启APP来实现修复的作用\n\n注意！！！！如果出现\n\nProcess comleted (code xxx) -press Enter 错误\n\n,请再次大退(重启)Termux")
+                                .setNegativeButton("重启", (dialog, which) -> {
+                                    dialog.dismiss();
+                                    activity.finish();
+                                }).setPositiveButton("再次修复", (dialog, which) -> {
+                                dialog.dismiss();
+                                TermuxInstaller.setupIfNeeded(activity, whenDone);
+                            }).show();
+                        } catch (WindowManager.BadTokenException e1) {
+                            // Activity already dismissed - ignore.
+                        }
+                    });
+                } finally {
+                    activity.runOnUiThread(() -> {
+                        try {
+                            //activity.startActivity(new Intent(activity,TestActivity.class));
+                            myDialog.dismiss();
+                        } catch (RuntimeException e) {
+                            // Activity already dismissed - ignore.
+                        }
+                    });
+                }
+
+            }
+        }).
+
+            start();
 
 
 

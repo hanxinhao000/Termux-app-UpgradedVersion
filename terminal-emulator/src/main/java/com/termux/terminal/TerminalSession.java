@@ -181,6 +181,8 @@ public final class TerminalSession extends TerminalOutput {
         Log.e("XINHAO_HAN", "-----mCwd: " + mCwd );
         Log.e("XINHAO_HAN", "-----mArgs: " + Arrays.toString(mArgs));
         Log.e("XINHAO_HAN", "-----mEnv: " + Arrays.toString(mEnv) );
+
+
         mTerminalFileDescriptor = JNI.createSubprocess(mShellPath, mCwd, mArgs, mEnv, processId, rows, columns);
         mShellPid = processId[0];
 

@@ -44,10 +44,11 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 84
-        versionName "0.76(75).09"
+        versionName "0.82.18"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
+
 
     sourceSets {
         main {
@@ -69,19 +70,16 @@ android {
     }
 
 
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
 
     }
+
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+
 
 }
 task versionName {
@@ -93,9 +91,13 @@ task versionName {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3+'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.apache.ant:ant:1.10.7'
+    implementation 'org.apache.commons:commons-compress:1.19'
 
 
 }

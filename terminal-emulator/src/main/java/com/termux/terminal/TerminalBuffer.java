@@ -1,5 +1,7 @@
 package com.termux.terminal;
 
+import android.util.Log;
+
 import java.util.Arrays;
 
 /**
@@ -11,13 +13,21 @@ import java.util.Arrays;
 public final class TerminalBuffer {
 
     TerminalRow[] mLines;
-    /** The length of {@link #mLines}. */
+    /**
+     * The length of {@link #mLines}.
+     */
     int mTotalRows;
-    /** The number of rows and columns visible on the screen. */
+    /**
+     * The number of rows and columns visible on the screen.
+     */
     int mScreenRows, mColumns;
-    /** The number of rows kept in history. */
+    /**
+     * The number of rows kept in history.
+     */
     private int mActiveTranscriptRows = 0;
-    /** The index in the circular buffer where the visible screen starts. */
+    /**
+     * The index in the circular buffer where the visible screen starts.
+     */
     private int mScreenFirstRow = 0;
 
     /**
@@ -34,12 +44,14 @@ public final class TerminalBuffer {
         mScreenRows = screenRows;
         mLines = new TerminalRow[totalRows];
 
+
         blockSet(0, 0, columns, screenRows, ' ', TextStyle.NORMAL);
     }
 
     public String getTranscriptText() {
         return getSelectedText(0, -getActiveTranscriptRows(), mColumns, mScreenRows).trim();
     }
+
 
     public String getSelectedText(int selX1, int selY1, int selX2, int selY2) {
         final StringBuilder builder = new StringBuilder();
@@ -58,6 +70,9 @@ public final class TerminalBuffer {
                 x2 = columns;
             }
             TerminalRow lineObject = mLines[externalToInternalRow(row)];
+
+            //Log.e("XINHAO_HAN444", "getSelectedText: " + Arrays.toString(lineObject.mText));
+
             int x1Index = lineObject.findStartOfColumn(x1);
             int x2Index = (x2 < mColumns) ? lineObject.findStartOfColumn(x2) : lineObject.getSpaceUsed();
             if (x2Index == x1Index) {
@@ -79,10 +94,68 @@ public final class TerminalBuffer {
             }
             if (lastPrintingCharIndex != -1)
                 builder.append(line, x1Index, lastPrintingCharIndex - x1Index + 1);
+            // Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
             if (!rowLineWrap && row < selY2 && row < mScreenRows - 1) builder.append('\n');
         }
         return builder.toString();
     }
+
+
+    public String getTranscriptTextBuilder() {
+        return getSelectedTextStringBuilder(0, -getActiveTranscriptRows(), mColumns, mScreenRows).trim();
+    }
+
+
+    public String getSelectedTextStringBuilder(int selX1, int selY1, int selX2, int selY2) {
+        final StringBuilder builder = new StringBuilder();
+        final int columns = mColumns;
+
+        String lineString = "";
+
+        if (selY1 < -getActiveTranscriptRows()) selY1 = -getActiveTranscriptRows();
+        if (selY2 >= mScreenRows) selY2 = mScreenRows - 1;
+
+        for (int row = selY1; row <= selY2; row++) {
+            int x1 = (row == selY1) ? selX1 : 0;
+            int x2;
+            if (row == selY2) {
+                x2 = selX2 + 1;
+                if (x2 > columns) x2 = columns;
+            } else {
+                x2 = columns;
+            }
+            TerminalRow lineObject = mLines[externalToInternalRow(row)];
+
+            //Log.e("XINHAO_HAN444", "getSelectedText: " + Arrays.toString(lineObject.mText));
+
+            int x1Index = lineObject.findStartOfColumn(x1);
+            int x2Index = (x2 < mColumns) ? lineObject.findStartOfColumn(x2) : lineObject.getSpaceUsed();
+            if (x2Index == x1Index) {
+                // Selected the start of a wide character.
+                x2Index = lineObject.findStartOfColumn(x2 + 1);
+            }
+            char[] line = lineObject.mText;
+            int lastPrintingCharIndex = -1;
+            int i;
+            boolean rowLineWrap = getLineWrap(row);
+            if (rowLineWrap && x2 == columns) {
+                // If the line was wrapped, we shouldn't lose trailing space:
+                lastPrintingCharIndex = x2Index - 1;
+            } else {
+                for (i = x1Index; i < x2Index; ++i) {
+                    char c = line[i];
+                    if (c != ' ') lastPrintingCharIndex = i;
+                }
+            }
+            if (lastPrintingCharIndex != -1)
+                lineString = new String(line);
+            // builder.append(line, x1Index, lastPrintingCharIndex - x1Index + 1);
+            // Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
+            if (!rowLineWrap && row < selY2 && row < mScreenRows - 1) builder.append('\n');
+        }
+        return lineString;
+    }
+
 
     public int getActiveTranscriptRows() {
         return mActiveTranscriptRows;
@@ -399,7 +472,9 @@ public final class TerminalBuffer {
         return allocateFullLineIfNecessary(externalToInternalRow(externalRow)).getStyle(column);
     }
 
-    /** Support for http://vt100.net/docs/vt510-rm/DECCARA and http://vt100.net/docs/vt510-rm/DECCARA */
+    /**
+     * Support for http://vt100.net/docs/vt510-rm/DECCARA and http://vt100.net/docs/vt510-rm/DECCARA
+     */
     public void setOrClearEffect(int bits, boolean setOrClear, boolean reverse, boolean rectangular, int leftMargin, int rightMargin, int top, int left,
                                  int bottom, int right) {
         for (int y = top; y < bottom; y++) {

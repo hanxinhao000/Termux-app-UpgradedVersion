@@ -1,7 +1,7 @@
 package com.termux.app;
 
 
-public class TermuxActivityTest extends Object {
+public class TermuxActivityTest {
 
 
 }
