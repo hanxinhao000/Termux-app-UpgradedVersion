@@ -133,7 +133,7 @@ public class RestoreFragment extends BaseFragment {
 
 
         Toast.makeText(getContext(), "开始清除数据...", Toast.LENGTH_SHORT).show();
-        Log.e("XINHAO_HAN_FILE", "start: " + "执行0" );
+        Log.e("XINHAO_HAN_FILE", "start: " + "执行0");
 
         String cpu = TermuxInstaller.determineTermuxArchName();
 
@@ -141,17 +141,17 @@ public class RestoreFragment extends BaseFragment {
             case "aarch64":
                 writerFile("arm_64/busybox", mFileHome, 1024);
                 writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
-               // writerFile("arm_64/proot", mFileHomeProot, 1024);
+                // writerFile("arm_64/proot", mFileHomeProot, 1024);
                 break;
             case "arm":
                 writerFile("arm/busybox", mFileHome, 1024);
-               // writerFile("arm/busybox_static", mFileHomeStatic, 1024);
-             //   writerFile("arm/proot", mFileHomeProot, 1024);
+                // writerFile("arm/busybox_static", mFileHomeStatic, 1024);
+                //   writerFile("arm/proot", mFileHomeProot, 1024);
                 break;
             case "x86_64":
                 writerFile("x86/busybox", mFileHome, 1024);
-              //  writerFile("x86/busybox_static", mFileHomeStatic, 1024);
-              //  writerFile("x86/proot", mFileHomeProot, 1024);
+                //  writerFile("x86/busybox_static", mFileHomeStatic, 1024);
+                //  writerFile("x86/proot", mFileHomeProot, 1024);
                 break;
         }
 
@@ -165,15 +165,15 @@ public class RestoreFragment extends BaseFragment {
 
         TermuxActivity.getTermux().getCurrentTermSession().finishIfRunning();
 
-        Log.e("XINHAO_HAN_FILE", "start: " + "执行1" );
+        Log.e("XINHAO_HAN_FILE", "start: " + "执行1");
 
-        test1(file);
+      /*  test1(file);
 
 
 
         if (true) {
             return;
-        }
+        }*/
         String res_files = SaveData.getData("res_files");
 
         if (res_files.equals("def")) {
@@ -237,9 +237,52 @@ public class RestoreFragment extends BaseFragment {
 
 
                         Runtime.getRuntime().exec("chmod 777 " + mFileHome.getAbsolutePath());
+
+
+                        ExeCommand cmdd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  gunzip -c " + file.getAbsolutePath() + " > ./data/data/com.termux/xinhao.tar", Integer.MAX_VALUE);
+                        // cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -xvf " + file.getAbsolutePath(), 60000);
+
+                        TermuxApplication.mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mTitle.setText("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到恢复完成,直至恢复退出!\n\n[正在展开安装包...]\n\n");
+
+                            }
+                        });
+
+                        while (cmdd.isRunning()) {
+                            try {
+                                Thread.sleep(5);
+                            } catch (Exception e) {
+
+                            }
+                            String buf = cmdd.getResult();
+                            //do something
+
+                            TermuxApplication.mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (!buf.equals("")) {
+                                        SpannableString spannableString = new SpannableString("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复...]\n\n" + buf);
+                                        spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 38, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                                        mTitle.setText(spannableString);
+
+                                    }
+                                }
+                            });
+
+                            Log.e("XINHAO_CMD", "onClick: " + buf);
+
+                        }
+
+
+                  /*      if (true) {
+                            return;
+                        }*/
+
                         ExeCommand cmd;
 
-                        cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -xvf " + file.getAbsolutePath(), 60000);
+                        cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -xvf /data/data/com.termux/xinhao.tar", Integer.MAX_VALUE);
                         // cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -xvf " + file.getAbsolutePath(), 60000);
 
 
@@ -266,6 +309,22 @@ public class RestoreFragment extends BaseFragment {
 
                             Log.e("XINHAO_CMD", "onClick: " + buf);
 
+                        }
+
+                        ///data/data/com.termux/xinhao.tar
+
+                        ExeCommand cmde = new ExeCommand(false).run(mFileHome.getAbsolutePath() + " rm -rf /data/data/com.termux/xinhao.tar", 60000);
+
+                        while (cmde.isRunning()) {
+                            try {
+                                Thread.sleep(5);
+                            } catch (Exception e) {
+
+                            }
+                            String buf = cmde.getResult();
+                            //do something}
+
+                            Log.e("XINHAO_HAN", "run: " + buf);
                         }
 
 
@@ -475,18 +534,18 @@ public class RestoreFragment extends BaseFragment {
     }
 
 
-    private void test1(File files){
+    private void test1(File files) {
 
-        Log.e("XINHAO_HAN_FILE", "start: " + "执行2" );
+        Log.e("XINHAO_HAN_FILE", "start: " + "执行2");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Log.e("XINHAO_HAN_FILE", "start: " + "执行3" );
-                    XHTarUtils.unTarGZ(files.getAbsoluteFile(),mFileHomeFiles.getAbsolutePath());
+
+                    XHTarUtils.unTarGZ(files.getAbsoluteFile(), mFileHomeFiles.getAbsolutePath());
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("XINHAO_HAN_FILE", "run: " + e.toString() );
+
                 }
             }
         }).start();
@@ -518,8 +577,8 @@ public class RestoreFragment extends BaseFragment {
                     e.printStackTrace();
                 }
 
-                Log.e("XINHAO_HAN", "run: " + mFileHomeMainTar.getAbsolutePath() + " -xvf " + files.getAbsolutePath() );
-                ExeCommand cmd1 = new ExeCommand(false).run( mFileHomeMainTar.getAbsolutePath() + " -xvf " + files.getAbsolutePath(), 60000);
+                Log.e("XINHAO_HAN", "run: " + mFileHomeMainTar.getAbsolutePath() + " -xvf " + files.getAbsolutePath());
+                ExeCommand cmd1 = new ExeCommand(false).run(mFileHomeMainTar.getAbsolutePath() + " -xvf " + files.getAbsolutePath(), 60000);
 
                 while (cmd1.isRunning()) {
                     try {
@@ -591,7 +650,7 @@ public class RestoreFragment extends BaseFragment {
             fileOutputStream.close();
         } catch (Exception e) {
 
-            Log.e("XINHAO_HAN_FILE ", "writerFile: " + e.toString() );
+            Log.e("XINHAO_HAN_FILE ", "writerFile: " + e.toString());
         }
 
     }

@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="版本:[0.82.19]"
+                        android:text="版本:[0.82.20]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -1588,7 +1588,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.82.19]"
+            android:text="Termux[0.82.20]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

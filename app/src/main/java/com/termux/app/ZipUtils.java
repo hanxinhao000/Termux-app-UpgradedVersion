@@ -541,7 +541,7 @@ public class ZipUtils {
                 // arrayList.add(f);
             } else {
 
-                zipNameListener.zip("文件我也不知道是什么鬼？", 0, 0);
+                zipNameListener.zip("快捷方式", 0, 0);
             }
 
         }

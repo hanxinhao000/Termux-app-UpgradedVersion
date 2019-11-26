@@ -96,10 +96,11 @@ public class ExeCommand {
 
         try {
             //向sh写入要执行的命令
+            os.write("export PATH=/data/data/com.termux:$PATH".getBytes());
+            os.writeBytes("\n");
             os.write(command.getBytes());
             os.writeBytes("\n");
             os.flush();
-
             os.writeBytes("exit\n");
             os.flush();
 

@@ -13,9 +13,13 @@ import android.widget.Toast;
 
 import com.termux.R;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.tools.tar.TarUtils;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -124,12 +128,11 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
                         break;
                 }
 
-            /*    test();
+               /* test();
                 Toast.makeText(getContext(), "备份完成", Toast.LENGTH_SHORT).show();
                 if (true) {
                     return;
-                }
-*/
+                }*/
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -139,9 +142,9 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
 
                             //tar -cpvzf /test/backup.tar.gz / --exclude=/test
 
-                            Log.e("XINHAO_HAN", "run: " + mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath() );
+                            Log.e("XINHAO_HAN", "run: " + mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath());
                             ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath(), 60000);
-                           // ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() , 60000);
+                            // ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() , 60000);
                             while (cmd.isRunning()) {
                                 try {
                                     Thread.sleep(50);
@@ -196,142 +199,33 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
 
     private void test() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        try {
+            tarFile(mFileHomeFiles,new File(mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-                try {
-                    Runtime.getRuntime().exec("chmod 777 " + mFileHome.getAbsolutePath());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if(!mFileSupport.exists()){
-                    mFileSupport.mkdirs();
-                }
+    }
 
 
-                switch (TermuxInstaller.determineTermuxArchName()) {
-                    case "arm64-v8a":
-                        writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                        Log.e("XINHAO_HAN", "正在复制工具包[sh_arm64_v8a]...");
-                        break;
-                    case "armeabi-v7a":
-                        writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                        Log.e("XINHAO_HAN", "正在复制工具包[sh_armeabi_v7a]...");
-                        break;
-                    default:
-                        writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                        Log.e("XINHAO_HAN", "默认的没有!" + TermuxInstaller.determineTermuxArchName());
-                        break;
+    private static void tarFile(File inFile,File outFile) throws Exception {
 
-                }
+        TarArchiveOutputStream taos = new TarArchiveOutputStream(new FileOutputStream(outFile));
+        TarArchiveEntry tae = new TarArchiveEntry(inFile);
+        tae.setSize(inFile.length());//大小
+        tae.setName(new String(inFile.getName().getBytes("gbk"), "ISO-8859-1"));//不设置会默认全路径
+        taos.putArchiveEntry(tae);
 
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(inFile));
+        int count;
+        byte data[] = new byte[1024];
+        while ((count = bis.read(data, 0, 1024)) != -1) {
+            taos.write(data, 0, count);
+        }
+        bis.close();
 
-                ZipUtils.unZip(new File(mFileSupport, "/sh.xh.tar"), mFileSupport.getAbsolutePath(), new ZipUtils.ZipNameListener() {
-                    @Override
-                    public void zip(String FileName, int size, int position) {
-                        TermuxApplication.mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                                // finalMyDialog.getDialog_title().setText("正在解压安装工具包[" + FileName + "]");
-
-                                Log.e("XINHAO_HAN", "正在解压安装工具包[" + FileName + "]");
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void complete() {
-                        TermuxApplication.mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                                // finalMyDialog.getDialog_title().setText("完成!");
-                                Log.e("XINHAO_HAN", "完成!");
-                            }
-                        });
-
-                        //  startInstallLinux(finalMyDialog);
-                    }
-
-                    @Override
-                    public void progress(long size, long position) {
-
-                    }
-                });
-
-
-                writerFile("extractFilesystem.sh", mFileSupportSh);
-
-                try {
-                    Runtime.getRuntime().exec("chmod 777 " + mFileSupportSh.getAbsolutePath());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                ArrayList<String> arrayList = new ArrayList<>();
-
-                arrayList.add("/data/data/com.termux/files/support/busybox");
-                arrayList.add("sh");
-                arrayList.add("/data/data/com.termux/files/support/execInProot.sh");
-                arrayList.add("/data/data/com.termux/files/support/extractFilesystem.sh");
-
-                HashMap<String, String> hashMap = new HashMap<>();
-
-                hashMap.put("INITIAL_USERNAME", "hanxinhao");
-                hashMap.put("INITIAL_PASSWORD", "123456");
-                hashMap.put("INITIAL_VNC_PASSWORD", "123456");
-                hashMap.put("PROOT_DEBUG_LEVEL", "-1");
-                hashMap.put("LD_LIBRARY_PATH", "/data/data/com.termux/files/support/");
-                hashMap.put("ROOTFS_PATH", "/data/data/com.termux/files/support");
-                hashMap.put("OS_VERSION", "4.4.153-perf+");
-                hashMap.put("ROOT_PATH", "/data/data/com.termux/files");
-                hashMap.put("EXTRA_BINDINGS", "-b /storage/emulated/0/xinhao/temp:/temp/internal");
-                hashMap.put("LIB_PATH", "/data/data/com.termux/files/support/");
-                hashMap.put("SD_PATH", Environment.getExternalStorageDirectory().getAbsolutePath() + "/xinhao/data/" + simpleDateFormat.format(new Date()) + ".tar.gz");
-
-
-                ProcessBuilder processBuilder = new ProcessBuilder(arrayList);
-
-
-                processBuilder.environment().putAll(hashMap);
-
-                processBuilder.redirectErrorStream(true);
-
-
-                try {
-                    Process start = processBuilder.start();
-
-                    InputStream inputStream = start.getInputStream();
-
-                    int l = 0;
-
-                    byte[] b = new byte[1024];
-
-                    while ((l = inputStream.read(b)) != -1) {
-
-                        String s = new String(b, "UTF-8");
-
-                        Log.e("XINHAO_HANCMMOD", "startInstallLinux: " + s);
-                    }
-
-                    inputStream.close();
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-
-            }
-        }).start();
-
+        taos.closeArchiveEntry();
 
     }
 
