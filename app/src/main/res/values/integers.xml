@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item type="id" name="suggestion_id"/>
+
+    <integer name="enter_view_weight">1</integer>
+    <integer name="input_view_weight">7</integer>
+    <integer name="input_group_weightsum">8</integer>
+
+    <integer name="tools_view_weightsum">4</integer>
+    <integer name="tools_view_weight">1</integer>
+
+</resources>

@@ -3,6 +3,7 @@ package main.java.com.termux.app;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.AttributeSet;
 
 import java.util.concurrent.Executors;
@@ -353,7 +354,27 @@ public final class ExtraKeysView extends GridLayout {
 
                 final Button finalButton = button;
                 button.setOnClickListener(v -> {
-                    finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
+
+
+                    if (Settings.System.getInt(getContext().getContentResolver(),
+                        Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0) {
+
+                        // Depending on DnD settings, value can be >1 but 0 means "disabled".
+                        if (Settings.Global.getInt(getContext().getContentResolver(), "zen_mode", 0) < 1) {
+                            if (Build.VERSION.SDK_INT >= 28) {
+                                finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                            } else {
+                                // Perform haptic feedback only if no total silence mode enabled.
+                                if (Settings.Global.getInt(getContext().getContentResolver(), "zen_mode", 0) != 2) {
+                                    finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                                }
+                            }
+                        }
+
+                    }
+
+                       // finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     View root = getRootView();
                     if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonText)) {
                         ToggleButton self = (ToggleButton) finalButton;
@@ -395,8 +416,17 @@ public final class ExtraKeysView extends GridLayout {
                             }
                             return true;
 
-                        case MotionEvent.ACTION_UP:
+
                         case MotionEvent.ACTION_CANCEL:
+
+                            v.setBackgroundColor(BUTTON_COLOR);
+                            if (scheduledExecutor != null) {
+                                scheduledExecutor.shutdownNow();
+                                scheduledExecutor = null;
+                            }
+                            return true;
+
+                        case MotionEvent.ACTION_UP:
                             v.setBackgroundColor(BUTTON_COLOR);
                             if (scheduledExecutor != null) {
                                 scheduledExecutor.shutdownNow();
@@ -413,7 +443,6 @@ public final class ExtraKeysView extends GridLayout {
                                 }
                             }
                             return true;
-
                         default:
                             return true;
                     }

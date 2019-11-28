@@ -1,7 +1,12 @@
 package main.java.com.termux.core;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +20,7 @@ import java.util.HashMap;
 import main.java.com.termux.app.TestActivity;
 import main.java.com.termux.app.ZipUtils;
 import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.view.MyDialog;
 
 public class CoreGuiInstall {
 
@@ -48,7 +54,10 @@ public class CoreGuiInstall {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        copyFile(sdPath, mFileRootfs.getAbsolutePath(), coreGuiInstallListener);
+
+        File file = new File(mFileHome, "/" + name + "/support/rootfs.tar.gz");
+
+        copyFile(sdPath, file.getAbsolutePath(), coreGuiInstallListener);
 
         coreGuiInstallListener.position("开始解压工具包", 0, 0);
         try {
@@ -268,6 +277,100 @@ public class CoreGuiInstall {
 
 
     }
+
+
+
+
+    //       writerFile("startXSDLServer.sh", new File(mFileSupport, "/startXSDLServer.sh"));
+    //                writerFile("startXSDLServerStep2.sh", new File(mFileSupport, "/startXSDLServerStep2.sh"));
+
+
+
+    public static void startSystemXSDL(String name, CoreGuiBean coreGuiBean) {
+
+        writerFile("startXSDLServer.sh", new File(mFileSupport, "/startXSDLServer.sh"));
+        writerFile("startXSDLServerStep2.sh", new File(mFileSupport, "/startXSDLServerStep2.sh"));
+
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        arrayList.add("/data/data/com.termux/files/support/busybox");
+        arrayList.add("sh");
+        arrayList.add("/data/data/com.termux/files/support/execInProot.sh");
+        arrayList.add("/data/data/com.termux/files/support/startXSDLServerStep2.sh");
+        arrayList.add("/data/data/com.termux/files/support/isServerInProcTree.sh");
+        arrayList.add("17620");
+
+        HashMap<String, String> hashMap = new HashMap<>();
+
+        hashMap.put("INITIAL_USERNAME", coreGuiBean.username);
+        hashMap.put("INITIAL_PASSWORD", coreGuiBean.password);
+        hashMap.put("INITIAL_VNC_PASSWORD", coreGuiBean.vncPassword);
+
+        hashMap.put("PROOT_DEBUG_LEVEL", "-1");
+        hashMap.put("LD_LIBRARY_PATH", "/data/data/com.termux/files/support/");
+        hashMap.put("ROOTFS_PATH", "/data/data/com.termux/files/" + name);
+        hashMap.put("OS_VERSION", "4.4.153-perf+");
+        hashMap.put("ROOT_PATH", "/data/data/com.termux/files");
+        hashMap.put("HOME", "/data/data/com.termux/files/" + name + "/home/" + coreGuiBean.username);
+        hashMap.put("USER", coreGuiBean.username);
+        hashMap.put("EXTRA_BINDINGS", "-b /storage/emulated/0/" + name + "/temp:/temp/internal:/home");
+        hashMap.put("LIB_PATH", "/data/data/com.termux/files/support/");
+
+
+        ProcessBuilder processBuilder = new ProcessBuilder(arrayList);
+        Log.e("XINHAO_HAN", "run: " + "完成");
+
+        processBuilder.environment().putAll(hashMap);
+
+        processBuilder.redirectErrorStream(true);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Process start = processBuilder.start();
+
+                    InputStream inputStream = start.getInputStream();
+
+                    int l = 0;
+
+                    byte[] b = new byte[1024];
+
+                    logOut("总共字节数:" + Arrays.toString(b));
+
+                    while ((l = inputStream.read(b)) != -1) {
+
+                        String s = new String(b, "GBK");
+
+                        Log.e("XINHAO_HANCMMOD", "startInstallLinux: " + s);
+
+                        logOut("XINHAO_HANCMMOD" + "startInstallLinux: " + s);
+                    }
+
+                    inputStream.close();
+
+
+                } catch (IOException e) {
+                    logOut("错误:" + e.toString());
+                    e.printStackTrace();
+
+                }
+
+            }
+        }).start();
+
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
 
     public static void startSystemVnc(String name, CoreGuiBean coreGuiBean) {

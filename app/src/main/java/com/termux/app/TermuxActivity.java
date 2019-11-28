@@ -127,6 +127,7 @@ import main.java.com.termux.activity.UbuntuListActivity;
 import main.java.com.termux.activity.WindowsActivity;
 import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
+import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.datat.DataBean;
@@ -1261,6 +1262,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout linux_data_jisu;
     private LinearLayout linux_gui_list_btn;
     private LinearLayout linux_root_btn;
+    private LinearLayout android_start_commd;
 
     private LinearLayout linux_data;
     private LinearLayout fun_core_btn;
@@ -1298,6 +1300,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         gongju_group = findViewById(R.id.gongju_group);
         other_group = findViewById(R.id.other_group);
         fun_core_btn = findViewById(R.id.fun_core_btn);
+        android_start_commd = findViewById(R.id.android_start_commd);
+
+
+        os.add(android_start_commd);
+
+        android_start_commd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, LauncherActivity.class));
+            }
+        });
 
 
         other.add(fun_core_btn);
@@ -2931,7 +2944,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     "Kali [此文件下载1.2GB 安装后 3+GB 请思考后在安装]",
                     "Centos  [需要root,只不过目前该版本用不了,别点]",
                     "给我一键安装JAVA[JDK8]",
-                    "安装其他linux [安装备用其他linux]",
+                    "安装其他发行版 [ubuntu、Centos、Kali...]",
                     "安装桌面 [在各个版本linux 中安装各种界面]",
                     "给我复制[ apktool.jar(APK反编译)] 到home目录",
                     "给我复制[ atilo(linux安装工具)] 到home目录",

@@ -35,6 +35,13 @@ android {
         implementation "com.android.support:design:28.0.0"
         implementation 'com.github.madrapps:pikolo:2.0.0'
 
+
+        implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+        implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.6'
+        implementation 'com.jayway.jsonpath:json-path:2.4.0'
+        implementation 'org.jsoup:jsoup:1.11.3'
+        implementation 'it.andreuzzi:CompareString2:1.0.9'
+
         implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
 
     }
@@ -44,7 +51,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 84
-        versionName "0.82.20"
+        versionName "0.84.22"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }

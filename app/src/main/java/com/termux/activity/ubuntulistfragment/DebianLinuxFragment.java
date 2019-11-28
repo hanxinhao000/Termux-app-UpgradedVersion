@@ -215,6 +215,54 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                     }
                 });
 
+                //startSystemXSDL
+
+
+
+                ab.setNeutralButton("XSDL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                        if(true){
+                            Toast.makeText(getActivity(), "暂不支持", Toast.LENGTH_SHORT).show();
+                            return ;
+                        }
+
+                        MyDialog myDialog = new MyDialog(getActivity());
+                        myDialog.getDialog_title().setText("正在启动");
+                        myDialog.show();
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                CoreGuiBean coreGuiBean1 = new CoreGuiBean();
+                                coreGuiBean1.password = "12345678";
+                                coreGuiBean1.vncPassword = "12345678";
+                                coreGuiBean1.username = "ubuntu";
+                                CoreGuiInstall.startSystemSsh("winlog_1", coreGuiBean1);
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        myDialog.dismiss();
+
+                                        try {
+                                            Intent i = new Intent(Intent.ACTION_MAIN, Uri.parse("x11://give.me.display:4713"));
+                                            startActivityForResult(i, 1);
+                                        } catch(Exception e) {
+                                            Toast.makeText(getContext(), "面对疾风吧:没有找到XSDL,请到群文件中下载并安装XSDL", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                });
+
+                            }
+                        }).start();
+
+
+                    }
+                });
+
                 ab.setNegativeButton("VNC", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

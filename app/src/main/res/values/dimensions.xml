@@ -6,4 +6,8 @@
     <dimen name="list_margin">8dp</dimen>
     <dimen name="list_margin_big">32dp</dimen>
     <dimen name="list_margin_huge">56dp</dimen>
+
+    <dimen name="cursor_width">8dp</dimen>
+    <dimen name="tools_height">15dp</dimen>
+
 </resources>

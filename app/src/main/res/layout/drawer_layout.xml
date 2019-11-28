@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="版本:[0.82.20]"
+                        android:text="版本:[0.84.22]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -399,7 +399,7 @@
                                             android:layout_marginBottom="20dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="急速备份/恢复\n[文件不要大于1.5GB\n由于未root环境不稳定\ntar程序长时间,不能运行\n目前在全力寻找解决方案]"
+                                            android:text="急速备份/恢复\n[目前优化测试暂未发现功能问题,但是恢复过程中界面会卡死,不影响后台解压正常使用]"
                                             android:textColor="#007FFF"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
@@ -552,6 +552,42 @@
 
                                     </LinearLayout>
 
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
+                                        android:id="@+id/android_start_commd"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/android" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="以命令行形式操作\n[Android所有东西]\n[部分功能需要root]"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
 
 
                                     <TextView
@@ -1588,7 +1624,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.82.20]"
+            android:text="Termux[0.84.22]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

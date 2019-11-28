@@ -31,6 +31,8 @@
     <color name="md_black_1000">#000000</color>
     <color name="md_white_1000">#ffffff</color>
 
+    <color name="hint_color">#AAA</color>
+
     <color name="back">#e6e5e5</color>
 
     <color name="navbar_details">#CCFFFFFF</color>

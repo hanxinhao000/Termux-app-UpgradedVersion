@@ -23,7 +23,7 @@ import main.java.com.termux.core.CoreGuiInstallListener;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.view.MyDialog;
 
-public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickListener  {
+public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickListener {
 
     private TextView start_linux;
 
@@ -70,7 +70,7 @@ public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickLis
             case R.id.install_linux:
                 File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/debian_linux_2.tar.gz");
 
-                if(!file.exists()){
+                if (!file.exists()) {
                     Toast.makeText(getActivity(), file.getAbsolutePath() + "  文件不存在!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -211,6 +211,54 @@ public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickLis
                     }
                 });
 
+                ab.setNeutralButton("XSDL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                        if(true){
+                            Toast.makeText(getActivity(), "暂不支持", Toast.LENGTH_SHORT).show();
+                            return ;
+                        }
+                        MyDialog myDialog = new MyDialog(getActivity());
+                        myDialog.getDialog_title().setText("正在启动");
+                        myDialog.show();
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                CoreGuiBean coreGuiBean1 = new CoreGuiBean();
+                                coreGuiBean1.password = "12345678";
+                                coreGuiBean1.vncPassword = "12345678";
+                                coreGuiBean1.username = "ubuntu";
+                                CoreGuiInstall.startSystemXSDL("winlog_2", coreGuiBean1);
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        myDialog.dismiss();
+
+                                        //dev/tty0
+                                        File file1 = new File("/data/data/com.termux/files/winlog_2/dev/tty0");
+                                        if (!file1.exists()) {
+                                            file1.mkdirs();
+                                        }
+
+                                        try {
+                                            Intent i = new Intent(Intent.ACTION_MAIN, Uri.parse("x11://give.me.display:4713"));
+                                            startActivityForResult(i, 1);
+                                        } catch (Exception e) {
+                                            Toast.makeText(getContext(), "面对疾风吧:没有找到XSDL,请到群文件中下载并安装XSDL", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                });
+
+                            }
+                        }).start();
+
+
+                    }
+                });
+
                 ab.setNegativeButton("VNC", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -244,9 +292,9 @@ public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickLis
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                                         List<ResolveInfo> resolveInfos = getActivity().getPackageManager().queryIntentActivities(intent, 0);
-                                        if(resolveInfos.size() > 0){
+                                        if (resolveInfos.size() > 0) {
                                             startActivity(intent);
-                                        }else{
+                                        } else {
                                             Toast.makeText(getActivity(), "你没有安装群中的vnc,但是建议您使用全能版!", Toast.LENGTH_LONG).show();
                                         }
 

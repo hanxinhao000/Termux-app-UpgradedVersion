@@ -288,7 +288,7 @@ public class RestoreFragment extends BaseFragment {
 
                         while (cmd.isRunning()) {
                             try {
-                                Thread.sleep(5);
+                                Thread.sleep(100);
                             } catch (Exception e) {
 
                             }
@@ -299,8 +299,8 @@ public class RestoreFragment extends BaseFragment {
                                 @Override
                                 public void run() {
                                     if (!buf.equals("")) {
-                                        SpannableString spannableString = new SpannableString("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复...]\n\n" + buf);
-                                        spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 38, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                                        SpannableString spannableString = new SpannableString("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出,恢复过程中界面可能会卡死,但不影响后台解压正常使用  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复...]\n\n" + buf);
+                                        spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 64, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                                         mTitle.setText(spannableString);
 
                                     }

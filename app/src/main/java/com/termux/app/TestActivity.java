@@ -72,7 +72,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private File mFile = new File("/data/data/com.termux/");
     private File mFileTEMP = new File("/data/data/com.termux/temp");
     private File mDefFile = new File("/data/data/com.termux/files/xinhao_system.infoJson");
-    private File mFileRootfs = new File("/data/data/com.termux/files/support/rootfs.tar.gz");
+    private File mFileRootfs = new File("/data/data/com.termux/files/xinhao/support/rootfs.tar.gz");
+    private File mFileRootfs1 = new File("/data/data/com.termux/files/xinhao/support/");
     private File mFileAssets = new File("/data/data/com.termux/files/support/assets.tar.gz");
     private File mFileTemp = new File("/data/data/com.termux/files/temp");
     private File mFileSupport = new File("/data/data/com.termux/files/support");
@@ -122,6 +123,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         xfce4.setOnClickListener(this);
         lxde.setOnClickListener(this);
         other.setOnClickListener(this);
+
+        if (!mFileRootfs1.exists()) {
+            mFileRootfs1.mkdirs();
+        }
 
         try {
             if (printWriter == null)
@@ -548,12 +553,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                                 List<ResolveInfo> resolveInfos = TestActivity.this.getPackageManager().queryIntentActivities(intent, 0);
-                                if(resolveInfos.size() > 0){
+                                if (resolveInfos.size() > 0) {
                                     startActivity(intent);
-                                }else{
+                                } else {
                                     Toast.makeText(TestActivity.this, "你没有安装群中的vnc!", Toast.LENGTH_LONG).show();
                                 }
-
 
 
                             }
@@ -567,6 +571,181 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+    private void startBootXSDL() {
+
+
+        if(true){
+            Toast.makeText(this, "暂不支持", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+        MyDialog myDialog = new MyDialog(this);
+
+        myDialog.getDialog_title().setText("正在启动...");
+
+        myDialog.getDialog_pro().setText("-");
+
+        myDialog.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                TermuxApplication.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ubuntu_text.setText("启动ubuntu\n[正在启动...]");
+                    }
+                });
+
+
+                writerFile("startXSDLServer.sh", new File(mFileSupport, "/startXSDLServer.sh"));
+                writerFile("startXSDLServerStep2.sh", new File(mFileSupport, "/startXSDLServerStep2.sh"));
+
+
+                ArrayList<String> arrayList = new ArrayList<>();
+
+                arrayList.add("/data/data/com.termux/files/support/busybox");
+                arrayList.add("sh");
+                arrayList.add("/data/data/com.termux/files/support/execInProot.sh");
+                arrayList.add("/data/data/com.termux/files/support/startXSDLServerStep2.sh");
+                arrayList.add("/data/data/com.termux/files/support/isServerInProcTree.sh");
+                arrayList.add("17620");
+
+                HashMap<String, String> hashMap = new HashMap<>();
+
+                hashMap.put("INITIAL_USERNAME", "hanxinhao");
+                hashMap.put("INITIAL_PASSWORD", "123456");
+                hashMap.put("INITIAL_VNC_PASSWORD", "123456");
+
+                hashMap.put("PROOT_DEBUG_LEVEL", "-1");
+                hashMap.put("LD_LIBRARY_PATH", "/data/data/com.termux/files/support/");
+                hashMap.put("ROOTFS_PATH", "/data/data/com.termux/files/xinhao");
+                hashMap.put("OS_VERSION", "4.4.153-perf+");
+                hashMap.put("ROOT_PATH", "/data/data/com.termux/files");
+                hashMap.put("HOME", "/data/data/com.termux/files/xinhao/home/hanxinhao");
+                hashMap.put("USER", "hanxinhao");
+                hashMap.put("EXTRA_BINDINGS", "-b /storage/emulated/0/xinhao/temp:/temp/internal:/home");
+                hashMap.put("LIB_PATH", "/data/data/com.termux/files/support/");
+
+
+                ProcessBuilder processBuilder = new ProcessBuilder(arrayList);
+
+                TermuxApplication.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        logOut("完成!");
+
+
+                        Log.e("XINHAO_HAN", "run: " + "完成");
+                    }
+
+
+                });
+
+                Log.e("XINHAO_HAN", "run: " + "完成");
+
+                processBuilder.environment().putAll(hashMap);
+
+                processBuilder.redirectErrorStream(true);
+
+
+                try {
+                    Process start = processBuilder.start();
+
+                    InputStream inputStream = start.getInputStream();
+
+                    int l = 0;
+
+                    byte[] b = new byte[1024];
+
+                    logOut("总共字节数:" + Arrays.toString(b));
+
+                    while ((l = inputStream.read(b)) != -1) {
+
+                        String s = new String(b, "GBK");
+
+                        Log.e("XINHAO_HANCMMOD", "startInstallLinux: " + s);
+
+                        logOut("XINHAO_HANCMMOD" + "startInstallLinux: " + s);
+                    }
+
+                    inputStream.close();
+
+
+                    TermuxApplication.mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ubuntu_text.setText("启动ubuntu");
+                        }
+                    });
+                } catch (IOException e) {
+                    logOut("错误:" + e.toString());
+                    e.printStackTrace();
+
+                    TermuxApplication.mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ubuntu_text.setText("启动ubuntu\n请尝试重新启动");
+                        }
+                    });
+                }
+
+
+            }
+        }).start();
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                TermuxApplication.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Toast.makeText(TestActivity.this, "启动完成", Toast.LENGTH_SHORT).show();
+                        myDialog.dismiss();
+
+                        AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
+                        ab.setTitle("启动成功!");
+                        ab.setMessage("请在vnc中连接\n127.0.0.1:5951\n账号:hanxinhao\n\n密码:123456\n\n");
+                        ab.setNeutralButton("好的", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                ab.create().dismiss();
+
+                                try {
+                                    Intent i = new Intent(Intent.ACTION_MAIN, Uri.parse("x11://give.me.display:4713"));
+                                    startActivityForResult(i, 1);
+                                } catch(Exception e) {
+                                    Toast.makeText(TestActivity.this, "面对疾风吧:没有找到XSDL,请到群文件中下载并安装XSDL", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
+                        });
+                        ab.show();
+                    }
+                });
+
+            }
+        }).start();
+
+
+    }
+
 
     //启动系统
 
@@ -621,7 +800,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 writerFile("startSSHServer.sh", new File(mFileSupport, "/startSSHServer.sh"));
 
                 try {
-                    Runtime.getRuntime().exec("chmod 777 "+mFileSupport.getAbsolutePath() + "/startSSHServer.sh");
+                    Runtime.getRuntime().exec("chmod 777 " + mFileSupport.getAbsolutePath() + "/startSSHServer.sh");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -742,8 +921,35 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    startBootVnc();
                     ab.create().dismiss();
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
+
+                    ab.setMessage("面对疾风吧!哈sai kei");
+
+                    ab.setMessage("你是要VNC还是XSDL?");
+
+                    ab.setPositiveButton("VNC", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                            startBootVnc();
+
+                        }
+                    });
+
+                    ab.setNegativeButton("XSDL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                            startBootXSDL();
+                        }
+                    });
+                    ab.show();
+
+
+
+
                 }
             });
 
@@ -980,7 +1186,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            startBootVnc();
+                            //startBootVnc();
                             ab.create().dismiss();
                         }
                     });
@@ -1100,7 +1306,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    startBootVnc();
+                    //startBootVnc();
                     ab.create().dismiss();
                 }
             });
@@ -1356,12 +1562,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                             int i[] = {0};
 
-                            boolean [] xianshi = {true};
+                            boolean[] xianshi = {true};
 
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    while(xianshi[0]){
+                                    while (xianshi[0]) {
 
                                         try {
                                             Thread.sleep(10);
@@ -1373,7 +1579,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                             public void run() {
                                                 myDialog[0].getDialog_pro_prog().setProgress(i[0]);
                                                 myDialog[0].getDialog_pro().setText((i[0] / 1024 / 1024 * 1.0) + "MB/" + (fileOnline.length() / 1024 / 1024 * 1.0) + "MB]");
-                                                Log.e("XINHAO_HAN", "run: " + "我还在运行..." );
+                                                Log.e("XINHAO_HAN", "run: " + "我还在运行...");
                                             }
                                         });
 
