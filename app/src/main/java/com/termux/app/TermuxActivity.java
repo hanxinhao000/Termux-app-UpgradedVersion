@@ -114,11 +114,13 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import main.java.com.termux.activity.ALLRJActivity;
 import main.java.com.termux.activity.BackNewActivity;
 import main.java.com.termux.activity.BackRestoreActivity;
 import main.java.com.termux.activity.CustomActivity;
 import main.java.com.termux.activity.FunAddActivity;
 import main.java.com.termux.activity.FunctionActivity;
+import main.java.com.termux.activity.LunTanActivity;
 import main.java.com.termux.activity.RepairActivity;
 import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
@@ -131,16 +133,24 @@ import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.datat.DataBean;
+import main.java.com.termux.datat.ServiceDataBean;
+import main.java.com.termux.datat.UrlDataHtml;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
+import main.java.com.termux.utils.ExeCommand;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
 import static main.java.com.termux.service.BackService.BACK_FILES;
@@ -1271,9 +1281,78 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private TextView meihua_text;
     private TextView tool_text;
     private TextView other_text;
+    private TextView visition;
+    private TextView visition1;
+    private TextView service_title;
 
 
+    //http://45.205.175.163:29952/xinhao.json
+    private void getVisition() {
 
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder().get().url(UrlDataHtml.IP + UrlDataHtml.VISITION).build();
+
+        Call call = okHttpClient.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
+                        service_title.setTextColor(Color.YELLOW);
+                        visition.setTextColor(Color.YELLOW);
+                        visition1.setTextColor(Color.YELLOW);
+                        visition.setText(visition.getText());
+                        visition1.setText("最新版本:[-.--.--]");
+                    }
+                });
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String string = response.body().string();
+
+                try {
+                    ServiceDataBean serviceDataBean = new Gson().fromJson(string, ServiceDataBean.class);
+                    String versionName = serviceDataBean.getVersionName();
+
+                    // visition.setText(visition.getText() + "\n最新版本:[" + versionName + "]");
+                    visition.setText(visition.getText());
+                    if (!visition.getText().toString().equals(versionName)) {
+                        visition1.setTextColor(Color.YELLOW);
+                    } else {
+                        visition1.setTextColor(Color.WHITE);
+                    }
+
+                    visition1.setText("最新版本:[" + versionName + "]");
+
+                    service_title.setTextColor(Color.WHITE);
+                    visition.setTextColor(Color.WHITE);
+                    service_title.setText(serviceDataBean.getNote());
+                } catch (Exception e) {
+                    service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
+                    service_title.setTextColor(Color.YELLOW);
+                    visition.setTextColor(Color.YELLOW);
+                    visition1.setTextColor(Color.YELLOW);
+                    visition.setText(visition.getText());
+                    visition1.setText("最新版本:[-.--.--]");
+                }
+
+
+            }
+        });
+
+    }
+
+
+    private LinearLayout linux_sea_btn;
+    private LinearLayout linux_luntan_btn;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -1287,23 +1366,43 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         super.onCreate(bundle);
-
         mTermuxActivity = this;
         //  CoreLinux.getInstall().startCoreLinux(this);
-
+        //insFile();
 
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
-
+        visition = findViewById(R.id.visition);
         ziyuan_group = findViewById(R.id.ziyuan_group);
         meihua_group = findViewById(R.id.meihua_group);
         gongju_group = findViewById(R.id.gongju_group);
         other_group = findViewById(R.id.other_group);
         fun_core_btn = findViewById(R.id.fun_core_btn);
         android_start_commd = findViewById(R.id.android_start_commd);
+        service_title = findViewById(R.id.service_title);
+        visition1 = findViewById(R.id.visition1);
+        linux_sea_btn = findViewById(R.id.linux_sea_btn);
+        linux_luntan_btn = findViewById(R.id.linux_luntan_btn);
+        os.add(linux_sea_btn);
+        getVisition();
 
+        os.add(linux_luntan_btn);
 
+        linux_luntan_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, LunTanActivity.class));
+            }
+        });
         os.add(android_start_commd);
+
+        linux_sea_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TermuxActivity.this, ALLRJActivity.class));
+            }
+        });
 
         android_start_commd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1321,7 +1420,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 Intent intent = new Intent();
                 intent.setData(Uri.parse("https://github.com/hanxinhao000/Termux-app-UpgradedVersion"));//Url 就是你要打开的网址
                 intent.setAction(Intent.ACTION_VIEW);
-               startActivity(intent); //启动浏览器
+                startActivity(intent); //启动浏览器
             }
         });
 
@@ -1378,7 +1477,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TermuxActivity.this, BackNewActivity.class));
-                if(true){
+                if (true) {
                     return;
                 }
                 Toast.makeText(TermuxActivity.this, "备份/恢复功能正在维护中...", Toast.LENGTH_SHORT).show();
@@ -1418,7 +1517,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             return;
                         }
 
-                        startActivity(new Intent(TermuxActivity.this,BackRestoreActivity.class));
+                        startActivity(new Intent(TermuxActivity.this, BackRestoreActivity.class));
                         termux_run.setVisibility(View.VISIBLE);
                       /*  termux_run.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -2970,6 +3069,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 });
                 builder.setNegativeButton("我还没想好", new DialogInterface.OnClickListener() {
                     @Override
+
                     public void onClick(DialogInterface dialog, int which) {
                         builder.create().dismiss();
                     }

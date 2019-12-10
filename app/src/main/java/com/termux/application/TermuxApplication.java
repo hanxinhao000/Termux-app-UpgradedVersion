@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 
+//import com.youdao.sdk.app.YouDaoApplication;
 
 import main.java.com.termux.filemanage.filemanager.FileManagerApplication;
 
@@ -19,6 +20,8 @@ public class TermuxApplication extends FileManagerApplication {
         super.onCreate();
         mContext = this;
         mHandler = new Handler();
+     //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
+
 
     }
 

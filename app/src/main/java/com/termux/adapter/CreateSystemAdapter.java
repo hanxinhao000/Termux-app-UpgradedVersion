@@ -42,55 +42,6 @@ public class CreateSystemAdapter extends ListBaseAdapter<ReadSystemBean> {
 
         createSystemVieHolder.msg.setText(readSystemBean.dir);
 
-        createSystemVieHolder.getView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                String[] strings = {"删除"};
-
-                AlertDialog.Builder builder = new AlertDialog
-                    .Builder(mActivity);
-                builder.setTitle("删除完成,需要重进才能刷新");
-                // builder.setMessage("这是个滚动列表，往下滑");
-                builder.setItems(strings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Toast.makeText(TermuxActivity.this, "选择了第" + which + "个", Toast.LENGTH_SHORT).show();
-
-                        if(readSystemBean.dir.equals("/data/data/com.termux/files")){
-                            Toast.makeText(mActivity, "你不能删除主系统", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        MyDialog myDialog = new MyDialog(mActivity);
-                        myDialog.show();
-                        ZipUtils.delFolder(readSystemBean.dir, new ZipUtils.ZipNameListener() {
-                            @Override
-                            public void zip(String FileName, int size, int position) {
-                                myDialog.getDialog_title().setText(FileName);
-                            }
-
-                            @Override
-                            public void complete() {
-
-                            }
-
-                            @Override
-                            public void progress(long size, long position) {
-
-                            }
-                        });
-
-
-                    }
-                });
-                builder.show();
-                //readSystemBean.dir
-
-
-                return true;
-            }
-        });
 
         if (readSystemBean.isCkeck) {
 

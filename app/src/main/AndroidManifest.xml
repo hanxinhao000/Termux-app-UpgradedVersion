@@ -12,14 +12,13 @@
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
+
     <permission
         android:name="android.permission.FLASHLIGHT"
         android:description="@string/help_flash"
         android:label="@string/help_flash"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-        android:protectionLevel="normal" />
-
-    <!-- features -->
+        android:protectionLevel="normal" /> <!-- features -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -73,7 +72,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"  />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -123,9 +122,16 @@
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-        <activity android:name="main.java.com.termux.activity.RootActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name="main.java.com.termux.activity.LunTanActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
 
+            />
+        <activity
+            android:name="main.java.com.termux.activity.ALLRJActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="main.java.com.termux.activity.RootActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.UbuntuListActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -134,7 +140,6 @@
             android:name="main.java.com.termux.service.BackService"
             android:enabled="true"
             android:exported="true" />
-
 
         <activity
             android:name="main.java.com.termux.android_cm.LauncherActivity"
@@ -146,8 +151,7 @@
             android:resumeWhilePausing="true"
             android:stateNotNeeded="true"
             android:taskAffinity=""
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
 
         <receiver
             android:name=".tuils.stuff.PolicyReceiver"
@@ -191,8 +195,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
@@ -274,7 +276,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="main.java.com.termux.activity.BackRestoreActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- <string name="application_name">Termux-ubuntu</string>-->
-    <string name="application_name">Termux</string>
+    <string name="application_name">UTermux</string>
     <string name="shared_user_label">Termux user</string>
     <string name="new_session">创建会话窗口</string>
     <string name="new_session_failsafe">失效[创建会话窗口失败]</string>
@@ -842,7 +842,6 @@
         \nUsage:
         \n$ open [pathToFile]
     </string>
-
 
 
 </resources>

@@ -51,7 +51,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 84
-        versionName "0.84.22"
+        versionName "0.84.28"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
@@ -105,6 +105,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.apache.ant:ant:1.10.7'
     implementation 'org.apache.commons:commons-compress:1.19'
-
 
 }

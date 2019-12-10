@@ -69,7 +69,18 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="版本:[0.84.22]"
+                        android:id="@+id/visition"
+                        android:text="本地版本:[0.84.28]"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:id="@+id/visition1"
+                        android:text="本地版本:[0.84.28]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -93,6 +104,17 @@
                         android:gravity="center"
                         android:padding="2dp"
                         android:text="IP:[无法读取]"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/service_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="架构:[无法读取]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -516,6 +538,84 @@
 
 
                                     </RelativeLayout>
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
+                                        android:id="@+id/linux_luntan_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/luntan_wanghui" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="打开UTermux论坛\n[如果有问题先去这块看看]\n[打开Termux魔改论坛]"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
+
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
+                                        android:id="@+id/linux_sea_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/ruanjian_fanyi" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="查询当前源软件包\n[查询当前源所有安装包]\n[只支持ubuntu/debian/termux原系统]\n[默认查询系统当前源,如果没有请update]"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
+
+
+
+
+
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -1624,7 +1724,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.84.22]"
+            android:text="Termux[0.84.28]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

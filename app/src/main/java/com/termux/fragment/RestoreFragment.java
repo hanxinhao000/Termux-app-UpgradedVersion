@@ -43,8 +43,8 @@ public class RestoreFragment extends BaseFragment {
     private File mSdFile = new File(Environment.getExternalStorageDirectory(), "/xinhao/data/");
     private File mFileHomeFiles = new File("/data/data/com.termux/files/");
     private File mFileHome = new File("/data/data/com.termux/busybox");
-    private File mFileHomeProot = new File("/data/data/com.termux/proot");
     private File mFileHomeStatic = new File("/data/data/com.termux/busybox_static");
+    private File mFileHomeProot = new File("/data/data/com.termux/proot");
     private File mFileHomeMain = new File("/data/data/com.termux/files/usr/bin/tar");
     private File mFileHomeMainTar = new File("/data/data/com.termux/busybox_tar");
     private ListView mListView;
