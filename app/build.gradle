@@ -51,7 +51,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 84
-        versionName "0.84.28"
+        versionName "0.84.34"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
@@ -65,8 +65,9 @@ android {
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
 
+            //  assets.srcDirs = [/*'assets',*/ 'src/main/assets'/*, 'src/main/assets/'*//*, 'lib'*/]
             assets.srcDirs = ['assets', 'src/main/assets', 'src/main/assets/', 'lib']
-            jni.srcDirs = ['jni']
+            jni.srcDirs = ['lib']
         }
 
         // Move the tests to tests/java, tests/res, etc...
@@ -105,5 +106,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.apache.ant:ant:1.10.7'
     implementation 'org.apache.commons:commons-compress:1.19'
+    implementation project(path: ':limbo-android-lib')
 
 }

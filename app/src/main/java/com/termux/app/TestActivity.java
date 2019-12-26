@@ -50,6 +50,7 @@ import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.ReadSystemBean;
 import main.java.com.termux.utils.FileUtil;
+import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.view.MyDialog;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -545,7 +546,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                 ab.create().dismiss();
 
 
-                                Intent intent = new Intent();
+ /*                               Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_VIEW);
                                 intent.setType("application/vnd.vnc");
                                 //vnc://127.0.0.1:5951/?VncUsername=$username&VncPassword=$vncPassword
@@ -557,8 +558,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(TestActivity.this, "你没有安装群中的vnc!", Toast.LENGTH_LONG).show();
-                                }
+                                }*/
 
+                                VNCActivityUtils.getVNCIntent(TestActivity.this,"5951","127.0.0.1","123456");
 
                             }
                         });
@@ -1186,7 +1188,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //startBootVnc();
+                            startBootVnc();
                             ab.create().dismiss();
                         }
                     });

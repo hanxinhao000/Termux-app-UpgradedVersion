@@ -9,6 +9,8 @@ public class TermuxData {
     public int config;
     public File mFile;
 
+    public String vncPassword;
+
 
     public static TermuxData getInstall() {
 

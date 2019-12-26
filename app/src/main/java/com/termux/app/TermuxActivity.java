@@ -1,6 +1,7 @@
 package main.java.com.termux.app;
 
 import android.Manifest;
+import android.androidVNC.VncCanvas;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -34,6 +35,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -82,6 +84,8 @@ import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 
+import com.max2idea.android.limbo.main.Config;
+import com.max2idea.android.limbo.main.LimboActivity;
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
@@ -111,6 +115,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,38 +125,46 @@ import main.java.com.termux.activity.BackRestoreActivity;
 import main.java.com.termux.activity.CustomActivity;
 import main.java.com.termux.activity.FunAddActivity;
 import main.java.com.termux.activity.FunctionActivity;
+import main.java.com.termux.activity.ListDataActivity;
 import main.java.com.termux.activity.LunTanActivity;
 import main.java.com.termux.activity.RepairActivity;
 import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
 import main.java.com.termux.activity.UbuntuListActivity;
+import main.java.com.termux.activity.VNCMessageActivity;
 import main.java.com.termux.activity.WindowsActivity;
 import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
+import main.java.com.termux.bean.UpDateBean;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
 import main.java.com.termux.datat.UrlDataHtml;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
+import main.java.com.termux.http.UpDateHttpCode;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
 import main.java.com.termux.utils.ExeCommand;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
+import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.view.XHWaveView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static com.max2idea.android.limbo.main.LimboActivity.startvm;
+import static com.max2idea.android.limbo.main.LimboActivity.vmStarted;
 import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
 import static main.java.com.termux.service.BackService.BACK_FILES;
 
@@ -1332,6 +1345,37 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     visition1.setText("最新版本:[" + versionName + "]");
 
+                    OkHttpClient okHttpClient1 = new OkHttpClient();
+
+                    Request request1 = new Request.Builder().get().url("http://45.205.175.163:29954/xinhao/size").build();
+
+                    Call call1 = okHttpClient1.newCall(request1);
+
+                    call1.enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            visition1.setText("最新版本:[" + versionName + "]");
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+
+                            String string1 = response.body().string();
+
+                            Log.e("XINHAO_HAN_M", "onResponse: " + string1);
+
+                            try {
+                                int i = Integer.parseInt(string1);
+                                visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
+                            } catch (Exception e) {
+                                visition1.setText("最新版本:[" + versionName + "]/装机量: -");
+                            }
+
+
+                        }
+                    });
+
+
                     service_title.setTextColor(Color.WHITE);
                     visition.setTextColor(Color.WHITE);
                     service_title.setText(serviceDataBean.getNote());
@@ -1353,6 +1397,82 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     private LinearLayout linux_sea_btn;
     private LinearLayout linux_luntan_btn;
+    private LinearLayout linux_data_zaixian;
+
+    //获取imei码
+    private void getImei() {
+
+        //8.0动态权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int checkPermission = checkSelfPermission(Manifest.permission.READ_PHONE_STATE);
+            if (checkPermission != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1); //后面的1为请求码
+                // Toast.makeText(this, "获取imei码，来获取你的状态(数据包需提供)[必须]", Toast.LENGTH_SHORT).show();
+                update(getIMEI(this));
+                return;
+            } else {
+                update(getIMEI(this));
+            }
+
+        } else {
+            update(getIMEI(this));
+        }
+
+    }
+
+    public String getIMEI(Context context) {
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            String imei = SaveData.getData("imei");
+
+            if (imei.equals("def")) {
+                SaveData.saveData("imei", UUID.randomUUID().toString());
+                imei = SaveData.getData("imei");
+            }
+
+            return imei;
+        }
+        String imei = telephonyManager.getDeviceId();
+
+        return imei;
+    }
+
+    //上传
+    public void update(String imei) {
+
+
+        String updateImei = imei;
+
+
+        Log.e("XINHAO_HAN_M", "update: " + updateImei);
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder().get().url("http://45.205.175.163:29954/xinhao/login?iemi=" + updateImei + "&&name=" + SystemUtil.getLocalIpAddress() + "/" + android.os.Build.VERSION.RELEASE + "/" + android.os.Build.MODEL + "/" + android.os.Build.BRAND).build();
+
+        Call call = okHttpClient.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                Log.e("XINHAO_HAN", "onResponse: " + "成功!" + response.body().string());
+            }
+        });
+
+
+    }
+
+
+
+
+    private LinearLayout linux_vnc_btn;
+
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -1364,11 +1484,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             this.setTheme(R.style.Theme_Termux);
         }
 
+        getImei();
 
         super.onCreate(bundle);
         mTermuxActivity = this;
         //  CoreLinux.getInstall().startCoreLinux(this);
         //insFile();
+
+
 
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
@@ -1383,6 +1506,46 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         visition1 = findViewById(R.id.visition1);
         linux_sea_btn = findViewById(R.id.linux_sea_btn);
         linux_luntan_btn = findViewById(R.id.linux_luntan_btn);
+        linux_data_zaixian = findViewById(R.id.linux_data_zaixian);
+
+        linux_vnc_btn = findViewById(R.id.linux_vnc_btn);
+
+
+        linux_vnc_btn.findViewById(R.id.linux_vnc_btn);
+
+        os.add(linux_vnc_btn);
+
+        linux_vnc_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, VNCMessageActivity.class));
+            }
+        });
+/*        linux_vnc_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                startActivity(new Intent(TermuxActivity.this, VNCMessageActivity.class));
+
+
+
+
+                return true;
+            }
+        });*/
+
+
+        //startvm(TermuxActivity.this, Config.UI_VNC);
+
+
+        linux_data_zaixian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this, ListDataActivity.class));
+            }
+        });
+        os.add(linux_data_zaixian);
         os.add(linux_sea_btn);
         getVisition();
 
@@ -3175,7 +3338,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             // Log.e("XINHAO_HAN", "onCreate: " +   e.toString());
 
         }
-      /*  apkFilePath = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/termux.apk").getAbsolutePath();
+        apkFilePath = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/termux.apk").getAbsolutePath();
 
         //检查版本升级
 
@@ -3184,8 +3347,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onRes(String msg) {
 
                 UpDateBean upDateBean = new Gson().fromJson(msg, UpDateBean.class);
+                int anInt = 0;
+                try {
+                    anInt = Integer.parseInt(upDateBean.getNote3());
+                } catch (Exception e) {
 
-                if (UpDateHttpCode.CODE < upDateBean.code) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(TermuxActivity.this, "服务器不可用!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    return;
+                }
+
+                if (UpDateHttpCode.CODE < anInt) {
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -3196,7 +3373,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             ab.setTitle("升级提醒");
 
-                            ab.setMessage(upDateBean.msg);
+                            ab.setMessage(upDateBean.getNote());
 
                             ab.setCancelable(false);
 
@@ -3205,7 +3382,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     download_text.setVisibility(View.VISIBLE);
-                                    CheckUpDateCodeUtils.update(upDateBean.msg1, new CheckUpDateCodeUtils.Pro() {
+                                    CheckUpDateCodeUtils.update(upDateBean.getNote4(), new CheckUpDateCodeUtils.Pro() {
                                         @Override
                                         public void size(int size) {
 
@@ -3217,9 +3394,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                  //  ab.setMessage("正在下载[总大小]:" + size + "/" + postion);
+                                                    //  ab.setMessage("正在下载[总大小]:" + size + "/" + postion);
 
-                                                    download_text.setText("正在下载[总大小]:" + size + "/" + postion);
+                                                    String ss = String.format("%1.2f", ((float) size / 1024 / 1024));
+                                                    String ss1 = String.format("%1.2f", ((float) postion / 1024 / 1024));
+
+                                                    download_text.setText("正在下载[总大小]:" + ss + " MB/" + ss1 + " MB");
                                                 }
                                             });
                                         }
@@ -3230,7 +3410,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                 @Override
                                                 public void run() {
                                                     download_text.setVisibility(View.GONE);
-                                                   // Toast.makeText(TermuxActivity.this, "下载失败!" + msg, Toast.LENGTH_SHORT).show();
+                                                    // Toast.makeText(TermuxActivity.this, "下载失败!" + msg, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -3241,10 +3421,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                   // Toast.makeText(mTermService, "下载完成!正在安装", Toast.LENGTH_SHORT).show();
+                                                    // Toast.makeText(mTermService, "下载完成!正在安装", Toast.LENGTH_SHORT).show();
                                                     download_text.setVisibility(View.GONE);
                                                     checkIsAndroidO();
-                                                   // CheckUpDateCodeUtils.installApk(TermuxActivity.this, apkFilePath);
+                                                    // CheckUpDateCodeUtils.installApk(TermuxActivity.this, apkFilePath);
                                                 }
                                             });
                                         }
@@ -3277,7 +3457,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             }
         });
-*/
         switch_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

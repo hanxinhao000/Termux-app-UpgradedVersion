@@ -1,16 +1,5 @@
 package main.java.com.termux.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import main.java.com.termux.adapter.CreateSystemAdapter;
-import main.java.com.termux.app.TermuxInstaller;
-import main.java.com.termux.app.TermuxService;
-import main.java.com.termux.app.ZipUtils;
-import main.java.com.termux.bean.CreateSystemBean;
-import main.java.com.termux.bean.ReadSystemBean;
-import main.java.com.termux.utils.ExeCommand;
-import main.java.com.termux.view.MyDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.termux.R;
@@ -37,6 +29,14 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.com.termux.adapter.CreateSystemAdapter;
+import main.java.com.termux.app.TermuxInstaller;
+import main.java.com.termux.app.TermuxService;
+import main.java.com.termux.bean.CreateSystemBean;
+import main.java.com.termux.bean.ReadSystemBean;
+import main.java.com.termux.utils.ExeCommand;
+import main.java.com.termux.view.MyDialog;
 
 public class SwitchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -68,7 +68,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
         isIofo();
 
         readFile();
-      //  testJson();
+        //  testJson();
 
 
     }
@@ -128,7 +128,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                 //当前系统
 
 
-                String[] strings = {"删除","切换"};
+                String[] strings = {"删除", "切换"};
 
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog
                     .Builder(SwitchActivity.this);
@@ -139,7 +139,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialog, int which) {
                         // Toast.makeText(TermuxActivity.this, "选择了第" + which + "个", Toast.LENGTH_SHORT).show();
 
-                        if(which == 0) {
+                        if (which == 0) {
 
                             builder.create().dismiss();
                             AlertDialog.Builder a = new AlertDialog.Builder(SwitchActivity.this);
@@ -164,7 +164,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                                                 return;
                                             }
 
-                                            Log.e("XINHAO_HAN", "删除系统: " + mList.get(position).dir );
+                                            Log.e("XINHAO_HAN", "删除系统: " + mList.get(position).dir);
 
                                             runOnUiThread(new Runnable() {
                                                 @Override
@@ -174,7 +174,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                                                     myDialog.getDialog_title().setText("正在删除...");
                                                 }
                                             });
-                                            Log.e("XINHAO_HAN", "删除目录: " + mList.get(position).dir );
+                                            Log.e("XINHAO_HAN", "删除目录: " + mList.get(position).dir);
 
                                             String cpu = TermuxInstaller.determineTermuxArchName();
 
@@ -249,9 +249,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                             a.show();
 
 
-
-
-                        }else{
+                        } else {
 
                             try {
 
@@ -389,13 +387,8 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                 //readSystemBean.dir
 
 
-
             }
         });
-
-
-
-
 
 
     }
@@ -435,6 +428,14 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
                 String name = readInfo(files[i].getAbsolutePath());
 
+                if (name == null) {
+                    new File(files[i],"/xinhao_system.infoJson").delete();
+
+                    Toast.makeText(this, "配置文件已损坏，请重新进入创建,多点几次,直到进入为止", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+
                 readSystemBean.name = name;
                 arrayList.add(readSystemBean);
 
@@ -450,7 +451,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setAdapter(ArrayList<ReadSystemBean> arrayList) {
 
-        createSystemAdapter = new CreateSystemAdapter(arrayList,this);
+        createSystemAdapter = new CreateSystemAdapter(arrayList, this);
 
         list.setAdapter(createSystemAdapter);
 
@@ -477,10 +478,12 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                 tempStr += temp;
             }
 
+
             CreateSystemBean createSystemBean = new Gson().fromJson(tempStr, CreateSystemBean.class);
 
 
             for (int i = 0; i < arrayList.size(); i++) {
+
 
                 if (arrayList.get(i).name.equals(createSystemBean.systemName)) {
 
@@ -521,6 +524,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
             bufferedReader.close();
 
 
+            Log.e("XINHAO_HAN", "readInfo: " + tempSystem);
             CreateSystemBean createSystemBean = new Gson().fromJson(tempSystem, CreateSystemBean.class);
 
             return createSystemBean.systemName;
@@ -690,7 +694,6 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
         return temp;
     }
-
 
 
     private void writerFile(String name, File mFile, int size) {

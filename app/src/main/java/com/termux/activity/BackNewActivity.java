@@ -48,7 +48,7 @@ public class BackNewActivity extends AppCompatActivity implements View.OnClickLi
     public int mSwitch = 0;
 
     public static boolean mIsRun = false;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,7 @@ public class BackNewActivity extends AppCompatActivity implements View.OnClickLi
         mBackup.setOnClickListener(this);
         mRestore.setOnClickListener(this);
         mSetting.setOnClickListener(this);
+
 
         mSupportFragmentManager = getSupportFragmentManager();
 

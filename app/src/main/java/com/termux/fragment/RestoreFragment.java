@@ -69,8 +69,7 @@ public class RestoreFragment extends BaseFragment {
         File[] files1 = mSdFile.listFiles();
 
         if (files1 == null) {
-            Toast.makeText(getContext(), "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
-            getActivity().finish();
+            mStartRe.setText("没有SD卡权限,或者sdcard->xinhao/data/目录下没有恢复文件!");
             return;
         }
 

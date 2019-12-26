@@ -4,7 +4,6 @@ public class ServiceDataBean {
 
 
     /**
-     * versionName : 0.84.23
      * name : 服务器连接成功!
      * note : 在Utermux中,体验您的超高操作!
      * note1 : ture

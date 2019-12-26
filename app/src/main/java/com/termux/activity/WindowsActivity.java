@@ -1,12 +1,7 @@
 package main.java.com.termux.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -15,21 +10,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.termux.R;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import main.java.com.termux.adapter.WindowAdapter;
 import main.java.com.termux.app.TermuxActivity;
-import main.java.com.termux.app.ZipUtils;
-import main.java.com.termux.application.TermuxApplication;
-import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.utils.VNCActivityUtils;
 
 public class WindowsActivity extends AppCompatActivity {
 
@@ -122,6 +114,10 @@ public class WindowsActivity extends AppCompatActivity {
                             ab.create().dismiss();
                             finish();
 
+                            Toast.makeText(WindowsActivity.this, "请到内置VNC打开(不推荐)[推荐使用全能版]", Toast.LENGTH_SHORT).show();
+/*
+
+
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_VIEW);
                             intent.setType("application/vnd.vnc");
@@ -134,8 +130,12 @@ public class WindowsActivity extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(WindowsActivity.this, "你没有安装群中的vnc!", Toast.LENGTH_LONG).show();
-                            }
+                            }*/
 
+
+                           // Intent vncIntent = VNCActivityUtils.getVNCIntent(WindowsActivity.this, "5901", "127.0.0.1", "");
+
+                           // startActivity(vncIntent);
 
                         }
                     });
@@ -158,7 +158,6 @@ public class WindowsActivity extends AppCompatActivity {
 
     //检测是否安装
     private void isInstall() {
-
 
 
         if (!file1.exists()) {

@@ -24,6 +24,7 @@ import main.java.com.termux.core.CoreGuiBean;
 import main.java.com.termux.core.CoreGuiInstall;
 import main.java.com.termux.core.CoreGuiInstallListener;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.view.MyDialog;
 
 public class DebianLinuxFragment extends BaseFragment implements View.OnClickListener {
@@ -288,7 +289,7 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                     public void run() {
                                         myDialog.dismiss();
 
-                                        Intent intent = new Intent();
+                                 /*       Intent intent = new Intent();
                                         intent.setAction(Intent.ACTION_VIEW);
                                         intent.setType("application/vnd.vnc");
                                         //vnc://127.0.0.1:5951/?VncUsername=$username&VncPassword=$vncPassword
@@ -300,9 +301,9 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                             startActivity(intent);
                                         }else{
                                             Toast.makeText(getActivity(), "启动成功!你没有安装群中的vnc,但是建议您使用全能版!", Toast.LENGTH_LONG).show();
-                                        }
+                                        }*/
 
-
+                                        VNCActivityUtils.getVNCIntent(getActivity(),"5951","127.0.0.1","12345678");
                                     }
                                 });
 

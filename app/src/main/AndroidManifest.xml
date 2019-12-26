@@ -122,10 +122,24 @@
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-        <activity android:name="main.java.com.termux.activity.LunTanActivity"
+        <activity android:name="main.java.com.termux.activity.LinuxDeployInstallActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-
             />
+        <activity
+            android:name="main.java.com.termux.activity.VNCMessageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <service
+            android:name="main.java.com.termux.activity.DownLoadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name="main.java.com.termux.activity.ListDataActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="main.java.com.termux.activity.LunTanActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.ALLRJActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -303,6 +317,43 @@
         <activity
             android:name="main.java.com.termux.activity.ThanksActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.max2idea.android.limbo.main.LimboFileManager"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="File Manager" />
+        <activity
+            android:name="com.max2idea.android.limbo.main.LimboSDLActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.max2idea.android.limbo.main.LimboVNCActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.max2idea.android.limbo.main.LimboSettingsManager"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="Settings" />
+        <activity
+            android:name="com.max2idea.android.limbo.utils.LinksManager"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="Downloads"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <service
+            android:name="com.max2idea.android.limbo.main.LimboService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Limbo Service">
+            <intent-filter>
+                <action android:name="com.max2idea.android.limbo.action.STARTVM" />
+            </intent-filter>
+        </service>
+
         <activity android:name="main.java.com.termux.activity.StartCommdActivity" />
         <activity
             android:name="main.java.com.termux.activity.LinuxDeployActivity"

@@ -2,11 +2,13 @@ package main.java.com.termux.filemanage.filemanager;
 
 import android.app.Application;
 
+import com.max2idea.android.limbo.main.LimboApplication;
+
 import main.java.com.termux.filemanage.filemanager.util.CopyHelper;
 import main.java.com.termux.filemanage.filemanager.util.MimeTypes;
 
 
-public class FileManagerApplication extends Application {
+public class FileManagerApplication extends LimboApplication {
     private CopyHelper mCopyHelper;
 
     @Override

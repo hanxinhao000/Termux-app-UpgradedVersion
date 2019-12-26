@@ -16,11 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-class Logger {
+public class Logger {
 
     private static volatile List<String> protocol = new ArrayList<>();
     private static char lastChar = '\n';
     private static String lastLine = "";
+
 
     /**
      * Generate timestamp
@@ -86,7 +87,7 @@ class Logger {
      * Show log on main activity
      */
     static void show() {
-        Log.e("XINHAO_HAN", "show: " + "log" );
+        Log.e("XINHAO_HAN", "show: " + "log");
     }
 
     /**
@@ -142,7 +143,10 @@ class Logger {
             while ((n = reader.read(buffer)) != -1) {
                 String msg = String.valueOf(buffer, 0, n);
                 appendMessage(c, msg);
-                Log.e("XINHAO_HAN", "log: " + msg );
+                if (msgListener != null)
+                    msgListener.msg(msg);
+
+                Log.e("XINHAO_HAN", "log: " + msg);
                 if (writer != null) writer.write(msg);
             }
         } catch (IOException e) {
@@ -152,5 +156,20 @@ class Logger {
             close(reader);
             close(stream);
         }
+    }
+
+    private static MsgListener msgListener;
+
+    public static void setMsgListener(MsgListener mMsgListener) {
+
+        msgListener = mMsgListener;
+
+    }
+
+    public static interface MsgListener {
+
+
+        void msg(String msg);
+
     }
 }

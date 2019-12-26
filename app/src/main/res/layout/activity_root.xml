@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="#1BBC9B"
     android:layout_height="match_parent"
+    android:background="#1BBC9B"
+    android:orientation="vertical"
     tools:context="main.java.com.termux.activity.RootActivity">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="[root功能页面]本页面需要你手机root"
+        android:text="[root功能页面]本页面需要你手机root \n [环境监测:未安装环境]"
         android:textColor="#fff"
         android:textSize="20sp" />
 
@@ -46,7 +46,7 @@
 
 
                 android:layout_height="40dp"
-                android:src="@drawable/iso_jx" />
+                android:src="@drawable/install_linux_deploy" />
 
             <TextView
                 android:id="@+id/ubuntu_text_root"
@@ -55,44 +55,44 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="运行linuxDeploy镜像\n[默认设置好所有配置]"
+                android:text="安装[deploy]环境\n[自动安装]"
                 android:textColor="#fff" />
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:id="@+id/kail"
+            android:id="@+id/deploy_iso"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ubuntu_2" />
+                android:src="@drawable/iso_jx" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="安装ubuntu\n[已禁用,请用离线安装]"
+                android:text="运行Deploy镜像\n[点击进入]"
                 android:textColor="#fff" />
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:id="@+id/archlinux"
+            android:id="@+id/temp"
             android:layout_width="0dp"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
+
             android:orientation="vertical">
 
             <ImageView
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="安装Termux\n[本软件原版系统]"
+                android:text="占位置的\n[不然不好看]"
                 android:textColor="#fff" />
 
         </LinearLayout>
@@ -113,9 +113,108 @@
     </LinearLayout>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="28dp"
+        android:text="linux系统安装"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:textColor="#0f0"
+        android:textSize="20sp" />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:id="@+id/ubuntu_system"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+
+
+                android:layout_height="40dp"
+                android:src="@drawable/ubuntu_2" />
+
+            <TextView
+                android:id="@+id/ubuntu_text_root_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装ubuntu\n[点击进入安装]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/kail_system"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/kali_linux" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装kail\n[点击进入安装]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/archlinux_system"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/arch_bai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="安装archlinux\n[点击进入安装]"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

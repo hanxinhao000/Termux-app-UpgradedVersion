@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#000"
                 android:textSize="18sp"
-                android:text="当前版本:0.84.28"
+                android:text="当前版本:0.84.34"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -60,10 +60,11 @@
                 android:layout_height="wrap_content" />
 
 
-            <com.termux.view.TerminalView
-                android:layout_width="match_parent"
-                android:id="@+id/termux_view"
-                android:layout_height="500dp" />
+          <Button
+              android:layout_width="wrap_content"
+              android:id="@+id/start_sdl"
+              android:text="打开SDL"
+              android:layout_height="wrap_content" />
 
 
 

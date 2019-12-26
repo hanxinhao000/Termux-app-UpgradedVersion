@@ -507,7 +507,7 @@ public class PrefStore {
      * @param c context
      * @return true if enabled
      */
-    static boolean isXserver(Context c) {
+    public static boolean isXserver(Context c) {
         return PROPERTIES.get(c, "is_gui").equals("true") &&
             PROPERTIES.get(c, "graphics").equals("x11");
     }
@@ -518,7 +518,7 @@ public class PrefStore {
      * @param c context
      * @return true if enabled
      */
-    static boolean isFramebuffer(Context c) {
+    public static boolean isFramebuffer(Context c) {
         return PROPERTIES.get(c, "is_gui").equals("true") &&
             PROPERTIES.get(c, "graphics").equals("fb");
     }
@@ -529,7 +529,7 @@ public class PrefStore {
      * @param c context
      * @return true if enabled
      */
-    static boolean isXsdl(Context c) {
+    public static boolean isXsdl(Context c) {
         return PROPERTIES.get(c, "x11_sdl").equals("true");
     }
 
@@ -539,7 +539,7 @@ public class PrefStore {
      * @param c context
      * @return delay in ms
      */
-    static int getXsdlDelay(Context c) {
+    public static int getXsdlDelay(Context c) {
         int deplayInt;
         String delay = PROPERTIES.get(c, "x11_sdl_delay");
         try {

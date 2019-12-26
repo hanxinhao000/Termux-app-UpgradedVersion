@@ -20,7 +20,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-class EnvUtils {
+public class EnvUtils {
 
     /**
      * Closeable helper
@@ -263,8 +263,13 @@ class EnvUtils {
         OutputStream stdin = null;
         try {
             ProcessBuilder pb = new ProcessBuilder(shell);
+
+            Log.e("XINHAO_HAN", "shell: " + shell );
+            Log.e("XINHAO_HAN", "params: " + params.toString() );
+
             pb.directory(new File(PrefStore.getEnvDir(c)));
             Log.e("XINHAO_HAN", "3: " + new File(PrefStore.getEnvDir(c)).getAbsolutePath());
+            Log.e("XINHAO_HAN", "是否存在: " + new File(PrefStore.getEnvDir(c)).exists());
             // Map<String, String> env = pb.environment();
             // env.put("PATH", PrefStore.getPath(c) + ":" + env.get("PATH"));
             if (PrefStore.isDebugMode(c)) pb.redirectErrorStream(true);
@@ -522,7 +527,7 @@ class EnvUtils {
      * @param args arguments
      */
     //deploy null
-    static void execService(Context c, String cmd, String args) {
+    public static void execService(Context c, String cmd, String args) {
         Intent service = new Intent(c, ExecService.class);
         service.putExtra("cmd", cmd);
         service.putExtra("args", args);
@@ -552,6 +557,8 @@ class EnvUtils {
     static boolean telnetd(Context c, String cmd) {
         List<String> params = new ArrayList<>();
         if (cmd == null) cmd = PrefStore.isTelnet(c) ? "start" : "stop";
+
+        Log.e("XINHAO_HAN", "命令: " + cmd );
         switch (cmd) {
             case "restart":
             case "stop":
@@ -588,6 +595,7 @@ class EnvUtils {
     static boolean httpd(Context c, String cmd) {
         List<String> params = new ArrayList<>();
         if (cmd == null) cmd = PrefStore.isHttp(c) ? "start" : "stop";
+        Log.e("XINHAO_HAN", "命令: " + cmd );
         switch (cmd) {
             case "restart":
             case "stop":
