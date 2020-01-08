@@ -8,6 +8,7 @@ import android.system.Os;
 import android.system.OsConstants;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -177,12 +177,6 @@ public final class TerminalSession extends TerminalOutput {
         mEmulator = new TerminalEmulator(this, columns, rows, /* transcript= */2000);
 
         int[] processId = new int[1];
-        Log.e("XINHAO_HAN", "-----mShellPath: " + mShellPath );
-        Log.e("XINHAO_HAN", "-----mCwd: " + mCwd );
-        Log.e("XINHAO_HAN", "-----mArgs: " + Arrays.toString(mArgs));
-        Log.e("XINHAO_HAN", "-----mEnv: " + Arrays.toString(mEnv) );
-
-
         mTerminalFileDescriptor = JNI.createSubprocess(mShellPath, mCwd, mArgs, mEnv, processId, rows, columns);
         mShellPid = processId[0];
 
@@ -252,23 +246,23 @@ public final class TerminalSession extends TerminalOutput {
         } else if (codePoint <= /* 11 bits */0b11111111111) {
             /* 110xxxxx leading byte with leading 5 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b11000000 | (codePoint >> 6));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | (codePoint & 0b111111));
         } else if (codePoint <= /* 16 bits */0b1111111111111111) {
-			/* 1110xxxx leading byte with leading 4 bits */
+            /* 1110xxxx leading byte with leading 4 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b11100000 | (codePoint >> 12));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | ((codePoint >> 6) & 0b111111));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | (codePoint & 0b111111));
         } else { /* We have checked codePoint <= 1114111 above, so we have max 21 bits = 0b111111111111111111111 */
-			/* 11110xxx leading byte with leading 3 bits */
+            /* 11110xxx leading byte with leading 3 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b11110000 | (codePoint >> 18));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | ((codePoint >> 12) & 0b111111));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | ((codePoint >> 6) & 0b111111));
-			/* 10xxxxxx continuation byte with following 6 bits */
+            /* 10xxxxxx continuation byte with following 6 bits */
             mUtf8InputBuffer[bufferPosition++] = (byte) (0b10000000 | (codePoint & 0b111111));
         }
         write(mUtf8InputBuffer, 0, bufferPosition);
@@ -345,5 +339,27 @@ public final class TerminalSession extends TerminalOutput {
     public int getPid() {
         return mShellPid;
     }
+
+    /** Returns the shell's working directory or null if it was unavailable. */
+    public String getCwd() {
+        if (mShellPid < 1) {
+            return null;
+        }
+        try {
+            final String cwdSymlink = String.format("/proc/%s/cwd/", mShellPid);
+            String outputPath = new File(cwdSymlink).getCanonicalPath();
+            String outputPathWithTrailingSlash = outputPath;
+            if (!outputPath.endsWith("/")) {
+                outputPathWithTrailingSlash += '/';
+            }
+            if (!cwdSymlink.equals(outputPathWithTrailingSlash)) {
+                return outputPath;
+            }
+        } catch (IOException | SecurityException e) {
+            Log.e(EmulatorDebug.LOG_TAG, "Error getting current directory", e);
+        }
+        return null;
+    }
+
 
 }

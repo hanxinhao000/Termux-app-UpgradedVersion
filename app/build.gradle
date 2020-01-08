@@ -51,7 +51,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 84
-        versionName "0.84.34"
+        versionName "0.88.41"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
@@ -65,9 +65,9 @@ android {
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
 
-            //  assets.srcDirs = [/*'assets',*/ 'src/main/assets'/*, 'src/main/assets/'*//*, 'lib'*/]
+            //assets.srcDirs = [/*'assets',*/ 'src/main/assets'/*, 'src/main/assets/'*//*, 'lib'*/]
             assets.srcDirs = ['assets', 'src/main/assets', 'src/main/assets/', 'lib']
-            jni.srcDirs = ['lib']
+            jniLibs.srcDirs = ['lib']
         }
 
         // Move the tests to tests/java, tests/res, etc...

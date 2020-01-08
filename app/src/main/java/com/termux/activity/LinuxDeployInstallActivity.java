@@ -19,8 +19,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import main.java.com.termux.app.EditTextActivity;
 import main.java.com.termux.app.TermuxInstaller;
 import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.linux_deploy.EnvUtils;
 import main.java.com.termux.linux_deploy.Logger;
 import main.java.com.termux.linux_deploy.PrefStore;
@@ -31,6 +33,7 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
     private TextView title;
     private LinearLayout start_linux;
     private LinearLayout install_linux;
+    private LinearLayout remove_linux;
     private File installFile = new File("/data/data/com.termux/files/config/");
 
     @Override
@@ -40,6 +43,7 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
         title = findViewById(R.id.title);
         start_linux = findViewById(R.id.start_linux);
         install_linux = findViewById(R.id.install_linux);
+        remove_linux = findViewById(R.id.remove_linux);
 
         String s = TermuxInstaller.determineTermuxArchName();
 
@@ -47,7 +51,7 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
             ab.setTitle("错误");
             ab.setMessage("该模块是AARCH64架构专属,如果是其他架构，请手动下载LinuxDeploy");
-            ab.setNeutralButton("我知道了", new DialogInterface.OnClickListener() {
+            ab.setNeutralButton("我要强制安装", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
@@ -62,6 +66,7 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
 
         install_linux.setOnClickListener(this);
         start_linux.setOnClickListener(this);
+        remove_linux.setOnClickListener(this);
 
     }
 
@@ -80,6 +85,23 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
 
 
                     writerFile("linux_ubuntu.conf", new File(installFile, "linux.conf"));
+                    writerFile("cli.conf", new File("/data/data/com.termux/files/cli.conf"));
+
+                    EnvUtils.execService(getApplicationContext(), "deploy", null);
+
+                }
+
+                if("kail".equals(linux_name)){
+
+                    writerFile("linux_kail.conf", new File(installFile, "linux.conf"));
+                    writerFile("cli.conf", new File("/data/data/com.termux/files/cli.conf"));
+
+                    EnvUtils.execService(getApplicationContext(), "deploy", null);
+
+                }
+                if("arch".equals(linux_name)){
+
+                    writerFile("linux_arch.conf", new File(installFile, "linux.conf"));
                     writerFile("cli.conf", new File("/data/data/com.termux/files/cli.conf"));
 
                     EnvUtils.execService(getApplicationContext(), "deploy", null);
@@ -109,6 +131,11 @@ public class LinuxDeployInstallActivity extends AppCompatActivity implements Vie
                 }
 
 
+                break;
+
+            case R.id.remove_linux:
+                TermuxData.getInstall().fileUrl = new File(installFile, "linux.conf").getAbsolutePath();
+                startActivity(new Intent(this, EditTextActivity.class));
                 break;
 
         }

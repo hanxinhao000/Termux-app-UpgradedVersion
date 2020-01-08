@@ -6,7 +6,9 @@ import android.view.Gravity;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.termux.terminal.KeyHandler;
 import com.termux.terminal.TerminalEmulator;
@@ -16,6 +18,8 @@ import com.termux.view.TerminalViewClient;
 import java.util.List;
 
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import main.java.com.termux.utils.SaveData;
 
 public final class TermuxViewClient implements TerminalViewClient {
 
@@ -40,8 +44,16 @@ public final class TermuxViewClient implements TerminalViewClient {
 
     @Override
     public void onSingleTapUp(MotionEvent e) {
-        InputMethodManager mgr = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.showSoftInput(mActivity.mTerminalView, InputMethodManager.SHOW_IMPLICIT);
+
+        String key_bot = SaveData.getData("key_bot");
+        if ("def".equals(key_bot)) {
+            //Toast.makeText(mActivity, "弹出键盘咯1", Toast.LENGTH_SHORT).show();
+            InputMethodManager mgr = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr.showSoftInput(mActivity.mTerminalView, InputMethodManager.SHOW_IMPLICIT);
+        }
+
+
+
     }
 
     @Override
@@ -75,8 +87,15 @@ public final class TermuxViewClient implements TerminalViewClient {
             } else if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
                 mActivity.getDrawer().closeDrawers();
             } else if (unicodeChar == 'k'/* keyboard */) {
-                InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+                String key_bot = SaveData.getData("key_bot");
+                if ("def".equals(key_bot)) {
+                    //Toast.makeText(mActivity, "弹出键盘咯", Toast.LENGTH_SHORT).show();
+                    InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                }
+
+
             } else if (unicodeChar == 'm'/* menu */) {
                 mActivity.mTerminalView.showContextMenu();
             } else if (unicodeChar == 'r'/* rename */) {

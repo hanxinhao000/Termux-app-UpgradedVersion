@@ -11,7 +11,8 @@
         android:id="@+id/sc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/boom_ll">
+        android:layout_above="@+id/boom_ll"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/title"
@@ -19,9 +20,9 @@
             android:layout_height="match_parent"
 
             android:layout_marginBottom="20dp"
-            android:text="欢迎安装linuxDeploy图形系统[ubuntu]\n\n数据包提供:WINLOG([老群员]虚拟机总监[群管理])"
+            android:text="欢迎安装linuxDeploy图形系统[ubuntu]\n\n某些手机可能安装无法成功\n\n如需测试，请下载原版linux deploy\n\n估计也不需要下载，魔改Utermux装不了,原版估计也没戏\n\n安装默认账号 : hanxinhao\n\n安装默认密码 : 123456"
             android:textColor="#fff"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </ScrollView>
@@ -99,7 +100,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/uninstall_remove" />
+                android:src="@drawable/yanse_ziti" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +108,7 @@
                 android:layout_above="@+id/boom_ll"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="20dp"
-                android:text="卸载"
+                android:text="编辑脚本文件"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -5,15 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.AttributeSet;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ScheduledExecutorService;
-
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Arrays;
-
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -21,11 +13,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.termux.R;
 import com.termux.terminal.TerminalSession;
 import com.termux.view.TerminalView;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import main.java.com.termux.application.TermuxApplication;
 
 /**
  * A view showing extra keys (such as Escape, Ctrl, Alt) not normally available on an Android soft
@@ -90,8 +92,26 @@ public final class ExtraKeysView extends GridLayout {
         put("F12", KeyEvent.KEYCODE_F12);
     }};
 
-    static void sendKey(View view, String keyName) {
+    public static void sendKey(View view, String keyName) {
+       // Toast.makeText(TermuxApplication.mContext, keyName, Toast.LENGTH_SHORT).show();
+        Log.e("XINHAO_HAN_KEY", "键盘值N: " + keyName );
+
         TerminalView terminalView = view.findViewById(R.id.terminal_view);
+        if (keyCodesForString.containsKey(keyName)) {
+            int keyCode = keyCodesForString.get(keyName);
+            Log.e("XINHAO_HAN_KEY", "键盘值C: " + keyCode );
+            terminalView.onKeyDown(keyCode, new KeyEvent(KeyEvent.ACTION_UP, keyCode));
+            // view.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, keyCode));
+        } else {
+            // not a control char
+            TerminalSession session = terminalView.getCurrentSession();
+            if (session != null && keyName.length() > 0)
+                session.write(keyName);
+        }
+    }
+
+    public static void sendKey2(TerminalView view, String keyName) {
+        TerminalView terminalView = view;
         if (keyCodesForString.containsKey(keyName)) {
             int keyCode = keyCodesForString.get(keyName);
             terminalView.onKeyDown(keyCode, new KeyEvent(KeyEvent.ACTION_UP, keyCode));
@@ -103,6 +123,7 @@ public final class ExtraKeysView extends GridLayout {
                 session.write(keyName);
         }
     }
+
 
     public enum SpecialButton {
         CTRL, ALT, FN
@@ -356,7 +377,6 @@ public final class ExtraKeysView extends GridLayout {
                 button.setOnClickListener(v -> {
 
 
-
                     if (Settings.System.getInt(getContext().getContentResolver(),
                         Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0) {
 
@@ -374,12 +394,13 @@ public final class ExtraKeysView extends GridLayout {
 
                     }
 
-                       // finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                    // finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     View root = getRootView();
                     if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonText)) {
                         ToggleButton self = (ToggleButton) finalButton;
                         self.setChecked(self.isChecked());
                         self.setTextColor(self.isChecked() ? INTERESTING_COLOR : TEXT_COLOR);
+                        //Toast.makeText(TermuxApplication.mContext, "123", Toast.LENGTH_SHORT).show();
                     } else {
                         sendKey(root, buttonText);
                     }

@@ -897,6 +897,8 @@ public final class TerminalEmulator {
                                 for (int j = 0; j < responseValue.length(); j++) {
                                     hexEncoded.append(String.format("%02X", (int) responseValue.charAt(j)));
                                 }
+
+                                Log.e("XINHAO_HAN", "数据: " +  "\033P1+r" + part + "=" + hexEncoded + "\033\\");
                                 mSession.write("\033P1+r" + part + "=" + hexEncoded + "\033\\");
                             }
                         } else {
@@ -1031,6 +1033,7 @@ public final class TerminalEmulator {
                 mRightMargin = mColumns;
                 // "DECCOLM resets vertical split screen mode (DECLRMM) to unavailable":
                 setDecsetinternalBit(DECSET_BIT_LEFTRIGHT_MARGIN_MODE, false);
+                mMainBuffer.clearTranscript();
                 // "Erases all data in page memory":
                 blockClear(0, 0, mColumns, mRows);
                 setCursorRowCol(0, 0);

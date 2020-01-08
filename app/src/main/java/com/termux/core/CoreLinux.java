@@ -25,7 +25,7 @@ public class CoreLinux {
     public static final String FILES_PATH = "/data/data/com.termux/files";
     public static final String PREFIX_PATH = FILES_PATH + "/usr";
     public static final String HOME_PATH = FILES_PATH + "/home";
-    private static final boolean LOG_KEY_EVENTS = false;
+    private static final boolean LOG_KEY_EVENTS = true;
 
     private static boolean IS_RUN = false;
     private static TerminalSession terminalSession;
@@ -270,7 +270,7 @@ public class CoreLinux {
 
     static void inputCodePoint(int codePoint, boolean controlDownFromEvent, boolean leftAltDownFromEvent) {
         if (LOG_KEY_EVENTS) {
-            Log.i(EmulatorDebug.LOG_TAG, "inputCodePoint(codePoint=" + codePoint + ", controlDownFromEvent=" + controlDownFromEvent + ", leftAltDownFromEvent="
+            Log.e("XINHAO_HAN", "inputCodePoint(codePoint=" + codePoint + ", controlDownFromEvent=" + controlDownFromEvent + ", leftAltDownFromEvent="
                 + leftAltDownFromEvent + ")");
         }
 

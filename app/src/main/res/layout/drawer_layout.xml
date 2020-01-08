@@ -19,7 +19,7 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/viewpager"
+        android:layout_above="@+id/key_boy_layout"
         android:layout_alignParentTop="true">
 
         <com.termux.view.TerminalView
@@ -29,6 +29,34 @@
             android:focusableInTouchMode="true"
             android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
             android:scrollbars="vertical" />
+
+
+        <RelativeLayout
+            android:id="@+id/termux_keybot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/left_drawer"
@@ -65,22 +93,23 @@
 
 
                     <TextView
+                        android:id="@+id/visition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:id="@+id/visition"
-                        android:text="本地版本:[0.84.34]"
+                        android:text="本地版本:[0.88.41]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
                     <TextView
+                        android:id="@+id/visition1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:id="@+id/visition1"
-                        android:text="本地版本:[0.84.34]/装机量:"
+                        android:text="本地版本:[0.88.41]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -364,10 +393,9 @@
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_marginTop="15dp"
+                                        android:layout_height="wrap_content"
 
-                                        android:layout_height="wrap_content">
-
+                                        android:layout_marginTop="15dp">
 
 
                                         <LinearLayout
@@ -400,9 +428,7 @@
                                         </LinearLayout>
 
 
-
                                     </RelativeLayout>
-
 
 
                                     <TextView
@@ -596,6 +622,78 @@
 
 
                                     <LinearLayout
+                                        android:id="@+id/windows_32_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/windows" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="启动Windows3.2X\n[打开dos]"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
+                                        android:id="@+id/key_bot_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/keyboard" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="打开自带的键盘"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
                                         android:id="@+id/linux_vnc_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -623,9 +721,6 @@
 
 
                                     </LinearLayout>
-
-
-
 
 
                                     <TextView
@@ -664,8 +759,6 @@
                                     </LinearLayout>
 
 
-
-
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="1px"
@@ -702,10 +795,6 @@
                                     </LinearLayout>
 
 
-
-
-
-
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="1px"
@@ -740,7 +829,6 @@
 
 
                                     </LinearLayout>
-
 
 
                                     <TextView
@@ -1470,8 +1558,6 @@
                                     </LinearLayout>
 
 
-
-
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="1px"
@@ -1752,13 +1838,30 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="37.5dp"
+        android:id="@+id/key_boy_layout"
         android:layout_alignParentBottom="true"
-        android:background="@android:drawable/screen_background_dark_transparent"
-        android:visibility="gone" />
+        android:layout_height="wrap_content">
+
+
+        <include
+            android:id="@+id/key_boy"
+            layout="@layout/key_bot_pc" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="37.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -1802,6 +1905,8 @@
 
     </RelativeLayout>
 
+
+
     <RelativeLayout
         android:id="@+id/lay_r"
         android:layout_width="match_parent"
@@ -1813,7 +1918,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.84.34]"
+            android:text="Termux[0.88.41]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

@@ -1,7 +1,6 @@
 package main.java.com.termux.app;
 
 import android.Manifest;
-import android.androidVNC.VncCanvas;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -74,8 +73,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
-
-
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -83,9 +80,6 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
-
-import com.max2idea.android.limbo.main.Config;
-import com.max2idea.android.limbo.main.LimboActivity;
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
@@ -128,7 +122,6 @@ import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.ListDataActivity;
 import main.java.com.termux.activity.LunTanActivity;
 import main.java.com.termux.activity.RepairActivity;
-import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
 import main.java.com.termux.activity.UbuntuListActivity;
@@ -147,24 +140,20 @@ import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
 import main.java.com.termux.http.UpDateHttpCode;
+import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
-import main.java.com.termux.utils.ExeCommand;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
-import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
-import main.java.com.termux.view.XHWaveView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.max2idea.android.limbo.main.LimboActivity.startvm;
-import static com.max2idea.android.limbo.main.LimboActivity.vmStarted;
 import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
 import static main.java.com.termux.service.BackService.BACK_FILES;
 
@@ -199,6 +188,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private static final int INSTALL_PACKAGES_REQUESTCODE = 20000;
     private static final int GET_UNKNOWN_APP_SOURCES = 20001;
     private static final int REQUEST_WRITE = 33333;
+    private static final int INSTALL_PACKAGES_REQUEST_CODE = 8888;
 
 
     /**
@@ -208,16 +198,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     @NonNull
     public static TerminalView mTerminalView;
 
-    ExtraKeysView mExtraKeysView;
+    main.java.com.termux.app.ExtraKeysView mExtraKeysView;
 
-    TermuxPreferences mSettings;
+    main.java.com.termux.app.TermuxPreferences mSettings;
 
     /**
      * The connection to the {@link TermuxService}. Requested in {@link #onCreate(Bundle)} with a call to
      * {@link #bindService(Intent, ServiceConnection, int)}, and obtained and stored in
      * {@link #onServiceConnected(ComponentName, IBinder)}.
      */
-    TermuxService mTermService;
+    main.java.com.termux.app.TermuxService mTermService;
 
     /**
      * Initialized in {@link #onServiceConnected(ComponentName, IBinder)}.
@@ -244,14 +234,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 String whatToReload = intent.getStringExtra(RELOAD_STYLE_ACTION);
                 if ("storage".equals(whatToReload)) {
                     if (ensureStoragePermissionGranted())
-                        TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
+                        main.java.com.termux.app.TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
                     return;
                 }
                 checkForFontAndColors();
                 mSettings.reloadFromProperties(TermuxActivity.this);
 
                 if (mExtraKeysView != null) {
-                    mExtraKeysView.reload(mSettings.mExtraKeys, ExtraKeysView.defaultCharDisplay);
+                    mExtraKeysView.reload(mSettings.mExtraKeys, main.java.com.termux.app.ExtraKeysView.defaultCharDisplay);
                 }
             }
         }
@@ -266,6 +256,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private View toggle_keyboard_button;
 
     private static TermuxActivity mTermuxActivity;
+    private View mKeyBotView;
+    private KeyData keyData;
 
     public static TermuxActivity getTermux() {
 
@@ -356,7 +348,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private void writerFile() {
         mSize = 0;
 
-        FileWriterUtils.start(this, new ZipUtils.ZipNameListener() {
+        main.java.com.termux.app.FileWriterUtils.start(this, new main.java.com.termux.app.ZipUtils.ZipNameListener() {
             @Override
             public void zip(String fileName, int size, int sizeC) {
 
@@ -447,7 +439,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             return;
         }
 
-        if (TermuxService.TAGRUN != null)
+        if (main.java.com.termux.app.TermuxService.TAGRUN != null)
             return;
 
 
@@ -580,7 +572,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         mTerminalView = findViewById(R.id.terminal_view);
-        mTerminalView.setOnKeyListener(new TermuxViewClient(this));
+        mTerminalView.setOnKeyListener(new main.java.com.termux.app.TermuxViewClient(this));
 
 
         lay_r = findViewById(R.id.lay_r);
@@ -778,7 +770,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         start_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TermuxActivity.this, SettingActivity.class));
+                startActivity(new Intent(TermuxActivity.this, main.java.com.termux.app.SettingActivity.class));
             }
         });
 
@@ -808,8 +800,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 LayoutInflater inflater = LayoutInflater.from(TermuxActivity.this);
                 View layout;
                 if (position == 0) {
-                    layout = mExtraKeysView = (ExtraKeysView) inflater.inflate(R.layout.extra_keys_main, collection, false);
-                    mExtraKeysView.reload(mSettings.mExtraKeys, ExtraKeysView.defaultCharDisplay);
+                    layout = mExtraKeysView = (main.java.com.termux.app.ExtraKeysView) inflater.inflate(R.layout.extra_keys_main, collection, false);
+                    mExtraKeysView.reload(mSettings.mExtraKeys, main.java.com.termux.app.ExtraKeysView.defaultCharDisplay);
 
                     String back_color_view = SaveData.getData("back_color_view");
 
@@ -886,7 +878,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             }
         });
         newSessionButton.setOnLongClickListener(v -> {
-            DialogUtils.textInput(TermuxActivity.this, R.string.session_new_named_title, null, R.string.session_new_named_positive_button,
+            main.java.com.termux.app.DialogUtils.textInput(TermuxActivity.this, R.string.session_new_named_title, null, R.string.session_new_named_positive_button,
                 text -> addNewSession(false, text), R.string.new_session_failsafe, text -> addNewSession(true, text)
                 , -1, null, null);
             return true;
@@ -896,9 +888,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         other.add(toggle_keyboard_button);
 
         toggle_keyboard_button.setOnClickListener(v -> {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
-            getDrawer().closeDrawers();
+            String key_bot1 = SaveData.getData("key_bot");
+            if (("def".equals(key_bot1))) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+                getDrawer().closeDrawers();
+            }
+
         });
 
 
@@ -909,7 +905,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         registerForContextMenu(mTerminalView);
 
-        Intent serviceIntent = new Intent(this, TermuxService.class);
+        Intent serviceIntent = new Intent(this, main.java.com.termux.app.TermuxService.class);
         // Start the service and make it run regardless of who is bound to it:
         startService(serviceIntent);
         if (!bindService(serviceIntent, this, 0))
@@ -1331,62 +1327,83 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 String string = response.body().string();
 
-                try {
-                    ServiceDataBean serviceDataBean = new Gson().fromJson(string, ServiceDataBean.class);
-                    String versionName = serviceDataBean.getVersionName();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                    // visition.setText(visition.getText() + "\n最新版本:[" + versionName + "]");
-                    visition.setText(visition.getText());
-                    if (!visition.getText().toString().equals(versionName)) {
-                        visition1.setTextColor(Color.YELLOW);
-                    } else {
-                        visition1.setTextColor(Color.WHITE);
-                    }
 
-                    visition1.setText("最新版本:[" + versionName + "]");
+                        try {
+                            ServiceDataBean serviceDataBean = new Gson().fromJson(string, ServiceDataBean.class);
+                            String versionName = serviceDataBean.getVersionName();
 
-                    OkHttpClient okHttpClient1 = new OkHttpClient();
-
-                    Request request1 = new Request.Builder().get().url("http://45.205.175.163:29954/xinhao/size").build();
-
-                    Call call1 = okHttpClient1.newCall(request1);
-
-                    call1.enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            visition1.setText("最新版本:[" + versionName + "]");
-                        }
-
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-
-                            String string1 = response.body().string();
-
-                            Log.e("XINHAO_HAN_M", "onResponse: " + string1);
-
-                            try {
-                                int i = Integer.parseInt(string1);
-                                visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
-                            } catch (Exception e) {
-                                visition1.setText("最新版本:[" + versionName + "]/装机量: -");
+                            // visition.setText(visition.getText() + "\n最新版本:[" + versionName + "]");
+                            visition.setText(visition.getText());
+                            if (!visition.getText().toString().equals(versionName)) {
+                                visition1.setTextColor(Color.YELLOW);
+                            } else {
+                                visition1.setTextColor(Color.WHITE);
                             }
 
+                            visition1.setText("最新版本:[" + versionName + "]");
 
+                            OkHttpClient okHttpClient1 = new OkHttpClient();
+
+                            Request request1 = new Request.Builder().get().url("http://45.205.175.163:29954/xinhao/size").build();
+
+                            Call call1 = okHttpClient1.newCall(request1);
+
+                            call1.enqueue(new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            visition1.setText("最新版本:[" + versionName + "]");
+                                        }
+                                    });
+
+                                }
+
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+
+                                    String string1 = response.body().string();
+
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Log.e("XINHAO_HAN_M", "onResponse: " + string1);
+
+                                            try {
+                                                int i = Integer.parseInt(string1);
+                                                visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
+                                            } catch (Exception e) {
+                                                visition1.setText("最新版本:[" + versionName + "]/装机量: -");
+                                            }
+                                        }
+                                    });
+
+
+                                }
+                            });
+
+
+                            service_title.setTextColor(Color.WHITE);
+                            visition.setTextColor(Color.WHITE);
+                            service_title.setText(serviceDataBean.getNote());
+                        } catch (Exception e) {
+                            service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
+                            service_title.setTextColor(Color.YELLOW);
+                            visition.setTextColor(Color.YELLOW);
+                            visition1.setTextColor(Color.YELLOW);
+                            visition.setText(visition.getText());
+                            visition1.setText("最新版本:[-.--.--]");
                         }
-                    });
 
-
-                    service_title.setTextColor(Color.WHITE);
-                    visition.setTextColor(Color.WHITE);
-                    service_title.setText(serviceDataBean.getNote());
-                } catch (Exception e) {
-                    service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
-                    service_title.setTextColor(Color.YELLOW);
-                    visition.setTextColor(Color.YELLOW);
-                    visition1.setTextColor(Color.YELLOW);
-                    visition.setText(visition.getText());
-                    visition1.setText("最新版本:[-.--.--]");
-                }
+                    }
+                });
 
 
             }
@@ -1398,6 +1415,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout linux_sea_btn;
     private LinearLayout linux_luntan_btn;
     private LinearLayout linux_data_zaixian;
+    private LinearLayout windows_32_btn;
 
     //获取imei码
     private void getImei() {
@@ -1469,14 +1487,59 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     }
 
 
+    private void checkIsAndroidO1() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            boolean b = getPackageManager().canRequestPackageInstalls();
+            if (b) {
+                CheckUpDateCodeUtils.installApk(this, new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/dosPlugins.apk").getAbsolutePath());
+            } else {
+                //请求安装未知应用来源的权限
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_PACKAGES_REQUEST_CODE);
+            }
+        } else {
+
+        }
+    }
+
+    private void installAPK(String apkFile) {
+        String file = apkFile;
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            //Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", new File(apkFile));
+            intent.setDataAndType(CheckUpDateCodeUtils.getPathUri(this, apkFile), "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(new File(apkFile)), "application/vnd.android.package-archive");
+        }
+
+
+        /*intent.addCategory("android.intent.category.DEFAULT");
+        intent.setDataAndType(Uri.fromFile(new File(file)),
+            "application/vnp.android.package-archive");*/
+        startActivity(intent);
+    }
+
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
 
 
     private LinearLayout linux_vnc_btn;
+    private LinearLayout key_bot_btn;
+    private RelativeLayout mTermux_keybot;
 
 
     @Override
     public void onCreate(Bundle bundle) {
-        mSettings = new TermuxPreferences(this);
+        mSettings = new main.java.com.termux.app.TermuxPreferences(this);
         mIsUsingBlackUI = mSettings.isUsingBlackUI();
         if (mIsUsingBlackUI) {
             this.setTheme(R.style.Theme_Termux_Black);
@@ -1492,9 +1555,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //insFile();
 
 
-
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
+        mTermux_keybot = findViewById(R.id.termux_keybot);
         visition = findViewById(R.id.visition);
         ziyuan_group = findViewById(R.id.ziyuan_group);
         meihua_group = findViewById(R.id.meihua_group);
@@ -1507,8 +1570,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         linux_sea_btn = findViewById(R.id.linux_sea_btn);
         linux_luntan_btn = findViewById(R.id.linux_luntan_btn);
         linux_data_zaixian = findViewById(R.id.linux_data_zaixian);
+        windows_32_btn = findViewById(R.id.windows_32_btn);
+        key_bot_btn = findViewById(R.id.key_bot_btn);
 
+        meihua.add(key_bot_btn);
         linux_vnc_btn = findViewById(R.id.linux_vnc_btn);
+        mKeyBotView = findViewById(R.id.key_boy);
 
 
         linux_vnc_btn.findViewById(R.id.linux_vnc_btn);
@@ -1519,6 +1586,54 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TermuxActivity.this, VNCMessageActivity.class));
+            }
+        });
+
+        os.add(windows_32_btn);
+        windows_32_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    Intent intent2 = new Intent("com.jrmf360.action.ENTER2");
+                    startActivity(intent2);
+                } catch (Exception e) {
+                    AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
+                    ad.setTitle("未安装插件");
+                    ad.setMessage("未安装插件，是否安装插件?\n如果自动安装插件失败\n请到Sdcard目录下找\nxinhao/apk/DosBoxApplication.apk\n手动安装");
+                    ad.setNegativeButton("安装", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/test.z");
+
+
+                            File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/");
+                            if (file1.exists()) {
+                                File file2 = new File(file1, "dosPlugins.apk");
+                                writerFile("xdos.plugins", file2, 1024);
+
+                                //installAPK(file2.getAbsolutePath());
+                                checkIsAndroidO1();
+                            } else {
+
+                                file1.mkdirs();
+                            }
+
+
+                            ad.create().dismiss();
+
+                        }
+                    });
+                    ad.setPositiveButton("不安装", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ad.create().dismiss();
+                        }
+                    });
+                    ad.show();
+                }
+
             }
         });
 /*        linux_vnc_btn.setOnLongClickListener(new View.OnLongClickListener() {
@@ -1595,7 +1710,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+                // startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+                Toast.makeText(TermuxActivity.this, "请在测试版本中打开!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -1626,7 +1743,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         linux_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TermuxActivity.this, RestoreActivity.class));
+                startActivity(new Intent(TermuxActivity.this, main.java.com.termux.app.RestoreActivity.class));
             }
         });
 
@@ -1943,6 +2060,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     case 1:
                         setTextColorView(i);
                         SaveData.saveData("text_color_view", i + "");
+
                         setKeyColorView(i);
                         SaveData.saveData("key_color_view", i + "");
                         break;
@@ -2040,23 +2158,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         item_key = findViewById(R.id.item_key);
 
-        if (TermuxInstaller.determineTermuxArchName().equals("aarch64")) {
+        if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("aarch64")) {
             text_jiagou.setTextColor(Color.parseColor("#ffffff"));
-            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
+            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
 
         }
 
-        if (TermuxInstaller.determineTermuxArchName().equals("arm")) {
+        if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("arm")) {
             text_jiagou.setTextColor(Color.YELLOW);
-            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[提醒:当前架构[可能存在](只是可能)兼容性问题]");
+            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[提醒:当前架构[可能存在](只是可能)兼容性问题]");
 
         }
 
         //x86_64
 
-        if (TermuxInstaller.determineTermuxArchName().equals("x86_64") || TermuxInstaller.determineTermuxArchName().equals("i686")) {
+        if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("x86_64") || main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("i686")) {
             text_jiagou.setTextColor(Color.RED);
-            text_jiagou.setText("[CPU架构:" + TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[警告:当前架构不支持群(所有)数据包]");
+            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[警告:当前架构不支持群(所有)数据包]");
 
         }
 
@@ -2497,7 +2615,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(TermuxActivity.this, TestActivity.class));
+                startActivity(new Intent(TermuxActivity.this, main.java.com.termux.app.TestActivity.class));
             }
         });
 
@@ -2604,7 +2722,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             }
 
             if (!key_color_view.equals("def")) {
-                ExtraKeysView.TEXT_COLOR = Integer.parseInt(SaveData.getData("key_color_view"));
+                main.java.com.termux.app.ExtraKeysView.TEXT_COLOR = Integer.parseInt(SaveData.getData("key_color_view"));
                 //   mExtraKeysView.setColorButton();
             }
 
@@ -2666,6 +2784,51 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         }
 
         index_group(0);
+
+        keyData = new KeyData();
+        keyData.setKeyView(mKeyBotView, mTerminalView);
+
+
+        String key_bot = SaveData.getData("key_bot");
+        if ("def".equals(key_bot)) {
+            mKeyBotView.setVisibility(View.GONE);
+            mTermux_keybot.setVisibility(View.GONE);
+            toggleShowExtraKeys1(true);
+        } else {
+            mKeyBotView.setVisibility(View.VISIBLE);
+            mTermux_keybot.setVisibility(View.VISIBLE);
+            mTermux_keybot.requestFocus();
+            // mExtraKeysView.setVisibility(View.GONE);
+            toggleShowExtraKeys1(false);
+        }
+
+
+        key_bot_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String key_bot = SaveData.getData("key_bot");
+                if ("def".equals(key_bot)) {
+                    SaveData.saveData("key_bot", "yes");
+                    mKeyBotView.setVisibility(View.VISIBLE);
+                    mTermux_keybot.setVisibility(View.VISIBLE);
+                    toggleShowExtraKeys1(false);
+                } else {
+                    SaveData.saveData("key_bot", "def");
+                    mKeyBotView.setVisibility(View.GONE);
+                    mTermux_keybot.setVisibility(View.GONE);
+                    toggleShowExtraKeys1(true);
+                }
+
+
+            }
+        });
+
+
+        String key_bot1 = SaveData.getData("key_bot");
+        if (!("def".equals(key_bot1))) {
+            hideInput();
+        }
     }
 
 
@@ -2675,6 +2838,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         TerminalRenderer.COLOR_TEXT = color;
 
         mTerminalView.invalidate();
+
 
     }
 
@@ -2700,10 +2864,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     //设置键盘
     private void setKeyColorView(int color) {
-        ExtraKeysView.TEXT_COLOR = color;
-        mExtraKeysView.setColorButton();
 
-        mExtraKeysView.invalidate();
+
+        String key_bot = SaveData.getData("key_bot");
+        if ("def".equals(key_bot)) {
+            main.java.com.termux.app.ExtraKeysView.TEXT_COLOR = color;
+            mExtraKeysView.setColorButton();
+            mExtraKeysView.invalidate();
+        } else {
+            keyData.setTextKeyColor(color);
+        }
 
     }
 
@@ -3036,7 +3206,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     });
                                     Thread.sleep(2000);
 
-                                    ZipUtils.unZip(file2, "/data/data/com.termux/files", new ZipUtils.ZipNameListener() {
+                                    main.java.com.termux.app.ZipUtils.unZip(file2, "/data/data/com.termux/files", new main.java.com.termux.app.ZipUtils.ZipNameListener() {
                                         @Override
                                         public void zip(String FileName, int size, int position) {
 
@@ -3495,7 +3665,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         getDrawer().openDrawer(Gravity.LEFT);
 
-                        TermuxInstaller.setupIfNeeded3("正在修复...", TermuxActivity.this, new Runnable() {
+                        main.java.com.termux.app.TermuxInstaller.setupIfNeeded3("正在修复...", TermuxActivity.this, new Runnable() {
                             @Override
                             public void run() {
 
@@ -3578,7 +3748,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TermuxActivity.this, SettingActivity.class));
+                startActivity(new Intent(TermuxActivity.this, main.java.com.termux.app.SettingActivity.class));
             }
         });
         animImage();
@@ -5132,6 +5302,29 @@ Solaris(APP美化)
         }
     }
 
+    void toggleShowExtraKeys1(boolean isShow) {
+        viewPager = findViewById(R.id.viewpager);
+        final boolean showNow = mSettings.toggleShowExtraKeys(TermuxActivity.this);
+        viewPager.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        if (showNow && viewPager.getCurrentItem() == 1) {
+            // Focus the text input view if just revealed.
+            findViewById(R.id.text_input).requestFocus();
+        }
+
+        try {
+            String image_back = SaveData.getData("image_back");
+            if (!image_back.equals("def")) {
+
+                viewPager.setBackgroundColor(Color.parseColor("#44000000"));
+                //  fun_all.setBackgroundColor(Color.parseColor("#22000000"));
+                //   function_ll.setBackgroundColor(Color.parseColor("#22000000"));
+                //   getDrawer().setBackgroundColor(Color.parseColor("#22000000"));
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
     /**
      * Part of the {@link ServiceConnection} interface. The service is bound with
      * {@link #bindService(Intent, ServiceConnection, int)} in {@link #onCreate(Bundle)} which will cause a call to this
@@ -5473,7 +5666,10 @@ Solaris(APP美化)
             new AlertDialog.Builder(this).setTitle(R.string.max_terminals_reached_title).setMessage(R.string.max_terminals_reached_message)
                 .setPositiveButton(android.R.string.ok, null).show();
         } else {
-            TerminalSession newSession = mTermService.createTermSession(null, null, null, failSafe);
+            //TerminalSession newSession = mTermService.createTermSession(null, null, null, failSafe);
+            TerminalSession currentSession = getCurrentTermSession();
+            String workingDirectory = (currentSession == null) ? null : currentSession.getCwd();
+            TerminalSession newSession = mTermService.createTermSession(null, null, workingDirectory, failSafe);
             if (sessionName != null) {
                 newSession.mSessionName = sessionName;
             }
@@ -5805,6 +6001,17 @@ Solaris(APP美化)
 
                 break;
 
+            case INSTALL_PACKAGES_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    CheckUpDateCodeUtils.installApk(this, new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/dosPlugins.apk").getAbsolutePath());
+
+                } else {
+                    //  引导用户手动开启安装权限
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+                    startActivityForResult(intent, GET_UNKNOWN_APP_SOURCES);
+                }
+                break;
+
 
         }
 
@@ -6030,7 +6237,7 @@ Solaris(APP美化)
             TermuxApplication.mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    String s = mTerminalView.getText().toString();
+                    //  String s = mTerminalView.getText().toString();
 
 
                     try {
@@ -6083,7 +6290,7 @@ Solaris(APP美化)
                 @Override
                 public void run() {
 
-                    String s = mTerminalView.getText().toString();
+                    //String s = mTerminalView.getText().toString();
 
 
                     try {
