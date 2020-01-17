@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,9 +33,7 @@ import com.termux.terminal.TerminalSession;
 
 import java.io.File;
 
-import main.java.com.termux.app.TermuxActivity;
 import main.java.com.termux.application.TermuxApplication;
-import main.java.com.termux.filemanage.filemanager.util.UIUtils;
 
 public class TermuxFloatService extends Service {
 
@@ -44,6 +41,8 @@ public class TermuxFloatService extends Service {
 
     public static final String ACTION_HIDE = "com.termux.float.hide";
     public static final String ACTION_SHOW = "com.termux.float.show";
+
+    public static boolean isShow = false;
 
     /**
      * Note that this is a symlink on the Android M preview.
@@ -166,76 +165,78 @@ public class TermuxFloatService extends Service {
         }).start();
 
         Toast toast = Toast.makeText(this, R.string.initial_instruction_toast, Toast.LENGTH_LONG);
-       // toast.setGravity(Gravity.CENTER, 0, 0);
+        // toast.setGravity(Gravity.CENTER, 0, 0);
         TextView v = toast.getView().findViewById(android.R.id.message);
         if (v != null) v.setGravity(Gravity.CENTER);
         toast.show();
 
         startForeground(NOTIFICATION_ID, buildNotification());
 
+        if (isShow) {
 
-        FloatView.showFloatView(this, R.layout.window_yuan);
+            FloatView.showFloatView(this, R.layout.window_yuan);
 
-        FloatView.setOnClickListener(new FloatView.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // final String intentAction = mVisibleWindow ? ACTION_HIDE : ACTION_SHOW;
+            FloatView.setOnClickListener(new FloatView.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // final String intentAction = mVisibleWindow ? ACTION_HIDE : ACTION_SHOW;
 
-                if(mVisibleWindow){
-                    //目前处于显示
-                   // setVisible(false);
+                    if (mVisibleWindow) {
+                        //目前处于显示
+                        // setVisible(false);
 
-                    setViewAnimaStop(mFloatingWindow, new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
+                        setViewAnimaStop(mFloatingWindow, new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
 
-                            setVisible(false);
-                        }
+                                setVisible(false);
+                            }
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
 
-                        }
-                    });
-                }else{
-                    //目前处于隐藏
-                    setVisible(true);
-                    setViewAnima(mFloatingWindow, new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
+                            }
+                        });
+                    } else {
+                        //目前处于隐藏
+                        setVisible(true);
+                        setViewAnima(mFloatingWindow, new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
 
-                        }
-                    });
+                            }
+                        });
 
 
+                    }
                 }
-            }
-        });
+            });
+        }
 
 
     }
@@ -308,7 +309,7 @@ public class TermuxFloatService extends Service {
     }
 
 
-    public void setViewAnima(View view,Animator.AnimatorListener animatorListener) {
+    public void setViewAnima(View view, Animator.AnimatorListener animatorListener) {
 
         Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, 0, 0,
             0, (float) Math.hypot(view.getWidth(), view.getHeight()));
@@ -320,10 +321,10 @@ public class TermuxFloatService extends Service {
 
     }
 
-    public void setViewAnimaStop(View view,Animator.AnimatorListener animatorListener) {
+    public void setViewAnimaStop(View view, Animator.AnimatorListener animatorListener) {
 
         Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, view.getWidth(), view.getHeight(),
-            (float) Math.hypot(view.getWidth(), view.getHeight()),0 );
+            (float) Math.hypot(view.getWidth(), view.getHeight()), 0);
         circularReveal.setDuration(500);
 
         circularReveal.addListener(animatorListener);
@@ -331,6 +332,7 @@ public class TermuxFloatService extends Service {
         circularReveal.start();
 
     }
+
     public void changeFontSize(boolean increase) {
         mFontSize += (increase ? 1 : -1) * 2;
         mFontSize = Math.max(MIN_FONTSIZE, mFontSize);

@@ -318,10 +318,8 @@ public final class TerminalView extends View {
             }
 
 
-
         };
     }
-
 
 
     public void sendTextToTerminal(CharSequence text) {
@@ -377,7 +375,7 @@ public final class TerminalView extends View {
     }
 
 
-    public void sendTextToTerminalCtrl(CharSequence text,boolean isCtrl) {
+    public void sendTextToTerminalCtrl(CharSequence text, boolean isCtrl) {
         stopTextSelectionMode();
         final int textLengthInChars = text.length();
         for (int i = 0; i < textLengthInChars; i++) {
@@ -429,7 +427,7 @@ public final class TerminalView extends View {
         }
     }
 
-    public void sendTextToTerminalAlt(CharSequence text,boolean isAlt) {
+    public void sendTextToTerminalAlt(CharSequence text, boolean isAlt) {
         stopTextSelectionMode();
         final int textLengthInChars = text.length();
         for (int i = 0; i < textLengthInChars; i++) {
@@ -636,6 +634,7 @@ public final class TerminalView extends View {
                     CharSequence paste = clipData.getItemAt(0).coerceToText(getContext());
                     if (!TextUtils.isEmpty(paste)) mEmulator.paste(paste.toString());
                 }
+
             } else if (mEmulator.isMouseTrackingActive()) { // BUTTON_PRIMARY.
                 switch (ev.getAction()) {
                     case MotionEvent.ACTION_DOWN:

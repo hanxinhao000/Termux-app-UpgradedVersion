@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        
+    <PreferenceCategory
+            android:title="@string/general_preferences">
+            
+        <CheckBoxPreference
+            android:defaultValue="@string/screenlock"
+            android:key="screenlock"
+            android:summary="@string/summary_screenlock_preference"
+            android:title="@string/title_screenlock_preference" />
+
+	    <EditTextPreference
+    	        android:key="port"
+        	    android:defaultValue="@string/port"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_port_preference"
+            	android:summary="@string/port"
+            	android:dialogTitle="@string/dialog_title_port_preference" />
+	    
+        <CheckBoxPreference
+            android:key="localhost"
+            android:defaultValue="@string/localhost"
+            android:summary="@string/summary_localhost_preference"
+            android:title="@string/title_localhost_preference" />
+        
+        <CheckBoxPreference
+            android:key="root"
+            android:defaultValue="@string/root"
+            android:summary="@string/summary_root_preference"
+            android:title="@string/title_root_preference" />
+        
+        <CheckBoxPreference
+            android:key="autostart"
+            android:defaultValue="@string/autostart"
+            android:summary="@string/summary_autostart_preference"
+            android:title="@string/title_autostart_preference" />
+
+	    <EditTextPreference
+    	        android:key="shell"
+        	    android:defaultValue="@string/shell"
+            	android:title="@string/title_shell_preference"
+            	android:summary="@string/shell"
+            	android:dialogTitle="@string/dialog_title_shell_preference" />
+        
+	    <EditTextPreference
+    	        android:key="username"
+        	    android:defaultValue="@string/username"
+            	android:title="@string/title_username_preference"
+            	android:summary="@string/username"
+            	android:dialogTitle="@string/dialog_title_username_preference" />
+	    
+	    <EditTextPreference
+    	        android:key="password"
+        	    android:defaultValue="@string/password"
+            	android:title="@string/title_password_preference"
+            	android:summary="@string/password"
+            	android:dialogTitle="@string/dialog_title_password_preference" />
+	    
+	</PreferenceCategory>
+	
+</PreferenceScreen>

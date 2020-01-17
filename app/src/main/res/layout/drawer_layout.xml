@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="本地版本:[0.88.41]"
+                        android:text="本地版本:[0.88.56]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="本地版本:[0.88.41]"
+                        android:text="本地版本:[0.88.56]"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -615,6 +615,44 @@
                                     </RelativeLayout>
 
 
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1px"
+                                        android:background="#3fff" />
+
+
+                                    <LinearLayout
+                                        android:id="@+id/web_linux_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/liulanqi" />
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="在浏览器中运行Utermux\n[在浏览器中打开魔改终端]\n[端口为4200]"
+                                            android:textColor="#007FFF"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+
+
+                                    </LinearLayout>
+
+
+
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="1px"
@@ -1074,7 +1112,7 @@
                                             android:layout_marginBottom="20dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="悬浮显示Termux\n操作:长按拖动窗口\n字体大小:和放大缩小图片手势一样\n关闭窗口:在状态栏关闭!"
+                                            android:text="悬浮显示Termux\n操作:长按拖动窗口\n字体大小:和放大缩小图片手势一样\n关闭窗口:在状态栏关闭!\n"
                                             android:textColor="#fff"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
@@ -1918,7 +1956,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.88.41]"
+            android:text="Termux[0.88.56]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

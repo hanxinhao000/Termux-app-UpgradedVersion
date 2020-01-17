@@ -122,11 +122,21 @@
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-        <activity android:name="main.java.com.termux.activity.LinuxDeployInstallActivity"
+        <activity android:name="main.java.com.termux.activity.UncaughtExceptionHandlerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            />
+
+            ></activity>
+        <activity
+            android:name="main.java.com.termux.activity.LinuxDeployInstallActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.VNCMessageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="main.java.com.termux.weblinux.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="main.java.com.termux.weblinux.AboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <service

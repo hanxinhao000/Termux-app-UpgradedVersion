@@ -1311,7 +1311,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
+                        service_title.setText("服务器离线,请到群:714730084获取最新版本!");
                         service_title.setTextColor(Color.YELLOW);
                         visition.setTextColor(Color.YELLOW);
                         visition1.setTextColor(Color.YELLOW);
@@ -1380,7 +1380,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                 int i = Integer.parseInt(string1);
                                                 visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
                                             } catch (Exception e) {
-                                                visition1.setText("最新版本:[" + versionName + "]/装机量: -");
+                                               // visition1.setText("最新版本:[" + versionName + "]/装机量: -");
                                             }
                                         }
                                     });
@@ -1394,7 +1394,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             visition.setTextColor(Color.WHITE);
                             service_title.setText(serviceDataBean.getNote());
                         } catch (Exception e) {
-                            service_title.setText("无法连接至服务器,所以无法获取最新版本\n请到群:714730084,获取最新版本!");
+                            service_title.setText("服务器离线,请到群:714730084获取最新版本!");
                             service_title.setTextColor(Color.YELLOW);
                             visition.setTextColor(Color.YELLOW);
                             visition1.setTextColor(Color.YELLOW);
@@ -1535,6 +1535,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout linux_vnc_btn;
     private LinearLayout key_bot_btn;
     private RelativeLayout mTermux_keybot;
+    private LinearLayout web_linux_btn;
 
 
     @Override
@@ -1572,11 +1573,137 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         linux_data_zaixian = findViewById(R.id.linux_data_zaixian);
         windows_32_btn = findViewById(R.id.windows_32_btn);
         key_bot_btn = findViewById(R.id.key_bot_btn);
+        web_linux_btn = findViewById(R.id.web_linux_btn);
 
         meihua.add(key_bot_btn);
         linux_vnc_btn = findViewById(R.id.linux_vnc_btn);
         mKeyBotView = findViewById(R.id.key_boy);
 
+        os.add(web_linux_btn);
+
+        web_linux_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // startActivity(new Intent(TermuxActivity.this, MainActivity.class));
+
+                //new WebStartLinux().start(false);
+
+
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                File file = new File("/data/data/com.termux/files/usr/bin/shellinaboxd");
+
+                if (file.exists()) {
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle("提示(prompt)");
+
+                    ab.setMessage("即将开始运行网页版本的Utermux\n密码默认(password def):123\n是否开始运行(Whether to start running?)?\n端口(port):4200");
+
+                    ab.setPositiveButton("运行(run)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            ab.create().dismiss();
+                            mTerminalView.sendTextToTerminal("shellinaboxd -s /:LOGIN -t -p 4200 & \n");
+
+                            AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
+                            ad.setTitle("命令执行成功(ok)");
+                            ad.setMessage("请在浏览器打开 [本机(phone)ip]:4200");
+                            ad.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ad.create().dismiss();
+                                }
+                            });
+                            ad.show();
+                        }
+                    });
+                    ab.setNegativeButton("稍后(later)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+                } else {
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle("坏境错误(Bad mistake)");
+
+                    ab.setMessage("你没有安装shellinabox(You didn't install shellinabox)\n离线安装只支持arm和aarch!!!!!\n点击立即安装(Click install now)\n如果提示找不到(If the prompt cannot be found) shellinabox,\n请查看您的源是否正确(Check to see if your source is correct)!\n\n注意!离线安装如果有报错,不用管!");
+
+                    ab.setPositiveButton("安装(install)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            ab.create().dismiss();
+                            mTerminalView.sendTextToTerminal("pkg install shellinabox \n");
+                        }
+                    });
+                    ab.setNegativeButton("稍后(later)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.setNeutralButton("离线安装(offline install)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                            String s = TermuxInstaller.determineTermuxArchName();
+
+                            switch (s) {
+
+
+                                case "aarch64":
+                                    writerFile("shelllliabox.zip", new File("/data/data/com.termux/files/home/shelllliabox.zip"), 1024);
+                                    break;
+                                case "arm":
+                                    writerFile("shellliabox_arm.zip", new File("/data/data/com.termux/files/home/shelllliabox.zip"), 1024);
+                                    break;
+
+                            }
+
+
+
+                            mTerminalView.sendTextToTerminal("cd ~ \n");
+                            mTerminalView.sendTextToTerminal("mkdir shelllliabox \n");
+                            mTerminalView.sendTextToTerminal("cd shelllliabox \n");
+
+                            ZipUtils.unZip(new File("/data/data/com.termux/files/home/shelllliabox.zip"), "/data/data/com.termux/files/home/shelllliabox/", new ZipUtils.ZipNameListener() {
+                                @Override
+                                public void zip(String FileName, int size, int position) {
+
+                                }
+
+                                @Override
+                                public void complete() {
+
+                                    mTerminalView.sendTextToTerminal("dpkg -i * \n");
+                                }
+
+                                @Override
+                                public void progress(long size, long position) {
+
+                                }
+                            });
+                        }
+                    });
+
+
+                    ab.show();
+                }
+
+
+            }
+        });
 
         linux_vnc_btn.findViewById(R.id.linux_vnc_btn);
 
@@ -1710,7 +1837,28 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                // startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+              /*  final EditText et = new EditText(TermuxActivity.this);
+                et.setHint("输入\"确定\"继续");
+                et.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                new androidx.appcompat.app.AlertDialog.Builder(TermuxActivity.this).setTitle("测试版本区域,分风险自行承担")
+                    .setIcon(R.drawable.ic_launcher)
+                    .setView(et)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            if (et.getText().toString().equals("确定")) {
+
+                                startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+                            } else {
+                                Toast.makeText(TermuxActivity.this, "你必须输入\"确定\"才能继续!" + et.toString(), Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+                    }).setNegativeButton("取消", null).show();*/
+
+
                 Toast.makeText(TermuxActivity.this, "请在测试版本中打开!", Toast.LENGTH_SHORT).show();
 
             }
@@ -2148,6 +2296,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         text_ip = findViewById(R.id.text_ip);
 
+
+
         quanping = findViewById(R.id.quanping);
 
         item_key_linux = findViewById(R.id.item_key_linux);
@@ -2322,13 +2472,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     //退出全屏
 
                     WindowUtils.exitFullScreen(TermuxActivity.this);
+                    toggleShowExtraKeys1(true);
                 } else {
 
                     //打开全屏
                     WindowUtils.setFullScreen(TermuxActivity.this);
+                    toggleShowExtraKeys1(false);
                 }
 
-                toggleShowExtraKeys();
+
 
             }
         });
@@ -2555,7 +2707,26 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
 
-                startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+                ab.setTitle("进入提醒");
+                ab.setMessage("请选择打开方式?\n打开选项:\n1.带小图标打开[图标打开]\n2.不带小图标打开");
+                ab.setPositiveButton("图标打开", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TermuxFloatService.isShow = true;
+                        startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
+                    }
+                });
+                ab.setNegativeButton("无标打开", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TermuxFloatService.isShow = false;
+                        startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
+                    }
+                });
+                ab.show();
+
+
             }
         });
         int[] i = new int[1];

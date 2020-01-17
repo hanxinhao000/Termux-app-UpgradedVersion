@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="当前版本:0.88.41"
+                        android:text="当前版本:0.88.56"
                         android:textColor="#fff"
                         android:textSize="24sp" />
 
