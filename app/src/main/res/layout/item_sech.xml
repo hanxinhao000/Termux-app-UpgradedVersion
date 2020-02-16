@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:textSize="16sp"
                 android:text="Termux全套工具安装脚本"
-                android:textColor="#1BBC9B"
+                android:textColor="#2b2b2b"
                 android:id="@+id/title"
                 android:layout_height="wrap_content" />
 
@@ -33,7 +33,7 @@
                 android:textSize="14sp"
                 android:id="@+id/message"
                 android:text="兄嘚,点击我,安装包括[msf],[命令行游戏]等,很多工具"
-                android:textColor="#1BBC9B"
+                android:textColor="#2b2b2b"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>

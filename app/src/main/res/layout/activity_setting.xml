@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1BBC9B"
+    android:background="#2b2b2b"
     android:orientation="vertical">
 
 
@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="当前版本:0.88.56"
+                        android:text="当前版本:0.92.66"
                         android:textColor="#fff"
                         android:textSize="24sp" />
 

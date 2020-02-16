@@ -452,7 +452,7 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
 
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:textSize="11sp"
                     android:background="@drawable/select_color_back"
                     android:gravity="center"
@@ -670,7 +670,7 @@
                     android:layout_width="0dp"
                     android:layout_height="45dp"
 
-                    android:layout_weight="1"
+                    android:layout_weight="1.8"
                     android:textSize="11sp"
                     android:background="@drawable/select_color_back"
                     android:gravity="center"

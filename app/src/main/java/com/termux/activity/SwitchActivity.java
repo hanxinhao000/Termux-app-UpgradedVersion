@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.com.termux.adapter.CreateSystemAdapter;
+import main.java.com.termux.app.TermuxActivity;
 import main.java.com.termux.app.TermuxInstaller;
 import main.java.com.termux.app.TermuxService;
 import main.java.com.termux.bean.CreateSystemBean;
@@ -171,7 +172,8 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                                                 public void run() {
                                                     MyDialog myDialog = new MyDialog(SwitchActivity.this);
                                                     myDialog.show();
-                                                    myDialog.getDialog_title().setText("正在删除...");
+                                                    myDialog.getDialog_title().setText("正在删除,请耐心等待...");
+                                                    myDialog.getDialog_pro().setText("时间长短，由您的系统大小决定的");
                                                 }
                                             });
                                             Log.e("XINHAO_HAN", "删除目录: " + mList.get(position).dir);
@@ -221,8 +223,18 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(SwitchActivity.this, "删除成功!", Toast.LENGTH_SHORT).show();
-                                                    finish();
+
+                                                    if(new File(mList.get(position).dir).exists()){
+                                                        Toast.makeText(SwitchActivity.this, "正在清除系统残留文件", Toast.LENGTH_SHORT).show();
+
+                                                        TermuxActivity.mTerminalView.sendTextToTerminal("rm -rf " + mList.get(position).dir + " \n");
+                                                        finish();
+                                                    }else{
+                                                        Toast.makeText(SwitchActivity.this, "删除成功!", Toast.LENGTH_SHORT).show();
+                                                        finish();
+                                                    }
+
+
                                                 }
                                             });
 
@@ -481,6 +493,12 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
             CreateSystemBean createSystemBean = new Gson().fromJson(tempStr, CreateSystemBean.class);
 
+            if(createSystemBean == null){
+                createSystemBean = new CreateSystemBean();
+                createSystemBean.dir = "/data/data/com.termux/files/";
+                createSystemBean.systemName = "默认系统";
+            }
+
 
             for (int i = 0; i < arrayList.size(); i++) {
 
@@ -527,7 +545,14 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
             Log.e("XINHAO_HAN", "readInfo: " + tempSystem);
             CreateSystemBean createSystemBean = new Gson().fromJson(tempSystem, CreateSystemBean.class);
 
-            return createSystemBean.systemName;
+
+            if(createSystemBean == null){
+
+                return"损坏的系统";
+            }else{
+                return createSystemBean.systemName;
+            }
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

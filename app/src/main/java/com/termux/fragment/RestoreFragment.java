@@ -32,9 +32,12 @@ import main.java.com.termux.app.TermuxInstaller;
 import main.java.com.termux.app.TermuxService;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.core.CoreLinux;
+import main.java.com.termux.fragment.utils.QZUtils;
 import main.java.com.termux.utils.ExeCommand;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.XHTarUtils;
+import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.view.YesNoDialog;
 
 public class RestoreFragment extends BaseFragment {
 
@@ -87,39 +90,128 @@ public class RestoreFragment extends BaseFragment {
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            //标记恢复处.....
+
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 File file = files.get(position);
 
 
-                AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
+                YesNoDialog yesNoDialog = new YesNoDialog(getActivity());
 
-                ab.setTitle("危险!");
+                yesNoDialog.getTitleTv().setText("恢复方式[X(关闭)]");
+                yesNoDialog.getMsgTv().setText("默认恢复:对于大部分机型选择\n\n强制恢复:默认恢复失败请选择\n默认恢复:数据会丢失\n强制恢复:\n数据不会丢失");
 
-                ab.setMessage("恢复设备数据，会擦除掉之前所有的数据\n如果想要共存请在[切换linux]中\n创建一个新的容器,2种数据将都会保存\n是否继续?");
+                yesNoDialog.getYesTv().setText("默认恢复");
 
-                ab.setPositiveButton("我清楚我在做什么", new DialogInterface.OnClickListener() {
+                yesNoDialog.getNoTv().setText("强制恢复");
+                yesNoDialog.getNoTv().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
 
-                        mListView.setVisibility(View.GONE);
-                        mTitle.setVisibility(View.VISIBLE);
-                        Toast.makeText(getContext(), "开始", Toast.LENGTH_SHORT).show();
-                        ab.create().dismiss();
-                        BackNewActivity.mIsRun = true;
-                        start(file);
+
+
+                        if (!(new File("/data/data/com.termux/files/home/storage").exists())){
+
+                            Toast.makeText(TermuxApplication.mContext, "没有找到 storage 目录,请创建", Toast.LENGTH_SHORT).show();
+
+                            TermuxApplication.mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+
+                                    TermuxActivity.mTerminalView.sendTextToTerminal("echo \"这块直接输入回车即可,然后再次进入强制恢复!\" \n");
+
+                                    TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage ");
+                                    getActivity().finish();
+                                }
+                            });
+
+
+
+                            return;
+                        }
+
+
+
+                        if(yesNoDialog.getInputSystemName().getText().toString().isEmpty()){
+                            yesNoDialog.getInputSystemName().setVisibility(View.VISIBLE);
+
+                            Toast.makeText(getContext(), "请输入系统名称!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+
+                        yesNoDialog.dismiss();
+
+                        MyDialog myDialog = new MyDialog(getActivity());
+
+                        myDialog.getDialog_title().setText("请稍等[此过程禁止切屏]");
+
+                        myDialog.getDialog_pro().setText("正在搜索多系统..");
+
+                        myDialog.getDialog_pro_prog().setMax(100);
+                        myDialog.getDialog_pro_prog().setProgress(6);
+
+                        myDialog.show();
+
+                        new QZUtils().main(myDialog,yesNoDialog.getInputSystemName().getText().toString(),file,RestoreFragment.this);
 
 
                     }
                 });
 
-                ab.setNeutralButton("我在考虑考虑", new DialogInterface.OnClickListener() {
+                yesNoDialog.show();
+
+                yesNoDialog.getTitleTv().setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            yesNoDialog.dismiss();
+                        }
+                    }
+                );
+
+
+                yesNoDialog.getYesTv().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ab.create().dismiss();
+                    public void onClick(View v) {
+
+                        yesNoDialog.dismiss();
+
+                        AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
+
+                        ab.setTitle("危险!");
+
+                        ab.setMessage("恢复设备数据，会擦除掉之前所有的数据\n如果想要共存请在[切换linux]中\n创建一个新的容器,2种数据将都会保存\n是否继续?");
+
+                        ab.setPositiveButton("我清楚我在做什么", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                mListView.setVisibility(View.GONE);
+                                mTitle.setVisibility(View.VISIBLE);
+                                Toast.makeText(getContext(), "开始", Toast.LENGTH_SHORT).show();
+                                ab.create().dismiss();
+                                BackNewActivity.mIsRun = true;
+                                start(file);
+
+
+                            }
+                        });
+
+                        ab.setNeutralButton("我在考虑考虑", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ab.create().dismiss();
+                            }
+                        });
+                        ab.show();
+
                     }
                 });
-                ab.show();
 
 
             }

@@ -2,6 +2,7 @@ package main.java.com.termux.app;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import main.java.com.termux.utils.SaveData;
 
 /**
  * A background job launched by Termux.
@@ -130,6 +133,10 @@ public final class BackgroundJob {
         }
     }
 
+
+
+
+
     static String[] buildEnvironment(boolean failSafe, String cwd) {
         new File(TermuxService.HOME_PATH).mkdirs();
 
@@ -153,9 +160,18 @@ public final class BackgroundJob {
             // Keep the default path so that system binaries can be used in the failsafe session.
             environment.add("PATH= " + System.getenv("PATH"));
         } else {
-            if (shouldAddLdLibraryPath()) {
-                environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+
+            if(SaveData.getData("start_launcher").equals("def")) {
+                if (shouldAddLdLibraryPath()) {
+                    environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+                }
+            }else{
+                if (shouldAddLdLibraryPath1()) {
+                    environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+                }
             }
+          //  environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+
             environment.add("LANG=en_US.UTF-8");
             environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
             environment.add("PWD=" + cwd);
@@ -164,6 +180,10 @@ public final class BackgroundJob {
 
         return environment.toArray(new String[0]);
     }
+
+
+
+
 
     private static boolean shouldAddLdLibraryPath() {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(TermuxService.PREFIX_PATH + "/etc/apt/sources.list")))) {
@@ -178,6 +198,21 @@ public final class BackgroundJob {
         }
         return false;
     }
+
+    private static boolean shouldAddLdLibraryPath1() {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(TermuxService.PREFIX_PATH + "/etc/apt/sources.list")))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (!line.startsWith("#") && line.contains("https://dl.bintray.com/termux/termux-packages-24")) {
+                    return false;
+                }
+            }
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Error trying to read sources.list", e);
+        }
+        return true;
+    }
+
 
     public static int getPid(Process p) {
         try {
@@ -246,5 +281,7 @@ public final class BackgroundJob {
         if (args != null) Collections.addAll(result, args);
         return result.toArray(new String[0]);
     }
+
+
 
 }

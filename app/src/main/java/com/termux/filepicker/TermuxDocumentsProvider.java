@@ -72,12 +72,18 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
         row.add(Root.COLUMN_ROOT_ID, getDocIdForFile(BASE_DIR));
         row.add(Root.COLUMN_DOCUMENT_ID, getDocIdForFile(BASE_DIR));
         row.add(Root.COLUMN_SUMMARY, null);
-        row.add(Root.COLUMN_FLAGS, Root.FLAG_SUPPORTS_CREATE | Root.FLAG_SUPPORTS_SEARCH);
+        //row.add(Root.COLUMN_FLAGS, Root.FLAG_SUPPORTS_CREATE | Root.FLAG_SUPPORTS_SEARCH);
+        row.add(Root.COLUMN_FLAGS, Root.FLAG_SUPPORTS_CREATE | Root.FLAG_SUPPORTS_SEARCH | Root.FLAG_SUPPORTS_IS_CHILD);
         row.add(Root.COLUMN_TITLE, applicationName);
         row.add(Root.COLUMN_MIME_TYPES, ALL_MIME_TYPES);
         row.add(Root.COLUMN_AVAILABLE_BYTES, BASE_DIR.getFreeSpace());
         row.add(Root.COLUMN_ICON, R.drawable.ic_launcher);
         return result;
+    }
+
+    @Override
+    public boolean isChildDocument(String parentDocumentId, String documentId) {
+        return documentId.startsWith(parentDocumentId);
     }
 
     @Override
@@ -117,6 +123,31 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
     public boolean onCreate() {
         return true;
     }
+
+    @Override
+    public String createDocument(String parentDocumentId, String mimeType, String displayName) throws FileNotFoundException {
+        File newFile = new File(parentDocumentId, displayName);
+        int noConflictId = 2;
+        while (newFile.exists()) {
+            newFile = new File(parentDocumentId, displayName + " (" + noConflictId++ + ")");
+        }
+        try {
+            boolean succeeded;
+            if (Document.MIME_TYPE_DIR.equals(mimeType)) {
+                succeeded = newFile.mkdir();
+            } else {
+                succeeded = newFile.createNewFile();
+            }
+            if (!succeeded) {
+                throw new FileNotFoundException("Failed to create document with id " + newFile.getPath());
+            }
+        } catch (IOException e) {
+            throw new FileNotFoundException("Failed to create document with id " + newFile.getPath());
+        }
+        return newFile.getPath();
+    }
+
+
 
     @Override
     public void deleteDocument(String documentId) throws FileNotFoundException {
@@ -221,10 +252,14 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
 
         int flags = 0;
         if (file.isDirectory()) {
-            if (file.isDirectory() && file.canWrite()) flags |= Document.FLAG_DIR_SUPPORTS_CREATE;
+          //  if (file.isDirectory() && file.canWrite()) flags |= Document.FLAG_DIR_SUPPORTS_CREATE;
+            if (file.canWrite()) flags |= Document.FLAG_DIR_SUPPORTS_CREATE;
         } else if (file.canWrite()) {
-            flags |= Document.FLAG_SUPPORTS_WRITE | Document.FLAG_SUPPORTS_DELETE;
+           // flags |= Document.FLAG_SUPPORTS_WRITE | Document.FLAG_SUPPORTS_DELETE;
+            flags |= Document.FLAG_SUPPORTS_WRITE;
         }
+
+        if (file.getParentFile().canWrite()) flags |= Document.FLAG_SUPPORTS_DELETE;
 
         final String displayName = file.getName();
         final String mimeType = getMimeType(file);

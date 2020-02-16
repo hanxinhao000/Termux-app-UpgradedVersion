@@ -72,7 +72,7 @@ public class DownLoadService extends Service {
         switch (FLAG) {
 
             case 0:
-                url = "http://45.205.175.163:29952/listdata/termux_maoxian.zip";
+                url = "http://23.235.155.110:29952/listdata/termux_maoxian.zip";//
 
                 File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/");
                 if (!file1.exists()) {
@@ -83,7 +83,7 @@ public class DownLoadService extends Service {
 
                 break;
             case 1:
-                url = "http://45.205.175.163:29952/listdata/ubuntu-xinhao.iso";
+                url = "http://23.235.155.110:29952/listdata/ubuntu-xinhao.iso";//
 
                 File file2 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/");
                 if (!file2.exists()) {
@@ -93,7 +93,7 @@ public class DownLoadService extends Service {
                 name = "ubuntu-xinhao.iso";
                 break;
             case 2:
-                url = "http://45.205.175.163:29952/listdata/debian_linux.tar.gz";
+                url = "http://23.235.155.110:29952/listdata/debian_linux.tar.gz";//
                 File file3 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/");
                 if (!file3.exists()) {
                     file3.mkdirs();
@@ -103,7 +103,7 @@ public class DownLoadService extends Service {
 
                 break;
             case 3:
-                url = "http://45.205.175.163:29952/listdata/debian_linux_2.tar.gz";
+                url = "http://23.235.155.110:29952/listdata/debian_linux_2.tar.gz";//
                 File file4 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/");
                 if (!file4.exists()) {
                     file4.mkdirs();
@@ -112,7 +112,7 @@ public class DownLoadService extends Service {
                 name = "debian_linux_2.tar.gz";
                 break;
             case 4:
-                url = "http://45.205.175.163:29952/listdata/ubuntu_gui.tar.gz";
+                url = "http://23.235.155.110:29952/listdata/ubuntu_gui.tar.gz";//
                 File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/data/");
                 if (!file5.exists()) {
                     file5.mkdirs();
@@ -123,7 +123,7 @@ public class DownLoadService extends Service {
 
 
             case 5:
-                url = "http://45.205.175.163:29952/listdata/C_C++.zip";
+                url = "http://23.235.155.110:29952/listdata/C_C++.zip";
                 File file6 = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/");
                 if (!file6.exists()) {
                     file6.mkdirs();
@@ -132,7 +132,7 @@ public class DownLoadService extends Service {
                 name = "C_C++.zip";
                 break;
             case 6:
-                url = "http://45.205.175.163:29952/listdata/kail_termux.tar.gz";
+                url = "http://23.235.155.110:29952/listdata/kail_termux.tar.gz";//
                 File file7 = new File(Environment.getExternalStorageDirectory(), "/xinhao/data/");
                 if (!file7.exists()) {
                     file7.mkdirs();
@@ -141,7 +141,7 @@ public class DownLoadService extends Service {
                 name = "kail_termux.tar.gz";
                 break;
             case 7:
-                url = "http://45.205.175.163:29952/listdata/termux_qemu.tar.gz";
+                url = "http://23.235.155.110:29952/listdata/termux_qemu.tar.gz";//
                 File file8 = new File(Environment.getExternalStorageDirectory(), "/xinhao/data/");
                 if (!file8.exists()) {
                     file8.mkdirs();
@@ -150,7 +150,7 @@ public class DownLoadService extends Service {
                 name = "termux_qemu.tar.gz";
                 break;
             case 8:
-                url = "http://45.205.175.163:29952/listdata/shengtou_msf.zip";
+                url = "http://23.235.155.110:29952/listdata/shengtou_msf.zip";
                 File file9 = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/");
                 if (!file9.exists()) {
                     file9.mkdirs();

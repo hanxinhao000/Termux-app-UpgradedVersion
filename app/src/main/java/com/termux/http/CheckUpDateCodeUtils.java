@@ -64,7 +64,7 @@ public class CheckUpDateCodeUtils {
 
                     } else {
 
-                        TermuxApplication.mHandler.post(new Runnable() {
+                        /*TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 try {
@@ -82,7 +82,7 @@ public class CheckUpDateCodeUtils {
                                     e.printStackTrace();
                                 }
                             }
-                        });
+                        });*/
 
                     }
 
@@ -93,7 +93,7 @@ public class CheckUpDateCodeUtils {
                         @Override
                         public void run() {
 
-                            Toast.makeText(TermuxApplication.mContext, "服务器请求异常," + e.toString(), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(TermuxApplication.mContext, "服务器请求异常," + e.toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -104,7 +104,7 @@ public class CheckUpDateCodeUtils {
                         @Override
                         public void run() {
 
-                            Toast.makeText(TermuxApplication.mContext, "服务器请求异常," + e.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(TermuxApplication.mContext, "服务器请求异常," + e.toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -214,7 +214,7 @@ public class CheckUpDateCodeUtils {
             }
             File file = new File(filePath);
             if (!file.exists()) {
-                Toast.makeText(con, "没有内存卡权限？", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, "没有内存卡权限？" + filePath, Toast.LENGTH_SHORT).show();
                 return false;
             }
             Intent intent = new Intent(Intent.ACTION_VIEW);

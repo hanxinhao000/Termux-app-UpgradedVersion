@@ -1,5 +1,7 @@
 package main.java.com.termux.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Environment;
 import android.text.SpannableString;
@@ -29,10 +31,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 import main.java.com.termux.activity.BackNewActivity;
+import main.java.com.termux.app.TermuxActivity;
 import main.java.com.termux.app.TermuxInstaller;
 import main.java.com.termux.app.ZipUtils;
 import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.fragment.utils.QZHFUtils;
 import main.java.com.termux.utils.ExeCommand;
+import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.view.YesNoDialog;
 
 
 public class BackupFragment extends BaseFragment implements View.OnClickListener {
@@ -109,84 +115,158 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
 
                 }
 
-                Toast.makeText(getContext(), "开始", Toast.LENGTH_SHORT).show();
 
-                String cpu = TermuxInstaller.determineTermuxArchName();
+                YesNoDialog yesNoDialog = new YesNoDialog(getActivity());
 
-                switch (cpu) {
-                    case "aarch64":
-                        writerFile("arm_64/busybox", mFileHome, 1024);
-                        writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
-                        break;
-                    case "arm":
-                        writerFile("arm/busybox", mFileHome, 1024);
-                        writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
-                        break;
-                    case "x86_64":
-                        writerFile("x86/busybox", mFileHome, 1024);
-                        writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
-                        break;
-                }
+                yesNoDialog.getTitleTv().setText("开始备份");
+
+                yesNoDialog.getMsgTv().setText("选择您的备份方式:\n默认备份\n强制备份\n默认备份:[2gb以下推荐]适配大部分机型，少数机型(数据大)会少文件\n强制备份:[2gb以上推荐]备份超大数据出错率会大大降低!");
+
+                yesNoDialog.getYesTv().setText("默认备份");
+
+                yesNoDialog.getNoTv().setText("强制备份");
+
+                yesNoDialog.getNoTv().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        yesNoDialog.dismiss();
+
+
+                        if (!(new File("/data/data/com.termux/files/home/storage").exists())){
+
+                            Toast.makeText(TermuxApplication.mContext, "没有找到 storage 目录,请创建", Toast.LENGTH_SHORT).show();
+
+                            TermuxApplication.mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    TermuxActivity.mTerminalView.sendTextToTerminal("echo \"这块直接输入回车即可,然后再次进入强制备份!\" \n");
+
+                                    TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage ");
+
+                                    getActivity().finish();
+                                }
+                            });
+
+                            return;
+                        }
+
+                        MyDialog myDialog = new MyDialog(getActivity());
+
+                        myDialog.getDialog_title().setText("强制备份");
+
+                        myDialog.getDialog_pro_prog().setMax(100);
+
+                        myDialog.show();
+
+
+
+
+                        new QZHFUtils().main(myDialog,simpleDateFormat.format(new Date()) + ".tar.gz",BackupFragment.this);
+                    }
+                });
+
+                yesNoDialog.show();
+
+                yesNoDialog.getYesTv().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(), "开始", Toast.LENGTH_SHORT).show();
+
+                        yesNoDialog.dismiss();
+                        String cpu = TermuxInstaller.determineTermuxArchName();
+
+                        switch (cpu) {
+                            case "aarch64":
+                                writerFile("arm_64/busybox", mFileHome, 1024);
+                                writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
+                                break;
+                            case "arm":
+                                writerFile("arm/busybox", mFileHome, 1024);
+                                writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
+                                break;
+                            case "x86_64":
+                                writerFile("x86/busybox", mFileHome, 1024);
+                                writerFile("arm_64/busybox_static", mFileHomeStatic, 1024);
+                                break;
+                        }
 
                /* test();
                 Toast.makeText(getContext(), "备份完成", Toast.LENGTH_SHORT).show();
                 if (true) {
                     return;
                 }*/
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Runtime.getRuntime().exec("chmod 777 " + mFileHome.getAbsolutePath());
-                            Runtime.getRuntime().exec("chmod 777 " + mFileHomeStatic.getAbsolutePath());
-
-                            //tar -cpvzf /test/backup.tar.gz / --exclude=/test
-
-                            Log.e("XINHAO_HAN", "run: " + mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath());
-                            ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath(), 60000);
-                            // ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() , 60000);
-                            while (cmd.isRunning()) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
                                 try {
-                                    Thread.sleep(50);
-                                } catch (Exception e) {
+                                    Runtime.getRuntime().exec("chmod 777 " + mFileHome.getAbsolutePath());
+                                    Runtime.getRuntime().exec("chmod 777 " + mFileHomeStatic.getAbsolutePath());
 
-                                }
-                                String buf = cmd.getResult();
-                                //do something
+                                    //tar -cpvzf /test/backup.tar.gz / --exclude=/test
 
-                                TermuxApplication.mHandler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (!buf.equals("")) {
-                                            SpannableString spannableString = new SpannableString("备份完成会自定退出!!!!!!!!不要说备份着闪退之类的!!备份完成自动退出  \n\n点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[正在备份...]\n\n" + buf);
-                                            spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 38, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                                            title.setText(spannableString);
+                                    Log.e("XINHAO_HAN", "run: " + mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath());
+                                    ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() + "  tar -zcvf " + mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz  " + mFileHomeFiles.getAbsolutePath(), 60000);
+                                    // ExeCommand cmd = new ExeCommand(false).run(mFileHome.getAbsolutePath() , 60000);
+                                    while (cmd.isRunning()) {
+                                        try {
+                                            Thread.sleep(50);
+                                        } catch (Exception e) {
 
                                         }
+                                        String buf = cmd.getResult();
+                                        //do something
+
+                                        TermuxApplication.mHandler.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if (!buf.equals("")) {
+                                                    SpannableString spannableString = new SpannableString("备份完成会自定退出!!!!!!!!不要说备份着闪退之类的!!备份完成自动退出  \n\n点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[正在备份...]\n\n" + buf);
+                                                    spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 38, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                                                    title.setText(spannableString);
+
+                                                }
+                                            }
+                                        });
+
+                                        Log.e("XINHAO_CMD", "onClick: " + buf);
+
                                     }
-                                });
-
-                                Log.e("XINHAO_CMD", "onClick: " + buf);
-
-                            }
 
 
-                            TermuxApplication.mHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    boom.setVisibility(View.VISIBLE);
-                                    mStartBackup.setText("备份完成!");
-                                    Toast.makeText(getContext(), "备份完成!", Toast.LENGTH_SHORT).show();
-                                    title.setText("点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[备份完成!]");
-                                    getActivity().finish();
+                                    TermuxApplication.mHandler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            boom.setVisibility(View.VISIBLE);
+                                            mStartBackup.setText("备份完成!");
+                                            AlertDialog.Builder ab = new AlertDialog.Builder(getContext());
+                                            ab.setTitle("备份完成!");
+                                            ab.setCancelable(false);
+                                            ab.setMessage("已成功备份,备份文件在:\n内部存储/xinhao/data/\n目录下");
+                                            ab.setNegativeButton("我知道了", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    getActivity().finish();
+                                                }
+                                            });
+                                            //Toast.makeText(getContext(), "备份完成!", Toast.LENGTH_SHORT).show();
+                                            title.setText("点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[备份完成!]");
+                                            ab.show();
+                                        }
+                                    });
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
-                            });
+                            }
+                        }).start();
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
                     }
-                }).start();
+                });
+
+
+
 
 
                 break;
@@ -200,7 +280,7 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
     private void test() {
 
         try {
-            tarFile(mFileHomeFiles,new File(mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz"));
+            tarFile(mFileHomeFiles, new File(mFileHomeFilesGz.getAbsolutePath() + "/" + simpleDateFormat.format(new Date()) + ".tar.gz"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -209,7 +289,7 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    private static void tarFile(File inFile,File outFile) throws Exception {
+    private static void tarFile(File inFile, File outFile) throws Exception {
 
         TarArchiveOutputStream taos = new TarArchiveOutputStream(new FileOutputStream(outFile));
         TarArchiveEntry tae = new TarArchiveEntry(inFile);

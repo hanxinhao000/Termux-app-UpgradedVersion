@@ -35,9 +35,9 @@ public class LunTanActivity extends AppCompatActivity {
         webview.getSettings().setJavaScriptEnabled(true);
         //设置进度条
 
-        et_sousuo.setText("http://45.205.175.163:29952/luntan/upload/forum.php?forumlist=1&mobile=2");
+        et_sousuo.setText("http://23.235.155.110:29952/luntan/upload/forum.php?forumlist=1&mobile=2");
 
-        webview.loadUrl("http://45.205.175.163:29952/luntan/upload/forum.php?forumlist=1&mobile=2");
+        webview.loadUrl("http://23.235.155.110:29952/luntan2/");
 
         sousuo.setOnClickListener(new View.OnClickListener() {
             @Override

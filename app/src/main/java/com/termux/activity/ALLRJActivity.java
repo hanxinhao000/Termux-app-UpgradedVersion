@@ -186,12 +186,20 @@ public class ALLRJActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.show();
-                        myDialog.getDialog_title().setText("正在查询软件包请稍后....");
-                        myDialog.getDialog_pro_prog().setMax(100);
-                        myDialog.getDialog_pro_prog().setProgress(20);
-                        TermuxActivity.mTerminalView.sendTextToTerminal("clear \n");
-                        TermuxActivity.mTerminalView.sendTextToTerminal("apt-cache search a \n");
+
+
+                        try {
+                            myDialog.show();
+                            myDialog.getDialog_title().setText("正在查询软件包请稍后....");
+                            myDialog.getDialog_pro_prog().setMax(100);
+                            myDialog.getDialog_pro_prog().setProgress(20);
+                            TermuxActivity.mTerminalView.sendTextToTerminal("clear \n");
+                            TermuxActivity.mTerminalView.sendTextToTerminal("apt-cache search a \n");
+                        }catch (Exception e){
+
+                            Toast.makeText(ALLRJActivity.this, "出现了一个错误,请重新在试!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
                 });
 
@@ -219,9 +227,14 @@ public class ALLRJActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            myDialog.dismiss();
-                            Toast.makeText(ALLRJActivity.this, "没有查询到任何数据!", Toast.LENGTH_SHORT).show();
-                            finish();
+                            try {
+                                myDialog.dismiss();
+                                Toast.makeText(ALLRJActivity.this, "没有查询到任何数据!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }catch (Exception e){
+                                Toast.makeText(ALLRJActivity.this, "出现了一个错误,请重新在试!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
                         }
                     });
 

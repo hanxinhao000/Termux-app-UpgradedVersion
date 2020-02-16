@@ -28,6 +28,7 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
+
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -109,7 +110,7 @@
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-
+    <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
     <application
         android:name="main.java.com.termux.application.TermuxApplication"
         android:allowBackup="true"
@@ -139,6 +140,10 @@
             android:name="main.java.com.termux.weblinux.AboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
+        <receiver android:name="main.com.termux.TermuxOpenReceiver"/>
+
+        <receiver android:name="main.java.com.termux.app.TermuxOpenReceiver"/>
+
         <service
             android:name="main.java.com.termux.activity.DownLoadService"
             android:enabled="true"
@@ -167,6 +172,7 @@
 
         <activity
             android:name="main.java.com.termux.android_cm.LauncherActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:enabled="true"
@@ -392,7 +398,7 @@
 
         <activity
             android:name="main.java.com.termux.app.TermuxActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
             android:label="@string/application_name"
             android:launchMode="singleTask"
             android:resizeableActivity="true">

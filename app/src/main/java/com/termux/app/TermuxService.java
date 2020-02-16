@@ -174,6 +174,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
                 updateNotification();
             } else {
                 boolean failsafe = intent.getBooleanExtra(TermuxActivity.TERMUX_FAILSAFE_SESSION_ACTION, false);
+                //标记2345
                 TerminalSession newSession = createTermSession(executablePath, arguments, cwd, failsafe);
 
                 // Transform executable path to session name, e.g. "/bin/do-something.sh" => "do something.sh".
@@ -401,8 +402,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
 
       /*  if (sessionType == SESSION_TYPE_SERIAL) {
             environment.add("SERIAL_CONSOLE_NUMBER=" + sessionNumber);
-        }
-*/
+        }*/
         environment.add("SERIAL_CONSOLE_NUMBER=" + sessionNumber);
         String processArgs[] = {execPath + "/libbash.so", execPath + "/libentrypoint.so", String.valueOf(sessionType)};
         TerminalSession session = new TerminalSession(execPath + "/libbash.so", home, processArgs, environment.toArray(new String[0]), this);
@@ -411,6 +411,56 @@ public final class TermuxService extends Service implements SessionChangedCallba
 
         return session;
     }
+
+
+    public TerminalSession createTermSession2(String executablePath, String[] arguments, String cwd, boolean failSafe) {
+        new File(HOME_PATH).mkdirs();
+
+        if (cwd == null) cwd = HOME_PATH;
+
+        String[] env = BackgroundJob.buildEnvironment(failSafe, cwd);
+        boolean isLoginShell = false;
+
+        if (executablePath == null) {
+            if (!failSafe) {
+                for (String shellBinary : new String[]{"login", "bash", "zsh"}) {
+                    File shellFile = new File(PREFIX_PATH + "/bin/" + shellBinary);
+                    if (shellFile.canExecute()) {
+                        executablePath = shellFile.getAbsolutePath();
+                        break;
+                    }
+                }
+            }
+
+            if (executablePath == null) {
+                // Fall back to system shell as last resort:
+                executablePath = "/system/bin/sh";
+            }
+            isLoginShell = true;
+        }
+
+        String[] processArgs = BackgroundJob.setupProcessArgs(executablePath, arguments);
+        executablePath = processArgs[0];
+        int lastSlashIndex = executablePath.lastIndexOf('/');
+        String processName = (isLoginShell ? "-" : "") +
+            (lastSlashIndex == -1 ? executablePath : executablePath.substring(lastSlashIndex + 1));
+
+        String[] args = new String[processArgs.length];
+        args[0] = processName;
+        if (processArgs.length > 1) System.arraycopy(processArgs, 1, args, 1, processArgs.length - 1);
+
+        TerminalSession session = new TerminalSession(executablePath, cwd, args, env, this);
+        mTerminalSessions.add(session);
+        updateNotification();
+
+        // Make sure that terminal styling is always applied.
+        Intent stylingIntent = new Intent("com.termux.app.reload_style");
+        stylingIntent.putExtra("com.termux.app.reload_style", "styling");
+        sendBroadcast(stylingIntent);
+
+        return session;
+    }
+
 
 
     public static String getEnvironmentPrefix(final Context context) {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="30dp"
-    android:background="#1BBC9B"
+    android:background="#2b2b2b"
     tools:context="main.java.com.termux.activity.FunctionActivity">
 
 
@@ -38,7 +38,7 @@
 
             <RelativeLayout
                 android:id="@+id/sms"
-                android:background="#1BBC9B"
+                android:background="#2b2b2b"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -86,7 +86,7 @@
 
             <RelativeLayout
                 android:id="@+id/welcome_String"
-                android:background="#1BBC9B"
+                android:background="#2b2b2b"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -5,7 +5,7 @@
     <string name="shared_user_label">Termux user</string>
     <string name="new_session">创建会话窗口</string>
     <string name="new_session_failsafe">失效[创建会话窗口失败]</string>
-    <string name="toggle_soft_keyboard">键盘[长按打开电脑键盘]</string>
+    <string name="toggle_soft_keyboard">键盘</string>
     <string name="reset_terminal">重置</string>
     <string name="style_terminal">样式(主题)</string>
     <string name="share_transcript_title">Terminal transcript</string>

@@ -79,8 +79,8 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
     private File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/termux_maoxian.zip");
     private File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/ubuntu-xinhao.iso");
-    private File file2 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/debian_linux.tar.gz");
-    private File file3 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/debian_linux_2.tar.gz");
+    private File file2 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/debian_linux.tar.gz");//
+    private File file3 = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso/debian_linux_2.tar.gz");//
     private File file4 = new File(Environment.getExternalStorageDirectory(), "/xinhao/data/ubuntu_gui.tar.gz");
 
     private File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/C_C++.zip");
