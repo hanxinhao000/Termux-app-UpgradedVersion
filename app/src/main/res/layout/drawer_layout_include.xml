@@ -51,7 +51,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:padding="2dp"
-                           android:text="本地版本:[0.92.66]"
+                           android:text="本地版本:[0.92.77]"
                            android:textColor="#fff"
                            android:textSize="14sp"
                            android:textStyle="bold" />
@@ -62,7 +62,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:padding="2dp"
-                           android:text="云端版本:[0.92.66]"
+                           android:text="云端版本:[0.92.77]"
                            android:textColor="#fff"
                            android:textSize="14sp"
                            android:textStyle="bold" />
@@ -214,6 +214,179 @@
 
            </RelativeLayout>
 
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_marginTop="10dp"
+               android:layout_height="wrap_content">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:orientation="vertical"
+                   android:background="#222b2b2b"
+                   android:layout_height="wrap_content">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:padding="8dp"
+                       android:layout_gravity="center_vertical"
+                       android:orientation="horizontal">
+
+                       <ImageView
+                           android:layout_width="25dp"
+                           android:layout_height="25dp"
+                           android:src="@drawable/termux_code" />
+
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="10dp"
+                           android:layout_weight="1"
+                           android:text="源功能"
+                           android:textColor="#fff"
+                           android:textSize="15sp"
+                           android:textStyle="bold" />
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:orientation="horizontal"
+                       android:layout_height="wrap_content">
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="visible"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:id="@+id/switch_qinghua_new"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/termux_qh" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="[新]清华源"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="不稳定"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="visible"
+                           android:id="@+id/switch_main_new"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/yuan_code" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="官方源"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="切换到官方"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="invisible"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/yuan_code" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="[新]清华源"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="官方源在实验室"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+
+
+                   </LinearLayout>
+
+
+               </LinearLayout>
+
+
+
+
+           </RelativeLayout>
 
 
            <RelativeLayout
@@ -567,6 +740,138 @@
 
 
 
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:id="@+id/switch_code"
+                           android:visibility="visible"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/dsk" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="快速vnc"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="默认端口:1\n默认密码:123456"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="visible"
+                           android:id="@+id/cof_vnc"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/dsk" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="配置vnc"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="高级设置"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:orientation="horizontal"
+                       android:layout_height="wrap_content">
+
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="visible"
+                           android:id="@+id/gaoji_vnc"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/dsk" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="配置vnc(高级)"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="更高级的设置"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
                        <LinearLayout
                            android:layout_width="0dp"
                            android:layout_weight="2"
@@ -579,7 +884,7 @@
                            <ImageView
                                android:layout_width="25dp"
                                android:layout_height="25dp"
-                               android:src="@drawable/mulu" />
+                               android:src="@drawable/dsk" />
 
                            <TextView
                                android:layout_width="match_parent"
@@ -587,7 +892,7 @@
                                android:layout_marginTop="20dp"
                                android:layout_weight="1"
                                android:gravity="center"
-                               android:text="高级目录"
+                               android:text="配置vnc"
                                android:textColor="#fff"
                                android:textSize="13sp"
                                android:textStyle="bold" />
@@ -598,7 +903,7 @@
                                android:layout_marginTop="2dp"
                                android:layout_weight="1"
                                android:gravity="center"
-                               android:text="以图形方式打开"
+                               android:text="高级设置"
                                android:layout_marginBottom="10dp"
                                android:textColor="#fff"
                                android:textSize="10sp"
@@ -608,7 +913,9 @@
 
 
 
+
                    </LinearLayout>
+
 
 
 
@@ -871,8 +1178,155 @@
 
 
 
+
+
+
                    </LinearLayout>
 
+
+
+
+                   <TextView
+                       android:layout_width="100dp"
+                       android:background="#fff"
+                       android:layout_marginTop="20dp"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_height="1px"/>
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:orientation="horizontal"
+                       android:layout_marginTop="20dp"
+                       android:layout_height="wrap_content">
+
+
+                       <LinearLayout
+                           android:id="@+id/utermux_downlod"
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/baidu_download" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="下载站"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="百度网盘[gzdp]"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+                       <LinearLayout
+
+                           android:layout_width="0dp"
+                           android:id="@+id/winlog_download"
+                           android:layout_weight="1"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/winlog" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="下载站2"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="WINLOG提供"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:visibility="invisible"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/baidu_download" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="Utermux下载站"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="百度网盘[gzdp]"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+
+
+
+
+                   </LinearLayout>
 
 
 

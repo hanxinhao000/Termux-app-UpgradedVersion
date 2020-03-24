@@ -102,6 +102,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -117,6 +118,7 @@ import main.java.com.termux.activity.ALLRJActivity;
 import main.java.com.termux.activity.BackNewActivity;
 import main.java.com.termux.activity.BackRestoreActivity;
 import main.java.com.termux.activity.CustomActivity;
+import main.java.com.termux.activity.FontActivity;
 import main.java.com.termux.activity.FunAddActivity;
 import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.ListDataActivity;
@@ -1373,7 +1375,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.92.66]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.92.77]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1400,7 +1402,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             } else {
                                 visition1.setTextColor(Color.WHITE);
                             }
-                            visition4.setText("本地版本:[0.92.66]\n最新版本:[" + versionName + "]");
+                            visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
 
                             visition1.setText("最新版本:[" + versionName + "]");
 
@@ -1418,7 +1420,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.92.66]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1694,6 +1696,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout lishi;
 
     private LinearLayout kongxia_linux;
+    private LinearLayout font_termux;
+    private LinearLayout switch_code;
+    private LinearLayout termux_color;
+    private LinearLayout utermux_downlod;
+    private LinearLayout winlog_download;
+    private LinearLayout switch_qinghua_new;
+    private LinearLayout switch_main_new;
+    private LinearLayout switch_code_vnc;
+    private LinearLayout cof_vnc;
+    private LinearLayout gaoji_vnc;
 
 
     @Override
@@ -1714,11 +1726,27 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //insFile();
 
 
+
+
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
         mTermux_keybot = findViewById(R.id.termux_keybot);
 
+
+
+        switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
+
         kongxia_linux = findViewById(R.id.kongxia_linux);
+
+        switch_code = findViewById(R.id.switch_code);
+
+        utermux_downlod = findViewById(R.id.utermux_downlod);
+
+        winlog_download = findViewById(R.id.winlog_download);
+
+        font_termux = findViewById(R.id.font_termux);
+
+        cof_vnc = findViewById(R.id.cof_vnc);
 
         fun_all_ll = findViewById(R.id.fun_all_ll);
         lishi = findViewById(R.id.lishi);
@@ -1744,15 +1772,593 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         quanxian_123 = findViewById(R.id.quanxian_123);
         dianhua_123 = findViewById(R.id.dianhua_123);
 
+        gaoji_vnc  = findViewById(R.id.gaoji_vnc);
+
+        switch_main_new = findViewById(R.id.switch_main_new);
+
+        gaoji_vnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                try {
+                    Intent intent = new Intent();
+
+                    intent.setAction("com.utermux.action.vnc");
+
+                    intent.putExtra("utermux_as", "true");
+
+
+                    startActivity(intent);
+                }catch (Exception e){
+
+                    e.printStackTrace();
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle("您还未安装该插件!");
+
+                    //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                    ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+
+                    ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            ab.create().dismiss();
+
+                            Intent intent = new Intent();
+                            intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                            intent.setAction(Intent.ACTION_VIEW);
+                            startActivity(intent); //启动浏览器
+
+                        }
+                    });
+
+                    ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+                }
+            }
+
+        });
+
+
+        cof_vnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("输入信息");
+
+                View inflate = View.inflate(TermuxApplication.mContext, R.layout.dialog_view_vnc, null);
+
+                EditText address = inflate.findViewById(R.id.address);
+                EditText port = inflate.findViewById(R.id.port);
+                EditText password = inflate.findViewById(R.id.password);
+
+                ab.setView(inflate);
+
+                ab.setPositiveButton("连接", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ab.create().dismiss();
+
+                        String help_vnc = SaveData.getData("help_vnc_1");
+
+                        if(true){
+
+                            AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
+
+                            abb.setTitle("如果鼠标不动");
+
+
+                            abb.setCancelable(false);
+
+                            abb.setView(R.layout.dialog_view_vnc_2);
+
+                            abb.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    abb.create().dismiss();
+                                    SaveData.saveData("help_vnc_1","xinhao");
+
+                                    try {
+
+                                        Intent intent = new Intent();
+
+                                        intent.setAction("com.utermux.action.vnc");
+                                        intent.putExtra("utermux_as", "false");
+                                        intent.putExtra("address", address.getText().toString());
+                                        intent.putExtra("port", port.getText().toString());
+                                        intent.putExtra("password", password.getText().toString());
+
+                                        startActivity(intent);
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                        AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                        ab.setTitle("您还未安装该插件!");
+
+                                        //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                        ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+
+                                        ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                ab.create().dismiss();
+
+                                                Intent intent = new Intent();
+                                                intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                                intent.setAction(Intent.ACTION_VIEW);
+                                                startActivity(intent); //启动浏览器
+
+                                            }
+                                        });
+
+                                        ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                ab.create().dismiss();
+                                            }
+                                        });
+
+                                        ab.show();
+                                    }
+                                }
+                            });
+
+                            abb.show();
+                        }else{
+
+                            try {
+
+                                Intent intent = new Intent();
+
+                                intent.setAction("com.utermux.action.vnc");
+                                intent.putExtra("utermux_as", "false");
+                                intent.putExtra("address", address.getText().toString());
+                                intent.putExtra("port", port.getText().toString());
+                                intent.putExtra("password", password.getText().toString());
+
+                                startActivity(intent);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                ab.setTitle("您还未安装该插件!");
+
+                                //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+
+                                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ab.create().dismiss();
+
+                                        Intent intent = new Intent();
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        startActivity(intent); //启动浏览器
+
+                                    }
+                                });
+
+                                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ab.create().dismiss();
+                                    }
+                                });
+
+                                ab.show();
+                            }
+
+                        }
+
+
+
+                    }
+                });
+
+                ab.show();
+
+            }
+        });
+
+
+        switch_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+
+                String help_vnc = SaveData.getData("help_vnc_1");
+
+                if(true){
+
+                    AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
+
+                    abb.setTitle("如果鼠标不动");
+
+
+                    abb.setCancelable(false);
+
+                    abb.setView(R.layout.dialog_view_vnc_2);
+
+                    abb.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            abb.create().dismiss();
+                            SaveData.saveData("help_vnc_1","xinhao");
+
+                            try {
+
+                                Intent intent = new Intent();
+
+                                intent.setAction("com.utermux.action.vnc");
+                                intent.putExtra("utermux_as", "false");
+                                intent.putExtra("address", "127.0.0.1");
+                                intent.putExtra("port", "5901");
+                                intent.putExtra("password", "123456");
+
+                                startActivity(intent);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                ab.setTitle("您还未安装该插件!");
+
+                                //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+
+                                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ab.create().dismiss();
+
+                                        Intent intent = new Intent();
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        startActivity(intent); //启动浏览器
+
+                                    }
+                                });
+
+                                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ab.create().dismiss();
+                                    }
+                                });
+
+                                ab.show();
+                            }
+                        }
+                    });
+
+                    abb.show();
+                }else{
+                    try {
+
+                        Intent intent = new Intent();
+
+                        intent.setAction("com.utermux.action.vnc");
+                        intent.putExtra("utermux_as", "false");
+                        intent.putExtra("address", "127.0.0.1");
+                        intent.putExtra("port", "5901");
+                        intent.putExtra("password", "123456");
+
+                        startActivity(intent);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                        ab.setTitle("您还未安装该插件!");
+
+                        //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                        ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+
+                        ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                ab.create().dismiss();
+
+                                Intent intent = new Intent();
+                                intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                intent.setAction(Intent.ACTION_VIEW);
+                                startActivity(intent); //启动浏览器
+
+                            }
+                        });
+
+                        ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ab.create().dismiss();
+                            }
+                        });
+
+                        ab.show();
+                    }
+                }
+
+
+
+
+
+
+
+
+            }
+        });
+
+
+        switch_qinghua_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("提示");
+
+                ab.setMessage("该操作会覆盖你原来的源文件,是否继续 ");
+
+                ab.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                 /*       writerFile("qh_sources.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
+                        writerFile("qh_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
+                        writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
+                        Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
+
+                         mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list && sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && apt update && apt upgrade \n");
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+
+                ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(TermuxActivity.this, "未做任何改动!", Toast.LENGTH_SHORT).show();
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                        ab.create().dismiss();
+                    }
+                });
+                ab.show();
+
+
+            }
+        });
+
+        switch_main_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("提示");
+
+                ab.setMessage("该操作会覆盖你原来的源文件,是否继续 ");
+
+                ab.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                        writerFile("main_sources.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
+                        writerFile("main_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
+                        writerFile("main_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
+
+                        Toast.makeText(TermuxActivity.this, "切换到官方源成功!", Toast.LENGTH_SHORT).show();
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+
+                ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(TermuxActivity.this, "未做任何改动!", Toast.LENGTH_SHORT).show();
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                        ab.create().dismiss();
+                    }
+                });
+                ab.show();
+
+            }
+        });
+
+
+        File file2 = new File("/data/data/com.termux/files/home/dostermux");
+
+        if(!file2.exists()){
+            file2.mkdirs();
+        }
+
+
+        utermux_downlod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+                ab.setTitle("请注意");
+
+                ab.setMessage("提取码：gzdp");
+
+                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("https://pan.baidu.com/s/1iJj84b1o2ElXp_8TXmg8cw"));//Url 就是你要打开的网址
+                        intent.setAction(Intent.ACTION_VIEW);
+                        startActivity(intent); //启动浏览器
+                    }
+                });
+
+                ab.show();
+
+
+
+            }
+        });
+
+        winlog_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent();
+                intent.setData(Uri.parse("http://d.ixcmstudio.cn:21188/"));//Url 就是你要打开的网址
+                intent.setAction(Intent.ACTION_VIEW);
+                startActivity(intent); //启动浏览器
+
+            }
+        });
+
         kongxia_linux.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                getDrawer().closeDrawer(Gravity.LEFT);
 
                 writerFile("ubuntu_oo1.sh",new File("/data/data/com.termux/files/home/ubuntu_oo1.sh"));
 
 
                 TermuxActivity.mTerminalView.sendTextToTerminal("cd ~ \n");
+                TermuxActivity.mTerminalView.sendTextToTerminal("chmod 777 ubuntu_oo1.sh \n");
                 TermuxActivity.mTerminalView.sendTextToTerminal("./ubuntu_oo1.sh \n");
+            }
+        });
+
+
+        termux_color = findViewById(R.id.termux_color);
+
+        termux_color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog.Builder builder = new AlertDialog
+                    .Builder(TermuxActivity.this);
+                builder.setTitle("选择您的配色文件");
+                // builder.setMessage("这是个滚动列表，往下滑");
+                builder.setItems(NameColor.name, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       //NameColor.name[which]
+                        builder.create().dismiss();
+
+                        File file1 = new File("/data/data/com.termux/files/home/.termux/");
+
+                        if(!file1.exists()){
+                            file1.mkdirs();
+                        }
+
+                        File file = new File("/data/data/com.termux/files/home/.termux/colors.properties");
+
+                        if(file.exists()){
+                            boolean delete = file.delete();
+
+                            if(!delete){
+                                Toast.makeText(TermuxActivity.this, "你没有SD卡权限1!", Toast.LENGTH_SHORT).show();
+                                return;
+
+                            }
+
+                        }
+
+                        try {
+                            boolean newFile = file.createNewFile();
+
+                            if(!newFile){
+
+                                Toast.makeText(TermuxActivity.this, "你没有SD卡权限2!", Toast.LENGTH_SHORT).show();
+                                return;
+
+                            }
+
+                            writerFile("colors/" + NameColor.name[which],file);
+
+                            Intent intent = new Intent("com.termux.app.reload_style");
+                            intent.putExtra("com.termux.app.reload_style","colors");
+
+                            sendBroadcast(intent);
+
+
+                    /*        AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+                            ab.setTitle("配色设置成功!");
+                            ab.setMessage("如果配色不成功，可能文件已损坏，请重选择!");
+                            ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(TermuxActivity.this, TermuxService.class);
+                                    intent.setAction(TermuxService.ACTION_STOP_SERVICE);
+                                    TermuxActivity.this.startService(intent);
+                                    ab.create().dismiss();
+                                    TermuxActivity.this.finish();
+
+
+                                }
+                            });
+                            ab.show();*/
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(TermuxActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+
+
+                    }
+                });
+                builder.setNegativeButton("现在不配色", new DialogInterface.OnClickListener() {
+                    @Override
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        builder.create().dismiss();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+
+            }
+        });
+
+
+        font_termux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TermuxActivity.this, FontActivity.class));
+
             }
         });
 
@@ -1772,6 +2378,28 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 getDrawer().closeDrawer(Gravity.LEFT);
             }
         });
+
+        File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/font/");
+
+        if(!(file1.exists())) {
+
+            file1.mkdirs();
+
+
+        }
+
+        if(!(new File(Environment.getExternalStorageDirectory(),"/xinhao/font/termux_def.ttf").exists())){
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    writerFile("font_termux.ttf",new File(Environment.getExternalStorageDirectory(),"/xinhao/font/termux_def.ttf"));
+                }
+            }).start();
+
+        }
+
+
 
         lishi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3672,7 +4300,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             ab.setTitle("提示");
 
-            ab.setMessage("已有安装包被发现,是否立即开始安装？");
+            ab.setMessage("请将安装包放置到 内部存储/xinhao/iso 下");
 
             ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
                 @Override
@@ -3904,7 +4532,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 ViewUtils.xuanzhuanView(mTerminalView, nemu_wo);
                 getDrawer().closeDrawer(Gravity.LEFT);
                 String[] strings = {"" +
-                    "[ubuntu]乌班图发行版[19.04][./start.sh]",
+                    "[ubuntu]乌班图发行版[19.10][./start.sh]",
                     "debian  乌班图子系统[安装约30分钟][./bin/enter_deb]",
                     "fedora  [安装后谨慎卸载,未root用户,某些文件无法删除!!]",
                     "Kali [此文件下载1.2GB 安装后 3+GB 请思考后在安装]",
@@ -4320,10 +4948,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 break;
             case 1:
 
-                mTerminalView.sendTextToTerminal("pkg install curl && curl -fsSL https://its-pointless.github.io/setup-pointless-repo.sh | bash && pkg install qemu-system-x86_64\n");
+                mTerminalView.sendTextToTerminal("pkg install curl && curl -fsSL https://its-pointless.github.io/setup-pointless-repo.sh | bash && pkg install qemu-system-x86_64-headless\n");
                 break;
             case 2:
-                mTerminalView.sendTextToTerminal("pkg install curl && curl -fsSL https://its-pointless.github.io/setup-pointless-repo.sh | bash && pkg install qemu-system-x86_64\n");
+                mTerminalView.sendTextToTerminal("pkg install curl && curl -fsSL https://its-pointless.github.io/setup-pointless-repo.sh | bash && pkg install qemu-system-x86_64-headless\n");
                 break;
             case 3:
                 mTerminalView.sendTextToTerminal("pkg install x11-repo \n");
@@ -6261,8 +6889,8 @@ Solaris(APP美化)
             }
         }
 
-        //TerminalSession newSession = mTermService.createTermSession(sessionType, sessionNumber);
-        TerminalSession newSession = mTermService.createTermSession2(null, null, null, true);
+        TerminalSession newSession = mTermService.createTermSession(sessionType, sessionNumber);
+       // TerminalSession newSession = mTermService.createTermSession2(null, null, null, true);
 
         if (sessionName != null) {
             newSession.mSessionName = sessionName;
@@ -6478,7 +7106,7 @@ Solaris(APP美化)
                 return true;
             }
             case CONTEXTMENU_STYLING_ID: {
-                Intent stylingIntent = new Intent();
+              /*  Intent stylingIntent = new Intent();
                 stylingIntent.setClassName("com.termux.styling", "com.termux.styling.TermuxStyleActivity");
                 try {
                     startActivity(stylingIntent);
@@ -6487,7 +7115,11 @@ Solaris(APP美化)
                     // However, crash reporting shows that it sometimes does, so catch it here.
                     new AlertDialog.Builder(this).setMessage(R.string.styling_not_installed)
                         .setPositiveButton(R.string.styling_install, (dialog, which) -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.termux.styling")))).setNegativeButton(android.R.string.cancel, null).show();
-                }
+                }*/
+
+                new AlertDialog.Builder(this).setMessage(R.string.styling_not_installed)
+                    .setPositiveButton(R.string.styling_install, (dialog, which) ->  getDrawer().openDrawer(Gravity.LEFT)).setNegativeButton(android.R.string.cancel, null).show();
+
                 return true;
             }
             case CONTEXTMENU_HELP_ID:
@@ -6596,6 +7228,10 @@ Solaris(APP美化)
         TermuxService service = mTermService;
 
         int index = service.removeTermSession(finishedSession);
+
+        if(index == -1){
+            return;
+        }
         mListViewAdapter.notifyDataSetChanged();
         if (mTermService.getSessions().isEmpty()) {
             // There are no sessions to show, so finish the activity.

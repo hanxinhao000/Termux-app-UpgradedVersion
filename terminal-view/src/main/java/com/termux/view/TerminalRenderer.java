@@ -1,11 +1,9 @@
 package com.termux.view;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.util.Log;
 
 import com.termux.terminal.TerminalBuffer;
 import com.termux.terminal.TerminalEmulator;
@@ -24,21 +22,13 @@ public final class TerminalRenderer {
     final Typeface mTypeface;
     private final Paint mTextPaint = new Paint();
 
-    /**
-     * The width of a single mono spaced character obtained by {@link Paint#measureText(String)} on a single 'X'.
-     */
+    /** The width of a single mono spaced character obtained by {@link Paint#measureText(String)} on a single 'X'. */
     final float mFontWidth;
-    /**
-     * The {@link Paint#getFontSpacing()}. See http://www.fampennings.nl/maarten/android/08numgrid/font.png
-     */
+    /** The {@link Paint#getFontSpacing()}. See http://www.fampennings.nl/maarten/android/08numgrid/font.png */
     final int mFontLineSpacing;
-    /**
-     * The {@link Paint#ascent()}. See http://www.fampennings.nl/maarten/android/08numgrid/font.png
-     */
+    /** The {@link Paint#ascent()}. See http://www.fampennings.nl/maarten/android/08numgrid/font.png */
     private final int mFontAscent;
-    /**
-     * The {@link #mFontLineSpacing} + {@link #mFontAscent}.
-     */
+    /** The {@link #mFontLineSpacing} + {@link #mFontAscent}. */
     final int mFontLineSpacingAndAscent;
 
     private final float[] asciiMeasures = new float[127];
@@ -50,8 +40,6 @@ public final class TerminalRenderer {
         mTextPaint.setTypeface(typeface);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(textSize);
-
-        mTextPaint.setColor(Color.parseColor("#ff00ff"));
 
         mFontLineSpacing = (int) Math.ceil(mTextPaint.getFontSpacing());
         mFontAscent = (int) Math.ceil(mTextPaint.ascent());
@@ -65,9 +53,7 @@ public final class TerminalRenderer {
         }
     }
 
-    /**
-     * Render the terminal to a canvas with at a specified row scroll, and an optional rectangular selection.
-     */
+    /** Render the terminal to a canvas with at a specified row scroll, and an optional rectangular selection. */
     public final void render(TerminalEmulator mEmulator, Canvas canvas, int topRow,
                              int selectionY1, int selectionY2, int selectionX1, int selectionX2) {
         final boolean reverseVideo = mEmulator.isReverseVideo();
@@ -204,18 +190,15 @@ public final class TerminalRenderer {
 
         if (backColor != palette[TextStyle.COLOR_INDEX_BACKGROUND]) {
             // Only draw non-default background.
-            // mTextPaint.setColor(backColor);
-            mTextPaint.setColor(Color.parseColor("#ff0000"));
+            mTextPaint.setColor(backColor);
             canvas.drawRect(left, y - mFontLineSpacingAndAscent + mFontAscent, right, y, mTextPaint);
         }
 
         if (cursor != 0) {
             mTextPaint.setColor(cursor);
-            //mTextPaint.setColor(Color.parseColor("#00ff00"));
             float cursorHeight = mFontLineSpacingAndAscent - mFontAscent;
             if (cursorStyle == TerminalEmulator.CURSOR_STYLE_UNDERLINE) cursorHeight /= 4.;
-            else if (cursorStyle == TerminalEmulator.CURSOR_STYLE_BAR)
-                right -= ((right - left) * 3) / 4.;
+            else if (cursorStyle == TerminalEmulator.CURSOR_STYLE_BAR) right -= ((right - left) * 3) / 4.;
             canvas.drawRect(left, y - cursorHeight, right, y, mTextPaint);
         }
 
@@ -236,16 +219,13 @@ public final class TerminalRenderer {
             mTextPaint.setUnderlineText(underline);
             mTextPaint.setTextSkewX(italic ? -0.35f : 0.f);
             mTextPaint.setStrikeThruText(strikeThrough);
-            // mTextPaint.setColor(foreColor);
-
+           // mTextPaint.setColor(foreColor);
             if (foreColor == -1) {
                 mTextPaint.setColor(COLOR_TEXT);
             } else {
                 mTextPaint.setColor(foreColor);
             }
 
-            Log.e("颜色变化", "drawTextRun: " + foreColor);
-            //mTextPaint.setColor(Color.parseColor("#ad0015"));
             // The text alignment is the default Paint.Align.LEFT.
             canvas.drawText(text, startCharIndex, runWidthChars, left, y - mFontLineSpacingAndAscent, mTextPaint);
         }

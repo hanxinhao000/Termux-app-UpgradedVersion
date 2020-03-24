@@ -10,6 +10,16 @@
         <item name="android:colorAccent">#212121</item>
     </style>
 
+
+    <style name="AppTheme1" parent="Theme.Termux">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+
     <style name="Theme.Termux.Black" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:statusBarColor">#000000</item>
         <item name="android:colorPrimary">#FF000000</item>

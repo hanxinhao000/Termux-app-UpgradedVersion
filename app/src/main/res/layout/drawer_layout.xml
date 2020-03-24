@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="2dp"
-                    android:text="云端版本:[0.92.66]\n本地版本[-.--.--]"
+                    android:text="云端版本:[0.92.77]\n本地版本[-.--.--]"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -226,7 +226,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#AA2b2b2b"
-
                 android:orientation="horizontal">
 
 
@@ -243,6 +242,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:visibility="gone" />
+
+
 
                     <Button
                         android:id="@+id/item_key_linux"

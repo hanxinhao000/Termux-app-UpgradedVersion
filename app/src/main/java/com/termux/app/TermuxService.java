@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -490,6 +491,11 @@ public final class TermuxService extends Service implements SessionChangedCallba
 
     public int removeTermSession(TerminalSession sessionToRemove) {
         int indexOfRemoved = mTerminalSessions.indexOf(sessionToRemove);
+
+        if(indexOfRemoved == -1){
+            Toast.makeText(this, "你要清除的会话不存在!", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
         mTerminalSessions.remove(indexOfRemoved);
         if (mTerminalSessions.isEmpty() && mWakeLock == null) {
             // Finish if there are no sessions left and the wake lock is not held, otherwise keep the service alive if

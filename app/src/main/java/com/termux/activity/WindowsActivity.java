@@ -174,7 +174,7 @@ public class WindowsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    TermuxActivity.mTerminalView.sendTextToTerminal("pkg install x11-repo unstable-repo -y && pkg install qemu-utils qemu-system-x86_64 -y && termux-setup-storage\n");
+                    TermuxActivity.mTerminalView.sendTextToTerminal("pkg install x11-repo unstable-repo -y && pkg install qemu-utils qemu-system-x86_64-headless -y && termux-setup-storage\n");
                     alertDialog.create().dismiss();
                     Toast.makeText(WindowsActivity.this, "请等待安装完成在进入", Toast.LENGTH_SHORT).show();
                     finish();

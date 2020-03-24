@@ -423,24 +423,29 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getContext(), "恢复完成,请重启APP！！！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TermuxApplication.mContext, "恢复完成,请重启APP！！！", Toast.LENGTH_SHORT).show();
 
-                                AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
-                                ab.setTitle("恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!");
-                                ab.setMessage("你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!");
-                                ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(getActivity(), TermuxService.class);
-                                        intent.setAction(TermuxService.ACTION_STOP_SERVICE);
-                                        getActivity().startService(intent);
-                                        ab.create().dismiss();
-                                        getActivity().finish();
+                                try {
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
+                                    ab.setTitle("恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!");
+                                    ab.setMessage("你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!");
+                                    ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(getActivity(), TermuxService.class);
+                                            intent.setAction(TermuxService.ACTION_STOP_SERVICE);
+                                            getActivity().startService(intent);
+                                            ab.create().dismiss();
+                                            getActivity().finish();
 
 
-                                    }
-                                });
-                                ab.show();
+                                        }
+                                    });
+                                    ab.show();
+                                }catch (Exception e){
+                                    Toast.makeText(TermuxApplication.mContext, "出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!", Toast.LENGTH_SHORT).show();
+
+                                }
 
 
                             }

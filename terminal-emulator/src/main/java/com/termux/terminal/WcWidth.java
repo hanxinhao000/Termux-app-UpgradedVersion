@@ -454,5 +454,4 @@ public final class WcWidth {
         char c = chars[index];
         return Character.isHighSurrogate(c) ? width(Character.toCodePoint(c, chars[index + 1])) : width(c);
     }
-
 }

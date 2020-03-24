@@ -2,12 +2,14 @@ package main.java.com.termux.application;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 
 import main.java.com.termux.activity.UncaughtExceptionHandlerActivity;
 import main.java.com.termux.filemanage.filemanager.FileManagerApplication;
@@ -26,6 +28,18 @@ public class TermuxApplication extends FileManagerApplication {
         mContext = this;
         mHandler = new Handler();
         //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
+
+
+      /*  Typeface fromFile = Typeface.createFromFile("/data/data/com.termux/files/home/.termux/font.ttf");
+        try {
+            Field field = Typeface.class.getDeclaredField("SERIF");
+            field.setAccessible(true);
+            field.set(null, fromFile);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }*/
 
 
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {

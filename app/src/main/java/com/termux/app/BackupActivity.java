@@ -42,7 +42,7 @@ public class BackupActivity extends Activity {
     //private File mFile = new File("/data/data/com.termux/files/usr/bin/pkg");
     private File mSdFile = new File(Environment.getExternalStorageDirectory(), "/xinhao/system/");
     private SimpleDateFormat mSimpleDateFormat;
-    private static final String ACTION_STOP_SERVICE = "com.termux.service_stop";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -257,7 +257,10 @@ public class BackupActivity extends Activity {
                         ab.setPositiveButton("立即重启", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                startService(new Intent(BackupActivity.this, TermuxService.class).setAction(ACTION_STOP_SERVICE));
+
+                                Intent intent = new Intent(BackupActivity.this, TermuxService.class);
+                                intent.setAction(TermuxService.ACTION_STOP_SERVICE);
+                                startService(intent);
                             }
                         });
 

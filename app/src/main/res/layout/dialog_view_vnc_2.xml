@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="如果鼠标不动,请点击图中按钮"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/help_vnc"
+        android:layout_height="200dp"/>
+
+
+</LinearLayout>

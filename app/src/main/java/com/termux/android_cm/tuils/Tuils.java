@@ -173,6 +173,10 @@ public class Tuils {
 
                 Pattern p = Pattern.compile(".[ot]tf$");
 
+                if(tui.listFiles() == null || tui.listFiles().length == 0){
+                    return Typeface.createFromAsset(context.getAssets(), "lucida_console.ttf");
+                }
+
                 File font = null;
                 for(File f : tui.listFiles()) {
                     String name = f.getName();

@@ -311,25 +311,31 @@ public class TermuxFloatService extends Service {
 
     public void setViewAnima(View view, Animator.AnimatorListener animatorListener) {
 
-        Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, 0, 0,
-            0, (float) Math.hypot(view.getWidth(), view.getHeight()));
-        circularReveal.setDuration(500);
-
-        circularReveal.addListener(animatorListener);
-        circularReveal.setInterpolator(new AccelerateInterpolator());
-        circularReveal.start();
+        try {
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, 0, 0,
+                0, (float) Math.hypot(view.getWidth(), view.getHeight()));
+            circularReveal.setDuration(500);
+            circularReveal.addListener(animatorListener);
+            circularReveal.setInterpolator(new AccelerateInterpolator());
+            circularReveal.start();
+        }catch (Exception e){
+            FloatView.hideFloatView();
+        }
 
     }
 
     public void setViewAnimaStop(View view, Animator.AnimatorListener animatorListener) {
 
-        Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, view.getWidth(), view.getHeight(),
-            (float) Math.hypot(view.getWidth(), view.getHeight()), 0);
-        circularReveal.setDuration(500);
-
-        circularReveal.addListener(animatorListener);
-        circularReveal.setInterpolator(new AccelerateInterpolator());
-        circularReveal.start();
+        try {
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(view, view.getWidth(), view.getHeight(),
+                (float) Math.hypot(view.getWidth(), view.getHeight()), 0);
+            circularReveal.setDuration(500);
+            circularReveal.addListener(animatorListener);
+            circularReveal.setInterpolator(new AccelerateInterpolator());
+            circularReveal.start();
+        }catch (Exception e){
+            FloatView.hideFloatView();
+        }
 
     }
 

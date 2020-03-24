@@ -160,10 +160,14 @@ public class QZUtils {
 
                         TermuxActivity.mTerminalView.sendTextToTerminal("echo \"----手动恢复开始----\" \n");
 
-                        TermuxActivity.mTerminalView.sendTextToTerminal("tar -xzvf ./storage/shared/xinhao/data/" + tarFle.getName() + "  -C ../../" + createFile.getName() + " && mv ../../" + createFile.getName() + "/data/data/com.termux/files/home ../../" + createFile.getName() +" && "+ "mv ../../" + createFile.getName() + "/data/data/com.termux/files/usr ../../" + createFile.getName()+" && rm -rf ../../"+createFile.getName()+"/data && echo \"系统恢复完成,请在切换系统，切换您的系统\" \n");
+                        TermuxActivity.mTerminalView.sendTextToTerminal("tar -xzvf ./storage/shared/xinhao/data/" + tarFle.getName().replace(" ","") + "  -C ../../" + createFile.getName() + " && mv ../../" + createFile.getName() + "/data/data/com.termux/files/home ../../" + createFile.getName() +" && "+ "mv ../../" + createFile.getName() + "/data/data/com.termux/files/usr ../../" + createFile.getName()+" && rm -rf ../../"+createFile.getName()+"/data && echo \"系统恢复完成,请在切换系统，切换您的系统\" \n");
                         //TermuxActivity.mTerminalView.sendTextToTerminal("tar -xzvf./storage/shared/xinhao/data/" + tarFle.getName() + "  -C ../../" + createFile.getName() + " && mv ../../" + createFile.getName() + "/data/data/com.termux/files/home ../../" + createFile.getName() +" && "+ "mv ../../" + createFile.getName() + "/data/data/com.termux/files/usr ../../" + createFile.getName()+" && rm -rf ../../"+createFile.getName()+"/data && echo \"系统恢复完成,请在切换系统，切换您的系统\" \n");
 
-                        restoreFragment.getActivity().finish();
+                        try {
+                            restoreFragment.getActivity().finish();
+                        }catch (Exception e){
+                            Toast.makeText(TermuxApplication.mContext, "出现了一个微弱的警告，可忽略", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

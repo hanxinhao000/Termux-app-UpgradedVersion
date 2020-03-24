@@ -238,7 +238,13 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
                                         @Override
                                         public void run() {
                                             boom.setVisibility(View.VISIBLE);
-                                            mStartBackup.setText("备份完成!");
+                                            try {
+                                                if (mStartBackup != null) {
+                                                    mStartBackup.setText("备份完成!");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(), "备份完成!", Toast.LENGTH_SHORT).show();
+                                            }
                                             AlertDialog.Builder ab = new AlertDialog.Builder(getContext());
                                             ab.setTitle("备份完成!");
                                             ab.setCancelable(false);

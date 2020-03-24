@@ -104,7 +104,7 @@ public final class TermuxPreferences {
         } catch (NumberFormatException | ClassCastException e) {
             mFontSize = defaultFontSize;
         }
-        mFontSize = clamp(mFontSize, MIN_FONTSIZE, MAX_FONTSIZE); 
+        mFontSize = clamp(mFontSize, MIN_FONTSIZE, MAX_FONTSIZE);
     }
 
     boolean toggleShowExtraKeys(Context context) {
@@ -152,7 +152,7 @@ public final class TermuxPreferences {
         }
         return null;
     }
-    
+
     void reloadFromProperties(Context context) {
         File propsFile = new File(TermuxService.HOME_PATH + "/.termux/termux.properties");
         if (!propsFile.exists())
