@@ -51,7 +51,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:padding="2dp"
-                           android:text="本地版本:[0.92.77]"
+                           android:text="本地版本:[0.94.78]"
                            android:textColor="#fff"
                            android:textSize="14sp"
                            android:textStyle="bold" />
@@ -96,6 +96,19 @@
                            android:textSize="14sp"
                            android:textStyle="bold" />
 
+                       <TextView
+                           android:id="@+id/text_system"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:padding="2dp"
+                           android:text="系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg"
+                           android:visibility="visible"
+                           android:singleLine="true"
+                           android:ellipsize="marquee"
+                           android:marqueeRepeatLimit="marquee_forever"
+                           android:textColor="#fff"
+                           android:textSize="14sp"
+                           android:textStyle="bold" />
 
                    </LinearLayout>
 

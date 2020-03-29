@@ -89,6 +89,7 @@ import com.termux.terminal.TextStyle;
 import com.termux.view.TerminalRenderer;
 import com.termux.view.TerminalView;
 
+import org.apache.tools.ant.filters.StringInputStream;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -1375,7 +1376,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.92.77]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.94.78]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1420,7 +1421,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.94.78]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1581,7 +1582,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (Build.VERSION.SDK_INT >= 26) {
             boolean b = getPackageManager().canRequestPackageInstalls();
             if (b) {
-                CheckUpDateCodeUtils.installApk(this, new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/"+str+".apk").getAbsolutePath());
+                CheckUpDateCodeUtils.installApk(this, new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/" + str + ".apk").getAbsolutePath());
             } else {
                 //请求安装未知应用来源的权限
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_PACKAGES_REQUEST_CODE);
@@ -1633,7 +1634,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 //File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/test.z");
 
 
-                if(index == 0){
+                if (index == 0) {
 
 
                     Intent intent = new Intent();
@@ -1706,6 +1707,80 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout switch_code_vnc;
     private LinearLayout cof_vnc;
     private LinearLayout gaoji_vnc;
+    private TextView text_system;
+
+    //读取目录
+
+    private void readSystemFile() {
+
+
+        File file = new File("/data/data/com.termux/files/usr/share/LICENSES/system_list.ut");
+
+        String system_list = SaveData.getData("system_list");
+
+        text_system.setVisibility(View.GONE);
+
+        if (!file.exists()) {
+
+            return;
+
+        }
+
+        SaveData.saveData("system_list", "system");
+
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+
+            String tmp = "";
+
+            String str = "";
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ((tmp = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(tmp).append("\n");
+
+
+            }
+
+            bufferedReader.close();
+            text_system.setText(stringBuilder.toString());
+
+            text_system.setVisibility(View.VISIBLE);
+
+            if (!(system_list.equals("def"))) {
+                return;
+            }
+
+            AlertDialog.Builder ab = new AlertDialog.Builder(this);
+
+            ab.setTitle("提示");
+
+            ab.setMessage(stringBuilder.toString());
+
+
+
+            ab.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ab.create().dismiss();
+                }
+            });
+            ab.show();
+
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
     @Override
@@ -1718,7 +1793,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             this.setTheme(R.style.Theme_Termux);
         }
 
+
+
         getImei();
+
 
         super.onCreate(bundle);
         mTermuxActivity = this;
@@ -1726,12 +1804,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //insFile();
 
 
-
-
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
         mTermux_keybot = findViewById(R.id.termux_keybot);
 
+        text_system = findViewById(R.id.text_system);
+        text_system.setSelected(true);
 
 
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
@@ -1772,9 +1850,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         quanxian_123 = findViewById(R.id.quanxian_123);
         dianhua_123 = findViewById(R.id.dianhua_123);
 
-        gaoji_vnc  = findViewById(R.id.gaoji_vnc);
+        gaoji_vnc = findViewById(R.id.gaoji_vnc);
 
         switch_main_new = findViewById(R.id.switch_main_new);
+
+        readSystemFile();
 
         gaoji_vnc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1790,7 +1870,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                     startActivity(intent);
-                }catch (Exception e){
+                } catch (Exception e) {
 
                     e.printStackTrace();
                     AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
@@ -1855,7 +1935,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         String help_vnc = SaveData.getData("help_vnc_1");
 
-                        if(true){
+                        if (true) {
 
                             AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -1870,7 +1950,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     abb.create().dismiss();
-                                    SaveData.saveData("help_vnc_1","xinhao");
+                                    SaveData.saveData("help_vnc_1", "xinhao");
 
                                     try {
 
@@ -1883,7 +1963,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         intent.putExtra("password", password.getText().toString());
 
                                         startActivity(intent);
-                                    }catch (Exception e){
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                         AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -1920,7 +2000,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             });
 
                             abb.show();
-                        }else{
+                        } else {
 
                             try {
 
@@ -1933,7 +2013,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 intent.putExtra("password", password.getText().toString());
 
                                 startActivity(intent);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -1970,7 +2050,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         }
 
 
-
                     }
                 });
 
@@ -1989,7 +2068,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 String help_vnc = SaveData.getData("help_vnc_1");
 
-                if(true){
+                if (true) {
 
                     AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -2004,7 +2083,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             abb.create().dismiss();
-                            SaveData.saveData("help_vnc_1","xinhao");
+                            SaveData.saveData("help_vnc_1", "xinhao");
 
                             try {
 
@@ -2017,7 +2096,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 intent.putExtra("password", "123456");
 
                                 startActivity(intent);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -2054,7 +2133,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     });
 
                     abb.show();
-                }else{
+                } else {
                     try {
 
                         Intent intent = new Intent();
@@ -2066,7 +2145,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         intent.putExtra("password", "123456");
 
                         startActivity(intent);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                         AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
@@ -2102,12 +2181,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 }
 
 
-
-
-
-
-
-
             }
         });
 
@@ -2131,7 +2204,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
                         Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
 
-                         mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list && sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && apt update && apt upgrade \n");
+                        mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list && sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && apt update && apt upgrade \n");
 
                         getDrawer().closeDrawer(Gravity.LEFT);
                     }
@@ -2155,8 +2228,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         switch_main_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
@@ -2195,7 +2266,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         File file2 = new File("/data/data/com.termux/files/home/dostermux");
 
-        if(!file2.exists()){
+        if (!file2.exists()) {
             file2.mkdirs();
         }
 
@@ -2223,7 +2294,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 ab.show();
 
 
-
             }
         });
 
@@ -2246,7 +2316,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 getDrawer().closeDrawer(Gravity.LEFT);
 
-                writerFile("ubuntu_oo1.sh",new File("/data/data/com.termux/files/home/ubuntu_oo1.sh"));
+                writerFile("ubuntu_oo1.sh", new File("/data/data/com.termux/files/home/ubuntu_oo1.sh"));
 
 
                 TermuxActivity.mTerminalView.sendTextToTerminal("cd ~ \n");
@@ -2270,21 +2340,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 builder.setItems(NameColor.name, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       //NameColor.name[which]
+                        //NameColor.name[which]
                         builder.create().dismiss();
 
                         File file1 = new File("/data/data/com.termux/files/home/.termux/");
 
-                        if(!file1.exists()){
+                        if (!file1.exists()) {
                             file1.mkdirs();
                         }
 
                         File file = new File("/data/data/com.termux/files/home/.termux/colors.properties");
 
-                        if(file.exists()){
+                        if (file.exists()) {
                             boolean delete = file.delete();
 
-                            if(!delete){
+                            if (!delete) {
                                 Toast.makeText(TermuxActivity.this, "你没有SD卡权限1!", Toast.LENGTH_SHORT).show();
                                 return;
 
@@ -2295,17 +2365,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         try {
                             boolean newFile = file.createNewFile();
 
-                            if(!newFile){
+                            if (!newFile) {
 
                                 Toast.makeText(TermuxActivity.this, "你没有SD卡权限2!", Toast.LENGTH_SHORT).show();
                                 return;
 
                             }
 
-                            writerFile("colors/" + NameColor.name[which],file);
+                            writerFile("colors/" + NameColor.name[which], file);
 
                             Intent intent = new Intent("com.termux.app.reload_style");
-                            intent.putExtra("com.termux.app.reload_style","colors");
+                            intent.putExtra("com.termux.app.reload_style", "colors");
 
                             sendBroadcast(intent);
 
@@ -2332,8 +2402,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             Toast.makeText(TermuxActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
-
-
 
 
                     }
@@ -2381,24 +2449,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/font/");
 
-        if(!(file1.exists())) {
+        if (!(file1.exists())) {
 
             file1.mkdirs();
 
 
         }
 
-        if(!(new File(Environment.getExternalStorageDirectory(),"/xinhao/font/termux_def.ttf").exists())){
+        if (!(new File(Environment.getExternalStorageDirectory(), "/xinhao/font/termux_def.ttf").exists())) {
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    writerFile("font_termux.ttf",new File(Environment.getExternalStorageDirectory(),"/xinhao/font/termux_def.ttf"));
+                    writerFile("font_termux.ttf", new File(Environment.getExternalStorageDirectory(), "/xinhao/font/termux_def.ttf"));
                 }
             }).start();
 
         }
-
 
 
         lishi.setOnClickListener(new View.OnClickListener() {
@@ -2433,7 +2500,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         // Toast.makeText(TermuxActivity.this, "选择了第" + which + "个", Toast.LENGTH_SHORT).show();
 
 
-                        installTermux(which,strings[which]);
+                        installTermux(which, strings[which]);
                     }
                 });
                 builder.setNegativeButton("现在不切换", new DialogInterface.OnClickListener() {
@@ -6890,7 +6957,7 @@ Solaris(APP美化)
         }
 
         TerminalSession newSession = mTermService.createTermSession(sessionType, sessionNumber);
-       // TerminalSession newSession = mTermService.createTermSession2(null, null, null, true);
+        // TerminalSession newSession = mTermService.createTermSession2(null, null, null, true);
 
         if (sessionName != null) {
             newSession.mSessionName = sessionName;
@@ -7118,7 +7185,7 @@ Solaris(APP美化)
                 }*/
 
                 new AlertDialog.Builder(this).setMessage(R.string.styling_not_installed)
-                    .setPositiveButton(R.string.styling_install, (dialog, which) ->  getDrawer().openDrawer(Gravity.LEFT)).setNegativeButton(android.R.string.cancel, null).show();
+                    .setPositiveButton(R.string.styling_install, (dialog, which) -> getDrawer().openDrawer(Gravity.LEFT)).setNegativeButton(android.R.string.cancel, null).show();
 
                 return true;
             }
@@ -7229,7 +7296,7 @@ Solaris(APP美化)
 
         int index = service.removeTermSession(finishedSession);
 
-        if(index == -1){
+        if (index == -1) {
             return;
         }
         mListViewAdapter.notifyDataSetChanged();

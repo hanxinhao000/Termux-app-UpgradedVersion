@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="2dp"
-                    android:text="云端版本:[0.92.77]\n本地版本[-.--.--]"
+                    android:text="云端版本:[0.94.78]\n本地版本[-.--.--]"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold" />
