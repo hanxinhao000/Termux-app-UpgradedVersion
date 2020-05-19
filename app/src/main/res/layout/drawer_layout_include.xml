@@ -51,7 +51,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:padding="2dp"
-                           android:text="本地版本:[0.94.78]"
+                           android:text="本地版本:[0.94.81]"
                            android:textColor="#fff"
                            android:textSize="14sp"
                            android:textStyle="bold" />
@@ -887,7 +887,49 @@
 
                        <LinearLayout
                            android:layout_width="0dp"
-                           android:layout_weight="2"
+                           android:layout_weight="1"
+                           android:visibility="invisible"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:id="@+id/history_command"
+                           android:gravity="center"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/lishi_command" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="20dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="历史命令"
+                               android:textColor="#fff"
+                               android:textSize="13sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="2dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:text="查看历史命令"
+                               android:layout_marginBottom="10dp"
+                               android:textColor="#fff"
+                               android:textSize="10sp"
+                               android:textStyle="bold" />
+
+                       </LinearLayout>
+
+
+
+                       <LinearLayout
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
                            android:visibility="invisible"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="15dp"
@@ -923,7 +965,6 @@
                                android:textStyle="bold" />
 
                        </LinearLayout>
-
 
 
 
@@ -1707,32 +1748,92 @@
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_marginTop="15dp"
-                               android:visibility="invisible"
-                               android:layout_weight="2"
+                               android:visibility="visible"
+                               android:id="@+id/moe_ll"
+                               android:layout_weight="1"
                                android:gravity="center"
                                android:orientation="vertical">
 
                                <ImageView
                                    android:layout_width="25dp"
                                    android:layout_height="25dp"
-                                   android:src="@drawable/icon_fedora" />
+                                   android:src="@drawable/mnj" />
 
 
                                <TextView
                                    android:layout_width="match_parent"
                                    android:layout_height="wrap_content"
                                    android:layout_marginTop="20dp"
-                                   android:layout_marginBottom="20dp"
                                    android:layout_weight="1"
                                    android:gravity="center"
-                                   android:text="图形fedora"
+                                   android:text="图形系统[推荐]"
                                    android:textColor="#fff"
                                    android:textSize="13sp"
+                                   android:textStyle="bold" />
+
+                               <TextView
+                                   android:layout_width="100dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="2dp"
+                                   android:layout_weight="1"
+                                   android:singleLine="true"
+                                   android:ellipsize="marquee"
+                                   android:marqueeRepeatLimit="marquee_forever"
+                                   android:id="@+id/mnj_tv"
+                                   android:gravity="center"
+                                   android:text="由Moe提供,git地址:https://gitee.com/mo2,本脚本已通过原作者同意,也感谢原作者对UT的支持"
+                                   android:layout_marginBottom="10dp"
+                                   android:textColor="#fff"
+                                   android:textSize="10sp"
                                    android:textStyle="bold" />
 
 
                            </LinearLayout>
 
+                           <LinearLayout
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="15dp"
+                               android:visibility="visible"
+                               android:layout_weight="1"
+                               android:id="@+id/xom_tv_ll"
+                               android:gravity="center"
+                               android:orientation="vertical">
+
+                               <ImageView
+                                   android:layout_width="25dp"
+                                   android:layout_height="25dp"
+                                   android:src="@drawable/yuan_code" />
+
+
+                               <TextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="20dp"
+                                   android:layout_weight="1"
+                                   android:gravity="center"
+                                   android:text="由xom作者提供"
+                                   android:textColor="#fff"
+                                   android:textSize="13sp"
+                                   android:textStyle="bold" />
+
+                               <TextView
+                                   android:layout_width="100dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="2dp"
+                                   android:layout_weight="1"
+                                   android:singleLine="true"
+                                   android:ellipsize="marquee"
+                                   android:marqueeRepeatLimit="marquee_forever"
+                                   android:id="@+id/xom_tv"
+                                   android:gravity="center"
+                                   android:text="由xom作者提供,本工具是一款专门针对termux的基础环境安装脚本,本脚本已通过原作者同意,也感谢原作者对UT的支持"
+                                   android:layout_marginBottom="10dp"
+                                   android:textColor="#fff"
+                                   android:textSize="10sp"
+                                   android:textStyle="bold" />
+
+                           </LinearLayout>
 
 
 

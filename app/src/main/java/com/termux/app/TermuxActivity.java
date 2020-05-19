@@ -136,6 +136,8 @@ import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.UpDateBean;
+import main.java.com.termux.core.CoreGuiInstall;
+import main.java.com.termux.core.CoreLinux;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
 import main.java.com.termux.datat.UrlDataHtml;
@@ -150,6 +152,7 @@ import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
 import main.java.com.termux.utils.WindowUtils;
+import main.java.com.termux.view.DownDialog;
 import main.java.com.termux.view.MyDialog;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -1376,7 +1379,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.94.78]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.94.81]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1421,7 +1424,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.94.78]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.94.81]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1707,7 +1710,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout switch_code_vnc;
     private LinearLayout cof_vnc;
     private LinearLayout gaoji_vnc;
+    private LinearLayout moe_ll;
+    private LinearLayout xom_tv_ll;
     private TextView text_system;
+    private TextView mnj_tv;
+    private TextView xom_tv;
 
     //读取目录
 
@@ -1761,7 +1768,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             ab.setMessage(stringBuilder.toString());
 
 
-
             ab.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -1769,8 +1775,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 }
             });
             ab.show();
-
-
 
 
         } catch (FileNotFoundException e) {
@@ -1783,6 +1787,25 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     }
 
 
+    private LinearLayout mHistoryCommand;
+
+
+    private void isHistory() {
+
+        File fileHistFile = new File("/data/data/com.termux/files/home/.xinhao_history/start_command.sh");
+        File fileHist = new File("/data/data/com.termux/files/home/.xinhao_history/");
+
+        if (!fileHist.exists()) {
+            fileHist.mkdirs();
+        }
+
+        if (!fileHistFile.exists()) {
+            writerFile("start_command.sh", fileHistFile);
+            //getCurrentTermSession().writeCodePoint();
+        }
+
+    }
+
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -1792,7 +1815,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         } else {
             this.setTheme(R.style.Theme_Termux);
         }
-
 
 
         getImei();
@@ -1808,13 +1830,32 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         setContentView(R.layout.drawer_layout);
         mTermux_keybot = findViewById(R.id.termux_keybot);
 
+        isHistory();
+        mHistoryCommand = findViewById(R.id.history_command);
         text_system = findViewById(R.id.text_system);
         text_system.setSelected(true);
-
-
+        mnj_tv = findViewById(R.id.mnj_tv);
+        xom_tv = findViewById(R.id.xom_tv);
+        mnj_tv.setSelected(true);
+        xom_tv.setSelected(true);
+        moe_ll = findViewById(R.id.moe_ll);
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
 
         kongxia_linux = findViewById(R.id.kongxia_linux);
+        xom_tv_ll = findViewById(R.id.xom_tv_ll);
+
+        xom_tv_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                mTerminalView.sendTextToTerminal("echo 'deb [trusted=yes] https://xomandwhy.tk/ termux extras' > $PREFIX/etc/apt/sources.list.d/whyandxom.list; apt update; apt install xom ; xom \n");
+            }
+        });
+
+
+        //放入历史保存目录
+
 
         switch_code = findViewById(R.id.switch_code);
 
@@ -1853,6 +1894,49 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         gaoji_vnc = findViewById(R.id.gaoji_vnc);
 
         switch_main_new = findViewById(R.id.switch_main_new);
+
+
+        moe_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //apt install -y curl
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+                mTerminalView.sendTextToTerminal("apt install -y curl && bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+            }
+        });
+
+
+        mHistoryCommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<String> arrayList = new ArrayList<>();
+
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+                arrayList.add("122");
+
+                DownDialog downDialog = new DownDialog(TermuxActivity.this);
+
+                downDialog.setListArray(arrayList);
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                downDialog.show();
+
+
+            }
+        });
 
         readSystemFile();
 
@@ -4157,6 +4241,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             //  arrayList.add("ALT");
             arrayList.add("pkg update");
             arrayList.add("pkg install ");
+            arrayList.add("ip neigh \n ");
+            arrayList.add("vncserver-start \n ");
+            arrayList.add("vncserver-stop \n ");
+            arrayList.add("ifconfig \n ");
             arrayList.add("pkg uninstall ");
             arrayList.add("apt-get install ");
             arrayList.add("apt-get remove  ");
@@ -6722,6 +6810,11 @@ Solaris(APP美化)
                             getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, Gravity.LEFT);
 
 
+                            File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+
+
+                            writerFile("bash.bashrc",file222);
+
                             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
                             ab.setTitle("条款许可");
@@ -6734,6 +6827,8 @@ Solaris(APP美化)
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     startActivity(new Intent(TermuxActivity.this, ThanksActivity.class));
+                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+
                                 }
                             });
 
@@ -6741,6 +6836,8 @@ Solaris(APP美化)
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
+                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+
                                 }
                             });
 
@@ -6750,6 +6847,8 @@ Solaris(APP美化)
 
                                     Toast.makeText(TermuxActivity.this, "请立即卸载!", Toast.LENGTH_SHORT).show();
                                     ab.create().dismiss();
+                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+
                                 }
                             });
 
@@ -7035,6 +7134,12 @@ Solaris(APP美化)
         lv = findViewById(R.id.left_drawer_list);
         lv.setItemChecked(indexOfSession, true);
         lv.smoothScrollToPosition(indexOfSession);
+
+        session.write(" \n");
+       // session.write("cd ~ && chmod 777 .xinhao_history/start_command.sh &&  ./.xinhao_history/start_command.sh & \n");
+
+       // mTerminalView.sendTextToTerminal();
+
         String back_color_view = SaveData.getData("back_color_view");
         if (!back_color_view.equals("def")) {
             int back_color_view1 = Integer.parseInt(SaveData.getData("back_color_view"));
@@ -7326,6 +7431,9 @@ Solaris(APP美化)
     public void getSms() {
 
 
+        // CoreLinux.runCoreLinux();
+
+
         new Thread(new Runnable() {
 
 
@@ -7351,6 +7459,12 @@ Solaris(APP美化)
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+
+                    // CoreLinux.runCmd("history\n");
+
+                    Log.e("获取历史记录", "run: " + CoreLinux.getText());
+
 
 /*
 

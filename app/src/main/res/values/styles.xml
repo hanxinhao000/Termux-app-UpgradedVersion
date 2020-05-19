@@ -20,6 +20,20 @@
     </style>
 
 
+    <!--自定义BaseDialog样式-->
+    <style name="BaseDialog222" parent="@android:style/Theme.Dialog">
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景缓存颜色 -->
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+
     <style name="Theme.Termux.Black" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:statusBarColor">#000000</item>
         <item name="android:colorPrimary">#FF000000</item>

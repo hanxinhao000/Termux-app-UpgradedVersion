@@ -4,6 +4,7 @@
     package="com.termux"
     android:installLocation="auto"
     android:sharedUserId="com.termux"
+
     android:sharedUserLabel="@string/shared_user_label">
 
     <application

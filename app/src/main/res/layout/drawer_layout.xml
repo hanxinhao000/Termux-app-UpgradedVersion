@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="2dp"
-                    android:text="云端版本:[0.94.78]\n本地版本[-.--.--]"
+                    android:text="云端版本:[0.94.81]\n本地版本[-.--.--]"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -367,7 +367,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.88.90]"
+            android:text="Termux[0.94.81]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

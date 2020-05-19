@@ -34,6 +34,7 @@ import com.termux.terminal.TerminalSession.SessionChangedCallback;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -319,6 +320,8 @@ public final class TermuxService extends Service implements SessionChangedCallba
         if (cwd == null) cwd = HOME_PATH;
 
         String[] env = BackgroundJob.buildEnvironment(failSafe, cwd);
+
+       // Log.e("XINHAO_HAN", "createTermSession: " + Arrays.toString(env) +" : " + Arrays.toString(arguments));
         boolean isLoginShell = false;
 
         if (executablePath == null) {
