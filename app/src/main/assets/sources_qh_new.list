@@ -1,0 +1,7 @@
+# The main termux repository:
+#deb https://dl.bintray.com/termux/termux-packages-24 stable main
+deb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main
+#deb https://dl.bintray.com/grimler/game-packages-24 games stable
+deb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable
+#deb https://dl.bintray.com/grimler/science-packages-24 science stable
+deb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable
