@@ -22,9 +22,9 @@
     <string name="toggle_keep_screen_on">保持唤醒</string>
     <string name="bootstrap_installer_body">正在安装...[群 714730084]</string>
     <string name="bootstrap_error_title">无法安装</string>
-    <string name="bootstrap_error_body">Termux无法安装引导程序包。\n\n请检查您的网络连接，然后重试 \n说白了就是没有挂VPN，需要挂在VPN</string>
-    <string name="bootstrap_error_abort">关闭</string>
-    <string name="bootstrap_error_try_again">重试</string>
+    <string name="bootstrap_error_body">Termux无法安装引导程序包。\n推荐使用离线安装\n1.离线包下载地址:请点击离线包地址\n2.下载的离线包请放置到:内部存储/xinhao/online_system/\n\n\n请检查您的网络连接，然后重试 \n说白了就是没有挂V-P-N，需要挂载V-P-N</string>
+    <string name="bootstrap_error_abort">离线安装地址</string>
+    <string name="bootstrap_error_try_again">重试在线下载</string>
 
     <string name="x11_sdl_delay" translatable="false">15</string>
     <string name="bootstrap_error_not_primary_user_message">Termux只能安装在主用户帐户上</string>
@@ -892,5 +892,8 @@
         <item>Join our community! Google+, Twitter, Telegram and GitHub. Use the cmd \"tui\"</item>
     </string-array>
 
+
+    <string name="run_command_permission_label">在Termux环境中运行命令</string>
+    <string name="run_command_permission_description">允许第三方应用程序在Termux环境中执行任意命令。</string>
 
 </resources>

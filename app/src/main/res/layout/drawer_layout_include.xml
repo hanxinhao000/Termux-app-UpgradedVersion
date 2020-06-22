@@ -51,7 +51,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:padding="2dp"
-                           android:text="本地版本:[0.94.81]"
+                           android:text="本地版本:[0.95.82]"
                            android:textColor="#fff"
                            android:textSize="14sp"
                            android:textStyle="bold" />

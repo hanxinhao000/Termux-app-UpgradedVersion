@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.UserManager;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
@@ -19,6 +23,7 @@ import com.termux.terminal.EmulatorDebug;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,6 +61,8 @@ import main.java.com.termux.view.MyDialog;
  */
 public final class TermuxInstaller {
 
+    //是否离线安装
+    private static boolean isOnLine = false;
     /**
      * Performs setup if necessary.
      */
@@ -110,15 +117,200 @@ public final class TermuxInstaller {
                     InputStream inputStream = null;
 
                     Log.e("XINHAO_HAN", "高版本: " + determineTermuxArchName());
-                    if ("aarch64".equals(determineTermuxArchName())) {
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    if(isOnLine){
 
-                            inputStream = activity.getAssets().open("bootstrap-aarch64_d.zip");
 
-                            Log.e("XINHAO_HAN", "高版本: " + inputStream);
+
+
+
+                        switch (determineTermuxArchName()){
+
+
+                            case "aarch64":
+
+                            /*    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+                                    inputStream = activity.getAssets().open("bootstrap-aarch64-v25.zip");
+
+                                    Log.e("XINHAO_HAN", "高版本: " + inputStream);
+                                }
+*/
+                                File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/bootstrap-aarch64-v25.zip");
+
+                                if(!file5.exists()){
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                                    isOnLine = false;
+                                    throw new RuntimeException("没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip");
+                                }
+
+                                try {
+                                    inputStream = new FileInputStream(file5);
+                                }catch (Exception e){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+                                    throw e;
+
+
+                                }
+                                break;
+
+                            case "arm":
+
+                                File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/bootstrap-arm-v25.zip");
+
+                                if(!file.exists()){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-arm-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+
+                                        }
+                                    });
+                                    isOnLine = false;
+                                    throw new RuntimeException("没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-arm-v25.zip");
+                                }
+
+
+
+                                try {
+                                    inputStream = new FileInputStream(file);
+                                }catch (Exception e){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+                                    throw e;
+
+
+                                }
+
+                                break;
+
+                            case "x86_64":
+
+                                File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/bootstrap-x86_64-v25.zip");
+
+                                if(!file1.exists()){
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-x86_64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+
+                                        }
+                                    });
+                                    isOnLine = false;
+                                    throw new RuntimeException("没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-x86_64-v25.zip.zip");
+                                }
+
+
+                               // inputStream = new FileInputStream(file1);
+
+
+
+                                try {
+                                    inputStream = new FileInputStream(file1);
+                                }catch (Exception e){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+                                    throw e;
+
+
+                                }
+                                break;
+
+                            case "i686":
+
+
+                                File file2 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/bootstrap-i686-v25.zip");
+
+                                if(!file2.exists()){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-i686-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                                    isOnLine = false;
+                                    throw new RuntimeException("没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-i686-v25.zip");
+                                }
+
+
+                               // inputStream = new FileInputStream(file2);
+
+
+                                try {
+                                    inputStream = new FileInputStream(file2);
+                                }catch (Exception e){
+
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(activity, "没有存储权限或无法在:[内部存储/xinhao/online_system/]找到bootstrap-aarch64-v25.zip,自动切回在线模式", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+                                    throw e;
+
+
+                                }
+                                break;
+
+                        }
+
+                    }else{
+
+
+                        if ("aarch64".equals(determineTermuxArchName())) {
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+                                inputStream = activity.getAssets().open("bootstrap-aarch64-v25.zip");
+
+                                Log.e("XINHAO_HAN", "高版本: " + inputStream);
+                            }
                         }
                     }
+
+
+
+
+
+
+
 
                     Log.e("XINHAO_HAN", "外边: " + inputStream);
                     try (ZipInputStream zipInput = new ZipInputStream(inputStream == null ? zipUrl.openStream() : inputStream)) {
@@ -201,12 +393,56 @@ public final class TermuxInstaller {
                         try {
                             new AlertDialog.Builder(activity).setTitle(R.string.bootstrap_error_title).setMessage(R.string.bootstrap_error_body)
                                 .setNegativeButton(R.string.bootstrap_error_abort, (dialog, which) -> {
-                                    dialog.dismiss();
-                                    activity.finish();
+                                  //  dialog.dismiss();
+
+
+                                    //链接：https://pan.baidu.com/s/1j7s2F_stI7cJ4A96rnV7jg
+                                    //提取码：573u
+
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(activity);
+                                    ab.setCancelable(false);
+                                    ab.setTitle("提示!");
+
+                                    //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                    ab.setMessage("是否前往下载?\n\n提取码:573u");
+
+                                    ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            ab.create().dismiss();
+
+                                            Intent intent = new Intent();
+                                            intent.setData(Uri.parse("https://pan.baidu.com/s/1j7s2F_stI7cJ4A96rnV7jg "));//Url 就是你要打开的网址
+                                            intent.setAction(Intent.ACTION_VIEW);
+                                            activity.startActivity(intent); //启动浏览器
+
+                                        }
+                                    });
+
+                                    ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            ab.create().dismiss();
+                                        }
+                                    });
+
+                                    ab.show();
+
+
+                                    //  activity.finish();
                                 }).setPositiveButton(R.string.bootstrap_error_try_again, (dialog, which) -> {
                                 dialog.dismiss();
                                 TermuxInstaller.setupIfNeeded(activity, whenDone);
-                            }).show();
+                            }).setNeutralButton("开始离线安装", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    isOnLine = true;
+                                    TermuxInstaller.setupIfNeeded(activity, whenDone);
+
+                                }
+                            })  .setCancelable(false).show();
                         } catch (WindowManager.BadTokenException e1) {
                             // Activity already dismissed - ignore.
                         }
@@ -382,7 +618,7 @@ public final class TermuxInstaller {
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
-                            inputStream = activity.getAssets().open("bootstrap-aarch64_d.zip");
+                            inputStream = activity.getAssets().open("bootstrap-aarch64_d1.zip");
 
                             Log.e("XINHAO_HAN", "高版本: " + inputStream);
                         }

@@ -156,6 +156,14 @@ public final class BackgroundJob {
         // ANDROID_RUNTIME_ROOT and ANDROID_TZDATA_ROOT are required for `am` to run on Android Q
         addToEnvIfPresent(environment, "ANDROID_RUNTIME_ROOT");
         addToEnvIfPresent(environment, "ANDROID_TZDATA_ROOT");
+
+        // These variables are needed if running on Android 10 and higher.
+        addToEnvIfPresent(environment, "ANDROID_ART_ROOT");
+        addToEnvIfPresent(environment, "DEX2OATBOOTCLASSPATH");
+        addToEnvIfPresent(environment, "ANDROID_I18N_ROOT");
+/*        addToEnvIfPresent(environment, "ANDROID_RUNTIME_ROOT");
+        addToEnvIfPresent(environment, "ANDROID_TZDATA_ROOT");*/
+
         if (failSafe) {
             // Keep the default path so that system binaries can be used in the failsafe session.
             environment.add("PATH= " + System.getenv("PATH"));

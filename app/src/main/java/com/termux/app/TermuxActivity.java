@@ -347,6 +347,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         } catch (Exception e) {
 
         }
+
+
+
+
+
+
+
+
+
     }
 
     void checkForFontAndColors() {
@@ -1379,7 +1388,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.94.81]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.82]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1424,7 +1433,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.94.81]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.82]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1818,6 +1827,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         getImei();
+
+
+        File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/");
+
+        if(!file5.exists()){
+            file5.mkdirs();
+        }
 
 
         super.onCreate(bundle);
@@ -7135,7 +7151,7 @@ Solaris(APP美化)
         lv.setItemChecked(indexOfSession, true);
         lv.smoothScrollToPosition(indexOfSession);
 
-        session.write(" \n");
+       // session.write(" \n");
        // session.write("cd ~ && chmod 777 .xinhao_history/start_command.sh &&  ./.xinhao_history/start_command.sh & \n");
 
        // mTerminalView.sendTextToTerminal();

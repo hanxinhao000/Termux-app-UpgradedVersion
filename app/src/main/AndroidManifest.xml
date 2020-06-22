@@ -488,6 +488,15 @@
             android:name="main.java.com.termux.activity.DownLoadService"
             android:enabled="true"
             android:exported="true" />
+
+        <service
+            android:name="main.java.com.termux.app.RunCommandService"
+            android:exported="true"
+            android:permission="com.termux.permission.RUN_COMMAND" >
+            <intent-filter>
+                <action android:name="com.termux.RUN_COMMAND" />
+            </intent-filter>
+        </service>
         <service
             android:name="main.java.com.termux.service.BackService"
             android:enabled="true"
@@ -643,5 +652,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+
+    <permission android:name="com.termux.permission.RUN_COMMAND"
+        android:label="@string/run_command_permission_label"
+        android:description="@string/run_command_permission_description"
+        android:icon="@drawable/ic_launcher"
+        android:protectionLevel="dangerous" />
 
 </manifest>
