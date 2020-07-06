@@ -1388,7 +1388,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.82]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.83]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1433,7 +1433,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.82]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.83]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 

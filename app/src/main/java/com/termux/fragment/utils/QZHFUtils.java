@@ -74,12 +74,12 @@ public class QZHFUtils {
                 });
 
 
-                TermuxApplication.mHandler.post(new Runnable() {
+            /* TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage \n");
                     }
-                });
+                });*/
 
                 try {
                     Thread.sleep(2000);
