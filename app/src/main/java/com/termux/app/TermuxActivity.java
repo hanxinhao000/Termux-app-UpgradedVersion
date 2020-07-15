@@ -1815,6 +1815,203 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     }
 
+
+    //--------------------------------处理抽屉代码
+
+
+    private LinearLayout item_1_title;
+    private LinearLayout item_1;
+    private ImageView item_1_img;
+
+    private LinearLayout item_2_title;
+    private LinearLayout item_2;
+    private ImageView item_2_img;
+
+   // private LinearLayout ziyuan_group;
+    private LinearLayout ziyuan_group_content;
+    private ImageView item_3_img;
+
+    private LinearLayout item_3_title;
+    private LinearLayout item_3;
+    private ImageView item_4_img;
+
+    private LinearLayout item_4_title;
+    private LinearLayout item_4;
+    private ImageView item_5_img;
+
+
+   // private LinearLayout meihua_group;
+    private View meihua_group_content;
+    private ImageView item_6_img;
+
+
+  //  private LinearLayout gongju_group;
+    private View gongju_group_content;
+    private ImageView item_7_img;
+
+   // private LinearLayout other_group;
+    private View other_group_content;
+    private ImageView item_8_img;
+
+
+    private void startCT(){
+
+
+
+        other_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(other_group_content.getVisibility() == View.GONE){
+                    other_group_content.setVisibility(View.VISIBLE);
+
+
+                    item_8_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    other_group_content.setVisibility(View.GONE);
+
+
+                    item_8_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+
+        gongju_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(gongju_group_content.getVisibility() == View.GONE){
+                    gongju_group_content.setVisibility(View.VISIBLE);
+
+
+                    item_7_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    gongju_group_content.setVisibility(View.GONE);
+
+
+                    item_7_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+        meihua_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(meihua_group_content.getVisibility() == View.GONE){
+                    meihua_group_content.setVisibility(View.VISIBLE);
+
+
+                    item_6_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    meihua_group_content.setVisibility(View.GONE);
+
+
+                    item_6_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+        item_1_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(item_1.getVisibility() == View.GONE){
+                    item_1.setVisibility(View.VISIBLE);
+
+                    item_1_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    item_1.setVisibility(View.GONE);
+                    item_1_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+        item_2_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(item_2.getVisibility() == View.GONE){
+                    item_2.setVisibility(View.VISIBLE);
+
+                    item_2_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    item_2.setVisibility(View.GONE);
+                    item_2_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+        ziyuan_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(ziyuan_group_content.getVisibility() == View.GONE){
+                    ziyuan_group_content.setVisibility(View.VISIBLE);
+
+                    item_3_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    ziyuan_group_content.setVisibility(View.GONE);
+                    item_3_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+
+        item_3_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(item_3.getVisibility() == View.GONE){
+                    item_3.setVisibility(View.VISIBLE);
+
+                    item_4_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    item_3.setVisibility(View.GONE);
+                    item_4_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+        item_4_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(item_4.getVisibility() == View.GONE){
+                    item_4.setVisibility(View.VISIBLE);
+
+
+                    item_5_img.setImageResource(R.drawable.up_sanjiao);
+                }else{
+                    item_4.setVisibility(View.GONE);
+
+
+                    item_5_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
+
+
+
+    }
+
+
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -1856,6 +2053,40 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         xom_tv.setSelected(true);
         moe_ll = findViewById(R.id.moe_ll);
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
+
+
+        //---------------------------------------------------------
+        item_1_title = findViewById(R.id.item_1_title);
+        item_1 = findViewById(R.id.item_1);
+        item_1_img = findViewById(R.id.item_1_img);
+
+
+        item_2_title = findViewById(R.id.item_2_title);
+        item_2 = findViewById(R.id.item_2);
+        item_2_img = findViewById(R.id.item_2_img);
+
+        ziyuan_group_content = findViewById(R.id.ziyuan_group_content);
+        item_3_img = findViewById(R.id.item_3_img);
+
+        item_3_title = findViewById(R.id.item_3_title);
+        item_3 = findViewById(R.id.item_3);
+        item_4_img = findViewById(R.id.item_4_img);
+
+        item_4_title = findViewById(R.id.item_4_title);
+        item_4 = findViewById(R.id.item_4);
+        item_5_img = findViewById(R.id.item_5_img);
+
+        meihua_group_content = findViewById(R.id.meihua_group_content);
+        item_6_img = findViewById(R.id.item_6_img);
+
+        gongju_group_content = findViewById(R.id.gongju_group_content);
+        item_7_img = findViewById(R.id.item_7_img);
+
+        other_group_content = findViewById(R.id.other_group_content);
+        item_8_img = findViewById(R.id.item_8_img);
+
+
+        //---------------------------------------------------------
 
         kongxia_linux = findViewById(R.id.kongxia_linux);
         xom_tv_ll = findViewById(R.id.xom_tv_ll);
@@ -1911,7 +2142,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         switch_main_new = findViewById(R.id.switch_main_new);
 
-
+        startCT();
         moe_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -3018,10 +3249,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             }
         });
 
-        ziyuan_group.setOnClickListener(this);
+        //禁止之前的老代码
+ /*       ziyuan_group.setOnClickListener(this);
         meihua_group.setOnClickListener(this);
         gongju_group.setOnClickListener(this);
-        other_group.setOnClickListener(this);
+        other_group.setOnClickListener(this);*/
 
         system_text = findViewById(R.id.system_text);
         meihua_text = findViewById(R.id.meihua_text);
