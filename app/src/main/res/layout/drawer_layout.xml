@@ -77,7 +77,7 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#2b2b2b"
+            android:background="#882b2b2b"
             android:choiceMode="singleChoice"
             android:descendantFocusability="blocksDescendants"
             android:divider="@android:color/transparent"
@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="2dp"
-                    android:text="云端版本:[0.95.83]\n本地版本[-.--.--]"
+                    android:text="云端版本:[0.95.85]\n本地版本[-.--.--]"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -165,48 +165,10 @@
                 <!-- </ScrollView>-->
 
 
-                <ListView
-                    android:id="@+id/left_drawer_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="#2b2b2b"
-                    android:choiceMode="singleChoice"
-                    android:longClickable="true"
-                    android:visibility="gone" />
-
-
-                <LinearLayout
-                    android:id="@+id/function_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="#2b2b2b"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
 
 
 
-                    <Button
-                        android:id="@+id/fun_btn"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="[*]功能"
-                        android:textColor="#fff" />
 
-                    <Button
-                        android:id="@+id/sess_btn"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="会话"
-                        android:textColor="#fff" />
-
-                </LinearLayout>
 
 
             </RelativeLayout>
@@ -367,7 +329,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.95.83]"
+            android:text="Termux[0.95.85]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

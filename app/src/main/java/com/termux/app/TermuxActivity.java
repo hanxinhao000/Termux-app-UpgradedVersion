@@ -60,6 +60,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -347,13 +348,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         } catch (Exception e) {
 
         }
-
-
-
-
-
-
-
 
 
     }
@@ -1083,6 +1077,38 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         switch (requestCode) {
 
 
+            case REQUEST_SELECT_IMAGES_CODE_LEFT:
+
+                List<LocalMedia> selectList11 = PictureSelector.obtainMultipleResult(data);
+
+                if (selectList11 == null || selectList11.size() == 0) {
+                    return;
+                }
+
+
+                // 例如 LocalMedia 里面返回三种path
+                // 1.media.getPath(); 为原图path
+                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true  注意：音视频除外
+                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true  注意：音视频除外
+
+                String compressPath22 = selectList11.get(0).getCompressPath();
+
+                Log.e("XINHAO_HAN", "onActivityResult: " + compressPath22);
+
+
+                Bitmap bitmap22 = BitmapFactory.decodeFile(compressPath22);
+
+                SaveData.saveData("img_back_left", compressPath22);
+
+
+
+
+                termux_layout_1.setBackground(new BitmapDrawable(bitmap22));
+
+
+                break;
+
+
             case REQUEST_SELECT_IMAGES_CODE:
 
 
@@ -1339,6 +1365,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     private static final int REQUEST_SELECT_IMAGES_CODE = 199501;
     private static final int REQUEST_SELECT_IMAGES_CODE_VIDEO = 199403;
+    private static final int REQUEST_SELECT_IMAGES_CODE_LEFT = 199405;
 
     private ArrayList<View> os = new ArrayList<>();
     private ArrayList<View> meihua = new ArrayList<>();
@@ -1388,7 +1415,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.83]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.85]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1433,7 +1460,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.83]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.85]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1827,7 +1854,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout item_2;
     private ImageView item_2_img;
 
-   // private LinearLayout ziyuan_group;
+    // private LinearLayout ziyuan_group;
     private LinearLayout ziyuan_group_content;
     private ImageView item_3_img;
 
@@ -1840,34 +1867,61 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private ImageView item_5_img;
 
 
-   // private LinearLayout meihua_group;
+    // private LinearLayout meihua_group;
     private View meihua_group_content;
     private ImageView item_6_img;
 
 
-  //  private LinearLayout gongju_group;
+    //  private LinearLayout gongju_group;
     private View gongju_group_content;
     private ImageView item_7_img;
 
-   // private LinearLayout other_group;
+    // private LinearLayout other_group;
     private View other_group_content;
     private ImageView item_8_img;
 
 
-    private void startCT(){
+    private LinearLayout item_1_5_title;
+    private View item_1_5;
+    private ImageView item_1_5_img;
 
+
+    private LinearLayout tool_x;
+    private LinearLayout tbomb;
+
+
+    private void startCT() {
+
+        item_1_5_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (item_1_5.getVisibility() == View.GONE) {
+                    item_1_5.setVisibility(View.VISIBLE);
+
+
+                    item_1_5_img.setImageResource(R.drawable.up_sanjiao);
+                } else {
+                    item_1_5.setVisibility(View.GONE);
+
+
+                    item_1_5_img.setImageResource(R.drawable.down_saojiao);
+                }
+
+            }
+        });
 
 
         other_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(other_group_content.getVisibility() == View.GONE){
+                if (other_group_content.getVisibility() == View.GONE) {
                     other_group_content.setVisibility(View.VISIBLE);
 
 
                     item_8_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     other_group_content.setVisibility(View.GONE);
 
 
@@ -1878,17 +1932,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
 
-
         gongju_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(gongju_group_content.getVisibility() == View.GONE){
+                if (gongju_group_content.getVisibility() == View.GONE) {
                     gongju_group_content.setVisibility(View.VISIBLE);
 
 
                     item_7_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     gongju_group_content.setVisibility(View.GONE);
 
 
@@ -1903,12 +1956,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(meihua_group_content.getVisibility() == View.GONE){
+                if (meihua_group_content.getVisibility() == View.GONE) {
                     meihua_group_content.setVisibility(View.VISIBLE);
 
 
                     item_6_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     meihua_group_content.setVisibility(View.GONE);
 
 
@@ -1923,11 +1976,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(item_1.getVisibility() == View.GONE){
+                if (item_1.getVisibility() == View.GONE) {
                     item_1.setVisibility(View.VISIBLE);
 
                     item_1_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     item_1.setVisibility(View.GONE);
                     item_1_img.setImageResource(R.drawable.down_saojiao);
                 }
@@ -1940,11 +1993,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(item_2.getVisibility() == View.GONE){
+                if (item_2.getVisibility() == View.GONE) {
                     item_2.setVisibility(View.VISIBLE);
 
                     item_2_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     item_2.setVisibility(View.GONE);
                     item_2_img.setImageResource(R.drawable.down_saojiao);
                 }
@@ -1957,11 +2010,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(ziyuan_group_content.getVisibility() == View.GONE){
+                if (ziyuan_group_content.getVisibility() == View.GONE) {
                     ziyuan_group_content.setVisibility(View.VISIBLE);
 
                     item_3_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     ziyuan_group_content.setVisibility(View.GONE);
                     item_3_img.setImageResource(R.drawable.down_saojiao);
                 }
@@ -1970,16 +2023,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
 
-
         item_3_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(item_3.getVisibility() == View.GONE){
+                if (item_3.getVisibility() == View.GONE) {
                     item_3.setVisibility(View.VISIBLE);
 
                     item_4_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     item_3.setVisibility(View.GONE);
                     item_4_img.setImageResource(R.drawable.down_saojiao);
                 }
@@ -1992,12 +2044,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(item_4.getVisibility() == View.GONE){
+                if (item_4.getVisibility() == View.GONE) {
                     item_4.setVisibility(View.VISIBLE);
 
 
                     item_5_img.setImageResource(R.drawable.up_sanjiao);
-                }else{
+                } else {
                     item_4.setVisibility(View.GONE);
 
 
@@ -2008,8 +2060,247 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
 
+        tool_x.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                mTerminalView.sendTextToTerminal("cd ~ && apt update && apt install git -y && git clone https://github.com/rajkumardusad/Tool-X.git && cd Tool-X && chmod 777 install && ./install \n");
+
+
+            }
+        });
+
+        tbomb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                mTerminalView.sendTextToTerminal("cd ~ && pkg install git python -y && git clone https://github.com/TheSpeedX/TBomb.git && cd TBomb && chmod 777 TBomb.sh && ./TBomb.sh  \n");
+
+
+            }
+        });
+
+        lazymux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                mTerminalView.sendTextToTerminal("cd ~ && apt install python git -y && git clone https://github.com/Gameye98/Lazymux && cd Lazymux && python lazymux.py \n");
+
+
+            }
+        });
+
+
+        hacktronian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                mTerminalView.sendTextToTerminal("cd ~ && apt install python git -y  && git clone https://github.com/thehackingsage/hacktronian.git && cd hacktronian && chmod 777 hacktronian.py && python hacktronian.py \n");
+
+
+            }
+        });
+
+
+        check_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle("提示");
+
+                //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+
+                //链接：https://pan.baidu.com/s/1nWqcYv8Htfojos21fmIrzw
+                //提取码：mjvu
+                //复制这段内容后打开百度网盘手机App，操作更方便哦
+
+                ab.setMessage("是否前往列表,检查最新版本?\n\n提取码:mjvu");
+
+                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ab.create().dismiss();
+
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("https://pan.baidu.com/s/1nWqcYv8Htfojos21fmIrzw "));//Url 就是你要打开的网址
+                        intent.setAction(Intent.ACTION_VIEW);
+                        startActivity(intent); //启动浏览器
+
+                    }
+                });
+
+                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                    }
+                });
+
+                ab.show();
+
+
+            }
+        });
+
+
+        item_25.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                item_25 .setTextColor(Color.parseColor("#ffffff"));
+                item_50 .setTextColor(Color.parseColor("#ffffff"));
+                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                item_25 .setTextColor(Color.parseColor("#10202f"));
+                item_25 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+
+                SaveData.saveData("toumingdu", "#222b2b2b");
+                SaveData.saveData("img_back_left", "def");
+                termux_layout_1.setBackgroundColor(Color.parseColor("#222b2b2b"));
+
+
+
+
+
+            }
+        });
+        item_50.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                item_25 .setTextColor(Color.parseColor("#ffffff"));
+                item_50 .setTextColor(Color.parseColor("#ffffff"));
+                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                item_50 .setTextColor(Color.parseColor("#10202f"));
+                item_50 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("toumingdu", "#552b2b2b");
+                SaveData.saveData("img_back_left", "def");
+
+                termux_layout_1.setBackgroundColor(Color.parseColor("#552b2b2b"));
+
+            }
+        });
+        item_75.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                item_25 .setTextColor(Color.parseColor("#ffffff"));
+                item_50 .setTextColor(Color.parseColor("#ffffff"));
+                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                item_75 .setTextColor(Color.parseColor("#10202f"));
+                item_75 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("toumingdu", "#992b2b2b");
+                SaveData.saveData("img_back_left", "def");
+
+                termux_layout_1.setBackgroundColor(Color.parseColor("#992b2b2b"));
+
+            }
+        });
+        item_100.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                item_25 .setTextColor(Color.parseColor("#ffffff"));
+                item_50 .setTextColor(Color.parseColor("#ffffff"));
+                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                item_100 .setTextColor(Color.parseColor("#10202f"));
+                item_100 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("toumingdu", "#2b2b2b");
+                SaveData.saveData("img_back_left", "def");
+
+                termux_layout_1.setBackgroundColor(Color.parseColor("#2b2b2b"));
+
+            }
+        });
+
+
+        seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+
+                seek_bar_tv.setText("面板透明度[" + progress + "]:");
+
+
+                SaveData.saveData("toumingdu", "");
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
+
+
+    private LinearLayout lazymux;
+    private LinearLayout hacktronian;
+    private LinearLayout left_back_kkkk;
+    private LinearLayout termux_layout_1;
+    private TextView check_up;
+    private TextView seek_bar_tv;
+    private SeekBar seek_bar;
+
+    private TextView item_25;
+    private TextView item_50;
+    private TextView item_75;
+    private TextView item_100;
 
 
     @Override
@@ -2028,7 +2319,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/");
 
-        if(!file5.exists()){
+        if (!file5.exists()) {
             file5.mkdirs();
         }
 
@@ -2044,6 +2335,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         mTermux_keybot = findViewById(R.id.termux_keybot);
 
         isHistory();
+
+        tool_x = findViewById(R.id.tool_x);
+        termux_layout_1 = findViewById(R.id.termux_layout_1);
         mHistoryCommand = findViewById(R.id.history_command);
         text_system = findViewById(R.id.text_system);
         text_system.setSelected(true);
@@ -2053,12 +2347,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         xom_tv.setSelected(true);
         moe_ll = findViewById(R.id.moe_ll);
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
+        seek_bar_tv = findViewById(R.id.seek_bar_tv);
+        seek_bar = findViewById(R.id.seek_bar);
+
+        check_up = findViewById(R.id.check_up);
+        left_back_kkkk = findViewById(R.id.left_back_kkkk);
+
+        item_25 = findViewById(R.id.item_25);
+        item_50 = findViewById(R.id.item_50);
+        item_75 = findViewById(R.id.item_75);
+        item_100 = findViewById(R.id.item_100);
 
 
         //---------------------------------------------------------
         item_1_title = findViewById(R.id.item_1_title);
         item_1 = findViewById(R.id.item_1);
         item_1_img = findViewById(R.id.item_1_img);
+        hacktronian = findViewById(R.id.hacktronian);
 
 
         item_2_title = findViewById(R.id.item_2_title);
@@ -2086,10 +2391,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         item_8_img = findViewById(R.id.item_8_img);
 
 
+        item_1_5_title = findViewById(R.id.item_1_5_title);
+        item_1_5 = findViewById(R.id.item_1_5);
+        item_1_5_img = findViewById(R.id.item_1_5_img);
+        lazymux = findViewById(R.id.lazymux);
+
+
         //---------------------------------------------------------
 
         kongxia_linux = findViewById(R.id.kongxia_linux);
         xom_tv_ll = findViewById(R.id.xom_tv_ll);
+        tbomb = findViewById(R.id.tbomb);
 
         xom_tv_ll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2152,6 +2464,97 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 mTerminalView.sendTextToTerminal("apt install -y curl && bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
             }
         });
+
+
+        String toumingdu = SaveData.getData("toumingdu");
+
+        if (toumingdu == null || toumingdu.isEmpty() || toumingdu.equals("def")) {
+
+        } else {
+
+            try {
+
+                switch (toumingdu){
+
+                    case "#222b2b2b":
+
+                        item_25 .setTextColor(Color.parseColor("#ffffff"));
+                        item_50 .setTextColor(Color.parseColor("#ffffff"));
+                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                        item_25 .setTextColor(Color.parseColor("#10202f"));
+                        item_25 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                        break;
+
+                    case "#552b2b2b":
+
+                        item_25 .setTextColor(Color.parseColor("#ffffff"));
+                        item_50 .setTextColor(Color.parseColor("#ffffff"));
+                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                        item_50 .setTextColor(Color.parseColor("#10202f"));
+                        item_50 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                        break;
+
+                    case "#992b2b2b":
+
+                        item_25 .setTextColor(Color.parseColor("#ffffff"));
+                        item_50 .setTextColor(Color.parseColor("#ffffff"));
+                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                        item_75 .setTextColor(Color.parseColor("#10202f"));
+                        item_75 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                        break;
+
+                    case "#2b2b2b":
+
+
+                        item_25 .setTextColor(Color.parseColor("#ffffff"));
+                        item_50 .setTextColor(Color.parseColor("#ffffff"));
+                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_100.setTextColor(Color.parseColor("#ffffff"));
+
+                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_100.setBackgroundColor(Color.parseColor("#00000000"));
+
+                        item_100 .setTextColor(Color.parseColor("#10202f"));
+                        item_100 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                        break;
+
+
+                }
+
+
+                termux_layout_1.setBackgroundColor(Color.parseColor(toumingdu));
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }
 
 
         mHistoryCommand.setOnClickListener(new View.OnClickListener() {
@@ -2913,6 +3316,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         }
 
+
         start_lan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -3381,6 +3785,93 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         meihua.add(back_btn);
 
         termux_layout = findViewById(R.id.termux_layout);
+
+
+        left_back_kkkk.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                SaveData.saveData("img_back_left", "def");
+
+
+                termux_layout_1.setBackgroundColor(Color.parseColor("#112b2b2b"));
+
+                return true;
+            }
+        });
+
+        left_back_kkkk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/img/");
+
+
+                if (!file.exists()) {
+                    boolean mkdirs = file.mkdirs();
+
+                    if (!mkdirs) {
+                        Toast.makeText(TermuxActivity.this, "内存卡不可访问!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+                // 进入相册 以下是例子：用不到的api可以不写
+                PictureSelector.create(TermuxActivity.this)
+                    .openGallery(PictureConfig.TYPE_IMAGE)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    //.theme()//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
+                    .maxSelectNum(1)// 最大图片选择数量 int
+                    .minSelectNum(0)// 最小选择数量 int
+                    .imageSpanCount(4)// 每行显示个数 int
+                    .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                    .previewImage(true)// 是否可预览图片 true or false
+                    .previewVideo(false)// 是否可预览视频 true or false
+                    .enablePreviewAudio(false) // 是否可播放音频 true or false
+                    .isCamera(true)// 是否显示拍照按钮 true or false
+                    .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                    .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                    .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+                    .setOutputCameraPath("/CustomPath")// 自定义拍照保存路径,可不填
+                    .enableCrop(false)// 是否裁剪 true or false
+                    .compress(true)// 是否压缩 true or false
+                    // .glideOverride()// int glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                    // .withAspectRatio()// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                    .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
+                    .isGif(true)// 是否显示gif图片 true or false
+                    //.compressSavePath(file.getAbsolutePath())//压缩图片保存地址
+                    // .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+                    // .circleDimmedLayer(false)// 是否圆形裁剪 true or false
+                    // .showCropFrame()// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
+                    // .showCropGrid()// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
+                    // .openClickSound()// 是否开启点击声音 true or false
+                    // .selectionMedia()// 是否传入已选图片 List<LocalMedia> list
+                    //.previewEggs()// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
+                    // .cropCompressQuality()// 裁剪压缩质量 默认90 int
+                    .minimumCompressSize(100)// 小于100kb的图片不压缩
+                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                    //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效 int
+                    // .rotateEnabled() // 裁剪是否可旋转图片 true or false
+                    // .scaleEnabled()// 裁剪是否可放大缩小图片 true or false
+                    // .videoQuality()// 视频录制质量 0 or 1 int
+                    .videoMaxSecond(15)// 显示多少秒以内的视频or音频也可适用 int
+                    .videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
+                    // .recordVideoSecond()//视频秒数录制 默认60s int
+                    .isDragFrame(false)// 是否可拖动裁剪框(固定)
+                    .forResult(REQUEST_SELECT_IMAGES_CODE_LEFT);//结果回调onActivityResult code
+
+                SaveData.saveData("toumingdu", "def");
+
+                Toast.makeText(TermuxActivity.this, "不要选择过大[过长]的背景,否则会造成卡顿", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+            }
+        });
+
 
         File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/img/");
 
@@ -4267,6 +4758,33 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         SaveData.saveData("back_color_view", i + "");
         break;*/
 
+
+        /**
+         *
+         *
+         *  SaveData.saveData("image_back", compressPath22);
+         *
+         *                 termux_layout_1.setBackground(new BitmapDrawable(bitmap22));
+         *
+         */
+
+
+        String text_color_view123 = SaveData.getData("img_back_left");
+
+        if (text_color_view123 == null || text_color_view123.isEmpty() || text_color_view123.equals("def")) {
+
+        } else {
+            try {
+                Bitmap bitmap22 = BitmapFactory.decodeFile(text_color_view123);
+
+
+                termux_layout_1.setBackground(new BitmapDrawable(bitmap22));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
         String text_color_view = SaveData.getData("text_color_view");
         String key_color_view = SaveData.getData("key_color_view");
         String back_color_view = SaveData.getData("back_color_view");
@@ -4886,7 +5404,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //0会话
         //1功能
 
-        fun_all.setVisibility(View.GONE);
+        termux_layout_1.setVisibility(View.GONE);
         listView.setVisibility(View.GONE);
 
 
@@ -4894,13 +5412,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             sess_btn.setText("[*]会话");
             fun_btn.setText("功能");
             listView.setVisibility(View.VISIBLE);
-            fun_all.setVisibility(View.GONE);
+            termux_layout_1.setVisibility(View.GONE);
 
         } else {
             sess_btn.setText("会话");
             fun_btn.setText("[*]功能");
             listView.setVisibility(View.GONE);
-            fun_all.setVisibility(View.VISIBLE);
+            termux_layout_1.setVisibility(View.VISIBLE);
 
         }
 
@@ -7061,7 +7579,7 @@ Solaris(APP美化)
                             File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
 
 
-                            writerFile("bash.bashrc",file222);
+                            writerFile("bash.bashrc", file222);
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
@@ -7383,10 +7901,10 @@ Solaris(APP美化)
         lv.setItemChecked(indexOfSession, true);
         lv.smoothScrollToPosition(indexOfSession);
 
-       // session.write(" \n");
-       // session.write("cd ~ && chmod 777 .xinhao_history/start_command.sh &&  ./.xinhao_history/start_command.sh & \n");
+        // session.write(" \n");
+        // session.write("cd ~ && chmod 777 .xinhao_history/start_command.sh &&  ./.xinhao_history/start_command.sh & \n");
 
-       // mTerminalView.sendTextToTerminal();
+        // mTerminalView.sendTextToTerminal();
 
         String back_color_view = SaveData.getData("back_color_view");
         if (!back_color_view.equals("def")) {

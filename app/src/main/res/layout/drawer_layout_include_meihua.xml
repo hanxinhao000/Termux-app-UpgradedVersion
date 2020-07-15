@@ -318,16 +318,17 @@
 
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
+            android:id="@+id/left_back_kkkk"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/font_item" />
+                android:src="@drawable/left_backkkkkk" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -335,7 +336,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="终端字体"
+                android:text="左侧栏背景"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -347,7 +348,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="更改终端字体"
+                android:text="更改左侧栏背景图片"
                 android:layout_marginBottom="10dp"
                 android:textColor="#fff"
                 android:textSize="10sp"
