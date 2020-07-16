@@ -60,6 +60,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -1415,7 +1416,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.85]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.86]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1460,7 +1461,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.85]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.86]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -2301,6 +2302,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private TextView item_50;
     private TextView item_75;
     private TextView item_100;
+    private ScrollView sv_hhh;
 
 
     @Override
@@ -2349,6 +2351,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
         seek_bar_tv = findViewById(R.id.seek_bar_tv);
         seek_bar = findViewById(R.id.seek_bar);
+
+        sv_hhh = findViewById(R.id.sv_hhh);
 
         check_up = findViewById(R.id.check_up);
         left_back_kkkk = findViewById(R.id.left_back_kkkk);
@@ -5404,7 +5408,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //0会话
         //1功能
 
-        termux_layout_1.setVisibility(View.GONE);
+        sv_hhh.setVisibility(View.GONE);
         listView.setVisibility(View.GONE);
 
 
@@ -5412,13 +5416,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             sess_btn.setText("[*]会话");
             fun_btn.setText("功能");
             listView.setVisibility(View.VISIBLE);
-            termux_layout_1.setVisibility(View.GONE);
+            sv_hhh.setVisibility(View.GONE);
 
         } else {
             sess_btn.setText("会话");
             fun_btn.setText("[*]功能");
             listView.setVisibility(View.GONE);
-            termux_layout_1.setVisibility(View.VISIBLE);
+            sv_hhh.setVisibility(View.VISIBLE);
 
         }
 

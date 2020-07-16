@@ -15,6 +15,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_above="@+id/function_ll"
+            android:id="@+id/sv_hhh"
             android:layout_height="match_parent">
 
             <LinearLayout
@@ -56,7 +57,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="本地版本:[0.95.85]"
+                                android:text="本地版本:[0.95.86]"
                                 android:textColor="#fff"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -3073,8 +3074,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            android:layout_weight="1"
-            android:background="#552b2b2b"
             android:choiceMode="singleChoice"
             android:layout_above="@+id/function_ll"
             android:longClickable="true"

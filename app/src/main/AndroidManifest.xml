@@ -467,7 +467,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <receiver android:name="main.com.termux.TermuxOpenReceiver" />
+        <receiver android:name="com.termux.app.TermuxOpenReceiver" />
         <receiver android:name="main.java.com.termux.app.TermuxOpenReceiver" />
         <receiver
             android:name=".tuils.stuff.PolicyReceiver"
@@ -482,7 +482,6 @@
                 android:name="android.app.device_admin"
                 android:resource="@xml/policy" />
         </receiver> <!-- Activities from OI Distribution Library -->
-        <receiver android:name=".app.TermuxOpenReceiver" />
 
         <service
             android:name="main.java.com.termux.activity.DownLoadService"
