@@ -1416,7 +1416,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.86]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.87]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1461,7 +1461,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.86]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.87]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1890,23 +1890,146 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout tool_x;
     private LinearLayout tbomb;
 
+    private void mianbanSwitch(int index){
+
+
+        switch (index){
+
+            case 0:
+                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+
+                chouti_1 .setTextColor(Color.parseColor("#10202f"));
+                chouti_1 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+               SaveData.saveData("zhedie","true");
+
+
+                break;
+
+            case 1:
+
+                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
+
+
+                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+
+
+                chouti_2 .setTextColor(Color.parseColor("#10202f"));
+                chouti_2 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("zhedie","def");
+
+
+                break;
+
+
+        }
+
+
+    }
+
+    private void setLayGone(){
+
+        item_1_5.setVisibility(View.GONE);
+
+        other_group_content.setVisibility(View.GONE);
+
+        gongju_group_content.setVisibility(View.GONE);
+
+        meihua_group_content.setVisibility(View.GONE);
+
+        item_1.setVisibility(View.GONE);
+
+        item_2.setVisibility(View.GONE);
+
+        ziyuan_group_content.setVisibility(View.GONE);
+
+        item_3.setVisibility(View.GONE);
+
+        item_4.setVisibility(View.GONE);
+
+
+        //----------------------
+
+        item_1_5_img.setImageResource(R.drawable.down_saojiao);
+        item_8_img.setImageResource(R.drawable.down_saojiao);
+        item_7_img.setImageResource(R.drawable.down_saojiao);
+        item_6_img.setImageResource(R.drawable.down_saojiao);
+        item_1_img.setImageResource(R.drawable.down_saojiao);
+        item_2_img.setImageResource(R.drawable.down_saojiao);
+        item_3_img.setImageResource(R.drawable.down_saojiao);
+        item_4_img.setImageResource(R.drawable.down_saojiao);
+        item_5_img.setImageResource(R.drawable.down_saojiao);
+    }
+
+
+
 
     private void startCT() {
+
+        String zhedie = SaveData.getData("zhedie");
+
+
+        if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+            mianbanSwitch(1);
+
+
+        }else{
+
+            mianbanSwitch(0);
+
+        }
+
+        chouti_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch(0);
+            }
+        });
+            chouti_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mianbanSwitch(1);
+                }
+            });
 
         item_1_5_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (item_1_5.getVisibility() == View.GONE) {
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+                    if (item_1_5.getVisibility() == View.GONE) {
+                        item_1_5.setVisibility(View.VISIBLE);
+                        item_1_5_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        item_1_5.setVisibility(View.GONE);
+
+
+                        item_1_5_img.setImageResource(R.drawable.down_saojiao);
+                    }
+                }else{
+
+
+                    setLayGone();
+
+                    item_1_5_img.setImageResource(R.drawable.up_sanjiao);
+
                     item_1_5.setVisibility(View.VISIBLE);
 
 
-                    item_1_5_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    item_1_5.setVisibility(View.GONE);
 
-
-                    item_1_5_img.setImageResource(R.drawable.down_saojiao);
                 }
 
             }
@@ -1917,16 +2040,32 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (other_group_content.getVisibility() == View.GONE) {
-                    other_group_content.setVisibility(View.VISIBLE);
 
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+                    if (other_group_content.getVisibility() == View.GONE) {
+                        other_group_content.setVisibility(View.VISIBLE);
+
+
+                        item_8_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        other_group_content.setVisibility(View.GONE);
+
+
+                        item_8_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+                }else{
+
+                    setLayGone();
 
                     item_8_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    other_group_content.setVisibility(View.GONE);
 
+                    other_group_content.setVisibility(View.VISIBLE);
 
-                    item_8_img.setImageResource(R.drawable.down_saojiao);
                 }
 
             }
@@ -1937,18 +2076,36 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (gongju_group_content.getVisibility() == View.GONE) {
-                    gongju_group_content.setVisibility(View.VISIBLE);
 
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (gongju_group_content.getVisibility() == View.GONE) {
+                        gongju_group_content.setVisibility(View.VISIBLE);
+
+
+                        item_7_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        gongju_group_content.setVisibility(View.GONE);
+
+
+                        item_7_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+                }else{
+
+                    setLayGone();
 
                     item_7_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    gongju_group_content.setVisibility(View.GONE);
 
+                    gongju_group_content.setVisibility(View.VISIBLE);
 
-                    item_7_img.setImageResource(R.drawable.down_saojiao);
                 }
-
             }
         });
 
@@ -1957,16 +2114,37 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (meihua_group_content.getVisibility() == View.GONE) {
-                    meihua_group_content.setVisibility(View.VISIBLE);
 
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (meihua_group_content.getVisibility() == View.GONE) {
+                        meihua_group_content.setVisibility(View.VISIBLE);
+
+
+                        item_6_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        meihua_group_content.setVisibility(View.GONE);
+
+
+                        item_6_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_6_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    meihua_group_content.setVisibility(View.GONE);
 
+                    meihua_group_content.setVisibility(View.VISIBLE);
 
-                    item_6_img.setImageResource(R.drawable.down_saojiao);
                 }
 
             }
@@ -1977,15 +2155,35 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (item_1.getVisibility() == View.GONE) {
-                    item_1.setVisibility(View.VISIBLE);
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+
+                    if (item_1.getVisibility() == View.GONE) {
+                        item_1.setVisibility(View.VISIBLE);
+
+                        item_1_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        item_1.setVisibility(View.GONE);
+                        item_1_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_1_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    item_1.setVisibility(View.GONE);
-                    item_1_img.setImageResource(R.drawable.down_saojiao);
-                }
+                    item_1.setVisibility(View.VISIBLE);
 
+                }
             }
         });
 
@@ -1994,15 +2192,37 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (item_2.getVisibility() == View.GONE) {
-                    item_2.setVisibility(View.VISIBLE);
+
+
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (item_2.getVisibility() == View.GONE) {
+                        item_2.setVisibility(View.VISIBLE);
+
+                        item_2_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        item_2.setVisibility(View.GONE);
+                        item_2_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_2_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    item_2.setVisibility(View.GONE);
-                    item_2_img.setImageResource(R.drawable.down_saojiao);
-                }
 
+                    item_2.setVisibility(View.VISIBLE);
+
+                }
             }
         });
 
@@ -2011,13 +2231,35 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (ziyuan_group_content.getVisibility() == View.GONE) {
-                    ziyuan_group_content.setVisibility(View.VISIBLE);
+
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (ziyuan_group_content.getVisibility() == View.GONE) {
+                        ziyuan_group_content.setVisibility(View.VISIBLE);
+
+                        item_3_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        ziyuan_group_content.setVisibility(View.GONE);
+                        item_3_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_3_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    ziyuan_group_content.setVisibility(View.GONE);
-                    item_3_img.setImageResource(R.drawable.down_saojiao);
+
+                    ziyuan_group_content.setVisibility(View.VISIBLE);
+
                 }
 
             }
@@ -2028,15 +2270,36 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (item_3.getVisibility() == View.GONE) {
-                    item_3.setVisibility(View.VISIBLE);
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (item_3.getVisibility() == View.GONE) {
+                        item_3.setVisibility(View.VISIBLE);
+
+                        item_4_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        item_3.setVisibility(View.GONE);
+                        item_4_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_4_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    item_3.setVisibility(View.GONE);
-                    item_4_img.setImageResource(R.drawable.down_saojiao);
-                }
 
+                    item_3.setVisibility(View.VISIBLE);
+
+                }
             }
         });
 
@@ -2045,18 +2308,40 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if (item_4.getVisibility() == View.GONE) {
-                    item_4.setVisibility(View.VISIBLE);
 
+
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+
+                    if (item_4.getVisibility() == View.GONE) {
+                        item_4.setVisibility(View.VISIBLE);
+
+
+                        item_5_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        item_4.setVisibility(View.GONE);
+
+
+                        item_5_img.setImageResource(R.drawable.down_saojiao);
+                    }
+
+
+
+
+
+                }else{
+
+                    setLayGone();
 
                     item_5_img.setImageResource(R.drawable.up_sanjiao);
-                } else {
-                    item_4.setVisibility(View.GONE);
 
+                    item_4.setVisibility(View.VISIBLE);
 
-                    item_5_img.setImageResource(R.drawable.down_saojiao);
                 }
-
             }
         });
 
@@ -2304,6 +2589,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private TextView item_100;
     private ScrollView sv_hhh;
 
+    private TextView chouti_2;
+    private TextView chouti_1;
+
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -2337,6 +2625,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         mTermux_keybot = findViewById(R.id.termux_keybot);
 
         isHistory();
+
+        chouti_2 = findViewById(R.id.chouti_2);
+        chouti_1 = findViewById(R.id.chouti_1);
 
         tool_x = findViewById(R.id.tool_x);
         termux_layout_1 = findViewById(R.id.termux_layout_1);
