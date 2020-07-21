@@ -57,7 +57,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="本地版本:[0.95.87]"
+                                android:text="本地版本:[0.95.89]"
                                 android:textColor="#fff"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -682,13 +682,14 @@
                                     android:layout_marginTop="15dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
+                                    android:id="@+id/adb_install"
                                     android:orientation="vertical"
-                                    android:visibility="invisible">
+                                    android:visibility="visible">
 
                                     <ImageView
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
-                                        android:src="@drawable/hongzha" />
+                                        android:src="@drawable/adb_zuozhe" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -696,7 +697,7 @@
                                         android:layout_marginTop="15dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="TBomb[轰炸]"
+                                        android:text="ADB安装"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -708,7 +709,7 @@
                                         android:layout_marginBottom="10dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : TheSpeedX"
+                                        android:text="作者 : MasterDevX"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
                                         android:textStyle="bold" />
@@ -718,7 +719,8 @@
                                 <LinearLayout
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
-                                    android:visibility="invisible"
+                                    android:visibility="visible"
+                                    android:id="@+id/apk_install"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="15dp"
                                     android:gravity="center"
@@ -727,7 +729,7 @@
                                     <ImageView
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:src="@drawable/code_jjjjjjjjjjjjjjjjjjj" />
+                                        android:src="@drawable/apk_zuozhe" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -735,7 +737,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="Lazymux"
+                                        android:text="APK构建工具"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -746,7 +748,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : Gameye98"
+                                        android:text="作者 : SD Rausty"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -3113,6 +3115,22 @@
                                 android:textStyle="bold" />
 
 
+
+                            <TextView
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:id="@+id/chouti_3"
+                                android:text="全开"
+                                android:textColor="#fff"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+
+
                             <TextView
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="10dp"
@@ -3126,6 +3144,10 @@
                                 android:textColor="#10202f"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
+
+
+
+
 
 
 

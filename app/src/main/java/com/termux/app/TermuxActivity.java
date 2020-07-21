@@ -1416,7 +1416,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
                         visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.87]\n最新版本:[-.--.--]");
+                        visition4.setText("本地版本:[0.95.89]\n最新版本:[-.--.--]");
                     }
                 });
 
@@ -1461,7 +1461,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         @Override
                                         public void run() {
                                             visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.87]\n最新版本:[" + versionName + "]");
+                                            visition4.setText("本地版本:[0.95.89]\n最新版本:[" + versionName + "]");
                                         }
                                     });
 
@@ -1901,6 +1901,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
                 chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
 
+                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
+
+
                 chouti_1 .setTextColor(Color.parseColor("#10202f"));
                 chouti_1 .setBackgroundResource(R.drawable.shape_login_btn_true);
 
@@ -1918,6 +1922,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
                 chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
 
+                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
+
 
                 chouti_2 .setTextColor(Color.parseColor("#10202f"));
                 chouti_2 .setBackgroundResource(R.drawable.shape_login_btn_true);
@@ -1925,6 +1932,27 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 SaveData.saveData("zhedie","def");
 
+
+                break;
+
+            case 2:
+
+                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
+
+
+                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+
+                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
+
+
+                chouti_3 .setTextColor(Color.parseColor("#10202f"));
+                chouti_3 .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("zhedie","false");
 
                 break;
 
@@ -1975,6 +2003,43 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         String zhedie = SaveData.getData("zhedie");
 
+        if("false".equals(zhedie)){
+
+
+            item_1_5.setVisibility(View.VISIBLE);
+
+            other_group_content.setVisibility(View.VISIBLE);
+
+            gongju_group_content.setVisibility(View.VISIBLE);
+
+            meihua_group_content.setVisibility(View.VISIBLE);
+
+            item_1.setVisibility(View.VISIBLE);
+
+            item_2.setVisibility(View.VISIBLE);
+
+            ziyuan_group_content.setVisibility(View.VISIBLE);
+
+            item_3.setVisibility(View.VISIBLE);
+
+            item_4.setVisibility(View.VISIBLE);
+
+
+            item_1_5_img.setVisibility(View.GONE);
+            item_8_img.setVisibility(View.GONE);
+            item_7_img.setVisibility(View.GONE);
+            item_6_img.setVisibility(View.GONE);
+            item_1_img.setVisibility(View.GONE);
+            item_2_img.setVisibility(View.GONE);
+            item_3_img.setVisibility(View.GONE);
+            item_4_img.setVisibility(View.GONE);
+            item_5_img.setVisibility(View.GONE);
+
+
+
+           // return;
+        }
+
 
         if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
@@ -1984,7 +2049,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         }else{
 
-            mianbanSwitch(0);
+            if(zhedie.equals("false")){
+                mianbanSwitch(2);
+            }else{
+                mianbanSwitch(0);
+            }
+
+
 
         }
 
@@ -1992,20 +2063,138 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
                 mianbanSwitch(0);
+
+                other_group_content.setVisibility(View.GONE);
+
+                gongju_group_content.setVisibility(View.GONE);
+
+                meihua_group_content.setVisibility(View.GONE);
+
+                item_1.setVisibility(View.GONE);
+
+                item_2.setVisibility(View.GONE);
+
+                ziyuan_group_content.setVisibility(View.GONE);
+
+                item_3.setVisibility(View.GONE);
+
+                item_4.setVisibility(View.GONE);
+                item_1_5.setVisibility(View.GONE);
+
+
+                item_1_5_img.setVisibility(View.VISIBLE);
+                item_8_img.setVisibility(View.VISIBLE);
+                item_7_img.setVisibility(View.VISIBLE);
+                item_6_img.setVisibility(View.VISIBLE);
+                item_1_img.setVisibility(View.VISIBLE);
+                item_2_img.setVisibility(View.VISIBLE);
+                item_3_img.setVisibility(View.VISIBLE);
+                item_4_img.setVisibility(View.VISIBLE);
+                item_5_img.setVisibility(View.VISIBLE);
+
+                item_1_5_img.setImageResource(R.drawable.down_saojiao);
+                item_8_img.setImageResource(R.drawable.down_saojiao);
+                item_7_img.setImageResource(R.drawable.down_saojiao);
+                item_6_img.setImageResource(R.drawable.down_saojiao);
+                item_1_img.setImageResource(R.drawable.down_saojiao);
+                item_2_img.setImageResource(R.drawable.down_saojiao);
+                item_3_img.setImageResource(R.drawable.down_saojiao);
+                item_4_img.setImageResource(R.drawable.down_saojiao);
+                item_5_img.setImageResource(R.drawable.down_saojiao);
             }
         });
             chouti_2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mianbanSwitch(1);
+
+                    other_group_content.setVisibility(View.GONE);
+
+                    gongju_group_content.setVisibility(View.GONE);
+
+                    meihua_group_content.setVisibility(View.GONE);
+
+                    item_1.setVisibility(View.GONE);
+
+                    item_2.setVisibility(View.GONE);
+
+                    ziyuan_group_content.setVisibility(View.GONE);
+
+                    item_3.setVisibility(View.GONE);
+
+                    item_4.setVisibility(View.GONE);
+
+                    item_1_5.setVisibility(View.GONE);
+
+
+                    item_1_5_img.setVisibility(View.VISIBLE);
+                    item_8_img.setVisibility(View.VISIBLE);
+                    item_7_img.setVisibility(View.VISIBLE);
+                    item_6_img.setVisibility(View.VISIBLE);
+                    item_1_img.setVisibility(View.VISIBLE);
+                    item_2_img.setVisibility(View.VISIBLE);
+                    item_3_img.setVisibility(View.VISIBLE);
+                    item_4_img.setVisibility(View.VISIBLE);
+                    item_5_img.setVisibility(View.VISIBLE);
+
+                    item_1_5_img.setImageResource(R.drawable.down_saojiao);
+                    item_8_img.setImageResource(R.drawable.down_saojiao);
+                    item_7_img.setImageResource(R.drawable.down_saojiao);
+                    item_6_img.setImageResource(R.drawable.down_saojiao);
+                    item_1_img.setImageResource(R.drawable.down_saojiao);
+                    item_2_img.setImageResource(R.drawable.down_saojiao);
+                    item_3_img.setImageResource(R.drawable.down_saojiao);
+                    item_4_img.setImageResource(R.drawable.down_saojiao);
+                    item_5_img.setImageResource(R.drawable.down_saojiao);
                 }
             });
+
+        chouti_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch(2);
+
+                item_1_5.setVisibility(View.VISIBLE);
+
+                other_group_content.setVisibility(View.VISIBLE);
+
+                gongju_group_content.setVisibility(View.VISIBLE);
+
+                meihua_group_content.setVisibility(View.VISIBLE);
+
+                item_1.setVisibility(View.VISIBLE);
+
+                item_2.setVisibility(View.VISIBLE);
+
+                ziyuan_group_content.setVisibility(View.VISIBLE);
+
+                item_3.setVisibility(View.VISIBLE);
+
+                item_4.setVisibility(View.VISIBLE);
+
+
+                item_1_5_img.setVisibility(View.GONE);
+                item_8_img.setVisibility(View.GONE);
+                item_7_img.setVisibility(View.GONE);
+                item_6_img.setVisibility(View.GONE);
+                item_1_img.setVisibility(View.GONE);
+                item_2_img.setVisibility(View.GONE);
+                item_3_img.setVisibility(View.GONE);
+                item_4_img.setVisibility(View.GONE);
+                item_5_img.setVisibility(View.GONE);
+            }
+        });
 
         item_1_5_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String zhedie = SaveData.getData("zhedie");
+
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2022,11 +2211,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 }else{
 
 
-                    setLayGone();
 
-                    item_1_5_img.setImageResource(R.drawable.up_sanjiao);
+                    if (item_1_5.getVisibility() == View.VISIBLE){
 
-                    item_1_5.setVisibility(View.VISIBLE);
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_1_5_img.setImageResource(R.drawable.up_sanjiao);
+
+                        item_1_5.setVisibility(View.VISIBLE);
+                    }
+
+
 
 
 
@@ -2042,6 +2241,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2060,11 +2263,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_8_img.setImageResource(R.drawable.up_sanjiao);
+                    if (other_group_content.getVisibility() == View.VISIBLE){
 
-                    other_group_content.setVisibility(View.VISIBLE);
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_8_img.setImageResource(R.drawable.up_sanjiao);
+
+                        other_group_content.setVisibility(View.VISIBLE);
+                    }
+
+
+
 
                 }
 
@@ -2079,6 +2293,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2099,11 +2317,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_7_img.setImageResource(R.drawable.up_sanjiao);
+                    if (gongju_group_content.getVisibility() == View.VISIBLE){
 
-                    gongju_group_content.setVisibility(View.VISIBLE);
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_7_img.setImageResource(R.drawable.up_sanjiao);
+
+                        gongju_group_content.setVisibility(View.VISIBLE);
+                    }
+
+
 
                 }
             }
@@ -2118,6 +2346,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2139,11 +2372,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
+                    if (meihua_group_content.getVisibility() == View.VISIBLE){
 
-                    item_6_img.setImageResource(R.drawable.up_sanjiao);
+                        setLayGone();
 
-                    meihua_group_content.setVisibility(View.VISIBLE);
+                    }else {
+
+
+                        setLayGone();
+
+                        item_6_img.setImageResource(R.drawable.up_sanjiao);
+
+                        meihua_group_content.setVisibility(View.VISIBLE);
+                    }
+
+
 
                 }
 
@@ -2158,6 +2401,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2178,10 +2425,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_1_img.setImageResource(R.drawable.up_sanjiao);
-                    item_1.setVisibility(View.VISIBLE);
+                    if (item_1.getVisibility() == View.VISIBLE){
+
+                        setLayGone();
+
+                    }else {
+
+
+                        setLayGone();
+
+                        item_1_img.setImageResource(R.drawable.up_sanjiao);
+                        item_1.setVisibility(View.VISIBLE);
+
+                    }
+
 
                 }
             }
@@ -2197,6 +2455,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2216,11 +2478,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_2_img.setImageResource(R.drawable.up_sanjiao);
 
-                    item_2.setVisibility(View.VISIBLE);
+
+                    if (item_2.getVisibility() == View.VISIBLE){
+
+                        setLayGone();
+
+                    }else {
+
+
+                        setLayGone();
+
+                        item_2_img.setImageResource(R.drawable.up_sanjiao);
+
+                        item_2.setVisibility(View.VISIBLE);
+                    }
+
 
                 }
             }
@@ -2235,6 +2509,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2254,11 +2532,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
+                    if (ziyuan_group_content.getVisibility() == View.VISIBLE){
 
-                    item_3_img.setImageResource(R.drawable.up_sanjiao);
+                        setLayGone();
 
-                    ziyuan_group_content.setVisibility(View.VISIBLE);
+                    }else {
+
+
+                        setLayGone();
+
+                        item_3_img.setImageResource(R.drawable.up_sanjiao);
+
+                        ziyuan_group_content.setVisibility(View.VISIBLE);
+                    }
+
+
+
 
                 }
 
@@ -2273,6 +2562,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2293,11 +2586,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_4_img.setImageResource(R.drawable.up_sanjiao);
 
-                    item_3.setVisibility(View.VISIBLE);
+
+                    if (item_3.getVisibility() == View.VISIBLE){
+
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_4_img.setImageResource(R.drawable.up_sanjiao);
+
+                        item_3.setVisibility(View.VISIBLE);
+                    }
 
                 }
             }
@@ -2312,6 +2615,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String zhedie = SaveData.getData("zhedie");
+
+                if("false".equals(zhedie)){
+                    return;
+                }
 
 
                 if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
@@ -2335,11 +2642,20 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 }else{
 
-                    setLayGone();
 
-                    item_5_img.setImageResource(R.drawable.up_sanjiao);
 
-                    item_4.setVisibility(View.VISIBLE);
+                    if (item_4.getVisibility() == View.VISIBLE){
+
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_5_img.setImageResource(R.drawable.up_sanjiao);
+
+                        item_4.setVisibility(View.VISIBLE);
+                    }
 
                 }
             }
@@ -2391,6 +2707,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 mTerminalView.sendTextToTerminal("cd ~ && apt install python git -y  && git clone https://github.com/thehackingsage/hacktronian.git && cd hacktronian && chmod 777 hacktronian.py && python hacktronian.py \n");
 
+
+            }
+        });
+
+        adb_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTerminalView.sendTextToTerminal("cd ~ && apt update -y && apt install wget -y && wget https://github.com/MasterDevX/Termux-ADB/raw/master/InstallTools.sh && bash InstallTools.sh \n");
+
+            }
+        });
+
+        apk_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTerminalView.sendTextToTerminal("cd ~ &&  apt install curl -y && curl -O https://raw.githubusercontent.com/BuildAPKs/buildAPKs/master/setup.buildAPKs.bash && bash setup.buildAPKs.bash \n");
 
             }
         });
@@ -2579,6 +2911,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout hacktronian;
     private LinearLayout left_back_kkkk;
     private LinearLayout termux_layout_1;
+    private LinearLayout adb_install;
+    private LinearLayout apk_install;
     private TextView check_up;
     private TextView seek_bar_tv;
     private SeekBar seek_bar;
@@ -2591,6 +2925,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     private TextView chouti_2;
     private TextView chouti_1;
+    private TextView chouti_3;
 
 
     @Override
@@ -2628,6 +2963,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         chouti_2 = findViewById(R.id.chouti_2);
         chouti_1 = findViewById(R.id.chouti_1);
+        chouti_3 = findViewById(R.id.chouti_3);
 
         tool_x = findViewById(R.id.tool_x);
         termux_layout_1 = findViewById(R.id.termux_layout_1);
@@ -2642,6 +2978,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
         seek_bar_tv = findViewById(R.id.seek_bar_tv);
         seek_bar = findViewById(R.id.seek_bar);
+        adb_install = findViewById(R.id.adb_install);
+        apk_install = findViewById(R.id.apk_install);
 
         sv_hhh = findViewById(R.id.sv_hhh);
 
