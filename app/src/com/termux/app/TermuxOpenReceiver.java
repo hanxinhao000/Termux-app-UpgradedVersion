@@ -28,6 +28,7 @@ public class TermuxOpenReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         final Uri data = intent.getData();
+        Log.e("XINHAO_HAN", "onReceive:接收到广播 "   );
         if (data == null) {
             Log.e(EmulatorDebug.LOG_TAG, "termux-open: Called without intent data");
             return;

@@ -50,6 +50,11 @@
     <string name="session_new_named_positive_button">Create</string>
 
     <string name="styling_not_installed">美化主题,在侧边栏，是否打开?</string>
+
+    <string name="share_file_chooser_title">Share with</string>
+
+    <string name="permission_description">Termux:API needs the following permission(s):\n</string>
+
     <string name="styling_install">打开</string>
     <string name="notification_action_exit">Exit</string>
 

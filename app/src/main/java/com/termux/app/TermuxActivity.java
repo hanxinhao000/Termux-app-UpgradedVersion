@@ -2904,6 +2904,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             }
         });
+
+
+
     }
 
 

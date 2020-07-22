@@ -139,6 +139,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private final BroadcastReceiver mBroadcastReceiever = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.e("XINHAO_HAN", "onReceive: " + "收到广播" );
             if (mIsVisible) {
                 String whatToReload = intent.getStringExtra(RELOAD_STYLE_ACTION);
                 if ("storage".equals(whatToReload)) {
@@ -564,7 +565,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             mListViewAdapter.notifyDataSetChanged();
         }
 
-        registerReceiver(mBroadcastReceiever, new IntentFilter(RELOAD_STYLE_ACTION));
+        IntentFilter intentFilter = new IntentFilter(RELOAD_STYLE_ACTION);
+
+        registerReceiver(mBroadcastReceiever, intentFilter);
 
         // The current terminal session may have changed while being away, force
         // a refresh of the displayed terminal:

@@ -35,6 +35,10 @@ android {
         implementation "com.android.support:design:28.0.0"
         implementation 'com.github.madrapps:pikolo:2.0.0'
 
+        implementation "androidx.media:media:1.1.0"
+        implementation 'com.google.android.material:material:1.0.0'
+        implementation 'androidx.biometric:biometric:1.0.0-alpha04'
+
 
         implementation 'com.squareup.okhttp3:okhttp:3.10.0'
         implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.6'
