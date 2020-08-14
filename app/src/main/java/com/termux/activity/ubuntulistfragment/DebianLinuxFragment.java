@@ -24,6 +24,7 @@ import main.java.com.termux.core.CoreGuiBean;
 import main.java.com.termux.core.CoreGuiInstall;
 import main.java.com.termux.core.CoreGuiInstallListener;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.view.MyDialog;
 
@@ -104,7 +105,7 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            msg.setText("日志:\n" + name);
+                                            msg.setText(UUtils.getString(R.string.日志rfv) + name);
 
                                         }
                                     });
@@ -119,11 +120,11 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                             install_linux.setVisibility(View.VISIBLE);
 
                                             AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
-                                            ab.setTitle("错误!");
+                                            ab.setTitle(UUtils.getString(R.string.错误));
 
-                                            ab.setMessage("安装失败,出现了一个错误,请重新安装\n" + msg);
+                                            ab.setMessage(UUtils.getString(R.string.出现了一个错误edc) + msg);
 
-                                            ab.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                                            ab.setPositiveButton(UUtils.getString(R.string.好), new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     ab.create().dismiss();
@@ -146,11 +147,11 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                             start_linux.setVisibility(View.VISIBLE);
 
                                             AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
-                                            ab.setTitle("成功!");
+                                            ab.setTitle(UUtils.getString(R.string.成功));
 
-                                            ab.setMessage("安装成功,请点击启动按钮,来启动您的系统");
+                                            ab.setMessage(UUtils.getString(R.string.请点击启动按钮efn));
 
-                                            ab.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                                            ab.setPositiveButton(UUtils.getString(R.string.好), new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     ab.create().dismiss();
@@ -178,15 +179,15 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
 
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
-                ab.setTitle("启动选项");
-                ab.setMessage("请选择启动方式:\n\n连接方式:\n\nvnc:\n\n127.0.0.1:5951\n\n用户名:ubuntu\n密码:12345678\n\nVNC和ssh一样都是上述密码");
+                ab.setTitle(UUtils.getString(R.string.启动选项553));
+                ab.setMessage(UUtils.getString(R.string.请选择启动方式8c9c));
                 ab.setPositiveButton("SSH", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
 
                         MyDialog myDialog = new MyDialog(getActivity());
-                        myDialog.getDialog_title().setText("正在启动");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在启动));
                         myDialog.show();
 
                         new Thread(new Runnable() {
@@ -225,12 +226,12 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
                         if(true){
-                            Toast.makeText(getActivity(), "暂不支持", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), UUtils.getString(R.string.暂不支持), Toast.LENGTH_SHORT).show();
                             return ;
                         }
 
                         MyDialog myDialog = new MyDialog(getActivity());
-                        myDialog.getDialog_title().setText("正在启动");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在启动));
                         myDialog.show();
 
                         new Thread(new Runnable() {
@@ -251,7 +252,7 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                                             Intent i = new Intent(Intent.ACTION_MAIN, Uri.parse("x11://give.me.display:4713"));
                                             startActivityForResult(i, 1);
                                         } catch(Exception e) {
-                                            Toast.makeText(getContext(), "面对疾风吧:没有找到XSDL,请到群文件中下载并安装XSDL", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), UUtils.getString(R.string.面对疾风吧), Toast.LENGTH_SHORT).show();
                                         }
 
                                     }
@@ -272,7 +273,7 @@ public class DebianLinuxFragment extends BaseFragment implements View.OnClickLis
                         ab.create().dismiss();
 
                         MyDialog myDialog = new MyDialog(getActivity());
-                        myDialog.getDialog_title().setText("正在启动");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在启动));
                         myDialog.show();
 
                         new Thread(new Runnable() {

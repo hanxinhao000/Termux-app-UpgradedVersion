@@ -41,14 +41,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="Termux全套工具安装脚本"
+                        android:text="@string/Termux全套工具安装脚本"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="兄嘚,点击我,安装包括[msf],[命令行游戏]等,很多工具"
+                        android:text="@string/兄嘚点击我安装包括"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -81,14 +81,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="Termux黑客帝国字母流[cmatrix]"
+                        android:text="@string/Termux黑客帝国字母流"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="黑客帝国字母流[命令行]启动命令:cmatrix"
+                        android:text="@string/黑客帝国字母流命令行启动命令"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -202,14 +202,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="火车：Strem Locomotive[aafire]"
+                        android:text="@string/火车StremLocomotive"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令 : sl"
+                        android:text="@string/启动命令sl"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -242,14 +242,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="艺术字生成器toilet"
+                        android:text="@string/艺术字生成器toilet"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="例如 : toilet XINHAO_HAN"
+                        android:text="@string/例如XINHAO_HAN"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -282,14 +282,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="俄罗斯方块游戏[bastet]"
+                        android:text="@string/俄罗斯方块游戏bastet"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令:bastet"
+                        android:text="@string/启动命令bastet"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -321,14 +321,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="太空侵略者"
+                        android:text="@string/太空侵略者"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令:ninvaders"
+                        android:text="@string/启动命令ninvaders"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -362,14 +362,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text=" Pacman（吃豆人）"
+                        android:text="@string/Pacman吃豆人"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令:pacman4console"
+                        android:text="@string/启动命令pacman4console"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -402,14 +402,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text=" 贪吃蛇游戏"
+                        android:text="@string/贪吃蛇游戏"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令:nsnake"
+                        android:text="@string/启动命令nsnake"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
@@ -443,14 +443,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
-                        android:text="安装vim + YouCompleteMe插件[ycm]"
+                        android:text="@string/YouCompleteMe插件"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
-                        android:text="启动命令:vim,确保vim已经被删除"
+                        android:text="@string/确保vim已经被删除"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 

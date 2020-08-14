@@ -18,6 +18,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -39,6 +40,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -150,12 +152,15 @@ import main.java.com.termux.http.UpDateHttpCode;
 import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
+import main.java.com.termux.utils.LocaleUtils;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.DownDialog;
 import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.weblinux.MainActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -295,27 +300,27 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         }
 
         try {
-            File file3 = new File(Environment.getExternalStorageDirectory(), "/xinhao/check.js");
+            File file3 = new File(Environment.getExternalStorageDirectory(), UUtils.CHECK_SDCARD);
 
             if (file3.exists()) {
 
                 if (file3.delete()) {
-                    quanxian_123.setText("内存权限:   [已获取]");
+                    quanxian_123.setText(UUtils.getString(R.string.内存权限887));
                 } else {
-                    quanxian_123.setText("内存权限:   [没有权限]");
+                    quanxian_123.setText(UUtils.getString(R.string.内存权限886));
                 }
 
             } else {
 
                 try {
                     if (file3.createNewFile()) {
-                        quanxian_123.setText("内存权限:   [已获取]");
+                        quanxian_123.setText(UUtils.getString(R.string.内存权限887));
                     } else {
-                        quanxian_123.setText("内存权限:   [没有权限]");
+                        quanxian_123.setText(UUtils.getString(R.string.内存权限886));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    quanxian_123.setText("内存权限:   [没有权限]");
+                    quanxian_123.setText(UUtils.getString(R.string.内存权限886));
                 }
 
             }
@@ -325,12 +330,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             try {
                 @SuppressLint("MissingPermission") String imei = telephonyManager.getDeviceId();
                 if (imei == null || imei.isEmpty()) {
-                    dianhua_123.setText("电话权限:   [没有权限]");
+                    dianhua_123.setText(UUtils.getString(R.string.电话权限886));
                 } else {
-                    dianhua_123.setText("电话权限:   [已获取]");
+                    dianhua_123.setText(UUtils.getString(R.string.电话权限887));
                 }
             } catch (Exception e) {
-                dianhua_123.setText("电话权限:   [没有权限]");
+                dianhua_123.setText(UUtils.getString(R.string.电话权限886));
             }
 
 
@@ -355,8 +360,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     void checkForFontAndColors() {
         try {
-            @SuppressLint("SdCardPath") File fontFile = new File("/data/data/com.termux/files/home/.termux/font.ttf");
-            @SuppressLint("SdCardPath") File colorsFile = new File("/data/data/com.termux/files/home/.termux/colors.properties");
+            @SuppressLint("SdCardPath") File fontFile = new File(UUtils.FONT_FILE);
+            @SuppressLint("SdCardPath") File colorsFile = new File(UUtils.COLORS_FILE);
 
             final Properties props = new Properties();
             if (colorsFile.isFile()) {
@@ -445,11 +450,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                        ab.setTitle("注意");
+                        ab.setTitle(UUtils.getString(R.string.注意563962));
 
-                        ab.setMessage("为了使你的配置生效，请稍后重启APP[大退,不要按返回键退出]\n不重启无法正常使用.");
+                        ab.setMessage(UUtils.getString(R.string.为了使你的配置生效sdfds));
 
-                        ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                        ab.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab.create().dismiss();
@@ -482,7 +487,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     public void run() {
                         //pro_file
 
-                        position_text.setText("文件数量:(" + position + "/" + size + ")\n  解压前:不知道 \n  解压后:" + (mSize / 1024 / 1024) + "MB");
+                       // position_text.setText("文件数量:(" + position + "/" + size + ")\n  解压前:不知道 \n  解压后:" + (mSize / 1024 / 1024) + "MB");
+                        String string = UUtils.getString(R.string.解压文件文本);
+
+                        String position1 = string.replace("position", position + "");
+
+                        String size1 = position1.replace("size", size + "");
+
+                        String replace = size1.replace("1000", (mSize / 1024 / 1024) + "");
+
+
+
+                        position_text.setText(replace);
 
                     }
                 });
@@ -511,7 +527,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         String commandTemp = "";
         String command = "";
-        File mFile = new File("/data/data/com.termux/files/home/BootCommand");
+        File mFile = new File(UUtils.BOOT_COMMAND);
         if (mFile.exists()) {
 
             if (mFile.length() > 0) {
@@ -558,7 +574,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 @Override
                                 public void run() {
                                     mTerminalView.sendTextToTerminal(split[finalI] + " \n");
-                                    msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开" + "[" + finalI1 + "/" + split.length + "]");
+                                   // msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开" + "[" + finalI1 + "/" + split.length + "]");
+
+
+                                    String string = UUtils.getString(R.string.正在启动开机命令);
+
+                                    String finalI11 = string.replace("finalI1", finalI1 + "");
+
+                                    String replace = finalI11.replace("split.length", split.length + "");
+
+
+
+                                    msg.setText(replace);
                                 }
                             });
 
@@ -634,7 +661,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private void temp(boolean istrue) {
 
 
-        msg.setText("开始启动mysql");
+        msg.setText(UUtils.getString(R.string.开始启动mysqlsgdfg));
 
 
         mTerminalView = findViewById(R.id.terminal_view);
@@ -642,7 +669,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         lay_r = findViewById(R.id.lay_r);
-        msg.setText("mysql 已启动");
+        msg.setText(UUtils.getString(R.string.mysql_已启动));
         mTerminalView.setTextSize(mSettings.getFontSize());
         mTerminalView.setKeepScreenOn(mSettings.isScreenAlwaysOn());
         mTerminalView.requestFocus();
@@ -688,7 +715,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             //启动php termux-chroot php-fpm  nginx
                             // lay_r.setVisibility(View.GONE);
 
-                            msg.setText("正在启动 php环境");
+                            msg.setText(UUtils.getString(R.string.正在启动_php环境));
                         }
                     });
 
@@ -715,7 +742,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             //启动php termux-chroot php-fpm  nginx
                             //   lay_r.setVisibility(View.GONE);
 
-                            msg.setText("启动VNC!");
+                            msg.setText(UUtils.getString(R.string.启动VNC_d5f5));
                         }
                     });
 
@@ -765,7 +792,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             //启动php termux-chroot php-fpm  nginx
                             //   lay_r.setVisibility(View.GONE);
 
-                            msg.setText("启动完成!右下角的+号可以点啦~");
+                            msg.setText(UUtils.getString(R.string.启动完成yyy));
                         }
                     });
 
@@ -781,7 +808,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         public void run() {
 
 
-                            msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开");
+                            msg.setText(UUtils.getString(R.string.正在启动开机命令s5gsd5g));
                         }
                     });
                     startCmmd(msg);
@@ -817,7 +844,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开");
+                            msg.setText(UUtils.getString(R.string.正在启动开机命令s5gsd5g));
                         }
                     });
                     startCmmd(msg);
@@ -1260,7 +1287,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     Log.i("readTosdCard", "我们需要这个权限给你提供存储服务");
-                    Toast.makeText(this, "你已拒绝，备份恢复功能将无法使用!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.备份恢复功能将无法使用), Toast.LENGTH_SHORT).show();
                     startOk();
                 } else {
                     //2、申请权限: 参数二：权限的数组；参数三：请求码
@@ -1410,13 +1437,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        service_title.setText("服务器离线,请到群:714730084获取最新版本!");
+                        service_title.setText(UUtils.getString(R.string.服务器离线sd5fsd5));
                         service_title.setTextColor(Color.YELLOW);
                         visition.setTextColor(Color.YELLOW);
                         visition1.setTextColor(Color.YELLOW);
                         visition.setText(visition.getText());
-                        visition1.setText("最新版本:[-.--.--]");
-                        visition4.setText("本地版本:[0.95.89]\n最新版本:[-.--.--]");
+                        visition1.setText(UUtils.getString(R.string.最新版本d52gdf2g2));
+                        visition4.setText(UUtils.getString(R.string.本地版本sdf2sdf5sd));
                     }
                 });
 
@@ -1443,9 +1470,19 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             } else {
                                 visition1.setTextColor(Color.WHITE);
                             }
-                            visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
+                           // visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
 
-                            visition1.setText("最新版本:[" + versionName + "]");
+                            String string1 = UUtils.getString(R.string.本地版本sdfgdsgsdf5asdf5);
+
+                            String versionName1 = string1.replace("versionName", versionName + "");
+
+                            visition4.setText(versionName1);
+
+                            String string2 = UUtils.getString(R.string.最新版本sa5dfsd);
+
+                            String versionName2 = string2.replace("versionName", versionName + "");
+
+                            visition1.setText(versionName2);
 
                             OkHttpClient okHttpClient1 = new OkHttpClient();
 
@@ -1460,8 +1497,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            visition1.setText("最新版本:[" + versionName + "]");
-                                            visition4.setText("本地版本:[0.95.89]\n最新版本:[" + versionName + "]");
+
+                                            String string2 = UUtils.getString(R.string.最新版本sa5dfsd);
+
+                                            String versionName2 = string2.replace("versionName", versionName + "");
+
+                                            visition1.setText(versionName2);
+
+
+
+                                            //visition4.setText("本地版本:[0.95.89]\n最新版本:[" + versionName + "]");
+
+
+                                            String string1 = UUtils.getString(R.string.本地版本sdfgdsgsdf5asdf5);
+
+                                            String versionName1 = string1.replace("versionName", versionName + "");
+
+                                            visition4.setText(versionName1);
                                         }
                                     });
 
@@ -1480,7 +1532,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                                             try {
                                                 int i = Integer.parseInt(string1);
-                                                visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
+                                                //visition1.setText("最新版本:[" + versionName + "]/装机量:" + string1);
+
+
+                                                String string3 = UUtils.getString(R.string.最新版本asdfasdf8552665);
+
+                                                String versionName3 = string3.replace("versionName", versionName + "");
+
+                                                String string11 = versionName3.replace("string1", string1 + "");
+
+                                                visition1.setText(string11);
+
                                             } catch (Exception e) {
                                                 // visition1.setText("最新版本:[" + versionName + "]/装机量: -");
                                             }
@@ -1496,12 +1558,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             visition.setTextColor(Color.WHITE);
                             service_title.setText(serviceDataBean.getNote());
                         } catch (Exception e) {
-                            service_title.setText("服务器离线,请到群:714730084获取最新版本!");
+                            service_title.setText(UUtils.getString(R.string.服务器离线sd5fsd5));
                             service_title.setTextColor(Color.YELLOW);
                             visition.setTextColor(Color.YELLOW);
                             visition1.setTextColor(Color.YELLOW);
                             visition.setText(visition.getText());
-                            visition1.setText("最新版本:[-.--.--]");
+                            visition1.setText(UUtils.getString(R.string.最新版本d52gdf2g2));
                         }
 
                     }
@@ -1665,9 +1727,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private void installTermux(int index, String banben) {
 
         AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
-        ad.setTitle("你确定要换成官方版本吗？");
-        ad.setMessage("当前安装:" + banben + "\n切换到官方版本您将失去一切UTermux的功能\n注意:不会!不会!不会!丢失数据的\n如果您想切换回来您可以覆盖安装");
-        ad.setNegativeButton("切换", new DialogInterface.OnClickListener() {
+        ad.setTitle(UUtils.getString(R.string.你确定要换成官方版本吗));
+        String string = UUtils.getString(R.string.切换到官方版本您将失去一切UTermux的功能);
+        String banben1 = string.replace("banben", banben + "");
+
+
+        ad.setMessage(banben1);
+        ad.setNegativeButton(UUtils.getString(R.string.切换sdf5sd2fds5), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -1704,7 +1770,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             }
         });
-        ad.setPositiveButton("不切换", new DialogInterface.OnClickListener() {
+        ad.setPositiveButton(UUtils.getString(R.string.不切换sdf5sd6fsd), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ad.create().dismiss();
@@ -1800,12 +1866,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-            ab.setTitle("提示");
+            ab.setTitle(UUtils.getString(R.string.提示));
 
             ab.setMessage(stringBuilder.toString());
 
 
-            ab.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.知道了), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
@@ -2735,7 +2801,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
                 //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
@@ -2744,9 +2810,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 //提取码：mjvu
                 //复制这段内容后打开百度网盘手机App，操作更方便哦
 
-                ab.setMessage("是否前往列表,检查最新版本?\n\n提取码:mjvu");
+                ab.setMessage(UUtils.getString(R.string.是否前往列表));
 
-                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -2760,7 +2826,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
                 });
 
-                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -2885,8 +2951,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+                String string = UUtils.getString(R.string.面板透明度abc);
 
-                seek_bar_tv.setText("面板透明度[" + progress + "]:");
+                String progress1 = string.replace("progress", progress + "");
+
+
+                seek_bar_tv.setText(progress1);
 
 
                 SaveData.saveData("toumingdu", "");
@@ -2909,6 +2979,72 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     }
 
+    /**
+     * 更改应用语言
+     *
+     * @param locale
+     */
+    public void changeAppLanguage(Locale locale) {
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        Configuration configuration = getResources().getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale);
+        } else {
+            configuration.locale = locale;
+        }
+        getResources().updateConfiguration(configuration, metrics);
+        //重新启动Activity
+        Intent intent = new Intent(this, TermuxActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+
+    private void switchENorZH(int index){
+
+
+        english .setTextColor(Color.parseColor("#ffffff"));
+        zhongwen .setTextColor(Color.parseColor("#ffffff"));
+
+
+        english .setBackgroundColor(Color.parseColor("#00000000"));
+        zhongwen .setBackgroundColor(Color.parseColor("#00000000"));
+
+
+
+        switch (index){
+
+
+            case 0:
+
+
+                english .setTextColor(Color.parseColor("#10202f"));
+                english .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                changeAppLanguage(Locale.US);
+
+              //  recreate();
+
+                break;
+            case 1:
+                zhongwen .setTextColor(Color.parseColor("#10202f"));
+                zhongwen .setBackgroundResource(R.drawable.shape_login_btn_true);
+
+               // LocaleUtils.initAppLanguage(this,"zh_CN");
+
+                changeAppLanguage(Locale.SIMPLIFIED_CHINESE);
+
+               // recreate();
+                break;
+
+
+
+        }
+
+
+    }
+
+
 
     private LinearLayout lazymux;
     private LinearLayout hacktronian;
@@ -2929,6 +3065,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private TextView chouti_2;
     private TextView chouti_1;
     private TextView chouti_3;
+
+
+    private TextView english;
+    private TextView zhongwen;
 
 
     @Override
@@ -2967,6 +3107,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         chouti_2 = findViewById(R.id.chouti_2);
         chouti_1 = findViewById(R.id.chouti_1);
         chouti_3 = findViewById(R.id.chouti_3);
+        english = findViewById(R.id.english);
+        zhongwen = findViewById(R.id.zhongwen);
+
+        english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchENorZH(0);
+            }
+        });
+
+        zhongwen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchENorZH(1);
+            }
+        });
 
         tool_x = findViewById(R.id.tool_x);
         termux_layout_1 = findViewById(R.id.termux_layout_1);
@@ -3245,13 +3401,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     e.printStackTrace();
                     AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                    ab.setTitle("您还未安装该插件!");
+                    ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
 
                     //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
-                    ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+                    ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
 
-                    ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -3265,7 +3421,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         }
                     });
 
-                    ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
@@ -3287,7 +3443,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("输入信息");
+                ab.setTitle(UUtils.getString(R.string.输入信息));
 
                 View inflate = View.inflate(TermuxApplication.mContext, R.layout.dialog_view_vnc, null);
 
@@ -3297,7 +3453,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 ab.setView(inflate);
 
-                ab.setPositiveButton("连接", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.连接), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -3309,14 +3465,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
 
-                            abb.setTitle("如果鼠标不动");
+                            abb.setTitle(UUtils.getString(R.string.如果鼠标不动));
 
 
                             abb.setCancelable(false);
 
                             abb.setView(R.layout.dialog_view_vnc_2);
 
-                            abb.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                            abb.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     abb.create().dismiss();
@@ -3337,13 +3493,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         e.printStackTrace();
                                         AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                                        ab.setTitle("您还未安装该插件!");
+                                        ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
 
                                         //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
-                                        ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+                                        ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
 
-                                        ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                        ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
 
@@ -3357,7 +3513,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                             }
                                         });
 
-                                        ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 ab.create().dismiss();
@@ -3387,13 +3543,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 e.printStackTrace();
                                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                                ab.setTitle("您还未安装该插件!");
+                                ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
 
                                 //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
-                                ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+                                ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
 
-                                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
 
@@ -3407,7 +3563,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     }
                                 });
 
-                                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         ab.create().dismiss();
@@ -3442,14 +3598,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
 
-                    abb.setTitle("如果鼠标不动");
+                    abb.setTitle(UUtils.getString(R.string.如果鼠标不动));
 
 
                     abb.setCancelable(false);
 
                     abb.setView(R.layout.dialog_view_vnc_2);
 
-                    abb.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                    abb.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             abb.create().dismiss();
@@ -3470,13 +3626,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 e.printStackTrace();
                                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                                ab.setTitle("您还未安装该插件!");
+                                ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
 
                                 //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
-                                ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+                                ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
 
-                                ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
 
@@ -3490,7 +3646,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     }
                                 });
 
-                                ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         ab.create().dismiss();
@@ -3519,13 +3675,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         e.printStackTrace();
                         AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                        ab.setTitle("您还未安装该插件!");
+                        ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
 
                         //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
 
-                        ab.setMessage("是否前往下载该插件?\n\n提取码:5m7a");
+                        ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
 
-                        ab.setPositiveButton("前往", new DialogInterface.OnClickListener() {
+                        ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -3539,7 +3695,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             }
                         });
 
-                        ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab.create().dismiss();
@@ -3561,11 +3717,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("该操作会覆盖你原来的源文件,是否继续 ");
+                ab.setMessage(UUtils.getString(R.string.该操作会覆盖你原来的源文件));
 
-                ab.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.是), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -3580,10 +3736,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
                 });
 
-                ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(TermuxActivity.this, "未做任何改动!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.未做任何改动), Toast.LENGTH_SHORT).show();
 
                         getDrawer().closeDrawer(Gravity.LEFT);
                         ab.create().dismiss();
@@ -3602,11 +3758,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("该操作会覆盖你原来的源文件,是否继续 ");
+                ab.setMessage(UUtils.getString(R.string.该操作会覆盖你原来的源文件));
 
-                ab.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.是), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -3614,15 +3770,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         writerFile("main_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
                         writerFile("main_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
 
-                        Toast.makeText(TermuxActivity.this, "切换到官方源成功!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.切换到官方源成功), Toast.LENGTH_SHORT).show();
                         getDrawer().closeDrawer(Gravity.LEFT);
                     }
                 });
 
-                ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(TermuxActivity.this, "未做任何改动!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.未做任何改动), Toast.LENGTH_SHORT).show();
 
                         getDrawer().closeDrawer(Gravity.LEFT);
                         ab.create().dismiss();
@@ -3647,9 +3803,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
-                ab.setTitle("请注意");
+                ab.setTitle(UUtils.getString(R.string.请注意));
 
-                ab.setMessage("提取码：gzdp");
+                ab.setMessage(UUtils.getString(R.string.提取码a5dfsdf));
 
                 ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -3705,7 +3861,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder builder = new AlertDialog
                     .Builder(TermuxActivity.this);
-                builder.setTitle("选择您的配色文件");
+                builder.setTitle(UUtils.getString(R.string.选择您的配色文件));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(NameColor.name, new DialogInterface.OnClickListener() {
                     @Override
@@ -3725,7 +3881,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             boolean delete = file.delete();
 
                             if (!delete) {
-                                Toast.makeText(TermuxActivity.this, "你没有SD卡权限1!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.你没有SD卡权限1), Toast.LENGTH_SHORT).show();
                                 return;
 
                             }
@@ -3737,7 +3893,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             if (!newFile) {
 
-                                Toast.makeText(TermuxActivity.this, "你没有SD卡权限2!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.你没有SD卡权限2), Toast.LENGTH_SHORT).show();
                                 return;
 
                             }
@@ -3776,7 +3932,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     }
                 });
-                builder.setNegativeButton("现在不配色", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(UUtils.getString(R.string.现在不配色), new DialogInterface.OnClickListener() {
                     @Override
 
                     public void onClick(DialogInterface dialog, int which) {
@@ -3844,25 +4000,25 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                 String[] strings = {
-                    "Termux其它版本 [百度网盘][pevy]",//0
-                    "Termux0.75版本",//1
-                    "Termux0.74版本",//2
-                    "Termux0.73版本",//3
-                    "Termux0.72版本",//4
-                    "Termux0.71版本",//5
-                    "Termux0.70版本",//6
-                    "Termux0.69版本",//7
-                    "Termux0.68版本",//8
-                    "Termux0.67版本",//9
-                    "Termux0.66版本",//10
-                    "Termux0.65版本"//11
+                    UUtils.getString(R.string.Termux其它版本),//0
+                    "Termux0.75",//1
+                    "Termux0.74",//2
+                    "Termux0.73",//3
+                    "Termux0.72",//4
+                    "Termux0.71",//5
+                    "Termux0.70",//6
+                    "Termux0.69",//7
+                    "Termux0.68",//8
+                    "Termux0.67",//9
+                    "Termux0.66",//10
+                    "Termux0.65"//11
 
 
                 };
 
                 AlertDialog.Builder builder = new AlertDialog
                     .Builder(TermuxActivity.this);
-                builder.setTitle("选择您的历史版本");
+                builder.setTitle(UUtils.getString(R.string.选择您的历史版本sdfsd56));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(strings, new DialogInterface.OnClickListener() {
                     @Override
@@ -3873,7 +4029,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         installTermux(which, strings[which]);
                     }
                 });
-                builder.setNegativeButton("现在不切换", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(UUtils.getString(R.string.现在不切换), new DialogInterface.OnClickListener() {
                     @Override
 
                     public void onClick(DialogInterface dialog, int which) {
@@ -3899,9 +4055,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     startActivity(intent2);
                 } catch (Exception e) {
                     AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
-                    ad.setTitle("未安装插件");
-                    ad.setMessage("未安装插件，是否安装插件?\n如果自动安装插件失败\n请到Sdcard目录下找\nxinhao/apk/fdrPlugins.apk\n手动安装");
-                    ad.setNegativeButton("安装", new DialogInterface.OnClickListener() {
+                    ad.setTitle(UUtils.getString(R.string.未安装插件));
+                    ad.setMessage(UUtils.getString(R.string.未安装插件asfas6f5sdf));
+                    ad.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -3925,7 +4081,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         }
                     });
-                    ad.setPositiveButton("不安装", new DialogInterface.OnClickListener() {
+                    ad.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ad.create().dismiss();
@@ -3939,14 +4095,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (SaveData.getData("start_launcher").equals("def")) {
             // SaveData.saveData("start_launcher", "yes");
             // Toast.makeText(TermuxActivity.this, "已切换到旧版启动器", Toast.LENGTH_SHORT).show();
-            start_lan_tv.setText("启动器[新]");
+            start_lan_tv.setText(UUtils.getString(R.string.启动器_new));
             start_lan_tv.setTextColor(Color.parseColor("#FFFFFF"));
         } else {
             // SaveData.saveData("start_launcher", "def");
             //Toast.makeText(TermuxActivity.this, "已切换到新版启动器", Toast.LENGTH_SHORT).show();
-            start_lan_tv.setText("启动器[旧]");
+            start_lan_tv.setText(UUtils.getString(R.string.启动器_old));
 
-            Toast.makeText(TermuxActivity.this, "当前为旧版启动器!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.当前为旧版启动器), Toast.LENGTH_SHORT).show();
 
             start_lan_tv.setTextColor(Color.parseColor("#D02D33"));
 
@@ -3959,22 +4115,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 if (SaveData.getData("start_launcher").equals("def")) {
                     SaveData.saveData("start_launcher", "yes");
-                    Toast.makeText(TermuxActivity.this, "已切换到旧版启动器", Toast.LENGTH_SHORT).show();
-                    start_lan_tv.setText("启动器[旧]");
+                    Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.已切换到旧版启动器), Toast.LENGTH_SHORT).show();
+                    start_lan_tv.setText(UUtils.getString(R.string.启动器_old));
                     start_lan_tv.setTextColor(Color.parseColor("#D02D33"));
 
                 } else {
                     SaveData.saveData("start_launcher", "def");
-                    Toast.makeText(TermuxActivity.this, "已切换到新版启动器", Toast.LENGTH_SHORT).show();
-                    start_lan_tv.setText("启动器[新]");
+                    Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.已切换到新版启动器), Toast.LENGTH_SHORT).show();
+                    start_lan_tv.setText(UUtils.getString(R.string.启动器_new));
                     start_lan_tv.setTextColor(Color.parseColor("#FFFFFF"));
 
                 }
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
-                ab.setTitle("提示");
-                ab.setMessage("需要重启APP才能改变当前启动器\n是否重启?");
-                ab.setNegativeButton("需要", new DialogInterface.OnClickListener() {
+                ab.setTitle(UUtils.getString(R.string.提示));
+                ab.setMessage(UUtils.getString(R.string.需要重启APP才能改变当前启动器));
+                ab.setNegativeButton(UUtils.getString(R.string.需要), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -3983,7 +4139,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         TermuxActivity.this.startService(intent);
                     }
                 });
-                ab.setPositiveButton("稍后", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.稍后), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -4013,11 +4169,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                    ab.setTitle("提示(prompt)");
+                    ab.setTitle(UUtils.getString(R.string.提示));
 
-                    ab.setMessage("即将开始运行网页版本的Utermux\n密码默认(password def):123\n是否开始运行(Whether to start running?)?\n端口(port):4200");
+                    ab.setMessage(UUtils.getString(R.string.即将开始运行网页版本的Utermuxsd5fsd5));
 
-                    ab.setPositiveButton("运行(run)", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.运行), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -4025,9 +4181,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             mTerminalView.sendTextToTerminal("shellinaboxd -s /:LOGIN -t -p 4200 & \n");
 
                             AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
-                            ad.setTitle("命令执行成功(ok)");
-                            ad.setMessage("请在浏览器打开 [本机(phone)ip]:4200");
-                            ad.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                            ad.setTitle(UUtils.getString(R.string.命令执行成功));
+                            ad.setMessage(UUtils.getString(R.string.请在浏览器打开));
+                            ad.setPositiveButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ad.create().dismiss();
@@ -4036,7 +4192,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             ad.show();
                         }
                     });
-                    ab.setNegativeButton("稍后(later)", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.稍后), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
@@ -4048,11 +4204,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 } else {
                     AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                    ab.setTitle("坏境错误(Bad mistake)");
+                    ab.setTitle(UUtils.getString(R.string.坏境错误));
 
-                    ab.setMessage("你没有安装shellinabox(You didn't install shellinabox)\n离线安装只支持arm和aarch!!!!!\n点击立即安装(Click install now)\n如果提示找不到(If the prompt cannot be found) shellinabox,\n请查看您的源是否正确(Check to see if your source is correct)!\n\n注意!离线安装如果有报错,不用管!");
+                    ab.setMessage(UUtils.getString(R.string.你没有安装shellinaboxdfg56));
 
-                    ab.setPositiveButton("安装(install)", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -4060,14 +4216,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             mTerminalView.sendTextToTerminal("pkg install shellinabox \n");
                         }
                     });
-                    ab.setNegativeButton("稍后(later)", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.稍后), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
                         }
                     });
 
-                    ab.setNeutralButton("离线安装(offline install)", new DialogInterface.OnClickListener() {
+                    ab.setNeutralButton(UUtils.getString(R.string.离线安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -4140,9 +4296,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     startActivity(intent2);
                 } catch (Exception e) {
                     AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
-                    ad.setTitle("未安装插件");
-                    ad.setMessage("未安装插件，是否安装插件?\n如果自动安装插件失败\n请到Sdcard目录下找\nxinhao/apk/DosBoxApplication.apk\n手动安装");
-                    ad.setNegativeButton("安装", new DialogInterface.OnClickListener() {
+                    ad.setTitle(UUtils.getString(R.string.未安装插件));
+                    ad.setMessage(UUtils.getString(R.string.未安装插件sdf1sd6f8s1df));
+                    ad.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -4166,7 +4322,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         }
                     });
-                    ad.setPositiveButton("不安装", new DialogInterface.OnClickListener() {
+                    ad.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ad.create().dismiss();
@@ -4198,6 +4354,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         linux_data_zaixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(true){
+
+                    UUtils.showMsg("在线包已被关闭,请到[百度网盘]下载\n就是那个下载站提取码为:gzdp那个!");
+
+                    return;
+                }
                 startActivity(new Intent(TermuxActivity.this, ListDataActivity.class));
             }
         });
@@ -4273,7 +4436,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }).setNegativeButton("取消", null).show();*/
 
 
-                Toast.makeText(TermuxActivity.this, "请在测试版本中打开!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.请在测试版本中打开), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -4326,23 +4489,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 if (true) {
                     return;
                 }
-                Toast.makeText(TermuxActivity.this, "备份/恢复功能正在维护中...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.恢复功能正在维护中), Toast.LENGTH_SHORT).show();
 
                 getDrawer().closeDrawer(Gravity.LEFT);
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("请选择");
+                ab.setTitle(UUtils.getString(R.string.请选择));
 
-                ab.setMessage("请选择你需要的操作\n\n备份/恢复 \n\n一定要加入白名单,或者保持在本程序页面!!!!否则系统可能会杀掉本程序,那么你的备份/恢复 又得重来!!!!\n\n\n请选择一项 \n备份将在后台运行,备份完成将会通过:\n1.弹窗\n2.通知栏\n方式提供给您\n\n备份目录在:[sdcard ->/xinhao/data/目录下\n\n恢复包,也请将放置到该目录下]");
+                ab.setMessage(UUtils.getString(R.string.请选择你需要的操作dfgdf651));
 
-                ab.setPositiveButton("备份", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.备份), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (new File(Environment.getExternalStorageDirectory(), "/xinhao/data/").listFiles() == null) {
 
-                            Toast.makeText(TermuxActivity.this, "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.你没有SD卡权限), Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -4353,13 +4516,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         startService(intent);
                     }
                 });
-                ab.setNegativeButton("恢复", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.恢复), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (new File(Environment.getExternalStorageDirectory(), "/xinhao/data/").listFiles() == null) {
 
-                            Toast.makeText(TermuxActivity.this, "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.你没有SD卡权限), Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -4449,7 +4612,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     boolean mkdirs = file.mkdirs();
 
                     if (!mkdirs) {
-                        Toast.makeText(TermuxActivity.this, "内存卡不可访问!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.内存卡不可访问), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -4499,7 +4662,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 SaveData.saveData("toumingdu", "def");
 
-                Toast.makeText(TermuxActivity.this, "不要选择过大[过长]的背景,否则会造成卡顿", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.不要选择过大sdf53), Toast.LENGTH_SHORT).show();
 
 
 
@@ -4519,7 +4682,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     boolean mkdirs = file.mkdirs();
 
                     if (!mkdirs) {
-                        Toast.makeText(TermuxActivity.this, "内存卡不可访问!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.内存卡不可访问), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -4568,7 +4731,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     .forResult(REQUEST_SELECT_IMAGES_CODE);//结果回调onActivityResult code
 
 
-                Toast.makeText(TermuxActivity.this, "不要选择过大[过长]的背景,否则会造成卡顿", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.不要选择过大sdf53), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -4664,7 +4827,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
 
-                Toast.makeText(TermuxActivity.this, "已恢复默认", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.已恢复默认), Toast.LENGTH_SHORT).show();
 
                 return true;
             }
@@ -4677,7 +4840,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 getDrawer().closeDrawer(Gravity.LEFT);
                 color.setVisibility(View.VISIBLE);
 
-                Toast.makeText(TermuxActivity.this, "长按此按钮恢复设置!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.长按此按钮恢复设置), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -4694,7 +4857,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 fun_all.setBackgroundColor(Color.parseColor("#2b2b2b"));
                 // function_ll.setBackgroundColor(Color.parseColor("#2b2b2b"));
                 lv.setBackgroundColor(Color.parseColor("#2b2b2b"));
-                Toast.makeText(TermuxActivity.this, "已恢复默认", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.已恢复默认), Toast.LENGTH_SHORT).show();
 
                 return true;
             }
@@ -4790,7 +4953,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         termux_run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TermuxActivity.this, "不允许，任何操作!切不能长时间离开,本程序页面", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.切不能长时间离开sdf165), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -4815,26 +4978,46 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("aarch64")) {
             text_jiagou.setTextColor(Color.parseColor("#ffffff"));
-            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]");
+            String string = UUtils.getString(R.string.CPU架构TRRR);
+
+            String replace = string.replace("main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()", TermuxInstaller.determineTermuxArchName().toUpperCase() + "");
+
+            text_jiagou.setText(replace);
 
         }
 
         if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("arm")) {
             text_jiagou.setTextColor(Color.YELLOW);
-            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[提醒:当前架构[可能存在](只是可能)兼容性问题]");
+            String string = UUtils.getString(R.string.CPU架构TRRR1);
+
+            String replace = string.replace("main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()", TermuxInstaller.determineTermuxArchName().toUpperCase() + "");
+
+
+            text_jiagou.setText(replace);
 
         }
 
         //x86_64
 
         if (main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("x86_64") || main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().equals("i686")) {
-            text_jiagou.setTextColor(Color.RED);
-            text_jiagou.setText("[CPU架构:" + main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase() + "]\n[警告:当前架构不支持群(所有)数据包]");
+            text_jiagou.setTextColor(Color.YELLOW);
+
+            String string = UUtils.getString(R.string.CPU架构TRRR1);
+
+            String replace = string.replace("main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()", TermuxInstaller.determineTermuxArchName().toUpperCase() + "");
+
+
+
+            text_jiagou.setText(replace);
 
         }
 
+        String string = UUtils.getString(R.string.IP地址df35);
 
-        text_ip.setText("[IP地址:" + SystemUtil.getLocalIpAddress() + "]");
+        String replace = string.replace("SystemUtil.getLocalIpAddress()", SystemUtil.getLocalIpAddress());
+
+
+        text_ip.setText(replace);
 
         android_support = findViewById(R.id.android_support);
         other.add(android_support);
@@ -4845,11 +5028,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("慎重警告");
+                ab.setTitle(UUtils.getString(R.string.慎重警告));
 
-                ab.setMessage("如果你的系统能正常运行，切勿点击!");
+                ab.setMessage(UUtils.getString(R.string.如果你的系统能正常运行));
 
-                ab.setNeutralButton("我考虑好了", new DialogInterface.OnClickListener() {
+                ab.setNeutralButton(UUtils.getString(R.string.我考虑好了), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -4861,11 +5044,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(TermuxActivity.this, "修复成功,请重启后尝试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.修复成功请重启后尝试), Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                ab.setPositiveButton("我还没考虑好", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.我还没考虑好), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -4887,7 +5070,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                text_ip.setText("[IP地址:" + SystemUtil.getLocalIpAddress() + "]");
+
+                String string = UUtils.getString(R.string.IP地址df35);
+
+                String replace = string.replace("SystemUtil.getLocalIpAddress()", SystemUtil.getLocalIpAddress());
+
+
+                text_ip.setText(replace);
             }
 
             @Override
@@ -4910,10 +5099,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         String start_end = SaveData.getData("start_end");
 
         if (start_end.equals("end")) {
-            start_end_text.setText("开机命令[关]");
+            start_end_text.setText(UUtils.getString(R.string.开机命令close));
             TermuxActivity.this.start_end = true;
         } else {
-            start_end_text.setText("开机命令[开]");
+            start_end_text.setText(UUtils.getString(R.string.开机命令open));
             TermuxActivity.this.start_end = false;
         }
 
@@ -4922,10 +5111,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
                 if (TermuxActivity.this.start_end) {
-                    start_end_text.setText("开机命令[开]");
+                    start_end_text.setText(UUtils.getString(R.string.开机命令open));
                     SaveData.saveData("start_end", "start");
                 } else {
-                    start_end_text.setText("开机命令[关]");
+                    start_end_text.setText(UUtils.getString(R.string.开机命令close));
                     SaveData.saveData("start_end", "end");
                 }
 
@@ -5000,11 +5189,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("请确认");
+                ab.setTitle(UUtils.getString(R.string.请确认));
 
-                ab.setMessage("你需要离线还是在线\n在线需要:vpn以及20KB~200KB的捉急网速\n离线：直接在群文件下载放到[sdcared ->xinhao/iso/]目录下");
+                ab.setMessage(UUtils.getString(R.string.你需要离线还是在线sdf56));
 
-                ab.setPositiveButton("我选择离线", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.我选择离线), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -5013,9 +5202,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             MyDialog myDialog = new MyDialog(TermuxActivity.this);
 
-                            myDialog.getDialog_title().setText("正在复制文件到工作区域");
+                            myDialog.getDialog_title().setText(UUtils.getString(R.string.正在复制文件到工作区域asd5));
 
-                            myDialog.getDialog_pro().setText("请耐心等待,如果一直卡这\n请去看看你的sd卡权限\n有没有打开");
+                            myDialog.getDialog_pro().setText(UUtils.getString(R.string.请耐心等待a6dsf15sdf16));
 
                             myDialog.show();
 
@@ -5063,9 +5252,19 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                     TermuxApplication.mHandler.post(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            myDialog.getDialog_title().setText("正在复制文件到工作区域\n如果复制很慢请耐心等待\n页面刷新可能有延时\n可能一直卡在某个数,但是内部复制没停\n如果没有耐心，大退app重新执行[不建议!!!]");
+                                                            myDialog.getDialog_title().setText(UUtils.getString(R.string.正在复制文件到工作区域sdf456));
 
-                                                            myDialog.getDialog_pro().setText((t[0] / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
+                                                           // myDialog.getDialog_pro().setText((t[0] / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
+
+                                                            String string1 = UUtils.getString(R.string.fuzhisdfsd);
+
+                                                            String to = string1.replace("TO", (t[0] / 1024 / 1024) + "");
+
+                                                            String from = to.replace("FROM", (fileF.length() / 1024 / 1024) + "");
+
+
+
+                                                            myDialog.getDialog_pro().setText(from);
 
                                                             myDialog.getDialog_pro_prog().setProgress(t[0]);
 
@@ -5097,7 +5296,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                 mTerminalView.sendTextToTerminal("cd ~ \n");
                                                 mTerminalView.sendTextToTerminal("chmod 777 Install_cn_li.sh \n");
                                                 mTerminalView.sendTextToTerminal("./Install_cn_li.sh \n");
-                                                Toast.makeText(TermuxApplication.mContext, "如果一直卡在(正在安装 wget proot...),请ctrl + c 然后再按 ↑建 重新执行一下", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.如果一直卡在asd6), Toast.LENGTH_LONG).show();
 
 
                                             }
@@ -5111,9 +5310,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                                                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
                                                 ab.setCancelable(false);
-                                                ab.setTitle("请注意");
-                                                ab.setMessage("如果一直卡在(正在安装 wget proot...)\n\n请ctrl + c 然后再按 ↑建 重新执行一下\n\n或者 重新执行脚本[./Install_cn_li.sh]");
-                                                ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                                                ab.setTitle(UUtils.getString(R.string.请注意));
+                                                ab.setMessage(UUtils.getString(R.string.如果一直卡在asd67));
+                                                ab.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         ab.create().dismiss();
@@ -5139,12 +5338,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
                         } else {
-                            Toast.makeText(TermuxActivity.this, "在 sdcard ->xinhao/iso 未发现 fedora.7z 文件", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.未发现文件f5), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
-                ab.setNegativeButton("我选择在线", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.我选择在线), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -5170,9 +5369,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("您确定?");
-                ab.setMessage("你确定要卸载fedora系统吗？");
-                ab.setPositiveButton("我要卸载!!!", new DialogInterface.OnClickListener() {
+                ab.setTitle(UUtils.getString(R.string.您确定));
+                ab.setMessage(UUtils.getString(R.string.你确定要卸载fedora系统吗));
+                ab.setPositiveButton(UUtils.getString(R.string.卸载), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -5184,7 +5383,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
                 });
 
-                ab.setNegativeButton("我不卸载", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.稍后), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -5219,16 +5418,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 getDrawer().closeDrawer(Gravity.LEFT);
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
-                ab.setTitle("进入提醒");
-                ab.setMessage("请选择打开方式?\n打开选项:\n1.带小图标打开[图标打开]\n2.不带小图标打开");
-                ab.setPositiveButton("图标打开", new DialogInterface.OnClickListener() {
+                ab.setTitle(UUtils.getString(R.string.进入提醒));
+                ab.setMessage(UUtils.getString(R.string.请选择打开方式s5d));
+                ab.setPositiveButton(UUtils.getString(R.string.图标打开), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         TermuxFloatService.isShow = true;
                         startService(new Intent(TermuxActivity.this, TermuxFloatService.class));
                     }
                 });
-                ab.setNegativeButton("无标打开", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.无标打开), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         TermuxFloatService.isShow = false;
@@ -5253,9 +5452,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 if (i[0] > 3) {
                     AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
-                    ab.setTitle("关于");
-                    ab.setMessage("软件制作:XINHAO_HAN\n作者姓名:韩**\n软件类型:termux功能集合\n项目开始时间:2019年7月11日\n集合外部资源:github.com/谷歌\n开发地点:西安雁塔区");
-                    ab.setPositiveButton("进入后台管理", new DialogInterface.OnClickListener() {
+                    ab.setTitle(UUtils.getString(R.string.关于));
+                    ab.setMessage(UUtils.getString(R.string.软件制作asd56));
+                    ab.setPositiveButton(UUtils.getString(R.string.进入后台管理dsf56), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -5350,16 +5549,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             startOk();
         } else {
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
-            ab.setTitle("注意!");
-            ab.setMessage("我们需要你的sd卡权限,用于以下需求:\n1.扩展包的使用\n2.图形包的使用\n3.缓存配置\n如果你拒绝!以上功能全部无法使用!");
+            ab.setTitle(UUtils.getString(R.string.注意));
+            ab.setMessage(UUtils.getString(R.string.我们需要你的sd卡权限df56));
             ab.setCancelable(false);
-            ab.setNegativeButton("好的", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mkdirFilePermission();
                 }
             });
-            ab.setPositiveButton("可以", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.可以), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mkdirFilePermission();
@@ -5796,7 +5995,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 arrayList.add("&&");
                 arrayList.add("||");
                 arrayList.add("\n");
-                Toast.makeText(this, "出现错误!使用默认键盘", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.出现错误dsf51), Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -5855,17 +6054,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-            ab.setTitle("提示");
+            ab.setTitle(UUtils.getString(R.string.提示));
 
-            ab.setMessage("请将安装包放置到 内部存储/xinhao/iso 下");
+            ab.setMessage(UUtils.getString(R.string.请将安装包放置到sdf65));
 
-            ab.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
                 }
             });
-            ab.setNegativeButton("给我安装", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
@@ -5876,7 +6075,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         MyDialog myDialog = new MyDialog(TermuxActivity.this);
 
-                        myDialog.getDialog_title().setText("正在复制到工作区域");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在复制到工作区域));
 
                         new Thread(new Runnable() {
                             @Override
@@ -5907,7 +6106,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         TermuxApplication.mHandler.post(new Runnable() {
                                             @Override
                                             public void run() {
-                                                myDialog.getDialog_pro().setText((finalTemp / 1024 / 1024 * 1.0) + "MB/" + (file1.length() / 1024 / 1024 * 1.0) + "MB]");
+
+                                                String string = UUtils.getString(R.string.fuzhisdfsd);
+
+                                                String to = string.replace("TO", (finalTemp / 1024 / 1024 * 1.0) + "");
+
+                                                String from = to.replace("FROM", (file1.length() / 1024 / 1024 * 1.0) + "");
+
+                                                myDialog.getDialog_pro().setText(from);
                                             }
                                         });
 
@@ -5919,7 +6125,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            myDialog.getDialog_title().setText("复制完成,开始解压");
+                                            myDialog.getDialog_title().setText(UUtils.getString(R.string.复制完成asd6a36));
                                         }
                                     });
                                     Thread.sleep(2000);
@@ -5944,7 +6150,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    myDialog.getDialog_title().setText("完成!请再次点击一下侧边栏菜单，进入linux");
+                                                    myDialog.getDialog_title().setText(UUtils.getString(R.string.请再次点击一下侧边栏菜单));
                                                 }
                                             });
                                             try {
@@ -6008,11 +6214,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     } else {
                         AlertDialog.Builder ab1 = new AlertDialog.Builder(TermuxActivity.this);
 
-                        ab1.setTitle("提示");
+                        ab1.setTitle(UUtils.getString(R.string.提示));
 
-                        ab1.setMessage("缺少数据包,请放置数据包到\n放置到:sdcard/xinhao/iso\n文件名:alpine.zip\n请在群文件中下载!\n群号[1]:714730084\n群号[2]:463233836\n如果没有该文件夹,请允许termux获取存储及空间权限，再次进入termux，会自动创建相关文件夹!也可以自己创建");
+                        ab1.setMessage(UUtils.getString(R.string.缺少数据包请放置数据包到));
 
-                        ab1.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                        ab1.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab1.create().dismiss();
@@ -6045,14 +6251,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         if (index == 0) {
-            sess_btn.setText("[*]会话");
-            fun_btn.setText("功能");
+            sess_btn.setText(UUtils.getString(R.string.会话_true));
+            fun_btn.setText(UUtils.getString(R.string.功能_false));
             listView.setVisibility(View.VISIBLE);
             sv_hhh.setVisibility(View.GONE);
 
         } else {
-            sess_btn.setText("会话");
-            fun_btn.setText("[*]功能");
+            sess_btn.setText(UUtils.getString(R.string.会话_false));
+            fun_btn.setText(UUtils.getString(R.string.功能_true));
             listView.setVisibility(View.GONE);
             sv_hhh.setVisibility(View.VISIBLE);
 
@@ -6089,27 +6295,27 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 ViewUtils.xuanzhuanView(mTerminalView, nemu_wo);
                 getDrawer().closeDrawer(Gravity.LEFT);
                 String[] strings = {"" +
-                    "[ubuntu]乌班图发行版[19.10][./start.sh]",
-                    "debian  乌班图子系统[安装约30分钟][./bin/enter_deb]",
-                    "fedora  [安装后谨慎卸载,未root用户,某些文件无法删除!!]",
-                    "Kali [此文件下载1.2GB 安装后 3+GB 请思考后在安装]",
-                    "Centos  [需要root,只不过目前该版本用不了,别点]",
-                    "给我一键安装JAVA[JDK8]",
-                    "安装其他发行版 [ubuntu、Centos、Kali...]",
-                    "安装桌面 [在各个版本linux 中安装各种界面]",
-                    "给我复制[ apktool.jar(APK反编译)] 到home目录",
-                    "给我复制[ atilo(linux安装工具)] 到home目录",
-                    "给我安装Ddos[ ddos 工具] ",
-                    "** 卸载安装的linux [卸载备用其他linux]",
-                    "** 执行美化终端脚本",
-                    "[ubuntu]乌班图发行版[14.04][./start.sh]",
-                    "[ubuntu]乌班图发行版[16.04][./start.sh]",
-                    "[ubuntu]乌班图发行版[18.04][./start.sh]"
+                    UUtils.getString(R.string.乌班图发行版asd6),
+                    UUtils.getString(R.string.乌班图子系统asd6),
+                    UUtils.getString(R.string.安装后谨慎卸载kj6lj),
+                    UUtils.getString(R.string.请思考后在安装huoi6),
+                    UUtils.getString(R.string.只不过目前该版本用不了iop63),
+                    UUtils.getString(R.string.给我一键安装JAVA),
+                    UUtils.getString(R.string.安装其他发行版),
+                    UUtils.getString(R.string.安装桌面gh3k),
+                    UUtils.getString(R.string.给我复制6ykoy),
+                    UUtils.getString(R.string.linux安装工具9u6jk),
+                    UUtils.getString(R.string.给我安装Ddos),
+                    UUtils.getString(R.string.卸载安装的linuxasd6sdfg65),
+                    UUtils.getString(R.string.执行美化终端脚本),
+                    UUtils.getString(R.string.乌班图发行版14),
+                    UUtils.getString(R.string.乌班图发行版16),
+                    UUtils.getString(R.string.乌班图发行版18)
                 };
 
                 AlertDialog.Builder builder = new AlertDialog
                     .Builder(TermuxActivity.this);
-                builder.setTitle("滚动列表往下滑[需要VPN否则很慢]");
+                builder.setTitle(UUtils.getString(R.string.滚动列表往下滑666));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(strings, new DialogInterface.OnClickListener() {
                     @Override
@@ -6119,7 +6325,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         installSystem(which);
                     }
                 });
-                builder.setNegativeButton("我还没想好", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(UUtils.getString(R.string.我还没想好), new DialogInterface.OnClickListener() {
                     @Override
 
                     public void onClick(DialogInterface dialog, int which) {
@@ -6260,13 +6466,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                            ab.setTitle("升级提醒");
+                            ab.setTitle(UUtils.getString(R.string.升级提醒));
 
                             ab.setMessage(upDateBean.getNote());
 
                             ab.setCancelable(false);
 
-                            ab.setNegativeButton("立即升级", new DialogInterface.OnClickListener() {
+                            ab.setNegativeButton(UUtils.getString(R.string.立即升级), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -6288,7 +6494,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                     String ss = String.format("%1.2f", ((float) size / 1024 / 1024));
                                                     String ss1 = String.format("%1.2f", ((float) postion / 1024 / 1024));
 
-                                                    download_text.setText("正在下载[总大小]:" + ss + " MB/" + ss1 + " MB");
+                                                    String string = UUtils.getString(R.string.正在下载fgjf6g5);
+
+                                                    String ss2 = string.replace("ss", ss);
+
+                                                    String ss11 = ss2.replace("ss1", ss1);
+
+                                                    download_text.setText(ss11);
                                                 }
                                             });
                                         }
@@ -6323,7 +6535,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 }
                             });
 
-                            ab.setPositiveButton("取消升级", new DialogInterface.OnClickListener() {
+                            ab.setPositiveButton(UUtils.getString(R.string.取消升级), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
@@ -6362,11 +6574,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("修复各种错误 \n\n1.dpkg 无法使用\n2.xxx.so not fount\n3.pkg无法使用\n4.更多错误");
+                ab.setMessage(UUtils.getString(R.string.修复各种错误asf65));
 
-                ab.setNegativeButton("开始进行", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.开始进行), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -6385,18 +6597,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         getDrawer().openDrawer(Gravity.LEFT);
 
-                        main.java.com.termux.app.TermuxInstaller.setupIfNeeded3("正在修复...", TermuxActivity.this, new Runnable() {
+                        main.java.com.termux.app.TermuxInstaller.setupIfNeeded3(UUtils.getString(R.string.正在修复), TermuxActivity.this, new Runnable() {
                             @Override
                             public void run() {
 
-                                Toast.makeText(TermuxActivity.this, "修复成功!请重启APP", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.修复成功asd65), Toast.LENGTH_SHORT).show();
                             }
                         });
                         ab.create().dismiss();
                     }
                 });
 
-                ab.setPositiveButton("我想稍后修复", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.我想稍后修复), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -6416,21 +6628,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 getDrawer().closeDrawer(Gravity.LEFT);
                 String[] strings = {
-                    "[*]一键安装msf   [./msfvenom.sh][有 linux 基础的装]",
-                    "[*]一键安装qemu ↓[关联][不可用]",
-                    "[*]一键安装unstable-repo ↑[关联][不可用]",
-                    "[*]一键安装 x11-repo",
-                    "[*]一键安装 tigervnc fluxbox [VNC]",
-                    "[*]一键安装msf    [直接命令启动 常用 ]",
-                    "[*]一键安装msf    [执行:msfconsole ] [备用安装  ]",
-                    "[*]一键安装msf    [执行:msfconsole ] [备用安装2 ]",
-                    "[*]一键安装msf5   [执行:msfconsole ] [Metasploit Framework 5]",
-                    "[*]一键安装JDK8   [执行:   java    ] [java]"/*,
+                    UUtils.getString(R.string.一键安装msfasf3),
+                    UUtils.getString(R.string.一键安装qemugkh3),
+                    UUtils.getString(R.string.一键安装unstablerepo),
+                    UUtils.getString(R.string.一键安装x11),
+                    UUtils.getString(R.string.一键安装tigervnc),
+                    UUtils.getString(R.string.一键安装msfdsf54xzcv3),
+                    UUtils.getString(R.string.一键安装msfpop6),
+                    UUtils.getString(R.string.一键安装msftry5),
+                    UUtils.getString(R.string.一键安装msf58889),
+                    UUtils.getString(R.string.一键安装JDK8sdfsd65zxv32)/*,
                     "[*]一键安装xfce4  [执行:需要配合vnc ] [xfce4]"*/
                 };
                 AlertDialog.Builder builder = new AlertDialog
                     .Builder(TermuxActivity.this);
-                builder.setTitle("请选中一个[需要VPN否则很慢]");
+                builder.setTitle(UUtils.getString(R.string.请选中一个请选中一个));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(strings, new DialogInterface.OnClickListener() {
                     @Override
@@ -6440,7 +6652,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         installGui(which);
                     }
                 });
-                builder.setNegativeButton("我还没想好", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(UUtils.getString(R.string.我还没想好), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         builder.create().dismiss();
@@ -6550,11 +6762,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             case 9:
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("执行 java 前 先执行 :termux-chroot\n否则会出现:bad call");
+                ab.setMessage(UUtils.getString(R.string.n否则会出现n否则会出现));
 
-                ab.setNeutralButton("好", new DialogInterface.OnClickListener() {
+                ab.setNeutralButton(UUtils.getString(R.string.好), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //nethunter.sh
@@ -6590,11 +6802,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-            ab.setTitle("环境不达要求");
+            ab.setTitle(UUtils.getString(R.string.环境不达要求));
 
-            ab.setMessage("你没有安装 wget 或者 proot \n是否立即安装");
+            ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
 
-            ab.setNegativeButton("给我安装", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
@@ -6602,7 +6814,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 }
             });
 
-            ab.setPositiveButton("不安装", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
@@ -6630,11 +6842,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                    ab.setTitle("提示");
+                    ab.setTitle(UUtils.getString(R.string.提示));
 
-                    ab.setMessage("你貌似已安装过 ubuntu 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!");
+                    ab.setMessage(UUtils.getString(R.string.n会删除你以前的所有数据));
 
-                    ab.setPositiveButton("强制重装", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.强制重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -6644,13 +6856,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             mTerminalView.sendTextToTerminal("rm start.sh" + "\n");
                             mTerminalView.sendTextToTerminal("rm -rf ubuntu-binds" + "\n");
                             mTerminalView.sendTextToTerminal("rm -rf ubuntu-fs" + "\n");
-                            Toast.makeText(TermuxActivity.this, "数据清除成功!请重新进入,系统安装窗口", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.数据清除成功dsf54), Toast.LENGTH_LONG).show();
                             ab.create().dismiss();
 
                         }
                     });
 
-                    ab.setNegativeButton("不需要重装", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.不需要重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
@@ -6675,11 +6887,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                    ab.setTitle("提示");
+                    ab.setTitle(UUtils.getString(R.string.提示));
 
-                    ab.setMessage("你貌似已安装过 debian 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!");
+                    ab.setMessage(UUtils.getString(R.string.你貌似已安装过dfgd21));
 
-                    ab.setPositiveButton("强制重装", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.强制重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -6688,20 +6900,20 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             mTerminalView.sendTextToTerminal("rm -rf debootstrap" + "\n");
                             mTerminalView.sendTextToTerminal("rm -rf debootstrap-1.0.115" + "\n");
                             mTerminalView.sendTextToTerminal("rm debian_on_termux.sh" + "\n");
-                            Toast.makeText(TermuxActivity.this, "数据清除成功!请重新进入,系统安装窗口", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.数据清除成功dsf54), Toast.LENGTH_LONG).show();
                             ab.create().dismiss();
 
                         }
                     });
 
-                    ab.setNegativeButton("不需要重装", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.不需要重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
                         }
                     });
 
-                    ab.setNeutralButton("忽略警告继续安装", new DialogInterface.OnClickListener() {
+                    ab.setNeutralButton(UUtils.getString(R.string.忽略警告继续安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             File fileDebian = new File("/data/data/com.termux/files/home/debian_on_termux.sh");
@@ -6730,31 +6942,31 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                    ab.setTitle("提示");
+                    ab.setTitle(UUtils.getString(R.string.提示));
 
-                    ab.setMessage("你貌似已安装过 fedora 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!");
+                    ab.setMessage(UUtils.getString(R.string.你貌似已安装过dfh4fg5420002));
 
-                    ab.setPositiveButton("强制重装", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.强制重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                             mTerminalView.sendTextToTerminal("cd ~" + "\n");
                             mTerminalView.sendTextToTerminal("rm -rf fedora" + "\n");
                             mTerminalView.sendTextToTerminal("rm termux-fedora.sh" + "\n");
-                            Toast.makeText(TermuxActivity.this, "数据清除成功!请重新进入,系统安装窗口", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.数据清除成功dsf54), Toast.LENGTH_LONG).show();
                             ab.create().dismiss();
 
                         }
                     });
 
-                    ab.setNegativeButton("不需要重装", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.不需要重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
                         }
                     });
 
-                    ab.setNeutralButton("忽略警告继续安装", new DialogInterface.OnClickListener() {
+                    ab.setNeutralButton(UUtils.getString(R.string.忽略警告继续安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             File fileFedora = new File("/data/data/com.termux/files/home/termux-fedora.sh");
@@ -6786,11 +6998,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                    ab.setTitle("提示");
+                    ab.setTitle(UUtils.getString(R.string.提示));
 
-                    ab.setMessage("你貌似已安装过 kali 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!");
+                    ab.setMessage(UUtils.getString(R.string.n如果需要重新安装er98g2mn));
 
-                    ab.setPositiveButton("强制重装", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.强制重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -6799,20 +7011,20 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             mTerminalView.sendTextToTerminal("rm -rf nethunter-binds" + "\n");
                             mTerminalView.sendTextToTerminal("rm -rf nethunter-fs" + "\n");
                             mTerminalView.sendTextToTerminal("rm nethunter.sh" + "\n");
-                            Toast.makeText(TermuxActivity.this, "数据清除成功!请重新进入,系统安装窗口", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.数据清除成功dsf54), Toast.LENGTH_LONG).show();
                             ab.create().dismiss();
 
                         }
                     });
 
-                    ab.setNegativeButton("不需要重装", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.不需要重装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
                         }
                     });
 
-                    ab.setNeutralButton("忽略警告继续安装", new DialogInterface.OnClickListener() {
+                    ab.setNeutralButton(UUtils.getString(R.string.忽略警告继续安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             File fileKail = new File("/data/data/com.termux/files/home/nethunter.sh");
@@ -6850,9 +7062,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("执行 java 前 先执行 :termux-chroot\n否则会出现:bad call");
+                ab.setMessage(UUtils.getString(R.string.执行java前sdfsdf));
 
                 ab.setNeutralButton("好", new DialogInterface.OnClickListener() {
                     @Override
@@ -6872,11 +7084,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 break;
             case 6:
                 notifyUserToChooseDistro();
-                Toast.makeText(this, "原项目作者: exalab999\n特此感谢!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.原项目作者sdf65), Toast.LENGTH_SHORT).show();
                 break;
 
             case 7:
-                Toast.makeText(this, "原项目作者: exalab999\n特此感谢!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.原项目作者sdf65), Toast.LENGTH_SHORT).show();
                 notifyUserToChooseDistro1();
                 break;
 
@@ -6918,7 +7130,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 }
 
 
-                Toast.makeText(this, "安装成功!您可以运行[ddos]命令来验证", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.您可以运行dfg6d), Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -6943,7 +7155,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 AlertDialog.Builder builder = new AlertDialog
                     .Builder(TermuxActivity.this);
-                builder.setTitle("选择一个要卸载的系统");
+                builder.setTitle(UUtils.getString(R.string.选择一个要卸载的系统));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(msg, new DialogInterface.OnClickListener() {
                     @Override
@@ -6997,7 +7209,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     }
                 });
-                builder.setNegativeButton("我还没想好", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(UUtils.getString(R.string.我还没想好), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         builder.create().dismiss();
@@ -7696,7 +7908,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
         s = Build.SUPPORTED_ABIS[0];
-        alertDialog.setPositiveButton("我想好了", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(UUtils.getString(R.string.我想好了), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -7721,7 +7933,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         distro = "Nethunter";
                         if (!isNethunterNotified) {
                             // notifyUserForNethunter();
-                            Toast.makeText(TermuxActivity.this, "不存在安装选项", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.不存在安装选项), Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else if (checkBox5.isChecked()) {
@@ -7825,7 +8037,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
 
-        alertDialog.setNeutralButton("不要安装!!!", new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(UUtils.getString(R.string.不要安装), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -7840,7 +8052,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
         //ab.setCancelable(false);
-        ab.setMessage("正在执行安装操作请稍后...");
+        ab.setMessage(UUtils.getString(R.string.正在执行安装操作请稍后sdf65656));
         AlertDialog alertDialog = ab.create();
         alertDialog.show();
 
@@ -7851,7 +8063,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             mTerminalView.sendTextToTerminal("./" + mFile.getName() + "\n");
             alertDialog.dismiss();
 
-            Toast.makeText(this, "正在安装,请耐心等待!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.正在安装dfgiop98io9), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, "" + e.toString(), Toast.LENGTH_SHORT).show();
@@ -7866,7 +8078,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
         //ab.setCancelable(false);
-        ab.setMessage("正在执行安装操作请稍后...");
+        ab.setMessage(UUtils.getString(R.string.正在执行安装操作请稍后sdf65656));
         AlertDialog alertDialog = ab.create();
         alertDialog.show();
 
@@ -7877,7 +8089,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             mTerminalView.sendTextToTerminal(comm + "\n");
             alertDialog.dismiss();
 
-            Toast.makeText(this, "正在安装,请耐心等待!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.正在安装dfgiop98io9), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, "" + e.toString(), Toast.LENGTH_SHORT).show();
@@ -7949,9 +8161,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (!mFileEx.exists()) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("提示");
+            builder.setTitle(UUtils.getString(R.string.提示));
             builder.setCancelable(false);
-            builder.setMessage("当前没有安装系统\n安装termux原版系统:安装原系统\n直接恢复linux:在群文件下载相关扩展包\n...");/*群贡献[排名不分先后]
+            builder.setMessage(UUtils.getString(R.string.当前没有安装系统qertxcv));/*群贡献[排名不分先后]
 爱笑的jrql(系统支持)
 WINLOG(虚拟机提供)
 Solaris(APP美化)
@@ -7964,7 +8176,7 @@ Solaris(APP美化)
                 }
             });*/
 
-            builder.setNegativeButton("直接恢复linux[如有恢复包]", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(UUtils.getString(R.string.直接恢复linux5556), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     startActivity(new Intent(TermuxActivity.this, SettingActivity.class));
@@ -7972,7 +8184,7 @@ Solaris(APP美化)
 
                 }
             });
-            builder.setPositiveButton("安装termux原版系统", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(UUtils.getString(R.string.安装termux原版系统9993), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -8219,37 +8431,37 @@ Solaris(APP美化)
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                            ab.setTitle("条款许可");
+                            ab.setTitle(UUtils.getString(R.string.条款许可));
 
                             ab.setCancelable(false);
 
-                            ab.setMessage("你同意查看条款许可吗");
+                            ab.setMessage(UUtils.getString(R.string.你同意查看条款许可吗));
 
-                            ab.setPositiveButton("我查看一下,并且同意", new DialogInterface.OnClickListener() {
+                            ab.setPositiveButton(UUtils.getString(R.string.我查看一下88855), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     startActivity(new Intent(TermuxActivity.this, ThanksActivity.class));
-                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+                                    mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
 
                                 }
                             });
 
-                            ab.setNegativeButton("我直接同意", new DialogInterface.OnClickListener() {
+                            ab.setNegativeButton(UUtils.getString(R.string.我直接同意), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
-                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+                                    mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
 
                                 }
                             });
 
-                            ab.setNeutralButton("我不同意", new DialogInterface.OnClickListener() {
+                            ab.setNeutralButton(UUtils.getString(R.string.我不同意), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    Toast.makeText(TermuxActivity.this, "请立即卸载!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.请立即卸载), Toast.LENGTH_SHORT).show();
                                     ab.create().dismiss();
-                                    mTerminalView.sendTextToTerminal("echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n");
+                                    mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
 
                                 }
                             });
@@ -8638,9 +8850,9 @@ Solaris(APP美化)
             case CONTEXTMENU_SELECT_URL_ID:
                 //showUrlSelection();
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);
-                ab.setTitle("注意!!");
-                ab.setMessage("这个开发者面板，是[XINHAO_HAN]测试预留的\n请不要尝试使用里边的任何功能\n否则造成任何数据损失，由你自己负责");
-                ab.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                ab.setTitle(UUtils.getString(R.string.注意));
+                ab.setMessage(UUtils.getString(R.string.这个开发者面板dfg56));
+                ab.setPositiveButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(TermuxActivity.this, TestActivity.class));
@@ -8740,7 +8952,7 @@ Solaris(APP美化)
                     mkdirFile();
                     startOk();
                 } else {
-                    Toast.makeText(this, "你已拒绝，备份恢复功能将无法使用!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.你已拒绝), Toast.LENGTH_SHORT).show();
                     startOk();
                 }
 
@@ -8947,7 +9159,7 @@ Solaris(APP美化)
                                     String[] split = msg.split("@截取符号@");
 
                                     printWriter.println("-------------------------------");
-                                    printWriter.println("|          第" + i + "条短信           |");
+                                    printWriter.println("|          "+UUtils.getString(R.string.条短信dfg56).replace("i",i + "")+"           |");
 
                                     printWriter.println("-------------------------------");
                                     printWriter.println(split[0]);
@@ -9005,7 +9217,7 @@ Solaris(APP美化)
 
                         if (s1.contains("root@localhost")) {
                             isRunThis = false;
-                            Toast.makeText(TermuxApplication.mContext, "启动完成,不要手动操作任何东西!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.启动完成fghfgfkhjlk), Toast.LENGTH_LONG).show();
                         }
 
 

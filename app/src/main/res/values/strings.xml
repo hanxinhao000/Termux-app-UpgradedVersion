@@ -901,4 +901,676 @@
     <string name="run_command_permission_label">在Termux环境中运行命令</string>
     <string name="run_command_permission_description">允许第三方应用程序在Termux环境中执行任意命令。</string>
 
+
+
+    <!-- 开始执行 汉语和英语翻译 -->
+
+    <string name="正在完成操作">正在完成操作,请等待!(根据Termux更改的)</string>
+    <string name="测试版本">测试版本!有些手机可能不支持,如果有不支持的请及时反馈问题</string>
+    <string name="请保持此页面在最前端">"
+        请保持此页面在最前端，并且不要有其他操作！\n
+        并且保持屏幕亮起,切记！\n
+        当前版本包含:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…\n
+        您可以在软件中点击'+'号来备份/恢复您的Linux系统,在浏览器中输入:你手机的ip地址:8080\n
+        来访问相关信息\n
+        mysql账号:root \n
+        mysql密码:123\n
+        mysql远程(是/否):是\n
+        网站管理目录[在备份的压缩包中]:/files/usr/share/nginx/html/\n
+        您可以选择复制进去重新压缩，然后点击恢复linux\n刚启动可能有点卡，等待5-10分钟，就正常了\n
+        不想自启动命令,删除掉[/usr/etc/XINHAO_HAN]文件,就不会每次启动命令了,如果还原启动命令,创建一个[XINHAO_HAN]空文件"</string>
+    <string name="请选择变化信息">请选择变化信息:</string>
+    <string name="文字">文字</string>
+    <string name="文字123">文字 + 底部键盘</string>
+    <string name="键盘">键盘</string>
+    <string name="背景">背景</string>
+    <string name="公告552">公告:</string>
+    <string name="本地版本552">本地版本:[0.98.89]</string>
+    <string name="云端版本552">云端版本:[0.92.77]</string>
+    <string name="架构">架构:[无法读取]</string>
+    <string name="IP">IP:[无法读取]</string>
+    <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
+    <string name="权限信息886">权限信息</string>
+    <string name="内存权限886">内存权限:   [没有权限]</string>
+    <string name="内存权限887">内存权限:   [已获取]</string>
+
+    <string name="电话权限886">"电话权限:   [没有权限]"</string>
+    <string name="电话权限887">"电话权限:   [已获取]"</string>
+
+    <string name="短信权限">"短信权限:   [没有权限]"</string>
+    <string name="源功能">"源功能"</string>
+    <string name="更多资源">"更多资源[请勿违法,只适用于学习交流,所有法律责任由使用者承担]"</string>
+    <string name="常用功能554">"常用功能"</string>
+    <string name="包恢复功能885">"包恢复功能"</string>
+    <string name="图形系统885">"图形系统"</string>
+    <string name="实用功能885">"实用功能"</string>
+    <string name="美化885">"美化[字体背景]"</string>
+    <string name="工具885">"工具[备份恢复]"</string>
+    <string name="修复885">"修复/其他[杂项选择]"</string>
+    <string name="更新885">"更新"</string>
+    <string name="功能885">"[*]功能"</string>
+    <string name="会话885">"会话"</string>
+    <string name="清华源885">"[新]清华源"</string>
+    <string name="不稳定886">"不稳定"</string>
+    <string name="官方源886">"官方源"</string>
+    <string name="切换到官方886">"切换到官方"</string>
+    <string name="TOOL886">"TOOL-X"</string>
+    <string name="作者1">"作者 : rajkumardusad"</string>
+    <string name="TBomb">"TBomb[轰炸]"</string>
+    <string name="作者2">"作者 : TheSpeedX"</string>
+    <string name="作者3">"作者 : Gameye98"</string>
+    <string name="作者4">"作者 : thehackingsage"</string>
+    <string name="作者5">"作者 : MasterDevX"</string>
+    <string name="APK构建工具">"APK构建工具"</string>
+    <string name="作者6">"作者 : SD Rausty"</string>
+    <string name="切换linux">"切换linux"</string>
+    <string name="扩展无数个linux">"扩展无数个linux"</string>
+    <string name="更多linux">"更多linux"</string>
+    <string name="ubuntu665">"ubuntu,kali等"</string>
+    <string name="linux软件63">"linux软件"</string>
+    <string name="msf669">"msf,java等"</string>
+    <string name="linux目录">"linux目录"</string>
+    <string name="以图形方式打开">"以图形方式打开"</string>
+    <string name="web命令">"web命令"</string>
+    <string name="以浏览器方式打开终端">"以浏览器方式打开终端"</string>
+    <string name="linux高级目录">"linux高级目录"</string>
+    <string name="更高级的文件访问器">"更高级的文件访问器"</string>
+    <string name="快速vnc">"快速vnc"</string>
+    <string name="默认端口558">"默认端口:1\n默认密码:123456"</string>
+    <string name="配置vnc">"配置vnc"</string>
+    <string name="高级设置">"高级设置"</string>
+    <string name="配置vnc552">"配置vnc(高级)"</string>
+    <string name="更高级的设置">"更高级的设置"</string>
+    <string name="在线包">"在线包"</string>
+    <string name="zip恢复">"zip恢复"</string>
+    <string name="targz">"tar.gz恢复"</string>
+    <string name="旧版556">"旧版|新版"</string>
+    <string name="旧版备份882">"旧版备份"</string>
+    <string name="不推荐使用">"不推荐使用"</string>
+    <string name="下载站">"下载站"</string>
+    <string name="百度网盘">"百度网盘[gzdp]"</string>
+    <string name="下载站2">"下载站2"</string>
+    <string name="WINLOG提供">"WINLOG提供"</string>
+    <string name="图形系统442">"图形系统"</string>
+    <string name="图形ubuntu884">"图形ubuntu"</string>
+    <string name="图形fedora553">"图形fedora"</string>
+    <string name="卸载图形fedora">"卸载图形fedora"</string>
+    <string name="ubuntu图形59874">"ubuntu图形"</string>
+    <string name="由空夏提供">"由空夏提供"</string>
+    <string name="图形系统8485285">"图形系统[推荐]"</string>
+    <string name="由Moe提供8520566">"由Moe提供,git地址:https://gitee.com/mo2,本脚本已通过原作者同意,也感谢原作者对UT的支持"</string>
+    <string name="由xom作者提供8212541">"由xom作者提供"</string>
+    <string name="由xom作者提供552596">"由xom作者提供,本工具是一款专门针对termux的基础环境安装脚本,本脚本已通过原作者同意,也感谢原作者对UT的支持"</string>
+    <string name="打开Windows3">"打开Windows3.2"</string>
+    <string name="内置Vncfghfgh">"内置Vnc"</string>
+    <string name="root功能">"root功能"</string>
+    <string name="论坛">"论坛"</string>
+    <string name="有问题上论坛">"有问题上论坛"</string>
+    <string name="查询包">"查询包"</string>
+    <string name="当前源的包">"当前源的包"</string>
+    <string name="修复termux">"修复termux"</string>
+    <string name="qemu原理">"Termux-qemu原理"</string>
+    <string name="打开内置键盘">"打开内置键盘"</string>
+    <string name="更改颜色">"更改颜色"</string>
+    <string name="字体8198852">"字体,背景,键盘"</string>
+    <string name="更改背景">"更改背景"</string>
+    <string name="背景为图片">"背景为图片"</string>
+    <string name="动态背景">"动态背景"</string>
+    <string name="背景为视频">"背景为视频"</string>
+    <string name="键盘脚本">"键盘脚本"</string>
+    <string name="更改键盘脚本">"更改键盘脚本"</string>
+    <string name="更改终端字体">"更改终端字体"</string>
+    <string name="终端配色">"终端配色"</string>
+    <string name="更改终端配色">"更改终端配色"</string>
+    <string name="左侧栏背景">"左侧栏背景"</string>
+    <string name="更改左侧栏背景图片">"更改左侧栏背景图片"</string>
+    <string name="实验室">"实验室"</string>
+    <string name="悬浮命令行">"悬浮命令行"</string>
+    <string name="开机命令556">"开机命令[开]"</string>
+    <string name="全屏模式asf5sd5">"全屏模式\n[再次点击关闭]"</string>
+    <string name="替换官方版本">"替换官方版本"</string>
+    <string name="用官版的请点击">"用官版的请点击"</string>
+    <string name="开源地址">"开源地址"</string>
+    <string name="杂项脚本">"杂项脚本"</string>
+    <string name="启动器556">"启动器[新]"</string>
+    <string name="切换新旧启动器">"切换新旧启动器"</string>
+    <string name="修复权限">"修复权限"</string>
+    <string name="参考页面">"参考页面"</string>
+    <string name="修复so异常">"修复so异常"</string>
+    <string name="面板透明度">"面板透明度\n[背景图会被覆盖]:"</string>
+    <string name="面板抽屉模式">"        面板抽屉模式:"</string>
+    <string name="语言5558">"                       语言:"</string>
+    <string name="折叠557">"折叠"</string>
+    <string name="ENGLISH5553">ENGLISH</string>
+    <string name="中文5553">中文</string>
+    <string name="全开557">"全开"</string>
+    <string name="普通557">"普通"</string>
+    <string name="注意563962">"注意"</string>
+    <string name="为了使你的配置生效sdfds">"为了使你的配置生效，请稍后重启APP[大退,不要按返回键退出]\n
+不重启无法正常使用."</string>
+    <string name="我知道了">"我知道了"</string>
+    <string name="解压文件文本">
+        文件数量:(position / size)\n
+        解压前:不知道 \n
+        解压后:1000 MB
+    </string>
+
+
+    <string name="正在启动开机命令">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开 [ finalI1 / split.length ]"</string>
+    <string name="开始启动mysqlsgdfg">"开始启动mysql"</string>
+    <string name="mysql_已启动">"mysql 已启动"</string>
+    <string name="正在启动_php环境">"正在启动 php环境"</string>
+    <string name="启动VNC_d5f5">"启动VNC!"</string>
+    <string name="启动完成yyy">"启动完成!右下角的+号可以点啦~"</string>
+    <string name="正在启动开机命令s5gsd5g">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开"</string>
+    <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
+    <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
+    <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.98.89]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.92.77]\n最新版本:[versionName]"</string>
+    <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
+    <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
+    <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
+    <string name="切换到官方版本您将失去一切UTermux的功能">"当前安装:banben\n切换到官方版本您将失去一切UTermux的功能\n注意:不会!不会!不会!丢失数据的\n如果您想切换回来您可以覆盖安装"</string>
+    <string name="切换sdf5sd2fds5">"切换"</string>
+    <string name="不切换sdf5sd6fsd">"不切换"</string>
+    <string name="提示">"提示"</string>
+    <string name="知道了">"知道了"</string>
+    <string name="是否前往列表">"是否前往列表,检查最新版本?\n\n提取码:mjvu"</string>
+    <string name="前往">"前往"</string>
+    <string name="取消">"取消"</string>
+    <string name="面板透明度abc">"面板透明度[progress]:"</string>
+    <string name="您还未安装该插件">"您还未安装该插件!"</string>
+    <string name="是否前往下载该插件">"是否前往下载该插件?\n\n提取码:5m7a"</string>
+    <string name="输入信息">输入信息</string>
+    <string name="连接">连接</string>
+    <string name="如果鼠标不动">如果鼠标不动</string>
+    <string name="该操作会覆盖你原来的源文件">该操作会覆盖你原来的源文件,是否继续 </string>
+    <string name="是">是</string>
+    <string name="未做任何改动">未做任何改动!</string>
+    <string name="切换到官方源成功">切换到官方源成功!</string>
+    <string name="请注意">请注意</string>
+    <string name="提取码a5dfsdf">提取码：gzdp</string>
+    <string name="选择您的配色文件">选择您的配色文件</string>
+    <string name="你没有SD卡权限1">你没有SD卡权限1!</string>
+    <string name="你没有SD卡权限2">你没有SD卡权限2!</string>
+    <string name="现在不配色">现在不配色</string>
+    <string name="Termux其它版本">Termux其它版本 [百度网盘][pevy]</string>
+    <string name="选择您的历史版本sdfsd56">选择您的历史版本</string>
+    <string name="现在不切换">现在不切换</string>
+    <string name="未安装插件">未安装插件</string>
+    <string name="未安装插件asfas6f5sdf">未安装插件，是否安装插件?\n
+如果自动安装插件失败\n
+请到Sdcard目录下找\n
+xinhao/apk/fdrPlugins.apk\n
+手动安装</string>
+    <string name="安装">安装</string>
+    <string name="不安装">不安装</string>
+    <string name="启动器_new">启动器[新]</string>
+    <string name="启动器_old">启动器[旧]</string>
+    <string name="当前为旧版启动器">当前为旧版启动器!</string>
+    <string name="已切换到旧版启动器">已切换到旧版启动器</string>
+    <string name="已切换到新版启动器">已切换到新版启动器</string>
+    <string name="需要重启APP才能改变当前启动器">需要重启APP才能改变当前启动器\n
+是否重启?</string>
+
+    <string name="需要">需要</string>
+    <string name="稍后">稍后</string>
+    <string name="运行">运行</string>
+    <string name="即将开始运行网页版本的Utermuxsd5fsd5">即将开始运行网页版本的Utermux\n
+密码默认(password def):123\n
+是否开始运行?\n
+端口(port):4200</string>
+
+
+    <string name="命令执行成功">命令执行成功</string>
+    <string name="请在浏览器打开">请在浏览器打开 [本机(phone)ip]:4200</string>
+    <string name="好的">好的</string>
+    <string name="坏境错误">坏境错误</string>
+    <string name="你没有安装shellinaboxdfg56">你没有安装shellinabox\n
+离线安装只支持arm和aarch!!!!!\n
+点击立即安装\n
+如果提示找不到 shellinabox,\n
+请查看您的源是否正确!\n
+
+注意!离线安装如果有报错,不用管!</string>
+
+    <string name="离线安装">离线安装</string>
+    <string name="未安装插件sdf1sd6f8s1df">未安装插件，是否安装插件?\n
+如果自动安装插件失败\n
+请到Sdcard目录下找\n
+xinhao/apk/DosBoxApplication.apk\n
+手动安装</string>
+    <string name="请在测试版本中打开">请在测试版本中打开!</string>
+    <string name="恢复功能正在维护中">备份/恢复功能正在维护中...</string>
+    <string name="请选择">请选择</string>
+    <string name="请选择你需要的操作dfgdf651">请选择你需要的操作\n
+
+备份/恢复 \n
+
+一定要加入白名单,或者保持在本程序页面!!!!否则系统可能会杀掉本程序,那么你的备份/恢复 又得重来!!!!\n
+
+
+请选择一项 \n
+备份将在后台运行,备份完成将会通过:\n
+1.弹窗\n
+2.通知栏\n
+方式提供给您\n
+
+备份目录在:[sdcard ->/xinhao/data/目录下\n
+
+恢复包,也请将放置到该目录下]</string>
+    <string name="备份">备份</string>
+    <string name="你没有SD卡权限">你没有SD卡权限</string>
+    <string name="恢复">恢复</string>
+    <string name="内存卡不可访问">内存卡不可访问</string>
+    <string name="不要选择过大sdf53">不要选择过大[过长]的背景,否则会造成卡顿</string>
+    <string name="已恢复默认">已恢复默认</string>
+    <string name="长按此按钮恢复设置">长按此按钮恢复设置</string>
+    <string name="切不能长时间离开sdf165">不允许，任何操作!切不能长时间离开,本程序页面</string>
+    <string name="CPU架构TRRR">"[CPU架构:main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()]"</string>
+    <string name="CPU架构TRRR1">"[CPU架构:main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()]\n[不支持arm64恢复包]"</string>
+    <string name="IP地址df35">"[IP地址:SystemUtil.getLocalIpAddress()]"</string>
+    <string name="慎重警告">慎重警告</string>
+    <string name="如果你的系统能正常运行">"如果你的系统能正常运行，切勿点击!"</string>
+    <string name="我考虑好了">"我考虑好了"</string>
+    <string name="修复成功请重启后尝试">"修复成功,请重启后尝试"</string>
+    <string name="我还没考虑好">"我还没考虑好"</string>
+    <string name="开机命令close">"开机命令[关]"</string>
+    <string name="开机命令open">"开机命令[开]"</string>
+    <string name="请确认">"请确认"</string>
+    <string name="你需要离线还是在线sdf56">"你需要离线还是在线\n
+在线需要:vpn以及20KB~200KB的捉急网速\n
+离线：直接在群文件下载放到[sdcared ->xinhao/iso/]目录下"</string>
+
+    <string name="我选择离线">"我选择离线"</string>
+    <string name="正在复制文件到工作区域asd5">"正在复制文件到工作区域"</string>
+    <string name="fuzhisdfsd">"TO MB/FROM MB"</string>
+    <string name="正在复制文件到工作区域sdf456">"正在复制文件到工作区域\n
+如果复制很慢请耐心等待\n
+页面刷新可能有延时\n
+可能一直卡在某个数,但是内部复制没停\n
+如果没有耐心，大退app重新执行[不建议!!!]"</string>
+    <string name="请耐心等待a6dsf15sdf16">"请耐心等待,如果一直卡这\n
+请去看看你的sd卡权限\n
+有没有打开"</string>
+
+
+    <string name="如果一直卡在asd6">"如果一直卡在(正在安装 wget proot…),请ctrl + c 然后再按 ↑建 重新执行一下"</string>
+    <string name="如果一直卡在asd67">"如果一直卡在(正在安装 wget proot…)\n\n请ctrl + c 然后再按 ↑建 重新执行一下\n\n或者 重新执行脚本[./Install_cn_li.sh]"</string>
+    <string name="未发现文件f5">在 sdcard ->xinhao/iso 未发现 fedora.7z 文件</string>
+    <string name="我选择在线">我选择在线</string>
+    <string name="您确定">您确定?</string>
+    <string name="你确定要卸载fedora系统吗">你确定要卸载fedora系统吗?</string>
+    <string name="卸载">卸载</string>
+    <string name="进入提醒">进入提醒</string>
+    <string name="请选择打开方式s5d">"请选择打开方式?\n打开选项:\n1.带小图标打开[图标打开]\n2.不带小图标打开"</string>
+    <string name="图标打开">图标打开</string>
+    <string name="无标打开">无标打开</string>
+    <string name="关于">关于</string>
+    <string name="软件制作asd56">"软件制作:XINHAO_HAN\n作者姓名:韩**\n软件类型:termux功能集合\n项目开始时间:2019年7月11日\n集合外部资源:github.com/谷歌\n开发地点:西安雁塔区、西安未央区"</string>
+    <string name="进入后台管理dsf56">进入后台管理</string>
+    <string name="注意">注意</string>
+    <string name="我们需要你的sd卡权限df56">"我们需要你的sd卡权限,用于以下需求:\n1.扩展包的使用\n2.图形包的使用\n3.缓存配置\n如果你拒绝!以上功能全部无法使用!"</string>
+    <string name="可以">可以</string>
+    <string name="出现错误dsf51">出现错误!使用默认键盘</string>
+    <string name="请将安装包放置到sdf65">"请将安装包放置到 内部存储/xinhao/iso 下"</string>
+    <string name="正在复制到工作区域">正在复制到工作区域</string>
+    <string name="复制完成asd6a36">复制完成,开始解压</string>
+    <string name="请再次点击一下侧边栏菜单">完成!请再次点击一下侧边栏菜单，进入linux</string>
+    <string name="缺少数据包请放置数据包到">"缺少数据包,请放置数据包到\n放置到:sdcard/xinhao/iso\n文件名:alpine.zip\n请在群文件中下载!\n群号[1]:714730084\n群号[2]:463233836\n如果没有该文件夹,请允许termux获取存储及空间权限，再次进入termux，会自动创建相关文件夹!也可以自己创建"</string>
+    <string name="会话_true">[*]会话</string>
+    <string name="功能_false">功能</string>
+    <string name="会话_false">会话</string>
+    <string name="功能_true">[*]功能</string>
+    <string name="乌班图发行版asd6">[ubuntu]乌班图发行版[19.10][./start.sh]</string>
+    <string name="乌班图子系统asd6">debian  乌班图子系统[安装约30分钟][./bin/enter_deb]</string>
+    <string name="安装后谨慎卸载kj6lj">fedora  [安装后谨慎卸载,未root用户,某些文件无法删除!!]</string>
+    <string name="请思考后在安装huoi6">Kali [此文件下载1.2GB 安装后 3+GB 请思考后在安装]</string>
+    <string name="只不过目前该版本用不了iop63">Centos  [需要root,只不过目前该版本用不了,别点]</string>
+    <string name="给我一键安装JAVA">给我一键安装JAVA[JDK8]</string>
+    <string name="安装其他发行版">安装其他发行版 [ubuntu、Centos、Kali…]</string>
+    <string name="安装桌面gh3k">安装桌面 [在各个版本linux 中安装各种界面]</string>
+    <string name="给我复制6ykoy">给我复制[ apktool.jar(APK反编译)] 到home目录</string>
+    <string name="linux安装工具9u6jk">给我复制[ atilo(linux安装工具)] 到home目录</string>
+    <string name="给我安装Ddos">给我安装Ddos[ ddos 工具] </string>
+    <string name="卸载安装的linuxasd6sdfg65">** 卸载安装的linux [卸载备用其他linux]</string>
+    <string name="执行美化终端脚本">** 执行美化终端脚本</string>
+    <string name="乌班图发行版14">[ubuntu]乌班图发行版[14.04][./start.sh]</string>
+    <string name="乌班图发行版16">[ubuntu]乌班图发行版[16.04][./start.sh]</string>
+    <string name="乌班图发行版18">[ubuntu]乌班图发行版[18.04][./start.sh]</string>
+    <string name="滚动列表往下滑666">滚动列表往下滑[需要VPN否则很慢]</string>
+    <string name="我还没想好">我还没想好</string>
+    <string name="升级提醒">升级提醒</string>
+    <string name="立即升级">立即升级</string>
+    <string name="正在下载fgjf6g5">"正在下载[总大小]:ss MB/ss1 MB"</string>
+    <string name="取消升级">"取消升级"</string>
+    <string name="修复各种错误asf65">"修复各种错误 \n\n1.dpkg 无法使用\n2.xxx.so not fount\n3.pkg无法使用\n4.更多错误"</string>
+    <string name="开始进行">开始进行</string>
+    <string name="正在修复">正在修复…</string>
+    <string name="修复成功asd65">修复成功!请重启APP</string>
+    <string name="我想稍后修复">我想稍后修复</string>
+    <string name="一键安装msfasf3">[*]一键安装msf   [./msfvenom.sh][有 linux 基础的装]</string>
+    <string name="一键安装qemugkh3">[*]一键安装qemu ↓[关联][不可用]</string>
+    <string name="一键安装unstablerepo">[*]一键安装unstable-repo ↑[关联][不可用]</string>
+    <string name="一键安装x11">[*]一键安装 x11-repo</string>
+    <string name="一键安装tigervnc">[*]一键安装 tigervnc fluxbox [VNC]</string>
+    <string name="一键安装msfdsf54xzcv3">[*]一键安装msf    [直接命令启动 常用 ]</string>
+    <string name="一键安装msfpop6">[*]一键安装msf    [执行:msfconsole ] [备用安装  ]</string>
+    <string name="一键安装msftry5">[*]一键安装msf    [执行:msfconsole ] [备用安装2 ]</string>
+    <string name="一键安装msf58889">[*]一键安装msf5   [执行:msfconsole ] [Metasploit Framework 5]</string>
+    <string name="一键安装JDK8sdfsd65zxv32">[*]一键安装JDK8   [执行:   java    ] [java]</string>
+    <string name="请选中一个请选中一个">请选中一个[需要VPN否则很慢]</string>
+    <string name="n否则会出现n否则会出现">"执行 java 前 先执行 :termux-chroot\n否则会出现:bad call"</string>
+    <string name="好">好</string>
+    <string name="环境不达要求">环境不达要求</string>
+    <string name="你没有安装tyu65t6y5u">"你没有安装 wget 或者 proot \n是否立即安装"</string>
+    <string name="给我安装">给我安装</string>
+    <string name="n会删除你以前的所有数据">"你貌似已安装过 ubuntu 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!"</string>
+    <string name="强制重装">"强制重装"</string>
+    <string name="数据清除成功dsf54">"数据清除成功!请重新进入,系统安装窗口"</string>
+    <string name="不需要重装">不需要重装</string>
+    <string name="你貌似已安装过dfgd21">"你貌似已安装过 debian 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!"</string>
+    <string name="忽略警告继续安装">"忽略警告继续安装"</string>
+    <string name="你貌似已安装过dfh4fg5420002">"你貌似已安装过 fedora 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!"</string>
+    <string name="n如果需要重新安装er98g2mn">"你貌似已安装过 kali 系统，无需再次安装 \n如果需要重新安装,请点击'强制重装'\n会删除你以前的所有数据，请慎重!"</string>
+    <string name="执行java前sdfsdf">"执行 java 前 先执行 :termux-chroot\n否则会出现:bad call"</string>
+    <string name="原项目作者sdf65">"原项目作者: exalab999\n特此感谢!"</string>
+    <string name="您可以运行dfg6d">安装成功!您可以运行[ddos]命令来验证</string>
+    <string name="选择一个要卸载的系统">选择一个要卸载的系统</string>
+    <string name="我想好了">我想好了</string>
+    <string name="不存在安装选项">不存在安装选项</string>
+    <string name="不要安装">不要安装</string>
+    <string name="正在执行安装操作请稍后sdf65656">正在执行安装操作请稍后…</string>
+    <string name="正在安装dfgiop98io9">正在安装,请耐心等待!</string>
+    <string name="当前没有安装系统qertxcv">"当前没有安装系统\n安装termux原版系统:安装原系统\n直接恢复linux:在群文件下载相关扩展包\n…"</string>
+    <string name="直接恢复linux5556">直接恢复linux[如有恢复包]</string>
+    <string name="安装termux原版系统9993">安装termux原版系统</string>
+    <string name="条款许可">条款许可</string>
+    <string name="你同意查看条款许可吗">你同意查看条款许可吗</string>
+    <string name="我查看一下88855">我查看一下,并且同意</string>
+    <string name="我直接同意">我直接同意</string>
+    <string name="如果出现Permission556">"echo \"[开机命令]如果出现Permission denied 请重启一下app\" \n"</string>
+    <string name="我不同意">我不同意</string>
+    <string name="请立即卸载">请立即卸载</string>
+    <string name="这个开发者面板dfg56">"这个开发者面板，是[XINHAO_HAN]测试预留的\n请不要尝试使用里边的任何功能\n否则造成任何数据损失，由你自己负责"</string>
+    <string name="你已拒绝">你已拒绝，备份恢复功能将无法使用</string>
+    <string name="条短信dfg56">第" i "条短信</string>
+    <string name="启动完成fghfgfkhjlk">启动完成,不要手动操作任何东西!</string>
+    <string name="你没有SD卡权限88889">你没有SD卡权限，所以无法下载数据包</string>
+    <string name="点击安装">点击安装</string>
+    <string name="点击下载">点击下载</string>
+    <string name="由于服务器带宽紧张fgfg">由于服务器带宽紧张,一次只能下载一个!</string>
+    <string name="正在连接">正在连接…</string>
+    <string name="服务器连接失败errererer">服务器连接失败,请稍后再试!</string>
+    <string name="在线下载您想要的功能包eevv">在线下载您想要的功能包\n[如果卡住不动,请大退termux,再重新进入下载]</string>
+    <string name="Web恢复包f8g9">Web恢复包[web页面,java,mysql,论坛,冒险岛服务器][2.67GB]</string>
+    <string name="web服务器有道云">web服务器,有道云，论坛，mysql,java,c++,py,等等基础环境</string>
+    <string name="ubuntu图形系统12">ubuntu图形系统[图形包][1.2GB]</string>
+    <string name="支持VNC启动99936">支持VNC启动,包含游戏,办公软件,谷歌浏览器,等,运行流畅</string>
+    <string name="WINLOG提供的debian图形包">WINLOG提供的debian图形包[图形包][589MB]</string>
+    <string name="包含QQWINII">包含QQ,等,支持VNC启动</string>
+    <string name="WINLOG提供的第二版debian图形包">WINLOG提供的第二版debian图形包[图形包][589MB]</string>
+    <string name="包含QQdfhkikl">包含QQ,应用商店等,支持VNC启动</string>
+    <string name="一个ubuntu的图形包">一个ubuntu的图形包[464MB]</string>
+    <string name="包含应用商店dfgfdgh434">包含应用商店,其它环境，运行流畅,支持VNC启动</string>
+    <string name="ccccccccccc">C/C++ 编程专用包[769MB]</string>
+    <string name="安装vim插件学习的朋友推荐下载">安装vim插件,c / c ++ 自动提示,学习的朋友推荐下载</string>
+    <string name="kail系统核心完整包">kail系统 核心完整包[729MB]</string>
+    <string name="推荐玩kail的朋友下载试试">kail系统，核心环境已集成完毕,推荐玩kail的朋友下载试试</string>
+    <string name="termux核心包qemu">termux qemu 核心包[42MB]</string>
+    <string name="用于启动WINDOWS系统">用于启动WINDOWS系统</string>
+    <string name="渗透包渗透包渗透包">渗透包，包含msf，200多个环境!!不是应用[870MB]</string>
+    <string name="渗透包渗透包包含msf">包含msf，大概有2 – 3个黑客工具,第一次启动msf会很慢，请耐心等待</string>
+    <string name="请选择一个恢复">请选择一个恢复</string>
+    <string name="没有可恢复的文件">没有可恢复的文件\n[估计你没有打开sd卡权限 80%的可能]\n请确保在[sdcard/xinhao/system/]下放置恢复文件!</string>
+    <string name="有任务正在进行">有任务正在进行,防止误触碰,如果执意退出,请大退</string>
+    <string name="有任务进行中g33">有任务进行中，无法切换!</string>
+    <string name="开始备份">开始备份…</string>
+    <string name="开始备份1">开始备份</string>
+    <string name="选择您的备份方式">"选择您的备份方式:\n默认备份\n强制备份\n默认备份:[2gb以下推荐]适配大部分机型，少数机型(数据大)会少文件\n强制备份:[2gb以上推荐]备份超大数据出错率会大大降低!"</string>
+    <string name="默认备份56">"默认备份"</string>
+    <string name="强制备份">强制备份</string>
+    <string name="没有找到目录">没有找到 storage 目录,请创建</string>
+    <string name="这块直接输入回车即可">"echo \"这块直接输入回车即可,然后再次进入强制备份!\" \n"</string>
+    <string name="开始">开始</string>
+    <string name="不要说备份着闪退之类的"><![CDATA["备份完成会自定退出!!!!!!!!不要说备份着闪退之类的!!备份完成自动退出  \n\n点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[正在备份…]\n\n"]]></string>
+    <string name="备份完成">备份完成!</string>
+    <string name="已成功备份已成功备份">"已成功备份,备份文件在:\n内部存储/xinhao/data/\n目录下"</string>
+    <string name="按钮一开始启动您的备份">"点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至备份按钮再次出现!\n\n[备份完成!]"</string>
+    <string name="开始检测备份环境">开始检测备份环境!</string>
+    <string name="备份环境监测完成">备份环境监测完成!</string>
+    <string name="开始检测是否有sd卡软链接">开始检测是否有sd卡软链接!</string>
+    <string name="没有找到storage目录556">没有找到storage目录,请手动创建!</string>
+    <string name="已检测到软连接">已检测到软连接</string>
+    <string name="秒后开始备份">3秒后开始备份!</string>
+    <string name="备份rrrrr">备份[急速]</string>
+    <string name="恢复rrrrr">恢复[急速]</string>
+    <string name="设置rrrr">设置</string>
+    <string name="按钮一开始启动您的备份rrr">点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下</string>
+    <string name="没有SD卡权限rrr111">没有SD卡权限,或者sdcard->xinhao/data/目录下没有恢复文件!</string>
+    <string name="恢复方式rrr55">恢复方式[X(关闭)]</string>
+    <string name="默认恢复555ggg">"默认恢复:对于大部分机型选择\n\n强制恢复:默认恢复失败请选择\n默认恢复:数据会丢失\n强制恢复:\n数据不会丢失"</string>
+    <string name="默认恢复">默认恢复</string>
+    <string name="强制恢复">强制恢复</string>
+    <string name="这块直接输入回车即可hfrrr">"echo \"这块直接输入回车即可,然后再次进入强制恢复!\" \n"</string>
+    <string name="请输入系统名称rrr">请输入系统名称</string>
+    <string name="请稍等此过程禁止切屏">请稍等[此过程禁止切屏]</string>
+    <string name="正在搜索多系统">正在搜索多系统..</string>
+    <string name="危险rrr">危险!</string>
+    <string name="恢复设备数据会擦除掉之前所有的数据">"恢复设备数据，会擦除掉之前所有的数据\n如果想要共存请在[切换linux]中\n创建一个新的容器,2种数据将都会保存\n是否继续?"</string>
+    <string name="我清楚我在做什么">我清楚我在做什么</string>
+    <string name="我在考虑考虑">我在考虑考虑</string>
+    <string name="开始清除数据">开始清除数据…</string>
+    <string name="恢复完成会自定退出rrvv"><![CDATA["恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在擦除usr目录数据…]\n\n"]]></string>
+    <string name="恢复完成会自定退出擦除">"恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[擦除usr目录数据完成,正在擦除home数据.]\n\n"</string>
+    <string name="恢复完成会自定退出写入"><![CDATA["恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到恢复完成,直至恢复退出!\n\n[数据擦除完成!开始写入文件…]\n\n"]]></string>
+    <string name="恢复完成会自定退出写展开"><![CDATA["恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到恢复完成,直至恢复退出!\n\n[正在展开安装包…]\n\n"]]></string>
+    <string name="恢复完成会自定退出写恢复"><![CDATA["恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复…]\n\n"]]></string>
+    <string name="恢复完成会自定退出写恢复112"><![CDATA["恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出,恢复过程中界面可能会卡死,但不影响后台解压正常使用  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复…]\n\n"]]></string>
+    <string name="恢复完成请重启APP">恢复完成,请重启APP！！！</string>
+    <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
+    <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
+    <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
+    <string name="当前版本ffg">当前版本:0.98.89</string>
+    <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
+    <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
+    <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
+    <string name="恢复当前操作Linuxzzxx">恢复当前操作Linux[恢复群数据包/扩展包]</string>
+    <string name="n请将要恢复的文件放到以下目录">点击恢复当前linux \n请将要恢复的文件放到以下目录 \n恢复目录:/sdcard/xinhao/system/</string>
+    <string name="打开目录文件">打开目录文件</string>
+    <string name="打开Linux目录文件系统">打开Linux目录文件系统，直接图形化操作</string>
+    <string name="切换linux系统fffjjj">切换linux系统</string>
+    <string name="您可以创建多个linux系统jlmn">您可以创建多个linux系统,来回切换，切换后必须重启APP</string>
+    <string name="常用命令">常用命令</string>
+    <string name="qidongmysqllll">启动mysql:mysqld \n启动vnc:export DISPLAY=:1\nvncserver :1 -geometry 1920x1080\n启动nginx：mginx\n启动php:termux-chroot php-fpm</string>
+    <string name="恢复当前操作Linux到默认状态">恢复当前操作Linux到默认状态</string>
+    <string name="如果想恢复当前系统初始状态">如果想恢复当前系统初始状态，请卸载或清空当前APP数据</string>
+    <string name="不需要root权限就可以实现备份恢复操作">本软件是通过termux制作，只是简单的整合版本，不需要root权限就可以实现备份恢复操作，不至于换个手机我重新装一下系统吧？对于没有root用户来说这个真的是一个非常好的选择，如果有root，我感觉你去用用钛备份，也挺好用的。</string>
+    <string name="有任务正在进行mmkk">"有任务正在进行,防止误触碰,如果执意退出,请大退"</string>
+    <string name="debianpoiyt">debian\n加入qq\n等[arm64]</string>
+    <string name="debianrgbbmk">debian\n升级版本\n[arm64]</string>
+    <string name="日志rfv">"日志:\n"</string>
+    <string name="错误">错误</string>
+    <string name="出现了一个错误edc">"安装失败,出现了一个错误,请重新安装\n"</string>
+    <string name="成功">成功!</string>
+    <string name="请点击启动按钮efn">安装成功,请点击启动按钮,来启动您的系统</string>
+    <string name="启动选项553">启动选项</string>
+    <string name="请选择启动方式8c9c">"请选择启动方式:\n\n连接方式:\n\nvnc:\n\n127.0.0.1:5951\n\n用户名:ubuntu\n密码:12345678\n\nVNC和ssh一样都是上述密码"</string>
+    <string name="正在启动">正在启动</string>
+    <string name="暂不支持">暂不支持</string>
+    <string name="面对疾风吧">面对疾风吧:没有找到XSDL,请到群文件中下载并安装XSDL</string>
+    <string name="文件不存在efgh">文件不存在</string>
+    <string name="出现了一个错误安装失败">"安装失败,出现了一个错误,请重新安装\n"</string>
+    <string name="请点击启动按钮cg">"安装成功,请点击启动按钮,来启动您的系统"</string>
+    <string name="启动选项">启动选项</string>
+    <string name="请选择启动方式12009">"请选择启动方式:\n\n连接方式:\n\nvnc:\n\n127.0.0.1:5951\n\n用户名:ubuntu\n密码:12345678\n\nVNC和ssh一样都是上述密码"</string>
+    <string name="桌面工具栏无默认程序的问题">版本信息:\n版本说明[由WINLOG提供(提供者)]\ndebian版本IMbian1(buster)\n-修复 启动后自动启动xtem终端的问题\n-更换 使用深度终端代替xterm终端\n-加入 全中文环境，userland版本2.6.5以上无需手动设置中文\n-更换 使用midori浏览器(支持html5在线视频)代替了打不开的firfox及chromium\n-修复 桌面工具栏无默认程序的问题\n-升级 所有软件至最新20191123\n-加入 对https～apt的支持\n-更换 中科大源为清华大学源(https)\n\n提供者:</string>
+    <string name="老群员虚拟机总监">WINLOG/[老群员]虚拟机总监[群管理]\nQQ:224682**49</string>
+    <string name="日志eeerlk">日志:</string>
+    <string name="启动">启动</string>
+    <string name="userland还原后默认为中文">版本信息:\n版本说明[由WINLOG提供(提供者)]\n-基于debian buster 桌面 xfce\n-用户名ubuntu 密码均为12345678\n-安装软件\n～火狐浏览器～chromium～QQlinux～xachiver～中文字库～ISO编辑器\n\n注意\n1.userland还原后默认为中文，请手动设置中文\n2.由于proot的bug导致桌面处于只读状态\n\n提供者:</string>
+    <string name="启动ubuntutjkl">启动ubuntu</string>
+    <string name="环境不达标">环境不达标</string>
+    <string name="请安装完openSSH">请安装完openSSH,在进入安装系统页面!</string>
+    <string name="帮我安装ssh">帮我安装ssh</string>
+    <string name="现在不安装">现在不安装</string>
+    <string name="默认系统">默认系统</string>
+    <string name="系统创建失败ggggg">"系统创建失败!请重试"</string>
+    <string name="启动ubuntu正在启动">"启动ubuntu\n[正在启动…]"</string>
+    <string name="启动ubuntu失败gggvvv">"启动ubuntu\n请尝试重新启动"</string>
+    <string name="但是这个警告可以忽略">"出现了警告，但是这个警告可以忽略 \n"</string>
+    <string name="启动完成">启动完成</string>
+    <string name="启动成功">启动成功</string>
+    <string name="请在vnc中连接请在vnc中连接">"请在vnc中连接\n127.0.0.1:5951\n账号:hanxinhao\n\n密码:123456\n\n"</string>
+    <string name="请认真阅读">请认真阅读!</string>
+    <string name="n直到跳转到命令行页面即可">"开始立即启动你的ubuntu系统\n用户名:hanxinhao\n密码(ssh):123456\nvnc密码:123456\n注意,点完之后请耐心等待，不要多次点击!!!!\n\n注意，如果调到命令页面出现一大堆英文字母和@@@@@，请删除home/.ssh目录,命令:\n[cd ~][rm -rf .ssh/]\n\n\n注意!!如果启动没反应,你也是aarch64的架构\n请在termux中删除proot\npkg un proot\n再次尝试进入安装/启动\n\n\n\n直到跳转到命令行页面即可\n如果需要重新安装\n请点击重新安装\n点击重新安装会退出当前窗口，再次点击进来\n就开始安装了"</string>
+    <string name="ssh启动">ssh启动</string>
+    <string name="vnc启动">vnc启动</string>
+    <string name="面对疾风吧yn">"面对疾风吧!哈sai kei"</string>
+    <string name="你是要VNC还是XSDL">"你是要VNC还是XSDL?"</string>
+    <string name="重新安装555bb">重新安装</string>
+    <string name="请再次点击你要进入的系统">请再次点击你要进入的系统，以重新安装</string>
+    <string name="n如果要切换到原来的系统">"开始下载ubuntu\n过程中会新建一个操作目录\n如果要切换到原来的系统\n请到切换系统中，切换回来\n然后重启APP\n确定下载？"</string>
+    <string name="我确定">我确定</string>
+    <string name="是否需要重新创建一个新的操作目录">"是否需要重新创建一个新的操作目录\n当前目录为:"</string>
+    <string name="n已被禁用">"\n已被禁用"</string>
+    <string name="重新创建">重新创建</string>
+    <string name="发现文件">发现文件</string>
+    <string name="n如果上一次下载报错退出的">"发现已有下载的文件!\n如果上一次下载报错退出的，请重新下载\n不要点击开始安装，如果顺利下载完成的\n请点击开始安装"</string>
+    <string name="开始安装">开始安装</string>
+    <string name="重新下载">重新下载</string>
+    <string name="不需要">不需要</string>
+    <string name="如果顺利下载完成的">"发现已有下载的文件!\n如果上一次下载报错退出的，请重新下载\n不要点击开始安装，如果顺利下载完成的\n请点击开始安装"</string>
+    <string name="我不确定">我不确定</string>
+    <string name="强制安装需要密码">"安全问题已被禁用，强制安装需要密码!"</string>
+    <string name="确定">确定</string>
+    <string name="开发者密码错误">开发者密码错误</string>
+    <string name="由于服务器不稳定请使用离线安装">由于服务器不稳定,请使用离线安装!</string>
+    <string name="系统已默认安装无需再次安装">系统已默认安装,无需再次安装</string>
+    <string name="开始立即启动你的ubuntu系统hanxinhao">"开始立即启动你的ubuntu系统\n用户名:hanxinhao\n密码(ssh):123456\nvnc密码:123456\n注意,点完之后请耐心等待，不要多次点击!!!!\n\n注意，如果调到命令页面出现一大堆英文字母和@@@@@，请删除home/.ssh目录,命令:\n[cd ~][rm -rf .ssh/]\n\n\n注意!!如果启动没反应,你也是aarch64的架构\n请在termux中删除proot\npkg un proot\n再次尝试进入安装/启动\n\n\n\n直到跳转到命令行页面即可\n如果需要重新安装\n请点击重新安装\n点击重新安装会退出当前窗口，再次点击进来\n就开始安装了"</string>
+    <string name="重新安装">重新安装</string>
+    <string name="以重新安装请再次点击你要进入的系统">请再次点击你要进入的系统，以重新安装</string>
+    <string name="目录下发现ubuntuxinhao">未在[sdcard/xinhao/iso]目录下发现 命名为:ubuntu-xinhao.iso文件!</string>
+    <string name="是否立即开始安装发现安装文件">"发现安装文件,是否立即开始安装?"</string>
+    <string name="未发现文件">未发现文件</string>
+    <string name="正在复制文件到工作区域n如果复制很慢请耐心等待">"正在复制文件到工作区域\n如果复制很慢请耐心等待\n页面刷新可能有延时\n可能一直卡在某个数,但是内部复制没停\n如果没有耐心，大退app重新执行[不建议!!!]"</string>
+    <string name="复制出错111">"复制出错!"</string>
+    <string name="你没有SD卡权限报错信息rb">"你没有SD卡权限,报错信息:\n"</string>
+    <string name="正在下载系统eer"><![CDATA["正在下载系统 &#189; [arm64-rootfs.tar.gz]"]]></string>
+    <string name="正在下载系统eer1"><![CDATA["正在下载系统 &#189; [arm64-rootfs.tar.gz] — 失败 \n"]]></string>
+    <string name="n建议挂VPN">"\n建议挂VPN"</string>
+    <string name="正在下载安装程序222">"正在下载安装程序 2/2 [arm64-assets.tar.gz]"</string>
+    <string name="等待继续安装下载完成">下载完成!等待继续安装，请稍等</string>
+    <string name="正在下载安装程序33366">"正在下载安装程序 2/2 [arm64-assets.tar.gz] — 失败 \n" </string>
+    <string name="正在复制工具包support">"正在复制工具包[/support]…" </string>
+    <string name="正在复制工具包sh_arm64_v8a">"正在复制工具包[sh_arm64_v8a]…" </string>
+    <string name="正在复制工具包sh_armeabi_v7a">"正在复制工具包[sh_armeabi_v7a]…" </string>
+    <string name="默认的没有">"默认的没有!"  </string>
+    <string name="写出sh">"写出 sh.xh.tar 文件"</string>
+    <string name="正在解压安装工具包FileName">"正在解压安装工具包[FileName]"</string>
+    <string name="完成">完成</string>
+    <string name="开始展开linux文件切勿离开此界面">"开始展开linux文件[切勿离开此界面,否则可能导致安装失败!!!!]\n\n图形ubuntu需:10~20分钟"</string>
+    <string name="请再次点击启动linuxn如果过程很快">"安装完成!请再次点击启动linux\n如果过程很快，那就是失败了!"</string>
+    <string name="下载失败">下载失败</string>
+    <string name="VNC地址rrkk">VNC地址:</string>
+    <string name="请输入IP地址">请输入IP地址</string>
+    <string name="端口号rrnn">端口号:</string>
+    <string name="请输入端口号eehh">请输入端口号</string>
+    <string name="密码qqpp">密码:</string>
+    <string name="请输入密码无密码请忽略">请输入密码,无密码请忽略</string>
+    <string name="开始连接">开始连接</string>
+    <string name="请确定你是否打开了SD卡权限ddll">"创建文件失败,请确定你是否打开了SD卡权限!"</string>
+    <string name="找不到相关文件的链接确定你是否执行了">"找不到相关文件的链接,确定你是否执行了\ntermux-setup-storage\n由于文件路径被阻塞,所以执行失败!"</string>
+    <string name="帮我创建">帮我创建</string>
+    <string name="我自己创建">我自己创建</string>
+    <string name="错误使用的镜像无法启动必须打开内存卡权限">"错误使用的镜像无法启动!必须打开内存卡权限!!!\n镜像群:417584555\n网卡类型:e1000\n如何连接: 127.0.0.1:1\nvnc端口为1\n请在vnc中打开\n启动完毕!\n"</string>
+    <string name="使用自带vnc打开">使用自带vnc打开</string>
+    <string name="请到内置VNC打开推荐使用全能版">请到内置VNC打开(不推荐)[推荐使用全能版]</string>
+    <string name="我用我自己的VNC">我用我自己的VNC</string>
+    <string name="没有镜像或SD卡未打开">没有镜像或SD卡未打开</string>
+    <string name="你没有安装相关环境qemupppp">"你没有安装相关环境,请点击安装\n离线安装:请在群文件下载【放到sdcard -> xinhao/iso 下】\n在线安装:直接点击在线安装【没有VPN可能很慢】"</string>
+    <string name="在线安装">在线安装</string>
+    <string name="请等待安装完成在进入">请等待安装完成在进入</string>
+    <string name="请选择一个镜像">请选择一个镜像</string>
+    <string name="n不能保存你使用过的数据">请将所有windows或者linux镜像放到\n[sdcard -> /xinhao/windows]下\n不能保存你使用过的数据，关机还原,关闭运行的镜像，请大退Termux</string>
+    <string name="更改官方布局成功">"更改官方布局成功!等下次启动之后就会更改布局了"</string>
+    <string name="更改魔改布局成功">"更改魔改布局成功!等下次启动之后就会更改布局了"</string>
+    <string name="config不存在">"目录[/xinhao/config]不存在!"</string>
+    <string name="更改配置文件布局成功">"更改配置文件布局成功!等下次启动之后就会更改布局了"</string>
+    <string name="请选择一种布局">请选择一种布局</string>
+    <string name="官方布局">官方布局</string>
+    <string name="轻触以一键切换到官方键盘布局">轻触以一键切换到官方键盘布局</string>
+    <string name="魔改Termux布局">魔改Termux布局</string>
+    <string name="轻触以一键切换到魔改键盘布局">轻触以一键切换到魔改键盘布局</string>
+    <string name="导入底部布局配置文件">导入底部布局配置文件</string>
+    <string name="配置文件请在群文件下载">[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]</string>
+    <string name="导入右边键盘配置文件">导入右边键盘配置文件[不支持功能键,如 TAB ALT CTRL]</string>
+    <string name="在主屏幕滑动右侧边缘滑动唤醒">[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]\n[在主屏幕,滑动右侧边缘滑动唤醒]</string>
+    <string name="恢复默认右边键盘配置文件">恢复默认右边键盘配置文件</string>
+    <string name="点击恢复默认的右边键盘文件">"点击恢复默认的右边键盘文件\n[在主屏幕,滑动右侧边缘滑动唤醒]"</string>
+    <string name="没有在内部存储">"没有在|内部存储/xinhao/font/下找到任何字体!"</string>
+    <string name="Utermux默认字体">"Utermux|默认字体"</string>
+    <string name="Utermux中文字体">"Utermux|中文字体"</string>
+    <string name="创建文件错误558">"创建文件错误!"</string>
+    <string name="字体设置成功">"字体设置成功!"</string>
+    <string name="如果进入终端没有任何显示">"如果进入终端没有任何显示，可能是您选择的字体可能已损坏!，请重新选择一个字体文件!"</string>
+    <string name="字体选择">字体选择</string>
+    <string name="您一切选择的字体来源于互联网">内部存储/xinhao/font/\n注意，您一切选择的字体来源于互联网,与UTermux无关!\n出现任何法律责任由使用者承担!</string>
+    <string name="切换到官方源成功885">"切换到官方源成功!"</string>
+    <string name="切换到清华源成功885">"切换到清华源成功!"</string>
+    <string name="命令来获取你的短信了">"生成成功!你现在可以使用[XINHAO_HAN_Sms]命令来获取你的短信了"</string>
+    <string name="欢迎来到实验室">欢迎来到实验室</string>
+    <string name="使用此功能必须打开短信息权限">短信读取试验功能[自动运行]\n[使用此功能必须打开短信息权限]</string>
+    <string name="n使用命令可能获取的短信息不是很全">"配合'XINHAO_HAN_Sms'来使用,轻触单击生成'XINHAO_HAN_Sms'文件，在[/usr/bin/目录下] \n使用命令可能获取的短信息不是很全,\n所以执行完命令之后在[/usr/tmp/sms.xh]保存着\n注意！多执行几次命令,直到有短信息出现为止! "</string>
+    <string name="修改启动问候语">修改启动问候语</string>
+    <string name="轻触以修改启动问候语">轻触以修改启动问候语</string>
+    <string name="增加开机启动命令8833">增加开机启动命令[ 新增 ]</string>
+    <string name="轻触以修改开机命令9988">轻触以修改开机命令</string>
+    <string name="修改下载源889">修改下载源889</string>
+    <string name="轻触以修改下载源889">轻触以修改下载源</string>
+    <string name="一键切换到官方源889">一键切换到官方源</string>
+    <string name="轻触以一键切换到官方源889">轻触以一键切换到官方源</string>
+    <string name="一键切换到清华源889">一键切换到清华源</string>
+    <string name="轻触以一键切换到清华源889">轻触以一键切换到清华源</string>
+    <string name="安装userlAnd旗下系统">安装userlAnd旗下系统[aarch64][目前趋于稳定]</string>
+    <string name="群离线恢复包中有桌面">轻触以安装userlAnd操作系统,注意需要挂载VPN,否则很可能会下载错误!关闭系统时，请退出termux,\n只支持ubuntu安装,和群的离线恢复包，其他系统就不弄了，多而不精，群离线恢复包中有桌面，恢复之后直接就能用</string>
+    <string name="修复操作系统权限889">修复操作系统权限</string>
+    <string name="轻触以修复操作系统权限889">轻触以修复操作系统权限[将修复所有文件!]</string>
+    <string name="不可用于耗时操作的启动命令例如">"如何使用开机命令[不可用于耗时操作的启动命令例如:pkg update]?\n 命令之间用 &amp;&amp; 隔开,如果一定要使用耗时操作:命令 &amp;结尾\n比如我开机想执行ls cd .. ssh mysqld(启动mysql的) \n命令就是：ls &amp;&amp; cd .. &amp;&amp; ssh &amp;&amp; mysqld \n切记最后不要加&amp;&amp;\n正确示例: ls &amp;&amp; cd &amp;&amp; ssh &amp;&amp; mysqld\n错误示例：ls &amp;&amp; cd &amp;&amp; ssh &amp;&amp; mysqld &amp;&amp;\n当只有一条命令时:直接写那行命令就行，不用写&amp;&amp;\n启动命令如果输入错误，系统将会忽略掉所有的启动命令"</string>
+    <string name="该页面空白奥">该页面空白奥</string>
+    <string name="开发者后期会加入其他功能">开发者后期会加入其他功能</string>
+    <string name="请前往其他页面看看">请前往其他页面看看</string>
+    <string name="功能测试中请等待">"功能测试中,请等待"</string>
+    <string name="ubuntu图形包linuxdeploy离线包">ubuntu图形包[linuxdeploy]离线包</string>
+    <string name="一键安装ubuntu全能图形包">一键安装ubuntu全能图形包</string>
+    <string name="manjaro系统包">manjaro系统包 提供:[洛克]</string>
+    <string name="一键安装manjaro全能系统包">一键安装manjaro全能系统包</string>
+    <string name="功能已出数据包请下载数据包使用">"功能已出数据包,请下载数据包使用"</string>
+    <string name="执行失败">"执行失败!"</string>
+    <string name="Termux全套工具安装脚本">Termux全套工具安装脚本</string>
+    <string name="兄嘚点击我安装包括">兄嘚,点击我,安装包括[msf],[命令行游戏]等,很多工具</string>
+    <string name="Termux黑客帝国字母流">Termux黑客帝国字母流[cmatrix]</string>
+    <string name="黑客帝国字母流命令行启动命令">黑客帝国字母流[命令行]启动命令:cmatrix</string>
+    <string name="火车StremLocomotive">火车：Strem Locomotive[aafire]</string>
+    <string name="启动命令sl">启动命令 : sl</string>
+    <string name="艺术字生成器toilet">艺术字生成器toilet</string>
+    <string name="例如XINHAO_HAN">例如 : toilet XINHAO_HAN</string>
+    <string name="俄罗斯方块游戏bastet">俄罗斯方块游戏[bastet]</string>
+    <string name="启动命令bastet">启动命令:bastet</string>
+    <string name="太空侵略者">太空侵略者</string>
+    <string name="启动命令ninvaders">启动命令:ninvaders</string>
+    <string name="Pacman吃豆人"> Pacman（吃豆人）</string>
+    <string name="启动命令pacman4console"> 启动命令:pacman4console</string>
+    <string name="贪吃蛇游戏"> 贪吃蛇游戏</string>
+    <string name="启动命令nsnake"> 启动命令:nsnake</string>
+    <string name="YouCompleteMe插件"> 安装vim + YouCompleteMe插件[ycm]</string>
+    <string name="确保vim已经被删除"> 启动命令:vim,确保vim已经被删除</string>
+    <string name="欢迎来到软件大厅">欢迎来到软件大厅</string>
+    <string name="软件">软件</string>
+    <string name="图形">图形</string>
+    <string name="脚本">脚本</string>
+    <string name="管理">管理</string>
+    <string name="参考页面5555555">赞助[只是技术帮助](排名不分先后):\n\n-----------------------------------\n\nOuter[¥:2] | QQ:8387**536\n\nhexahedron yell[¥:1]|19869**359\n\n沫雪一[¥：10]：29307**324\n\n渗透工具 [¥：10]:2411**013\n\n天龙八部 [¥:30]6955**042\n\n\n-----------------------------------\n\nubuntu图形:\n\n特此鸣谢:userland\n地址:https://github.com/CypherpunkArmory/UserLAnd\n\n悬浮窗口[重要鸣谢!]:Leonid Plyushch\n个人主页:https://github.com/xeffyr\nmp3:paulumi项目地址:https://github.com/paulumi/Ekualizers-Music\n\n鸣谢termux\n项目地址:https://github.com/termux/termux-app \n\n等等提供脚本的作者\n\n本APP只是整合了所有资源\n遵循所有原作者的协议\n\n切勿在各大应用商店发布\n\n法律责任由发布者承担(全部法律)\n\n再次声明\n\n本程序只是学习交流使用,切勿超出适用范围!!!\n\n如果在使用当中出现的任何法律责任，由使用者承担!\n\n您下载或使用,即代表了您同意本页面所有条件!</string>
+
 </resources>

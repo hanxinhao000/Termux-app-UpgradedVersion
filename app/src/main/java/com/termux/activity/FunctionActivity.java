@@ -23,6 +23,7 @@ import main.java.com.termux.app.TermuxActivity;
 import main.java.com.termux.app.TestActivity;
 import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.UUtils;
 
 public class FunctionActivity extends AppCompatActivity {
 
@@ -93,7 +94,7 @@ public class FunctionActivity extends AppCompatActivity {
                 //sources_main.list
                 writerFile("sources_main.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
 
-                Toast.makeText(FunctionActivity.this, "切换到官方源成功!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FunctionActivity.this, UUtils.getString(R.string.切换到官方源成功885), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -110,7 +111,7 @@ public class FunctionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 writerFile("sources_qh.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
-                Toast.makeText(FunctionActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FunctionActivity.this, UUtils.getString(R.string.切换到清华源成功885), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -125,7 +126,7 @@ public class FunctionActivity extends AppCompatActivity {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FunctionActivity.this, "生成成功!你现在可以使用[XINHAO_HAN_Sms]命令来获取你的短信了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FunctionActivity.this, UUtils.getString(R.string.命令来获取你的短信了), Toast.LENGTH_SHORT).show();
             }
         });
 

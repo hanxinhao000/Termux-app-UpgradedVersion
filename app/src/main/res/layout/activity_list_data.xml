@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="在线下载您想要的功能包\n[如果卡住不动,请大退termux,再重新进入下载]"
+            android:text="@string/在线下载您想要的功能包eevv"
             android:textColor="#1BBC9B"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -95,7 +95,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Web恢复包[web页面,java,mysql,论坛,冒险岛服务器][2.67GB]"
+                                    android:text="@string/Web恢复包f8g9"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -103,7 +103,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="web服务器,有道云，论坛，mysql,java,c++,py,等等基础环境"
+                                    android:text="@string/web服务器有道云"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -113,7 +113,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -194,7 +194,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="ubuntu图形系统[图形包][1.2GB]"
+                                    android:text="@string/ubuntu图形系统12"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -202,7 +202,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="支持VNC启动,包含游戏,办公软件,谷歌浏览器,等,运行流畅"
+                                    android:text="@string/支持VNC启动99936"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -212,7 +212,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -294,7 +294,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="WINLOG提供的debian图形包[图形包][589MB]"
+                                    android:text="@string/WINLOG提供的debian图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -302,7 +302,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="包含QQ,等,支持VNC启动"
+                                    android:text="@string/包含QQWINII"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -312,7 +312,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -392,7 +392,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="WINLOG提供的第二版debian图形包[图形包][589MB]"
+                                    android:text="@string/WINLOG提供的第二版debian图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -400,7 +400,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="包含QQ,应用商店等,支持VNC启动"
+                                    android:text="@string/包含QQdfhkikl"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -410,7 +410,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -492,7 +492,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="一个ubuntu的图形包[464MB]"
+                                    android:text="@string/一个ubuntu的图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -500,7 +500,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="包含应用商店,其它环境，运行流畅,支持VNC启动"
+                                    android:text="@string/包含应用商店dfgfdgh434"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -510,7 +510,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -594,7 +594,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="C/C++ 编程专用包[769MB]"
+                                    android:text="@string/ccccccccccc"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -602,7 +602,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="安装vim插件,c / c ++ 自动提示,学习的朋友推荐下载"
+                                    android:text="@string/安装vim插件学习的朋友推荐下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -612,7 +612,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -695,7 +695,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="kail系统 核心完整包[729MB]"
+                                    android:text="@string/kail系统核心完整包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -703,7 +703,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="kail系统，核心环境已集成完毕,推荐玩kail的朋友下载试试"
+                                    android:text="@string/推荐玩kail的朋友下载试试"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -713,7 +713,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -795,7 +795,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="termux qemu 核心包[42MB]"
+                                    android:text="@string/termux核心包qemu"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -803,7 +803,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="用于启动WINDOWS系统"
+                                    android:text="@string/用于启动WINDOWS系统"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -813,7 +813,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -896,7 +896,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="渗透包，包含msf，200多个环境!!不是应用[870MB]"
+                                    android:text="@string/渗透包渗透包渗透包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
@@ -904,7 +904,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:text="包含msf，大概有2 - 3个黑客工具,第一次启动msf会很慢，请耐心等待"
+                                    android:text="@string/渗透包渗透包包含msf"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
@@ -914,7 +914,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:gravity="right"
-                                    android:text="点击下载"
+                                    android:text="@string/点击下载"
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="debian\n加入qq\n等[arm64]"
+                android:text="@string/debianpoiyt"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="debian\n升级版本\n[arm64]"
+                android:text="@string/debianrgbbmk"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 

@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.termux.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,6 +18,7 @@ import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.fragment.BackupFragment;
 import main.java.com.termux.fragment.RestoreFragment;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.view.MyDialog;
 
 public class QZHFUtils {
@@ -40,7 +42,7 @@ public class QZHFUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.getDialog_pro().setText("开始检测备份环境!");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.开始检测备份环境));
                         myDialog.getDialog_pro_prog().setProgress(15);
                     }
                 });
@@ -54,7 +56,7 @@ public class QZHFUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.getDialog_pro().setText("备份环境监测完成!");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.备份环境监测完成));
                         myDialog.getDialog_pro_prog().setProgress(50);
                     }
                 });
@@ -68,7 +70,7 @@ public class QZHFUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.getDialog_pro().setText("开始检测是否有sd卡软链接!");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.开始检测是否有sd卡软链接));
                         myDialog.getDialog_pro_prog().setProgress(75);
                     }
                 });
@@ -93,7 +95,7 @@ public class QZHFUtils {
                     TermuxApplication.mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(TermuxApplication.mContext, "没有找到storage目录,请手动创建", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.没有找到storage目录556), Toast.LENGTH_SHORT).show();
 
                             myDialog.dismiss();
                             TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage");
@@ -112,7 +114,7 @@ public class QZHFUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.getDialog_pro().setText("已检测到软连接!");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.已检测到软连接));
                         myDialog.getDialog_pro_prog().setProgress(80);
                     }
                 });
@@ -126,7 +128,7 @@ public class QZHFUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        myDialog.getDialog_pro().setText("3秒后开始备份!");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.秒后开始备份));
                         myDialog.getDialog_pro_prog().setProgress(100);
                     }
                 });

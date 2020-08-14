@@ -15,6 +15,7 @@ import java.io.File;
 
 import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.UUtils;
 
 public class CustomActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class CustomActivity extends AppCompatActivity {
             boolean mkdirs = file.mkdirs();
 
             if (!mkdirs) {
-                Toast.makeText(this, "请检查你的sd卡权限", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.你没有SD卡权限), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -51,7 +52,7 @@ public class CustomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SaveData.saveData("key_box", "[['ESC', 'TAB', 'CTRL', 'ALT', '-', 'DOWN', 'UP']]");
-                Toast.makeText(CustomActivity.this, "更改官方布局成功!等下次启动之后就会更改布局了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomActivity.this, UUtils.getString(R.string.更改官方布局成功), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -59,7 +60,7 @@ public class CustomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SaveData.saveData("key_box", "[['ESC', 'TAB', 'CTRL', 'ALT', '-', 'UP', 'ENTER'],['INS', 'END','SHIFT',':', 'LEFT', 'DOWN', 'RIGHT']]");
-                Toast.makeText(CustomActivity.this, "更改魔改布局成功!等下次启动之后就会更改布局了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomActivity.this, UUtils.getString(R.string.更改魔改布局成功), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -71,7 +72,7 @@ public class CustomActivity extends AppCompatActivity {
                     TermuxData.getInstall().config = 0;
                     startActivity(new Intent(CustomActivity.this, KeyConfigActivity.class));
                 } else {
-                    Toast.makeText(CustomActivity.this, "目录[/xinhao/config]不存在!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomActivity.this, UUtils.getString(R.string.config不存在), Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -90,7 +91,7 @@ public class CustomActivity extends AppCompatActivity {
                     TermuxData.getInstall().config = 1;
                     startActivity(new Intent(CustomActivity.this, KeyConfigActivity.class));
                 } else {
-                    Toast.makeText(CustomActivity.this, "目录[/xinhao/config]不存在!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomActivity.this,  UUtils.getString(R.string.config不存在), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -102,7 +103,7 @@ public class CustomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SaveData.saveData("key_box_r", "def");
-                Toast.makeText(CustomActivity.this, "更改配置文件布局成功!等下次启动之后就会更改布局了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomActivity.this, UUtils.getString(R.string.更改配置文件布局成功), Toast.LENGTH_SHORT).show();
 
             }
         });

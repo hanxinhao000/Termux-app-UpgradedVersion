@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VNC地址:"
+                    android:text="@string/VNC地址rrkk"
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:hint="请输入IP地址"
+                    android:hint="@string/请输入IP地址"
                     android:textColor="#000"
                     android:text="127.0.0.1"
                     android:id="@+id/adress"
@@ -78,7 +78,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="端口号:"
+                    android:text="@string/端口号rrnn"
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:hint="请输入端口号"
+                    android:hint="@string/请输入端口号eehh"
                     android:inputType="number"
                     android:textColor="#000"
                     android:text="1"
@@ -123,7 +123,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="密码:"
+                    android:text="@string/密码qqpp"
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -132,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:hint="请输入密码,无密码请忽略"
+                    android:hint="@string/请输入密码无密码请忽略"
                     android:id="@+id/password"
                     android:textColor="#000"
                     android:text="123456"
@@ -167,7 +167,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="开始连接"
+                    android:text="@string/开始连接"
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold" />

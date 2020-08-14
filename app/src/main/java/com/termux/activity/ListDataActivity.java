@@ -21,6 +21,7 @@ import main.java.com.termux.app.BackupActivity;
 import main.java.com.termux.app.RestoreActivity;
 import main.java.com.termux.app.TestActivity;
 import main.java.com.termux.datat.TermuxData;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.view.XHWaveView;
 
 public class ListDataActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
@@ -122,13 +123,13 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
                 if (!newFile) {
 
-                    Toast.makeText(this, "你没有SD卡权限，所以无法下载数据包", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.你没有SD卡权限88889), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(this, "你没有SD卡权限，所以无法下载数据包", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.你没有SD卡权限88889), Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -191,78 +192,78 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
         if (file.exists()) {
 
-            down_text.setText("点击安装");
+            down_text.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text.setText("点击下载");
+            down_text.setText(UUtils.getString(R.string.点击下载));
         }
 
         if (file1.exists()) {
 
-            down_text_1.setText("点击安装");
+            down_text_1.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_1.setText("点击下载");
+            down_text_1.setText(UUtils.getString(R.string.点击下载));
         }
 
         if (file2.exists()) {
 
-            down_text_2.setText("点击安装");
+            down_text_2.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_2.setText("点击下载");
+            down_text_2.setText(UUtils.getString(R.string.点击下载));
         }
 
         if (file3.exists()) {
 
-            down_text_3.setText("点击安装");
+            down_text_3.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_3.setText("点击下载");
+            down_text_3.setText(UUtils.getString(R.string.点击下载));
         }
 
         if (file4.exists()) {
 
-            down_text_4.setText("点击安装");
+            down_text_4.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_4.setText("点击下载");
+            down_text_4.setText(UUtils.getString(R.string.点击下载));
         }
 
 
         if (file5.exists()) {
 
-            down_text_5.setText("点击安装");
+            down_text_5.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_5.setText("点击下载");
+            down_text_5.setText(UUtils.getString(R.string.点击下载));
         }
 
 
         if (file6.exists()) {
 
-            down_text_6.setText("点击安装");
+            down_text_6.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_6.setText("点击下载");
+            down_text_6.setText(UUtils.getString(R.string.点击下载));
         }
 
 
         if (file7.exists()) {
 
-            down_text_7.setText("点击安装");
+            down_text_7.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_7.setText("点击下载");
+            down_text_7.setText(UUtils.getString(R.string.点击下载));
         }
 
 
         if (file8.exists()) {
 
-            down_text_8.setText("点击安装");
+            down_text_8.setText(UUtils.getString(R.string.点击安装));
 
         } else {
-            down_text_8.setText("点击下载");
+            down_text_8.setText(UUtils.getString(R.string.点击下载));
         }
 
         startDown();
@@ -278,7 +279,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
                 if (DownLoadService.isDown) {
                     Log.e("XINHAO_HAN", "onClick: " + "由于服务器带宽紧张,一次只能下载一个!");
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -292,7 +293,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackupActivity.class));
 
                 } else {
-                    down_text.setText("正在连接...");
+                    down_text.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 0;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -302,7 +303,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.web_data_1:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,  UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -311,7 +312,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, TestActivity.class));
 
                 } else {
-                    down_text_1.setText("正在连接...");
+                    down_text_1.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 1;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -320,7 +321,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.web_data_2:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -329,7 +330,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, UbuntuListActivity.class));
 
                 } else {
-                    down_text_2.setText("正在连接...");
+                    down_text_2.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 2;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -338,7 +339,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.web_data_3:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -346,7 +347,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, UbuntuListActivity.class));
 
                 } else {
-                    down_text_3.setText("正在连接...");
+                    down_text_3.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 3;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -355,7 +356,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.web_data_4:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -363,7 +364,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackNewActivity.class));
 
                 } else {
-                    down_text_4.setText("正在连接...");
+                    down_text_4.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 4;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -375,7 +376,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.web_data_5:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -388,7 +389,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackupActivity.class));
 
                 } else {
-                    down_text_5.setText("正在连接...");
+                    down_text_5.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 5;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -397,7 +398,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.web_data_6:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -405,7 +406,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackNewActivity.class));
 
                 } else {
-                    down_text_6.setText("正在连接...");
+                    down_text_6.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 6;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -414,7 +415,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.web_data_7:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -422,7 +423,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackNewActivity.class));
 
                 } else {
-                    down_text_7.setText("正在连接...");
+                    down_text_7.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 7;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -431,7 +432,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.web_data_8:
                 if (DownLoadService.isDown) {
-                    Toast.makeText(this, "由于服务器带宽紧张,一次只能下载一个!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, UUtils.getString(R.string.由于服务器带宽紧张fgfg), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -443,7 +444,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(ListDataActivity.this, BackupActivity.class));
 
                 } else {
-                    down_text_8.setText("正在连接...");
+                    down_text_8.setText(UUtils.getString(R.string.正在连接));
                     DownLoadService.FLAG = 8;
                     startService(new Intent(this, DownLoadService.class));
                 }
@@ -495,7 +496,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text.setText("点击安装");
+                                            down_text.setText(UUtils.getString(R.string.点击安装));
                                             pro.setProgress(0);
                                         }
 
@@ -509,7 +510,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
                                         pro_1.setProgress(DownLoadService.proInt);
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_1.setText("点击安装");
+                                            down_text_1.setText(UUtils.getString(R.string.点击安装));
                                             pro_1.setProgress(0);
                                         }
                                         break;
@@ -521,7 +522,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_2.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_2.setText("点击安装");
+                                            down_text_2.setText(UUtils.getString(R.string.点击安装));
                                             pro_2.setProgress(0);
                                         }
                                         break;
@@ -533,7 +534,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_3.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_3.setText("点击安装");
+                                            down_text_3.setText(UUtils.getString(R.string.点击安装));
                                             pro_3.setProgress(0);
                                         }
                                         break;
@@ -545,7 +546,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_4.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_4.setText("点击安装");
+                                            down_text_4.setText(UUtils.getString(R.string.点击安装));
                                             pro_4.setProgress(0);
                                         }
                                         break;
@@ -559,7 +560,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_5.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_5.setText("点击安装");
+                                            down_text_5.setText(UUtils.getString(R.string.点击安装));
                                             pro_5.setProgress(0);
                                         }
                                         break;
@@ -571,7 +572,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_6.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_6.setText("点击安装");
+                                            down_text_6.setText(UUtils.getString(R.string.点击安装));
                                             pro_6.setProgress(0);
                                         }
                                         break;
@@ -583,7 +584,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_7.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_7.setText("点击安装");
+                                            down_text_7.setText(UUtils.getString(R.string.点击安装));
                                             pro_7.setProgress(0);
                                         }
                                         break;
@@ -595,7 +596,7 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
                                         pro_8.setProgress(DownLoadService.proInt);
 
                                         if (DownLoadService.proInt == 100) {
-                                            down_text_8.setText("点击安装");
+                                            down_text_8.setText(UUtils.getString(R.string.点击安装));
                                             pro_8.setProgress(0);
                                         }
                                         break;
@@ -615,55 +616,55 @@ public class ListDataActivity extends AppCompatActivity implements View.OnClickL
 
                                     case 0:
                                         if (DownLoadService.isDownError) {
-                                            down_text.setText("服务器连接失败,请稍后再试!");
+                                            down_text.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 1:
                                         if (DownLoadService.isDownError) {
-                                            down_text_1.setText("服务器连接失败,请稍后再试!");
+                                            down_text_1.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 2:
                                         if (DownLoadService.isDownError) {
-                                            down_text_2.setText("服务器连接失败,请稍后再试!");
+                                            down_text_2.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 3:
                                         if (DownLoadService.isDownError) {
-                                            down_text_3.setText("服务器连接失败,请稍后再试!");
+                                            down_text_3.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 4:
                                         if (DownLoadService.isDownError) {
-                                            down_text_4.setText("服务器连接失败,请稍后再试!");
+                                            down_text_4.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 5:
                                         if (DownLoadService.isDownError) {
-                                            down_text_5.setText("服务器连接失败,请稍后再试!");
+                                            down_text_5.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 6:
                                         if (DownLoadService.isDownError) {
-                                            down_text_6.setText("服务器连接失败,请稍后再试!");
+                                            down_text_6.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 7:
                                         if (DownLoadService.isDownError) {
-                                            down_text_7.setText("服务器连接失败,请稍后再试!");
+                                            down_text_7.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;
                                     case 8:
                                         if (DownLoadService.isDownError) {
-                                            down_text_8.setText("服务器连接失败,请稍后再试!");
+                                            down_text_8.setText(UUtils.getString(R.string.服务器连接失败errererer));
                                             //  DownLoadService.proInt = 0;
                                         }
                                         break;

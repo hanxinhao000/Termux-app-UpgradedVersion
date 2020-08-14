@@ -41,6 +41,7 @@ public class RunCommandService  extends Service {
     public static final String RUN_COMMAND_PATH = "com.termux.RUN_COMMAND_PATH";
     public static final String RUN_COMMAND_ARGUMENTS = "com.termux.RUN_COMMAND_ARGUMENTS";
     public static final String RUN_COMMAND_WORKDIR = "com.termux.RUN_COMMAND_WORKDIR";
+    public static final String RUN_COMMAND_BACKGROUND = "com.termux.RUN_COMMAND_BACKGROUND";
 
     class LocalBinder extends Binder {
         public final RunCommandService  service = RunCommandService .this;
@@ -59,9 +60,9 @@ public class RunCommandService  extends Service {
 
             Intent execIntent = new Intent(TermuxService.ACTION_EXECUTE, programUri);
             execIntent.setClass(this, TermuxService.class);
-            execIntent.putExtra(TermuxService.EXTRA_ARGUMENTS, intent.getStringExtra(RUN_COMMAND_ARGUMENTS));
+            execIntent.putExtra(TermuxService.EXTRA_ARGUMENTS, intent.getStringArrayExtra(RUN_COMMAND_ARGUMENTS));
             execIntent.putExtra(TermuxService.EXTRA_CURRENT_WORKING_DIRECTORY, intent.getStringExtra(RUN_COMMAND_WORKDIR));
-
+            execIntent.putExtra(TermuxService.EXTRA_EXECUTE_IN_BACKGROUND, intent.getBooleanExtra(RUN_COMMAND_BACKGROUND, false));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 this.startForegroundService(execIntent);
             } else {

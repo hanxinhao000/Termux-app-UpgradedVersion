@@ -28,7 +28,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:textStyle="bold"
-                android:text="欢迎来到实验室"
+                android:text="@string/欢迎来到实验室"
                 android:textColor="#fff"
                 android:textSize="18sp" />
             <TextView
@@ -54,7 +54,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="短信读取试验功能[自动运行]\n[使用此功能必须打开短信息权限]"
+                        android:text="@string/使用此功能必须打开短信息权限"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="配合'XINHAO_HAN_Sms'来使用,轻触单击生成'XINHAO_HAN_Sms'文件，在[/usr/bin/目录下] \n使用命令可能获取的短信息不是很全,\n所以执行完命令之后在[/usr/tmp/sms.xh]保存着\n注意！多执行几次命令,直到有短信息出现为止! "
+                        android:text="@string/n使用命令可能获取的短信息不是很全"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -102,7 +102,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="修改启动问候语"
+                        android:text="@string/修改启动问候语"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -110,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以修改启动问候语"
+                        android:text="@string/轻触以修改启动问候语"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -150,7 +150,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="增加开机启动命令[ 新增 ]"
+                        android:text="@string/增加开机启动命令8833"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -158,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以修改开机命令"
+                        android:text="@string/轻触以修改开机命令9988"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -204,7 +204,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="修改下载源"
+                        android:text="@string/修改下载源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -212,7 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以修改下载源"
+                        android:text="@string/轻触以修改下载源889"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -247,7 +247,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="一键切换到官方源"
+                        android:text="@string/一键切换到官方源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -255,7 +255,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以一键切换到官方源"
+                        android:text="@string/轻触以一键切换到官方源889"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -289,7 +289,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="一键切换到清华源"
+                        android:text="@string/一键切换到清华源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -297,7 +297,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以一键切换到清华源"
+                        android:text="@string/轻触以一键切换到清华源889"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -333,7 +333,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="安装userlAnd旗下系统[aarch64][目前趋于稳定]"
+                        android:text="@string/安装userlAnd旗下系统"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -341,7 +341,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以安装userlAnd操作系统,注意需要挂载VPN,否则很可能会下载错误!关闭系统时，请退出termux,\n只支持ubuntu安装,和群的离线恢复包，其他系统就不弄了，多而不精，群离线恢复包中有桌面，恢复之后直接就能用"
+                        android:text="@string/群离线恢复包中有桌面"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -378,7 +378,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="修复操作系统权限"
+                        android:text="@string/修复操作系统权限889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -386,7 +386,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="轻触以修复操作系统权限[将修复所有文件!]"
+                        android:text="@string/轻触以修复操作系统权限889"
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>

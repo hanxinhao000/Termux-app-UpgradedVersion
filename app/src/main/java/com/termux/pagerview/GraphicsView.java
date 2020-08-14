@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.termux.R;
 
 import main.java.com.termux.app.TermuxActivity;
+import main.java.com.termux.utils.UUtils;
 
 
 public class GraphicsView extends BaseViewPagerView {
@@ -39,7 +40,7 @@ public class GraphicsView extends BaseViewPagerView {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "功能测试中,请等待", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), UUtils.getString(R.string.功能测试中请等待), Toast.LENGTH_SHORT).show();
 
                // startActivity(new Intent(getContext(), LinuxdeployActivity.class));
 

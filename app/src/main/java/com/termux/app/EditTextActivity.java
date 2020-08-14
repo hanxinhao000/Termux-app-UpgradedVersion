@@ -3,6 +3,7 @@ package main.java.com.termux.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import main.java.com.termux.datat.TermuxData;
+import main.java.com.termux.utils.UUtils;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class EditTextActivity extends AppCompatActivity implements View.OnClickL
 
         if (fileUrl.contains("BootCommand")) {
             textStartCommd.setVisibility(View.VISIBLE);
-            textStartCommd.setText("如何使用开机命令[不可用于耗时操作的启动命令例如:pkg update]?\n 命令之间用 && 隔开,如果一定要使用耗时操作:命令 &结尾\n比如我开机想执行ls cd .. ssh mysqld(启动mysql的) \n命令就是：ls && cd .. && ssh && mysqld \n切记最后不要加&&\n正确示例: ls && cd && ssh && mysqld\n错误示例：ls && cd && ssh && mysqld &&\n当只有一条命令时:直接写那行命令就行，不用写&&\n启动命令如果输入错误，系统将会忽略掉所有的启动命令");
+            textStartCommd.setText(UUtils.getString(R.string.不可用于耗时操作的启动命令例如));
         }
 
         String txt = "";

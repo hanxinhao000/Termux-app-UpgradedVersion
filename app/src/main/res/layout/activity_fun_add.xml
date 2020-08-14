@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:background="#1BBC9B"
         android:gravity="center"
-        android:text="欢迎来到软件大厅"
+        android:text="@string/欢迎来到软件大厅"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -59,7 +59,7 @@
                     android:layout_height="25dp"/>
 
                 <TextView android:layout_width="wrap_content"
-                    android:text="软件"
+                    android:text="@string/软件"
                     android:textColor="#000"
                     android:id="@+id/text_home"
                     android:textSize="14sp"
@@ -80,7 +80,7 @@
                     android:layout_height="25dp"/>
 
                 <TextView android:layout_width="wrap_content"
-                    android:text="图形"
+                    android:text="@string/图形"
                     android:textColor="#000"
                     android:id="@+id/text_customer_service"
                     android:textSize="14sp"
@@ -101,7 +101,7 @@
                     android:layout_height="25dp"/>
 
                 <TextView android:layout_width="wrap_content"
-                    android:text="脚本"
+                    android:text="@string/脚本"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:id="@+id/text_order"
@@ -122,7 +122,7 @@
                     android:layout_height="25dp"/>
 
                 <TextView android:layout_width="wrap_content"
-                    android:text="管理"
+                    android:text="@string/管理"
                     android:textColor="#000"
                     android:id="@+id/text_personal_center"
                     android:textSize="14sp"

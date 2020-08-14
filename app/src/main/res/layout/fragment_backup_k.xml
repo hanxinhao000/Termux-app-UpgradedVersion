@@ -23,7 +23,7 @@
                 android:textStyle="bold"
                 android:id="@+id/title"
                 android:textSize="14sp"
-                android:text="点击[开始备份]按钮一开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n备份文件在[sdcard -> xinhao/data/]目录下" />
+                android:text="@string/按钮一开始启动您的备份rrr" />
 
 
         </ScrollView>
@@ -56,7 +56,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="开始备份"
+                    android:text="@string/开始备份1"
                     android:textColor="#fff"
                     android:textSize="18sp"
                     android:id="@+id/start_backup"

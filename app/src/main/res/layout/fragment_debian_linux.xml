@@ -15,7 +15,7 @@
             android:id="@+id/title1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="版本信息:\n版本说明[由WINLOG提供(提供者)]\n-基于debian buster 桌面 xfce\n-用户名ubuntu 密码均为12345678\n-安装软件\n～火狐浏览器～chromium～QQlinux～xachiver～中文字库～ISO编辑器\n\n注意\n1.userland还原后默认为中文，请手动设置中文\n2.由于proot的bug导致桌面处于只读状态\n\n提供者:"
+            android:text="@string/userland还原后默认为中文"
             android:textColor="#fff"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="WINLOG/[老群员]虚拟机总监[群管理]\nQQ:224682**49"
+                android:text="@string/老群员虚拟机总监"
                 android:textColor="#fff"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
             android:textColor="#fff"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="日志:"
+            android:text="@string/日志eeerlk"
             android:id="@+id/msg"
             android:layout_above="@+id/boom"
             android:layout_height="wrap_content" />
@@ -81,7 +81,7 @@
                     android:textSize="16sp"
                     android:id="@+id/start_linux"
                     android:visibility="gone"
-                    android:text="启动"
+                    android:text="@string/启动"
                     android:textStyle="bold"
                     android:layout_height="40dp" />
 
@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:textColor="#fff"
                     android:id="@+id/install_linux"
-                    android:text="安装"
+                    android:text="@string/安装"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_height="40dp" />

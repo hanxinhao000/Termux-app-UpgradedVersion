@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 import main.java.com.termux.adapter.WindowAdapter;
 import main.java.com.termux.app.TermuxActivity;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.VNCActivityUtils;
 
 public class WindowsActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class WindowsActivity extends AppCompatActivity {
         if (!file.exists()) {
             boolean mkdirs = file.mkdirs();
             if (!mkdirs) {
-                Toast.makeText(this, "创建文件失败,请确定你是否打开了SD卡权限!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, UUtils.getString(R.string.请确定你是否打开了SD卡权限ddll), Toast.LENGTH_LONG).show();
             }
         }
 
@@ -66,11 +67,11 @@ public class WindowsActivity extends AppCompatActivity {
 
                         AlertDialog.Builder ab = new AlertDialog.Builder(WindowsActivity.this);
 
-                        ab.setTitle("错误!");
+                        ab.setTitle(UUtils.getString(R.string.错误));
 
-                        ab.setMessage("找不到相关文件的链接,确定你是否执行了\ntermux-setup-storage\n由于文件路径被阻塞,所以执行失败!");
+                        ab.setMessage(UUtils.getString(R.string.找不到相关文件的链接确定你是否执行了));
 
-                        ab.setNegativeButton("帮我创建", new DialogInterface.OnClickListener() {
+                        ab.setNegativeButton(UUtils.getString(R.string.帮我创建), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab.create().dismiss();
@@ -86,7 +87,7 @@ public class WindowsActivity extends AppCompatActivity {
 
                             }
                         });
-                        ab.setPositiveButton("我自己创建", new DialogInterface.OnClickListener() {
+                        ab.setPositiveButton(UUtils.getString(R.string.我自己创建), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab.create().dismiss();
@@ -104,17 +105,17 @@ public class WindowsActivity extends AppCompatActivity {
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(WindowsActivity.this);
 
-                    ab.setTitle("启动完成!");
+                    ab.setTitle(UUtils.getString(R.string.启动完成));
 
-                    ab.setMessage("错误使用的镜像无法启动!必须打开内存卡权限!!!\n镜像群:417584555\n网卡类型:e1000\n如何连接: 127.0.0.1:1\nvnc端口为1\n请在vnc中打开\n启动完毕!\n");
+                    ab.setMessage(UUtils.getString(R.string.错误使用的镜像无法启动必须打开内存卡权限));
 
-                    ab.setPositiveButton("使用自带vnc打开", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.使用自带vnc打开), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
                             finish();
 
-                            Toast.makeText(WindowsActivity.this, "请到内置VNC打开(不推荐)[推荐使用全能版]", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WindowsActivity.this, UUtils.getString(R.string.请到内置VNC打开推荐使用全能版), Toast.LENGTH_SHORT).show();
 /*
 
 
@@ -140,7 +141,7 @@ public class WindowsActivity extends AppCompatActivity {
                         }
                     });
 
-                    ab.setNegativeButton("我用我自己的VNC", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.我用我自己的VNC), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
@@ -151,7 +152,7 @@ public class WindowsActivity extends AppCompatActivity {
             });
         } else {
 
-            title_window.setText("没有镜像或SD卡未打开!");
+            title_window.setText(UUtils.getString(R.string.没有镜像或SD卡未打开));
         }
     }
     //1.A2.A3.A4.B5.B
@@ -164,19 +165,19 @@ public class WindowsActivity extends AppCompatActivity {
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
-            alertDialog.setTitle("错误!");
+            alertDialog.setTitle(UUtils.getString(R.string.错误));
 
             alertDialog.setCancelable(false);
 
-            alertDialog.setMessage("你没有安装相关环境,请点击安装\n离线安装:请在群文件下载【放到sdcard -> xinhao/iso 下】\n在线安装:直接点击在线安装【没有VPN可能很慢】");
+            alertDialog.setMessage(UUtils.getString(R.string.你没有安装相关环境qemupppp));
 
-            alertDialog.setNegativeButton("在线安装", new DialogInterface.OnClickListener() {
+            alertDialog.setNegativeButton(UUtils.getString(R.string.在线安装), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
                     TermuxActivity.mTerminalView.sendTextToTerminal("pkg install x11-repo unstable-repo -y && pkg install qemu-utils qemu-system-x86_64-headless -y && termux-setup-storage\n");
                     alertDialog.create().dismiss();
-                    Toast.makeText(WindowsActivity.this, "请等待安装完成在进入", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WindowsActivity.this, UUtils.getString(R.string.请等待安装完成在进入), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             });

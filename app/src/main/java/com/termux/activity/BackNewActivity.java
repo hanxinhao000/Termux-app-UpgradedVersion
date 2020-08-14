@@ -27,6 +27,7 @@ import main.java.com.termux.fragment.BackupFragment;
 import main.java.com.termux.fragment.RestoreFragment;
 import main.java.com.termux.fragment.SettingFragment;
 import main.java.com.termux.utils.ExeCommand;
+import main.java.com.termux.utils.UUtils;
 
 public class BackNewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -95,7 +96,7 @@ public class BackNewActivity extends AppCompatActivity implements View.OnClickLi
 
     private boolean isCosumenBackKey() {
         if (mIsRun) {
-            Toast.makeText(this, "有任务正在进行,防止误触碰,如果执意退出,请大退", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.有任务正在进行), Toast.LENGTH_SHORT).show();
             return true;
         } else {
             // Toast.makeText(this, "返回键被阻拦了，您可以按home键退出再进来", Toast.LENGTH_SHORT).show();
@@ -111,7 +112,7 @@ public class BackNewActivity extends AppCompatActivity implements View.OnClickLi
 
 
         if (mIsRun) {
-            Toast.makeText(this, "有任务进行中，无法切换!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.有任务进行中g33), Toast.LENGTH_SHORT).show();
             return;
         }
 

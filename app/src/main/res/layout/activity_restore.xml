@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="请选择一个恢复"
+        android:text="@string/请选择一个恢复"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:id="@+id/no_file"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="没有可恢复的文件\n[估计你没有打开sd卡权限 80%的可能]\n请确保在[sdcard/xinhao/system/]下放置恢复文件!"
+            android:text="@string/没有可恢复的文件"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />

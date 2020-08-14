@@ -12,6 +12,7 @@
         android:allowBackup="true"
         android:banner="@drawable/banner"
         android:extractNativeLibs="true"
+        android:configChanges="locale"
         android:fullBackupContent="@xml/backupscheme"
         android:icon="@drawable/ic_launcher"
         android:label="@string/application_name"

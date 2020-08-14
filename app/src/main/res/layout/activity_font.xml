@@ -11,7 +11,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:text="字体选择"
+        android:text="@string/字体选择"
         android:gravity="center"
         android:textSize="16sp"
         android:layout_marginTop="20dp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:text="内部存储/xinhao/font/\n注意，您一切选择的字体来源于互联网,与UTermux无关!\n出现任何法律责任由使用者承担!"
+        android:text="@string/您一切选择的字体来源于互联网"
         android:gravity="center"
         android:textSize="12sp"
         android:layout_marginTop="5dp"

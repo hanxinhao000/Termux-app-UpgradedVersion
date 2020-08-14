@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 
 import main.java.com.termux.activity.UncaughtExceptionHandlerActivity;
 import main.java.com.termux.filemanage.filemanager.FileManagerApplication;
+import main.java.com.termux.utils.UUtils;
 
 //import com.youdao.sdk.app.YouDaoApplication;
 
@@ -27,6 +28,7 @@ public class TermuxApplication extends FileManagerApplication {
         super.onCreate();
         mContext = this;
         mHandler = new Handler();
+        UUtils.initUUtils(mContext,mHandler);
         //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
 
 

@@ -50,6 +50,7 @@ import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.ReadSystemBean;
 import main.java.com.termux.utils.FileUtil;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.VNCActivityUtils;
 import main.java.com.termux.view.MyDialog;
 
@@ -146,7 +147,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         if (mFileCom.exists()) {
 
-            ubuntu_text.setText("启动ubuntu");
+            ubuntu_text.setText(UUtils.getString(R.string.启动ubuntutjkl));
 
         }
 
@@ -164,13 +165,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-            ab.setTitle("环境不达标");
+            ab.setTitle(UUtils.getString(R.string.环境不达标));
 
             ab.setCancelable(false);
 
-            ab.setMessage("请安装完openSSH,在进入安装系统页面!");
+            ab.setMessage(UUtils.getString(R.string.请安装完openSSH));
 
-            ab.setNegativeButton("帮我安装ssh", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton(UUtils.getString(R.string.帮我安装ssh), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -179,7 +180,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
                 }
             });
-            ab.setPositiveButton("现在不安装", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.现在不安装), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
@@ -212,7 +213,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                 CreateSystemBean createSystemBean = new CreateSystemBean();
 
-                createSystemBean.systemName = "默认系统";
+                createSystemBean.systemName = UUtils.getString(R.string.默认系统);
 
                 createSystemBean.dir = "/data/data/com.termux/files";
 
@@ -267,7 +268,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 printWriter.close();
 
             } catch (IOException e) {
-                Toast.makeText(this, "系统创建失败!请重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.系统创建失败ggggg), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             } finally {
@@ -328,7 +329,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 printWriter.close();
 
             } catch (IOException e) {
-                Toast.makeText(this, "系统创建失败!请重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.系统创建失败ggggg), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             } finally {
@@ -365,7 +366,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!mDefFile.exists()) {
 
-            return "默认系统";
+            return UUtils.getString(R.string.默认系统);
         }
 
 
@@ -394,7 +395,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        return "默认系统";
+        return UUtils.getString(R.string.默认系统);
     }
 
     private void startBootVnc() {
@@ -402,7 +403,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         MyDialog myDialog = new MyDialog(this);
 
-        myDialog.getDialog_title().setText("正在启动...");
+        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在启动));
 
         myDialog.getDialog_pro().setText("-");
 
@@ -414,7 +415,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ubuntu_text.setText("启动ubuntu\n[正在启动...]");
+                        ubuntu_text.setText(UUtils.getString(R.string.启动ubuntu正在启动));
                     }
                 });
 
@@ -508,7 +509,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     TermuxApplication.mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ubuntu_text.setText("启动ubuntu\n请尝试重新启动");
+                            ubuntu_text.setText(UUtils.getString(R.string.启动ubuntu失败gggvvv));
                         }
                     });
                 }
@@ -532,13 +533,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
 
-                        Toast.makeText(TestActivity.this, "启动完成", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestActivity.this, UUtils.getString(R.string.启动完成), Toast.LENGTH_SHORT).show();
                         myDialog.dismiss();
 
                         AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
-                        ab.setTitle("启动成功!");
-                        ab.setMessage("请在vnc中连接\n127.0.0.1:5951\n账号:hanxinhao\n\n密码:123456\n\n");
-                        ab.setNeutralButton("好的", new DialogInterface.OnClickListener() {
+                        ab.setTitle(UUtils.getString(R.string.启动成功));
+                        ab.setMessage(UUtils.getString(R.string.请在vnc中连接请在vnc中连接));
+                        ab.setNeutralButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -579,7 +580,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
         if(true){
-            Toast.makeText(this, "暂不支持", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.暂不支持), Toast.LENGTH_SHORT).show();
             return ;
         }
 
@@ -756,7 +757,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         MyDialog myDialog = new MyDialog(this);
 
-        myDialog.getDialog_title().setText("正在启动...");
+        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在启动));
 
         myDialog.getDialog_pro().setText("-");
 
@@ -768,7 +769,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ubuntu_text.setText("启动ubuntu\n[正在启动...]");
+                        ubuntu_text.setText(UUtils.getString(R.string.启动ubuntu正在启动));
                     }
                 });
 
@@ -864,7 +865,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     TermuxApplication.mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ubuntu_text.setText("启动ubuntu\n请尝试重新启动");
+                            ubuntu_text.setText(UUtils.getString(R.string.启动ubuntu失败gggvvv));
                         }
                     });
                 }
@@ -907,11 +908,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-            ab.setTitle("请认证阅读!");
+            ab.setTitle(UUtils.getString(R.string.请认真阅读));
 
-            ab.setMessage("开始立即启动你的ubuntu系统\n用户名:hanxinhao\n密码(ssh):123456\nvnc密码:123456\n注意,点完之后请耐心等待，不要多次点击!!!!\n\n注意，如果调到命令页面出现一大堆英文字母和@@@@@，请删除home/.ssh目录,命令:\n[cd ~][rm -rf .ssh/]\n\n\n注意!!如果启动没反应,你也是aarch64的架构\n请在termux中删除proot\npkg un proot\n再次尝试进入安装/启动\n\n\n\n直到跳转到命令行页面即可\n如果需要重新安装\n请点击重新安装\n点击重新安装会退出当前窗口，再次点击进来\n就开始安装了");
+            ab.setMessage(UUtils.getString(R.string.n直到跳转到命令行页面即可));
 
-            ab.setNegativeButton("ssh启动!", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton(UUtils.getString(R.string.ssh启动), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
@@ -920,16 +921,16 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
-            ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
+            ab.setNeutralButton(UUtils.getString(R.string.vnc启动), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ab.create().dismiss();
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
 
-                    ab.setMessage("面对疾风吧!哈sai kei");
+                    ab.setMessage(UUtils.getString(R.string.面对疾风吧yn));
 
-                    ab.setMessage("你是要VNC还是XSDL?");
+                    ab.setMessage(UUtils.getString(R.string.你是要VNC还是XSDL));
 
                     ab.setPositiveButton("VNC", new DialogInterface.OnClickListener() {
                         @Override
@@ -955,11 +956,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
-            ab.setPositiveButton("重新安装", new DialogInterface.OnClickListener() {
+            ab.setPositiveButton(UUtils.getString(R.string.重新安装555bb), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mFileCom.delete();
-                    Toast.makeText(TestActivity.this, "请再次点击你要进入的系统，以重新安装", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestActivity.this, UUtils.getString(R.string.请再次点击你要进入的系统), Toast.LENGTH_SHORT).show();
                     ab.create().dismiss();
                 }
             });
@@ -969,9 +970,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
-        ab.setTitle("注意");
-        ab.setMessage("开始下载ubuntu\n过程中会新建一个操作目录\n如果要切换到原来的系统\n请到切换系统中，切换回来\n然后重启APP\n确定下载？");
-        ab.setNegativeButton("我确定", new DialogInterface.OnClickListener() {
+        ab.setTitle(UUtils.getString(R.string.注意));
+        ab.setMessage(UUtils.getString(R.string.n如果要切换到原来的系统));
+        ab.setNegativeButton(UUtils.getString(R.string.我确定), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -980,11 +981,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 ab.create().dismiss();
                 AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
 
-                ab.setTitle("提示");
+                ab.setTitle(UUtils.getString(R.string.提示));
 
-                ab.setMessage("是否需要重新创建一个新的操作目录\n当前目录为:" + readSystem() + "\n已被禁用");
+                ab.setMessage(UUtils.getString(R.string.是否需要重新创建一个新的操作目录) + readSystem() + UUtils.getString(R.string.n已被禁用));
 
-                ab.setPositiveButton("重新创建", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.重新创建), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                               /*  createSystem("ubuntu" + "-UserLAnd");
@@ -995,11 +996,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
 
-                            ab.setTitle("发现文件");
+                            ab.setTitle(UUtils.getString(R.string.发现文件));
 
-                            ab.setMessage("发现已有下载的文件!\n如果上一次下载报错退出的，请重新下载\n不要点击开始安装，如果顺利下载完成的\n请点击开始安装");
+                            ab.setMessage(UUtils.getString(R.string.n如果上一次下载报错退出的));
 
-                            ab.setNegativeButton("开始安装", new DialogInterface.OnClickListener() {
+                            ab.setNegativeButton(UUtils.getString(R.string.开始安装), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
@@ -1016,7 +1017,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                                 }
                             });
-                            ab.setPositiveButton("重新下载", new DialogInterface.OnClickListener() {
+                            ab.setPositiveButton(UUtils.getString(R.string.重新下载), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     downloadSystem(
@@ -1044,7 +1045,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-                ab.setNegativeButton("不需要", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.不需要), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -1052,11 +1053,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
 
-                            ab.setTitle("发现文件");
+                            ab.setTitle(UUtils.getString(R.string.发现文件));
 
-                            ab.setMessage("发现已有下载的文件!\n如果上一次下载报错退出的，请重新下载\n不要点击开始安装，如果顺利下载完成的\n请点击开始安装");
+                            ab.setMessage(UUtils.getString(R.string.如果顺利下载完成的));
 
-                            ab.setNegativeButton("开始安装", new DialogInterface.OnClickListener() {
+                            ab.setNegativeButton(UUtils.getString(R.string.开始安装), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
@@ -1073,7 +1074,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                                 }
                             });
-                            ab.setPositiveButton("重新下载", new DialogInterface.OnClickListener() {
+                            ab.setPositiveButton(UUtils.getString(R.string.重新下载), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     downloadSystem(
@@ -1103,7 +1104,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        ab.setPositiveButton("我不确定", new DialogInterface.OnClickListener() {
+        ab.setPositiveButton(UUtils.getString(R.string.我不确定), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ab.create().dismiss();
@@ -1123,10 +1124,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                 final EditText et = new EditText(this);
                 et.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                new AlertDialog.Builder(this).setTitle("安全问题已被禁用，强制安装需要密码!")
+                new AlertDialog.Builder(this).setTitle(UUtils.getString(R.string.强制安装需要密码))
                     .setIcon(R.drawable.ic_launcher)
                     .setView(et)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(UUtils.getString(R.string.确定), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -1134,12 +1135,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                                 installSystemUbuntu();
                             } else {
-                                Toast.makeText(TestActivity.this, "开发者密码错误!" + et.toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TestActivity.this, UUtils.getString(R.string.开发者密码错误) + et.toString(), Toast.LENGTH_SHORT).show();
                             }
 
 
                         }
-                    }).setNegativeButton("取消", null).show();
+                    }).setNegativeButton(UUtils.getString(R.string.取消), null).show();
 
 
                 if (true)
@@ -1151,12 +1152,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 //https://github.com/hanxinhao000/MyLinuxFile/raw/master/app/src/main/assets/apps-ubuntu-rootfs.tar.gz
-                Toast.makeText(this, "由于服务器不稳定,请使用离线安装!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.由于服务器不稳定请使用离线安装), Toast.LENGTH_SHORT).show();
                 // installGuiUbuntu();
                 break;
             case R.id.archlinux:
 
-                Toast.makeText(this, "系统已默认安装,无需再次安装!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, UUtils.getString(R.string.系统已默认安装无需再次安装), Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -1172,11 +1173,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
-                    ab.setTitle("请认证阅读!");
+                    ab.setTitle(UUtils.getString(R.string.请认真阅读));
 
-                    ab.setMessage("开始立即启动你的ubuntu系统\n用户名:hanxinhao\n密码(ssh):123456\nvnc密码:123456\n注意,点完之后请耐心等待，不要多次点击!!!!\n\n注意，如果调到命令页面出现一大堆英文字母和@@@@@，请删除home/.ssh目录,命令:\n[cd ~][rm -rf .ssh/]\n\n\n注意!!如果启动没反应,你也是aarch64的架构\n请在termux中删除proot\npkg un proot\n再次尝试进入安装/启动\n\n\n\n直到跳转到命令行页面即可\n如果需要重新安装\n请点击重新安装\n点击重新安装会退出当前窗口，再次点击进来\n就开始安装了");
+                    ab.setMessage(UUtils.getString(R.string.开始立即启动你的ubuntu系统hanxinhao));
 
-                    ab.setNegativeButton("ssh启动!", new DialogInterface.OnClickListener() {
+                    ab.setNegativeButton(UUtils.getString(R.string.ssh启动), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -1185,7 +1186,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
                     });
-                    ab.setNeutralButton("vnc启动!", new DialogInterface.OnClickListener() {
+                    ab.setNeutralButton(UUtils.getString(R.string.vnc启动), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             startBootVnc();
@@ -1193,11 +1194,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
 
-                    ab.setPositiveButton("重新安装", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.重新安装), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mFileCom.delete();
-                            Toast.makeText(TestActivity.this, "请再次点击你要进入的系统，以重新安装", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TestActivity.this, UUtils.getString(R.string.以重新安装请再次点击你要进入的系统), Toast.LENGTH_SHORT).show();
                             ab.create().dismiss();
                         }
                     });
@@ -1211,10 +1212,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 if (!fileOnline.exists()) {
 
                     AlertDialog.Builder ab = new AlertDialog.Builder(this);
-                    ab.setTitle("提示");
-                    ab.setMessage("未在[sdcard/xinhao/iso]目录下发现 命名为:ubuntu-xinhao.iso文件!");
+                    ab.setTitle(UUtils.getString(R.string.提示));
+                    ab.setMessage(UUtils.getString(R.string.目录下发现ubuntuxinhao));
 
-                    ab.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                    ab.setPositiveButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ab.create().dismiss();
@@ -1228,10 +1229,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);
-                ab.setTitle("提示");
-                ab.setMessage("发现安装文件,是否立即开始安装?");
+                ab.setTitle(UUtils.getString(R.string.提示));
+                ab.setMessage(UUtils.getString(R.string.是否立即开始安装发现安装文件));
 
-                ab.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                ab.setPositiveButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -1256,7 +1257,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         }).start();
                     }
                 });
-                ab.setNegativeButton("我在考虑考虑", new DialogInterface.OnClickListener() {
+                ab.setNegativeButton(UUtils.getString(R.string.我在考虑考虑), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ab.create().dismiss();
@@ -1506,7 +1507,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!fileOnline.exists()) {
 
-            Toast.makeText(this, "未发现文件", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, UUtils.getString(R.string.未发现文件), Toast.LENGTH_SHORT).show();
             return;
 
         }
@@ -1525,7 +1526,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                 myDialog[0].setCancelable(false);
 
-                myDialog[0].getDialog_title().setText("正在复制文件到工作区域\n如果复制很慢请耐心等待\n页面刷新可能有延时\n可能一直卡在某个数,但是内部复制没停\n如果没有耐心，大退app重新执行[不建议!!!]");
+                myDialog[0].getDialog_title().setText(UUtils.getString(R.string.正在复制文件到工作区域n如果复制很慢请耐心等待));
 
                 myDialog[0].getDialog_pro().setText("-");
 
@@ -1580,6 +1581,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                             @Override
                                             public void run() {
                                                 myDialog[0].getDialog_pro_prog().setProgress(i[0]);
+
                                                 myDialog[0].getDialog_pro().setText((i[0] / 1024 / 1024 * 1.0) + "MB/" + (fileOnline.length() / 1024 / 1024 * 1.0) + "MB]");
                                                 Log.e("XINHAO_HAN", "run: " + "我还在运行...");
                                             }
@@ -1619,13 +1621,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(TestActivity.this, "复制出错!" + e.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TestActivity.this, UUtils.getString(R.string.复制出错111) + e.toString(), Toast.LENGTH_SHORT).show();
                                     myDialog[0].dismiss();
 
                                     AlertDialog.Builder ab = new AlertDialog.Builder(TestActivity.this);
-                                    ab.setTitle("错误");
-                                    ab.setMessage("你没有SD卡权限,报错信息:\n" + e.toString());
-                                    ab.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                                    ab.setTitle(UUtils.getString(R.string.错误));
+                                    ab.setMessage(UUtils.getString(R.string.你没有SD卡权限报错信息rb) + e.toString());
+                                    ab.setPositiveButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             ab.create().dismiss();
@@ -2002,7 +2004,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
 
-                        myDialog.getDialog_title().setText("正在下载系统 1/2 [arm64-rootfs.tar.gz]");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.正在下载系统eer));
 
 
                     }
@@ -2074,7 +2076,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                             public void run() {
                                 if (myDialog != null)
                                     myDialog.dismiss();
-                                shouDialog("正在下载系统 1/2 [arm64-rootfs.tar.gz] -- 失败 \n" + responseCode + "\n建议挂VPN");
+                                shouDialog(UUtils.getString(R.string.正在下载系统eer1) + responseCode + UUtils.getString(R.string.n建议挂VPN));
                             }
                         });
                     }
@@ -2088,7 +2090,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         public void run() {
                             if (myDialog != null)
                                 myDialog.dismiss();
-                            shouDialog("正在下载系统 1/2 [arm64-rootfs.tar.gz] -- 失败 \n" + e.toString() + "\n建议挂VPN");
+                            shouDialog(UUtils.getString(R.string.正在下载系统eer1) + e.toString() + UUtils.getString(R.string.n建议挂VPN));
                         }
                     });
                 }
@@ -2100,7 +2102,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         if (myDialog != null)
-                            myDialog.getDialog_title().setText("正在下载安装程序 2/2 [arm64-assets.tar.gz]");
+                            myDialog.getDialog_title().setText(UUtils.getString(R.string.正在下载安装程序222));
 
 
                     }
@@ -2162,7 +2164,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                myDialog.getDialog_title().setText("下载完成!等待继续安装，请稍等");
+                                myDialog.getDialog_title().setText(UUtils.getString(R.string.等待继续安装下载完成));
 
                             }
                         });
@@ -2175,7 +2177,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                             public void run() {
                                 if (myDialog != null)
                                     myDialog.dismiss();
-                                shouDialog("正在下载安装程序 2/2 [arm64-assets.tar.gz] -- 失败 \n" + responseCode + "\n建议挂VPN");
+                                shouDialog(UUtils.getString(R.string.正在下载安装程序33366) + responseCode + UUtils.getString(R.string.n建议挂VPN));
                             }
                         });
                     }
@@ -2190,7 +2192,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         public void run() {
                             if (myDialog != null)
                                 myDialog.dismiss();
-                            shouDialog("正在下载安装程序 2/2 [arm64-assets.tar.gz] -- 失败 \n" + e.toString() + "\n建议挂VPN");
+                            shouDialog(UUtils.getString(R.string.正在下载安装程序33366) + e.toString() + UUtils.getString(R.string.n建议挂VPN));
                         }
                     });
                     e.printStackTrace();
@@ -2213,7 +2215,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
 
-                finalMyDialog.getDialog_title().setText("开始安装...");
+                finalMyDialog.getDialog_title().setText(UUtils.getString(R.string.开始安装));
                 finalMyDialog.getDialog_pro().setText("-");
 
                 logOut("开始安装");
@@ -2231,7 +2233,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
 
                 // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                finalMyDialog.getDialog_title().setText("正在复制工具包[/support]...");
+                finalMyDialog.getDialog_title().setText(UUtils.getString(R.string.正在复制工具包support));
                 logOut("正在复制工具包[/support]...");
 
             }
@@ -2248,21 +2250,21 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         switch (determineTermuxArchName()) {
             case "arm64-v8a":
                 writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                logOut("正在复制工具包[sh_arm64_v8a]...");
+                logOut(UUtils.getString(R.string.正在复制工具包sh_arm64_v8a));
                 break;
             case "armeabi-v7a":
                 writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                logOut("正在复制工具包[sh_armeabi_v7a]...");
+                logOut(UUtils.getString(R.string.正在复制工具包sh_armeabi_v7a));
                 break;
             default:
                 writerFile("sh.zip", new File(mFileSupport, "/sh.xh.tar"));
-                logOut("默认的没有!" + determineTermuxArchName());
+                logOut(UUtils.getString(R.string.默认的没有)+ determineTermuxArchName());
                 break;
 
         }
 
 
-        logOut("写出 sh.xh.tar 文件");
+        logOut(UUtils.getString(R.string.写出sh));
         ZipUtils.unZip(new File(mFileSupport, "/sh.xh.tar"), mFileSupport.getAbsolutePath(), new ZipUtils.ZipNameListener() {
             @Override
             public void zip(String FileName, int size, int position) {
@@ -2271,9 +2273,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
 
                         // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                        finalMyDialog.getDialog_title().setText("正在解压安装工具包[" + FileName + "]");
+                        String fileName = UUtils.getString(R.string.正在解压安装工具包FileName).replace("FileName", FileName);
 
-                        logOut("正在解压安装工具包[" + FileName + "]");
+                        finalMyDialog.getDialog_title().setText(fileName);
+
+                        logOut(fileName);
                     }
                 });
             }
@@ -2285,8 +2289,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
 
                         // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                        finalMyDialog.getDialog_title().setText("完成!");
-                        logOut("完成!");
+                        finalMyDialog.getDialog_title().setText(UUtils.getString(R.string.完成));
+                        logOut(UUtils.getString(R.string.完成));
                     }
                 });
 
@@ -2347,7 +2351,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
 
                 // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                myDialog.getDialog_title().setText("开始展开linux文件[切勿离开此界面,否则可能导致安装失败!!!!]\n\n图形ubuntu需:10~20分钟");
+                myDialog.getDialog_title().setText(UUtils.getString(R.string.开始展开linux文件切勿离开此界面));
                 //startInstallLinux(myDialog);
                 myDialog.getDialog_pro_prog().setMax(max);
                 logOut("设置进度条最大位置:" + max);
@@ -2483,7 +2487,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 // finalMyDialog.getDialog_title().setText("正在解压安装程序包[arm64-assets.tar.gz]...");
-                myDialog.getDialog_title().setText("安装完成!请再次点击启动linux\n如果过程很快，那就是失败了!");
+                myDialog.getDialog_title().setText(UUtils.getString(R.string.请再次点击启动linuxn如果过程很快));
                 myDialog.getDialog_pro().setText("-");
 
                 try {
@@ -2622,7 +2626,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             TermuxApplication.mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(TestActivity.this, "出现了警告，但是这个警告可以忽略 \n" + e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestActivity.this, UUtils.getString(R.string.但是这个警告可以忽略) + e.toString(), Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -2669,7 +2673,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.e("XINHAO_HAN", "shouDialog: " + msg);
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
-        ab.setTitle("下载失败!");
+        ab.setTitle(UUtils.getString(R.string.下载失败));
         ab.setMessage(msg);
         ab.show();
 

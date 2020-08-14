@@ -17,7 +17,7 @@
         android:padding="10dp"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:text="请选择一个镜像"
+        android:text="@string/请选择一个镜像"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:padding="10dp"
         android:textStyle="bold"
         android:textSize="14sp"
-        android:text="请将所有windows或者linux镜像放到\n[sdcard -> /xinhao/windows]下\n不能保存你使用过的数据，关机还原,关闭运行的镜像，请大退Termux"
+        android:text="@string/n不能保存你使用过的数据"
         android:layout_height="wrap_content" />
 
     <ListView

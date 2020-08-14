@@ -41,7 +41,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="2dp"
-                            android:text="公告:"
+                            android:text="@string/公告552"
                             android:textColor="#33CCFF"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -57,7 +57,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="本地版本:[0.95.89]"
+                                android:text="@string/本地版本552"
                                 android:textColor="#fff"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="2dp"
-                                    android:text="云端版本:[0.92.77]"
+                                    android:text="@string/云端版本552"
                                     android:textColor="#fff"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
@@ -89,7 +89,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="2dp"
-                                    android:text="更新"
+                                    android:text="@string/更新885"
                                     android:layout_alignParentRight="true"
                                     android:textColor="#2e84e6"
                                     android:textSize="12sp" />
@@ -110,7 +110,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="架构:[无法读取]"
+                                android:text="@string/架构"
                                 android:textColor="#fff"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -120,7 +120,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="IP:[无法读取]"
+                                android:text="@string/IP"
                                 android:textColor="#fff"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -130,7 +130,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg"
+                                android:text="@string/系统作者"
                                 android:visibility="visible"
                                 android:singleLine="true"
                                 android:ellipsize="marquee"
@@ -181,7 +181,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginLeft="10dp"
-                                android:text="权限信息"
+                                android:text="@string/权限信息886"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -204,7 +204,7 @@
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="内存权限:   [没有权限]"
+                                android:text="@string/内存权限886"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -218,7 +218,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="电话权限:   [没有权限]"
+                                android:text="@string/电话权限886"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -241,7 +241,7 @@
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="短信权限:   [没有权限]"
+                                android:text="@string/短信权限"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -288,7 +288,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="源功能"
+                                android:text="@string/源功能"
                                 android:textColor="#fff"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -330,7 +330,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="[新]清华源"
+                                    android:text="@string/清华源885"
                                     android:textColor="#fff"
                                     android:textSize="13sp"
                                     android:textStyle="bold" />
@@ -341,7 +341,7 @@
                                     android:layout_marginTop="2dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="不稳定"
+                                    android:text="@string/不稳定886"
                                     android:layout_marginBottom="10dp"
                                     android:textColor="#fff"
                                     android:textSize="10sp"
@@ -370,7 +370,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="官方源"
+                                    android:text="@string/官方源886"
                                     android:textColor="#fff"
                                     android:textSize="13sp"
                                     android:textStyle="bold" />
@@ -381,7 +381,7 @@
                                     android:layout_marginTop="2dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="切换到官方"
+                                    android:text="@string/切换到官方886"
                                     android:layout_marginBottom="10dp"
                                     android:textColor="#fff"
                                     android:textSize="10sp"
@@ -473,7 +473,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="更多资源[请勿违法,只适用于学习交流,所有法律责任由使用者承担]"
+                                android:text="@string/更多资源"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -522,7 +522,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="TOOL-X"
+                                        android:text="@string/TOOL886"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -533,7 +533,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : rajkumardusad"
+                                        android:text="@string/作者1"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -562,7 +562,7 @@
                                         android:layout_marginTop="15dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="TBomb[轰炸]"
+                                        android:text="@string/TBomb"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -574,7 +574,7 @@
                                         android:layout_marginBottom="10dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : TheSpeedX"
+                                        android:text="@string/作者2"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
                                         android:textStyle="bold" />
@@ -613,7 +613,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : Gameye98"
+                                        android:text="@string/作者3"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -668,7 +668,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : thehackingsage"
+                                        android:text="@string/作者4"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -709,7 +709,7 @@
                                         android:layout_marginBottom="10dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : MasterDevX"
+                                        android:text="@string/作者5"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
                                         android:textStyle="bold" />
@@ -737,7 +737,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="APK构建工具"
+                                        android:text="@string/APK构建工具"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -748,7 +748,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="作者 : SD Rausty"
+                                        android:text="@string/作者6"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -810,7 +810,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="常用功能"
+                                android:text="@string/常用功能554"
                                 android:textColor="#fff"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -903,7 +903,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="切换linux"
+                                        android:text="@string/切换linux"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -913,7 +913,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="扩展无数个linux"
+                                        android:text="@string/扩展无数个linux"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -943,7 +943,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="更多linux"
+                                        android:text="@string/更多linux"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -954,7 +954,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="ubuntu,kali等"
+                                        android:text="@string/ubuntu665"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -993,7 +993,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="linux软件"
+                                        android:text="@string/linux软件63"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold"
@@ -1004,7 +1004,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="msf,java等"
+                                        android:text="@string/msf669"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1032,7 +1032,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="linux目录"
+                                        android:text="@string/linux目录"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1043,7 +1043,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="以图形方式打开"
+                                        android:text="@string/以图形方式打开"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1073,7 +1073,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="web命令"
+                                        android:text="@string/web命令"
                                         android:layout_marginTop="18dp"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
@@ -1084,7 +1084,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="以浏览器方式打开终端"
+                                        android:text="@string/以浏览器方式打开终端"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
                                         android:textStyle="bold" />
@@ -1123,7 +1123,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="linux高级目录"
+                                        android:text="@string/linux高级目录"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1134,7 +1134,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="更高级的文件访问器"
+                                        android:text="@string/更高级的文件访问器"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1168,7 +1168,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="快速vnc"
+                                        android:text="@string/快速vnc"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1179,7 +1179,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="默认端口:1\n默认密码:123456"
+                                        android:text="@string/默认端口558"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1209,7 +1209,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="配置vnc"
+                                        android:text="@string/配置vnc"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1220,7 +1220,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="高级设置"
+                                        android:text="@string/高级设置"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1258,7 +1258,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="配置vnc(高级)"
+                                        android:text="@string/配置vnc552"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1269,7 +1269,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="更高级的设置"
+                                        android:text="@string/更高级的设置"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1410,7 +1410,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="包恢复功能"
+                                android:text="@string/包恢复功能885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -1460,7 +1460,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="在线包"
+                                        android:text="@string/在线包"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1491,7 +1491,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="zip恢复"
+                                        android:text="@string/zip恢复"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1521,7 +1521,7 @@
                                         android:gravity="center"
 
                                         android:layout_weight="1"
-                                        android:text="tar.gz恢复"
+                                        android:text="@string/targz"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1532,7 +1532,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="旧版|新版"
+                                        android:text="@string/旧版556"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1575,7 +1575,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="旧版备份"
+                                        android:text="@string/旧版备份882"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1585,7 +1585,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="不推荐使用"
+                                        android:text="@string/不推荐使用"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1686,7 +1686,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="下载站"
+                                        android:text="@string/下载站"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1697,7 +1697,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="百度网盘[gzdp]"
+                                        android:text="@string/百度网盘"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1727,7 +1727,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="下载站2"
+                                        android:text="@string/下载站2"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1738,7 +1738,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="WINLOG提供"
+                                        android:text="@string/WINLOG提供"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -1844,7 +1844,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="图形系统"
+                                android:text="@string/图形系统885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -1896,7 +1896,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="图形系统"
+                                        android:text="@string/图形系统442"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1927,7 +1927,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="图形ubuntu"
+                                        android:text="@string/图形ubuntu884"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1958,7 +1958,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="图形fedora"
+                                        android:text="@string/图形fedora553"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2015,7 +2015,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="卸载图形fedora"
+                                        android:text="@string/卸载图形fedora"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2161,7 +2161,7 @@
                                             android:layout_marginTop="20dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="ubuntu图形"
+                                            android:text="@string/ubuntu图形59874"
                                             android:textColor="#fff"
                                             android:textSize="13sp"
                                             android:textStyle="bold" />
@@ -2172,7 +2172,7 @@
                                             android:layout_marginTop="2dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="由空夏提供"
+                                            android:text="@string/由空夏提供"
                                             android:layout_marginBottom="10dp"
                                             android:textColor="#fff"
                                             android:textSize="10sp"
@@ -2203,7 +2203,7 @@
                                             android:layout_marginTop="20dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="图形系统[推荐]"
+                                            android:text="@string/图形系统8485285"
                                             android:textColor="#fff"
                                             android:textSize="13sp"
                                             android:textStyle="bold" />
@@ -2218,7 +2218,7 @@
                                             android:marqueeRepeatLimit="marquee_forever"
                                             android:id="@+id/mnj_tv"
                                             android:gravity="center"
-                                            android:text="由Moe提供,git地址:https://gitee.com/mo2,本脚本已通过原作者同意,也感谢原作者对UT的支持"
+                                            android:text="@string/由Moe提供8520566"
                                             android:layout_marginBottom="10dp"
                                             android:textColor="#fff"
                                             android:textSize="10sp"
@@ -2249,7 +2249,7 @@
                                             android:layout_marginTop="20dp"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="由xom作者提供"
+                                            android:text="@string/由xom作者提供8212541"
                                             android:textColor="#fff"
                                             android:textSize="13sp"
                                             android:textStyle="bold" />
@@ -2264,7 +2264,7 @@
                                             android:marqueeRepeatLimit="marquee_forever"
                                             android:id="@+id/xom_tv"
                                             android:gravity="center"
-                                            android:text="由xom作者提供,本工具是一款专门针对termux的基础环境安装脚本,本脚本已通过原作者同意,也感谢原作者对UT的支持"
+                                            android:text="@string/由xom作者提供552596"
                                             android:layout_marginBottom="10dp"
                                             android:textColor="#fff"
                                             android:textSize="10sp"
@@ -2327,7 +2327,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginLeft="10dp"
-                                android:text="实用功能"
+                                android:text="@string/实用功能885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -2386,7 +2386,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="打开Windows3.2"
+                                        android:text="@string/打开Windows3"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -2418,7 +2418,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="内置Vnc"
+                                        android:text="@string/内置Vncfghfgh"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2491,7 +2491,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="root功能"
+                                        android:text="@string/root功能"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2520,7 +2520,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="论坛"
+                                        android:text="@string/论坛"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2530,7 +2530,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="有问题上论坛"
+                                        android:text="@string/有问题上论坛"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -2561,7 +2561,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="查询包"
+                                        android:text="@string/查询包"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2572,7 +2572,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="当前源的包"
+                                        android:text="@string/当前源的包"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -2614,7 +2614,7 @@
                                         android:layout_marginBottom="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="修复termux"
+                                        android:text="@string/修复termux"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -2654,7 +2654,7 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="Termux-qemu原理"
+                                        android:text="@string/qemu原理"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
@@ -2807,7 +2807,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="美化[字体背景]"
+                                android:text="@string/美化885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -2864,7 +2864,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginLeft="10dp"
-                                android:text="工具[备份恢复]"
+                                android:text="@string/工具885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -2921,7 +2921,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginLeft="10dp"
-                                android:text="修复/其他[杂项选择]"
+                                android:text="@string/修复885"
                                 android:textColor="#fff"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -2989,7 +2989,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
                                 android:id="@+id/seek_bar_tv"
-                                android:text="面板透明度\n[背景图会被覆盖]:"
+                                android:text="@string/面板透明度"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -3094,7 +3094,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
                                 android:id="@+id/seek_bar_tv_1"
-                                android:text="        面板抽屉模式:"
+                                android:text="@string/面板抽屉模式"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -3110,7 +3110,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
                                 android:id="@+id/chouti_1"
-                                android:text="折叠"
+                                android:text="@string/折叠557"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -3125,7 +3125,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
                                 android:id="@+id/chouti_3"
-                                android:text="全开"
+                                android:text="@string/全开557"
                                 android:textColor="#fff"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -3140,11 +3140,89 @@
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
                                 android:id="@+id/chouti_2"
-                                android:text="普通"
+                                android:text="@string/普通557"
                                 android:background="@drawable/shape_login_btn_true"
                                 android:textColor="#10202f"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
+
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:visibility="invisible"
+
+                                android:src="@drawable/jinggao_xiao"
+                                android:layout_height="15dp"/>
+
+
+                            <TextView
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+
+                                android:text="@string/语言5558"
+                                android:textColor="#fff"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+
+
+
+                            <TextView
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:background="@drawable/shape_login_btn_true"
+                                android:text="ENGLISH"
+                                android:id="@+id/english"
+                                android:textColor="#10202f"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+
+
+                            <TextView
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+
+                                android:id="@+id/zhongwen"
+                                android:text="中文"
+                                android:textColor="#fff"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+
+
+
 
 
 
@@ -3196,7 +3274,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="[*]功能"
+                android:text="@string/功能885"
                 android:textColor="#fff" />
 
             <Button
@@ -3205,7 +3283,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="会话"
+                android:text="@string/会话885"
                 android:textColor="#fff" />
 
         </LinearLayout>

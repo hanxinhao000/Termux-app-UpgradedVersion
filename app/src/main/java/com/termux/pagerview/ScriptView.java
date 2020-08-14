@@ -13,6 +13,7 @@ import java.io.InputStream;
 
 import main.java.com.termux.app.TermuxActivity;
 import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.utils.UUtils;
 
 public class ScriptView extends BaseViewPagerView implements View.OnClickListener {
 
@@ -94,7 +95,7 @@ public class ScriptView extends BaseViewPagerView implements View.OnClickListene
         mView.findViewById(R.id.ycm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TermuxApplication.mContext, "功能已出数据包,请下载数据包使用", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.功能已出数据包请下载数据包使用), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,7 +114,7 @@ public class ScriptView extends BaseViewPagerView implements View.OnClickListene
                     Runtime.getRuntime().exec("chmod 777 " + mHomeFile.getAbsolutePath() + "all_tool_msf.sh");
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "执行失败!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), UUtils.getString(R.string.执行失败), Toast.LENGTH_SHORT).show();
                 }
 
                 TermuxActivity.mTerminalView.sendTextToTerminal("cd ~ \n");

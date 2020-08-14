@@ -31,7 +31,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="开源地址"
+                android:text="@string/开源地址"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -60,7 +60,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="杂项脚本"
+                android:text="@string/杂项脚本"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -88,7 +88,7 @@
                 android:layout_weight="1"
                 android:id="@+id/start_lan_tv"
                 android:gravity="center"
-                android:text="启动器[新]"
+                android:text="@string/启动器556"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -99,7 +99,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="切换新旧启动器"
+                android:text="@string/切换新旧启动器"
                 android:layout_marginBottom="10dp"
                 android:textColor="#fff"
                 android:textSize="10sp"
@@ -143,7 +143,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="修复权限"
+                android:text="@string/修复权限"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -176,7 +176,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="参考页面"
+                android:text="@string/参考页面"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -207,7 +207,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="修复so异常"
+                android:text="@string/修复so异常"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />

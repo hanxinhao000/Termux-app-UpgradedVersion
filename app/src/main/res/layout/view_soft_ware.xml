@@ -26,7 +26,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:text="该页面空白奥"
+            android:text="@string/该页面空白奥"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:text="开发者后期会加入其他功能"
+            android:text="@string/开发者后期会加入其他功能"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:text="请前往其他页面看看"
+            android:text="@string/请前往其他页面看看"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

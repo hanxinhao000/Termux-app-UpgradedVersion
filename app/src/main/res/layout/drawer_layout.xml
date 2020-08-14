@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:visibility="gone"
                     android:padding="2dp"
-                    android:text="云端版本:[0.95.89]\n本地版本[-.--.--]"
+                    android:text="云端版本:[0.98.89]\n本地版本[-.--.--]"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -329,7 +329,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.95.89]"
+            android:text="Termux[0.98.89]"
             android:textColor="#fff"
             android:textSize="28sp" />
 
@@ -388,7 +388,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="正在完成操作,请等待!(根据Termux更改的)"
+                android:text="@string/正在完成操作"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -397,7 +397,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="测试版本!有些手机可能不支持,如果有不支持的请及时反馈问题"
+                android:text="@string/测试版本"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -406,7 +406,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="请保持此页面在最前端，并且不要有其他操作！\n 并且保持屏幕亮起,切记！\n当前版本包含:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap...\n您可以在软件中点击'+'号来备份/恢复您的Linux系统,在浏览器中输入:你手机的ip地址:8080\n来访问相关信息\n mysql账号:root \n mysql密码:123\nmysql远程(是/否):是\n网站管理目录[在备份的压缩包中]:/files/usr/share/nginx/html/\n您可以选择复制进去重新压缩，然后点击恢复linux\n刚启动可能有点卡，等待5-10分钟，就正常了\n不想自启动命令,删除掉[/usr/etc/XINHAO_HAN]文件,就不会每次启动命令了,如果还原启动命令,创建一个[XINHAO_HAN]空文件"
+                android:text="@string/请保持此页面在最前端"
                 android:textColor="#000"
                 android:visibility="gone" />
 
@@ -485,7 +485,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="请选择变化信息:"
+                android:text="@string/请选择变化信息"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -506,7 +506,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:text="文字"
+                    android:text="@string/文字"
                     android:textColor="#fff"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -518,7 +518,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="文字 + 底部键盘"
+                    android:text="@string/文字123"
                     android:textColor="#CC0099"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -546,7 +546,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="键盘"
+                    android:text="@string/键盘"
                     android:textColor="#fff"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -558,7 +558,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="背景"
+                    android:text="@string/背景"
                     android:textColor="#fff"
                     android:textSize="16sp"
                     android:textStyle="bold" />

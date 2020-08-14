@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#000"
                 android:textSize="18sp"
-                android:text="当前版本:0.95.89"
+                android:text="当前版本:0.98.89"
                 android:layout_height="wrap_content" />
 
             <TextView

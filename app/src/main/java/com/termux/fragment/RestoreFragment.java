@@ -35,6 +35,7 @@ import main.java.com.termux.core.CoreLinux;
 import main.java.com.termux.fragment.utils.QZUtils;
 import main.java.com.termux.utils.ExeCommand;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.XHTarUtils;
 import main.java.com.termux.view.MyDialog;
 import main.java.com.termux.view.YesNoDialog;
@@ -72,7 +73,7 @@ public class RestoreFragment extends BaseFragment {
         File[] files1 = mSdFile.listFiles();
 
         if (files1 == null) {
-            mStartRe.setText("没有SD卡权限,或者sdcard->xinhao/data/目录下没有恢复文件!");
+            mStartRe.setText(UUtils.getString(R.string.没有SD卡权限rrr111));
             return;
         }
 
@@ -83,7 +84,7 @@ public class RestoreFragment extends BaseFragment {
         }
 
         if (files.size() == 0) {
-            mStartRe.setText("没有SD卡权限,或者sdcard->xinhao/data/目录下没有恢复文件!");
+            mStartRe.setText(UUtils.getString(R.string.没有SD卡权限rrr111));
         }
 
         mListView.setAdapter(new RestoreAdapter(files));
@@ -101,12 +102,12 @@ public class RestoreFragment extends BaseFragment {
 
                 YesNoDialog yesNoDialog = new YesNoDialog(getActivity());
 
-                yesNoDialog.getTitleTv().setText("恢复方式[X(关闭)]");
-                yesNoDialog.getMsgTv().setText("默认恢复:对于大部分机型选择\n\n强制恢复:默认恢复失败请选择\n默认恢复:数据会丢失\n强制恢复:\n数据不会丢失");
+                yesNoDialog.getTitleTv().setText(UUtils.getString(R.string.恢复方式rrr55));
+                yesNoDialog.getMsgTv().setText(UUtils.getString(R.string.默认恢复555ggg));
 
-                yesNoDialog.getYesTv().setText("默认恢复");
+                yesNoDialog.getYesTv().setText(UUtils.getString(R.string.默认恢复));
 
-                yesNoDialog.getNoTv().setText("强制恢复");
+                yesNoDialog.getNoTv().setText(UUtils.getString(R.string.强制恢复));
                 yesNoDialog.getNoTv().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -115,14 +116,14 @@ public class RestoreFragment extends BaseFragment {
 
                         if (!(new File("/data/data/com.termux/files/home/storage").exists())){
 
-                            Toast.makeText(TermuxApplication.mContext, "没有找到 storage 目录,请创建", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.没有找到目录), Toast.LENGTH_SHORT).show();
 
                             TermuxApplication.mHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
 
 
-                                    TermuxActivity.mTerminalView.sendTextToTerminal("echo \"这块直接输入回车即可,然后再次进入强制恢复!\" \n");
+                                    TermuxActivity.mTerminalView.sendTextToTerminal(UUtils.getString(R.string.这块直接输入回车即可hfrrr));
 
                                     TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage ");
                                     getActivity().finish();
@@ -139,7 +140,7 @@ public class RestoreFragment extends BaseFragment {
                         if(yesNoDialog.getInputSystemName().getText().toString().isEmpty()){
                             yesNoDialog.getInputSystemName().setVisibility(View.VISIBLE);
 
-                            Toast.makeText(getContext(), "请输入系统名称!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), UUtils.getString(R.string.请输入系统名称rrr), Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -148,9 +149,9 @@ public class RestoreFragment extends BaseFragment {
 
                         MyDialog myDialog = new MyDialog(getActivity());
 
-                        myDialog.getDialog_title().setText("请稍等[此过程禁止切屏]");
+                        myDialog.getDialog_title().setText(UUtils.getString(R.string.请稍等此过程禁止切屏));
 
-                        myDialog.getDialog_pro().setText("正在搜索多系统..");
+                        myDialog.getDialog_pro().setText(UUtils.getString(R.string.正在搜索多系统));
 
                         myDialog.getDialog_pro_prog().setMax(100);
                         myDialog.getDialog_pro_prog().setProgress(6);
@@ -183,17 +184,17 @@ public class RestoreFragment extends BaseFragment {
 
                         AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
 
-                        ab.setTitle("危险!");
+                        ab.setTitle(UUtils.getString(R.string.危险rrr));
 
-                        ab.setMessage("恢复设备数据，会擦除掉之前所有的数据\n如果想要共存请在[切换linux]中\n创建一个新的容器,2种数据将都会保存\n是否继续?");
+                        ab.setMessage(UUtils.getString(R.string.恢复设备数据会擦除掉之前所有的数据));
 
-                        ab.setPositiveButton("我清楚我在做什么", new DialogInterface.OnClickListener() {
+                        ab.setPositiveButton(UUtils.getString(R.string.我清楚我在做什么), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                                 mListView.setVisibility(View.GONE);
                                 mTitle.setVisibility(View.VISIBLE);
-                                Toast.makeText(getContext(), "开始", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), UUtils.getString(R.string.开始), Toast.LENGTH_SHORT).show();
                                 ab.create().dismiss();
                                 BackNewActivity.mIsRun = true;
                                 start(file);
@@ -202,7 +203,7 @@ public class RestoreFragment extends BaseFragment {
                             }
                         });
 
-                        ab.setNeutralButton("我在考虑考虑", new DialogInterface.OnClickListener() {
+                        ab.setNeutralButton(UUtils.getString(R.string.我在考虑考虑), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ab.create().dismiss();
@@ -223,7 +224,7 @@ public class RestoreFragment extends BaseFragment {
     private void start(File file) {
 
 
-        Toast.makeText(getContext(), "开始清除数据...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), UUtils.getString(R.string.开始清除数据), Toast.LENGTH_SHORT).show();
         Log.e("XINHAO_HAN_FILE", "start: " + "执行0");
 
         String cpu = TermuxInstaller.determineTermuxArchName();
@@ -278,7 +279,7 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                mTitle.setText("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在擦除usr目录数据...]\n\n");
+                                mTitle.setText(UUtils.getString(R.string.恢复完成会自定退出rrvv));
 
                             }
                         });
@@ -299,7 +300,7 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                mTitle.setText("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[擦除usr目录数据完成,正在擦除home数据.]\n\n");
+                                mTitle.setText(UUtils.getString(R.string.恢复完成会自定退出擦除));
 
                             }
                         });
@@ -321,7 +322,7 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                mTitle.setText("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到恢复完成,直至恢复退出!\n\n[数据擦除完成!开始写入文件...]\n\n");
+                                mTitle.setText(UUtils.getString(R.string.恢复完成会自定退出写入));
 
                             }
                         });
@@ -336,7 +337,7 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                mTitle.setText("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!恢复完成自动退出  \n\n选择一个恢复文件开始启动您的恢复\n\n不要退出该页面,否则导致恢复失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到恢复完成,直至恢复退出!\n\n[正在展开安装包...]\n\n");
+                                mTitle.setText(UUtils.getString(R.string.恢复完成会自定退出写展开));
 
                             }
                         });
@@ -354,7 +355,7 @@ public class RestoreFragment extends BaseFragment {
                                 @Override
                                 public void run() {
                                     if (!buf.equals("")) {
-                                        SpannableString spannableString = new SpannableString("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复...]\n\n" + buf);
+                                        SpannableString spannableString = new SpannableString(UUtils.getString(R.string.恢复完成会自定退出写恢复) + buf);
                                         spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 38, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                                         mTitle.setText(spannableString);
 
@@ -390,7 +391,7 @@ public class RestoreFragment extends BaseFragment {
                                 @Override
                                 public void run() {
                                     if (!buf.equals("")) {
-                                        SpannableString spannableString = new SpannableString("恢复完成会自定退出!!!!!!!!不要说恢复着闪退之类的!!备份完成自动退出,恢复过程中界面可能会卡死,但不影响后台解压正常使用  \n\n选择一个恢复文件开始启动您的备份\n\n不要退出该页面,否则导致备份失败!\n\n恢复文件请放在[sdcard -> xinhao/data/]目录下 \n\n 请等到备份完成,直至恢复退出!\n\n[正在恢复...]\n\n" + buf);
+                                        SpannableString spannableString = new SpannableString(UUtils.getString(R.string.恢复完成会自定退出写恢复112) + buf);
                                         spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, 64, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                                         mTitle.setText(spannableString);
 
@@ -423,13 +424,13 @@ public class RestoreFragment extends BaseFragment {
                         TermuxApplication.mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(TermuxApplication.mContext, "恢复完成,请重启APP！！！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.恢复完成请重启APP), Toast.LENGTH_SHORT).show();
 
                                 try {
                                     AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
-                                    ab.setTitle("恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!");
-                                    ab.setMessage("你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!");
-                                    ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                                    ab.setTitle(UUtils.getString(R.string.恢复成功如果很短));
+                                    ab.setMessage(UUtils.getString(R.string.你必须重启APP才能使用新的恢复系统));
+                                    ab.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(getActivity(), TermuxService.class);
@@ -443,7 +444,7 @@ public class RestoreFragment extends BaseFragment {
                                     });
                                     ab.show();
                                 }catch (Exception e){
-                                    Toast.makeText(TermuxApplication.mContext, "出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.出现了一个错误eed), Toast.LENGTH_SHORT).show();
 
                                 }
 

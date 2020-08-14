@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="请选择一种布局"
+        android:text="@string/请选择一种布局"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="官方布局"
+                android:text="@string/官方布局"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="轻触以一键切换到官方键盘布局"
+                android:text="@string/轻触以一键切换到官方键盘布局"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="魔改Termux布局"
+                android:text="@string/魔改Termux布局"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="轻触以一键切换到魔改键盘布局"
+                android:text="@string/轻触以一键切换到魔改键盘布局"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -140,7 +140,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="导入底部布局配置文件"
+                android:text="@string/导入底部布局配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -148,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]"
+                android:text="@string/配置文件请在群文件下载"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -189,7 +189,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="导入右边键盘配置文件[不支持功能键,如 TAB ALT CTRL]"
+                android:text="@string/导入右边键盘配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -197,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="[在 sdcard ->xinhao/config 下]\n[配置文件请在群文件下载]\n[在主屏幕,滑动右侧边缘滑动唤醒]"
+                android:text="@string/在主屏幕滑动右侧边缘滑动唤醒"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -235,7 +235,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="恢复默认右边键盘配置文件"
+                android:text="@string/恢复默认右边键盘配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -243,7 +243,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="点击恢复默认的右边键盘文件\n[在主屏幕,滑动右侧边缘滑动唤醒]"
+                android:text="@string/点击恢复默认的右边键盘文件"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </LinearLayout>

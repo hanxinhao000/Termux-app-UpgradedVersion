@@ -29,6 +29,7 @@ import main.java.com.termux.android_cm.managers.flashlight.Constants;
 import main.java.com.termux.app.TermuxService;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.filemanage.filemanager.util.UIUtils;
+import main.java.com.termux.utils.UUtils;
 
 public class FontActivity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class FontActivity extends AppCompatActivity {
         if(!(fontFile.exists())){
             boolean mkdirs = fontFile.mkdirs();
             if (!mkdirs){
-                Toast.makeText(TermuxApplication.mContext, "你没有SD卡权限!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.你没有SD卡权限), Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -78,7 +79,7 @@ public class FontActivity extends AppCompatActivity {
         File[] files = fontFile.listFiles();
 
         if(files == null || files.length == 0){
-            Toast.makeText(TermuxApplication.mContext, "没有在|内部存储/xinhao/font/下找到任何字体!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.没有在内部存储), Toast.LENGTH_SHORT).show();
             return;
         }
         for (int i = 0; i < files.length; i++) {
@@ -139,11 +140,11 @@ public class FontActivity extends AppCompatActivity {
 
             if(fondDatdBean.mFile.getName().equals("termux_def.ttf")){
 
-                fontViewHolder.font_st.setText("Utermux|默认字体");
+                fontViewHolder.font_st.setText(UUtils.getString(R.string.Utermux默认字体));
                 fontViewHolder.font_st.setTypeface(fromAsset);
             }else{
 
-                fontViewHolder.font_st.setText("Utermux|中文字体");
+                fontViewHolder.font_st.setText(UUtils.getString(R.string.Utermux中文字体));
                 fontViewHolder.font_st.setTypeface(fromAsset);
             }
 
@@ -220,7 +221,7 @@ public class FontActivity extends AppCompatActivity {
             boolean newFile = termuxFontFile.createNewFile();
 
             if(!newFile){
-                Toast.makeText(TermuxApplication.mContext, "创建文件错误!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TermuxApplication.mContext, UUtils.getString(R.string.创建文件错误558), Toast.LENGTH_SHORT).show();
             }
 
 
@@ -243,7 +244,7 @@ public class FontActivity extends AppCompatActivity {
 
 
 
-            Toast.makeText(FontActivity.this, "字体设置成功!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FontActivity.this, UUtils.getString(R.string.字体设置成功), Toast.LENGTH_SHORT).show();
 
         /*    Intent intent = new Intent("com.termux.app.reload_style");
             intent.putExtra("com.termux.app.reload_style","font");
@@ -252,9 +253,9 @@ public class FontActivity extends AppCompatActivity {
 
             //finish();
             AlertDialog.Builder ab = new AlertDialog.Builder(FontActivity.this);
-            ab.setTitle("字体设置成功!");
-            ab.setMessage("如果进入终端没有任何显示，可能是您选择的字体可能已损坏!，请重新选择一个字体文件!");
-            ab.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+            ab.setTitle(UUtils.getString(R.string.字体设置成功));
+            ab.setMessage(UUtils.getString(R.string.如果进入终端没有任何显示));
+            ab.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(FontActivity.this, TermuxService.class);

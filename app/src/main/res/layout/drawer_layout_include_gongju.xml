@@ -36,7 +36,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="实验室"
+                android:text="@string/实验室"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -76,7 +76,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="悬浮命令行"
+                android:text="@string/悬浮命令行"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -108,7 +108,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="开机命令[开]"
+                android:text="@string/开机命令556"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -161,7 +161,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="全屏模式\n[再次点击关闭]"
+                android:text="@string/全屏模式asf5sd5"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -190,7 +190,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="替换官方版本"
+                android:text="@string/替换官方版本"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -201,7 +201,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="用官版的请点击"
+                android:text="@string/用官版的请点击"
                 android:layout_marginBottom="10dp"
                 android:textColor="#fff"
                 android:textSize="10sp"
