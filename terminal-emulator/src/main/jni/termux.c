@@ -23,13 +23,13 @@ static int throw_runtime_exception(JNIEnv* env, char const* message)
 }
 
 static int create_subprocess(JNIEnv* env,
-        char const* cmd,
-        char const* cwd,
-        char* const argv[],
-        char** envp,
-        int* pProcessId,
-        jint rows,
-        jint columns)
+                             char const* cmd,
+                             char const* cwd,
+                             char* const argv[],
+                             char** envp,
+                             int* pProcessId,
+                             jint rows,
+                             jint columns)
 {
     int ptm = open("/dev/ptmx", O_RDWR | O_CLOEXEC);
     if (ptm < 0) return throw_runtime_exception(env, "Cannot open /dev/ptmx");
@@ -40,12 +40,12 @@ static int create_subprocess(JNIEnv* env,
     char devname[64];
 #endif
     if (grantpt(ptm) || unlockpt(ptm) ||
-#ifdef LACKS_PTSNAME_R
-            (devname = ptsname(ptm)) == NULL
-#else
-            ptsname_r(ptm, devname, sizeof(devname))
+        #ifdef LACKS_PTSNAME_R
+        (devname = ptsname(ptm)) == NULL
+        #else
+        ptsname_r(ptm, devname, sizeof(devname))
 #endif
-       ) {
+        ) {
         return throw_runtime_exception(env, "Cannot grantpt()/unlockpt()/ptsname_r() on /dev/ptmx");
     }
 
@@ -113,15 +113,15 @@ static int create_subprocess(JNIEnv* env,
 }
 
 JNIEXPORT jint JNICALL Java_com_termux_terminal_JNI_createSubprocess(
-        JNIEnv* env,
-        jclass TERMUX_UNUSED(clazz),
-        jstring cmd,
-        jstring cwd,
-        jobjectArray args,
-        jobjectArray envVars,
-        jintArray processIdArray,
-        jint rows,
-        jint columns)
+    JNIEnv* env,
+    jclass TERMUX_UNUSED(clazz),
+    jstring cmd,
+    jstring cwd,
+    jobjectArray args,
+    jobjectArray envVars,
+    jintArray processIdArray,
+    jint rows,
+    jint columns)
 {
     jsize size = args ? (*env)->GetArrayLength(env, args) : 0;
     char** argv = NULL;

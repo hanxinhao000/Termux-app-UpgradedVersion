@@ -54,8 +54,8 @@ android {
         applicationId "com.termux"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 84
-        versionName "0.98.89"
+        versionCode 85
+        versionName "0.98.91"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }

@@ -65,12 +65,12 @@ public class QZUtils {
                 });
 
 
-                TermuxApplication.mHandler.post(new Runnable() {
+             /*   TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage \n");
                     }
-                });
+                });*/
 
                 if (!(new File("/data/data/com.termux/files/home/storage").exists())) {
 

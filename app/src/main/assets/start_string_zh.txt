@@ -1,0 +1,28 @@
+
+欢迎来到 Termux!
+
+维基:          https://wiki.termux.com
+社区论坛:      https://termux.com/community
+讨论:          https://gitter.im/termux/termux
+IRC 通道:     #在自由节点上termux
+
+处理包:
+
+ * 搜索包:   pkg search <query>
+ * 安装包:   pkg install <package>
+ * 升级包:   pkg upgrade
+
+订阅其他存储库:
+
+ * Root库:     pkg install root-repo
+ * 测试库:     pkg install unstable-repo
+ * X11图形库:  pkg install x11-repo
+
+报告问题 https://termux.com/issues
+
+恢复包、扩展包、图形包、下载站:
+
+ * 百度:  https://pan.baidu.com/s/1iJj84b1o2ElXp_8TXmg8cw 提取码:gzdp
+ * 360 :   https://yunpan.360.cn/surl_yxNJPmCsCaA （提取码：8874）
+
+ 

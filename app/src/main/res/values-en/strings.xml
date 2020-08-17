@@ -923,7 +923,7 @@ Instead of starting the command itself, delete the [/usr/etc/xinhao_han] file so
     <string name="键盘">The keyboard</string>
     <string name="背景">background</string>
     <string name="公告552">Announcement:</string>
-    <string name="本地版本552">Local version :[0.98.89]</string>
+    <string name="本地版本552">Local version :[0.98.91]</string>
     <string name="云端版本552">Cloud version :[0.92.77]</string>
     <string name="架构">Architecture :[unreadable]</string>
     <string name="IP">IP:[unreadable]</string>
@@ -1061,7 +1061,7 @@ After decompression :1000 MB
     <string name="备份恢复功能将无法使用">"You have rejected, the backup restore function will not be available!"</string>
     <string name="服务器离线sd5fsd5">"The server is offline, please go to group :714730084 to get the latest version"</string>
     <string name="最新版本d52gdf2g2">"Latest version :[......]"</string>
-    <string name="本地版本sdf2sdf5sd">"Local version :[0.98.89]\n Latest version :[-.--]"</string>
+    <string name="本地版本sdf2sdf5sd">"Local version :[0.98.91]\n Latest version :[-.--]"</string>
     <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.92.77]\n Latest version :[versionName]"</string>
     <string name="最新版本sa5dfsd">"Latest Version :[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"Latest version :[versionName]/ Capacity: String1"</string>
@@ -1367,7 +1367,7 @@ Is it open or not?"</string>
     <string name="恢复成功如果很短">"Restore successfully [if very short (within 10 seconds) may fail, restore], must operate!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"You must restart the APP to use the new recovery system \n or the system will be abnormal! \n Action steps: Retrace Termux and click Termux to re-enter \n remember!!!!!!"</string>
     <string name="出现了一个错误eed">An error has occurred which causes the software to be unable to be restarted. Please restart it manually.</string>
-    <string name="当前版本ffg">Current version :0.98.89</string>
+    <string name="当前版本ffg">Current version :0.98.91</string>
     <string name="当前版本包含ggb">In the current version contains [packets (2.2 GB)] : PHP, mysql, showdoc, VNC, apache2, nginx, gogs version manager (git), nmap...</string>
     <string name="备份当前操作Linuxvvb">Backup current operating Linux[not recommended for general users]</string>
     <string name="点击备份当前linuxllk">"Click back up the current Linux \n backup directory :/sdcard/ Xinhao /system/\n\n Since this is a developer's backup, the error rate is extremely high. \n is not recommended for ordinary users. You can use [Quick Backup]"</string>
@@ -1566,7 +1566,16 @@ Is it open or not?"</string>
     <string name="图形">graphics</string>
     <string name="脚本">The script</string>
     <string name="管理">management</string>
+
+    <string name="云端版本553">"Cloud version :[0.98.91]\n Local version [—. —. —]"</string>
+
+    <string name="终端开机命令">Terminal boot command</string>
+    <string name="目前开">At present [on]</string>
+    <string name="目前关">At present [off]</string>
+    <string name="目前关提示">To take effect, you must create a new system in the switching system and switch!</string>
+
     <string name="参考页面5555555">Sponsored [just technical help] (in no particular order) : \n \n -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- \n \nOuter [2] selections: | QQ: 8387 * * 536 \n \nhexahedron yell [selections: 1] | 19869 * 359 \n \n spray snow a [10] selections: : * 29307 * 324 \n \n penetration tools [selections: 10] : 2411 * * 013 \n \n tian long ba bu [30] selections: * 6955 * 042 \n \n \n -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- \n \nubuntu graphics: \n \n each write-up: userland \n address: https://github.com/CypherpunkArmory/UserLAnd\n\n suspended window [important acknowledgment!] : Leonid Plyushch \n personal homepage: https://github.com/xeffyr\nmp3:paulumi project address: https://github.com/paulumi/Ekualizers-Music\n\n thanks termux \n project address: https://github.com/termux/termux-app \n\n \n this APP just integrates all the resources \n\n follow the protocol \n\n of all the original authors \n\n do not release \n\n in the major APP stores \n\n legal liability by the publisher (all laws)\n\n \n again declare \n\n this program is just to learn to communicate and use, do not go beyond the scope of application!! \n\n In the event of any legal liability arising from use, the user is liable! \n\n by downloading or using this, you agree to all the terms of this page!</string>
+
 
     <string name="run_command_permission_label">Run the command in the Termux environment</string>
     <string name="run_command_permission_description">Allows third-party applications to execute arbitrary commands in the Termux environment.</string>

@@ -2770,7 +2770,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-
+                getDrawer().closeDrawer(Gravity.LEFT);
                 mTerminalView.sendTextToTerminal("cd ~ && apt install python git -y  && git clone https://github.com/thehackingsage/hacktronian.git && cd hacktronian && chmod 777 hacktronian.py && python hacktronian.py \n");
 
 
@@ -2780,6 +2780,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         adb_install.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
                 mTerminalView.sendTextToTerminal("cd ~ && apt update -y && apt install wget -y && wget https://github.com/MasterDevX/Termux-ADB/raw/master/InstallTools.sh && bash InstallTools.sh \n");
 
             }
@@ -2788,6 +2789,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         apk_install.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
                 mTerminalView.sendTextToTerminal("cd ~ &&  apt install curl -y && curl -O https://raw.githubusercontent.com/BuildAPKs/buildAPKs/master/setup.buildAPKs.bash && bash setup.buildAPKs.bash \n");
 
             }
@@ -3052,6 +3054,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout termux_layout_1;
     private LinearLayout adb_install;
     private LinearLayout apk_install;
+    private LinearLayout history_command;
     private TextView check_up;
     private TextView seek_bar_tv;
     private SeekBar seek_bar;
@@ -3069,7 +3072,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     private TextView english;
     private TextView zhongwen;
+    private TextView status_zd;
 
+    //start_zd_mingl
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -3109,6 +3114,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         chouti_3 = findViewById(R.id.chouti_3);
         english = findViewById(R.id.english);
         zhongwen = findViewById(R.id.zhongwen);
+        status_zd = findViewById(R.id.status_zd);
+        history_command = findViewById(R.id.history_command);
+
+        startZd();
+
 
         english.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3126,7 +3136,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         tool_x = findViewById(R.id.tool_x);
         termux_layout_1 = findViewById(R.id.termux_layout_1);
-        mHistoryCommand = findViewById(R.id.history_command);
+       // mHistoryCommand = findViewById(R.id.history_command);
         text_system = findViewById(R.id.text_system);
         text_system.setSelected(true);
         mnj_tv = findViewById(R.id.mnj_tv);
@@ -3349,7 +3359,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         }
 
 
-        mHistoryCommand.setOnClickListener(new View.OnClickListener() {
+      /*  mHistoryCommand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -3379,7 +3389,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             }
         });
-
+*/
         readSystemFile();
 
         gaoji_vnc.setOnClickListener(new View.OnClickListener() {
@@ -8424,10 +8434,17 @@ Solaris(APP美化)
                             getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, Gravity.LEFT);
 
 
-                            File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+                            String start_zd_mingl = SaveData.getData("start_zd_mingl");
+
+                            if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                                File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+                                writerFile("bash.bashrc", file222);
+
+                            }
 
 
-                            writerFile("bash.bashrc", file222);
+
+
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
@@ -8441,7 +8458,13 @@ Solaris(APP美化)
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     startActivity(new Intent(TermuxActivity.this, ThanksActivity.class));
-                                    mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
+                                    String start_zd_mingl = SaveData.getData("start_zd_mingl");
+
+                                    if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                                        mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
+                                    }
+
+
 
                                 }
                             });
@@ -8450,8 +8473,11 @@ Solaris(APP美化)
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     ab.create().dismiss();
-                                    mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
+                                    String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
+                                    if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                                        mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
+                                    }
                                 }
                             });
 
@@ -9418,5 +9444,40 @@ other_text;
 
     }
 
+
+
+    private void startZd(){
+
+        history_command.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String start_zd_mingl = SaveData.getData("start_zd_mingl");
+
+                if(start_zd_mingl == null || start_zd_mingl.isEmpty()||start_zd_mingl.equals("def")){
+
+                    SaveData.saveData("start_zd_mingl","true");
+                    status_zd.setText(UUtils.getString(R.string.目前开));
+                    UUtils.showMsg(UUtils.getString(R.string.目前关提示));
+
+                }else {
+                    SaveData.saveData("start_zd_mingl","def");
+                    status_zd.setText(UUtils.getString(R.string.目前关));
+                }
+
+            }
+        });
+
+        String start_zd_mingl = SaveData.getData("start_zd_mingl");
+
+        if(start_zd_mingl == null || start_zd_mingl.isEmpty()||start_zd_mingl.equals("def")){
+            status_zd.setText(UUtils.getString(R.string.目前关));
+        }else {
+            status_zd.setText(UUtils.getString(R.string.目前开));
+        }
+
+
+
+    }
 
 }

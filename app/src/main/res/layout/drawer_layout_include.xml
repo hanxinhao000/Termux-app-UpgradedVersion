@@ -1281,7 +1281,7 @@
                                 <LinearLayout
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
-                                    android:visibility="invisible"
+                                    android:visibility="visible"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="15dp"
                                     android:id="@+id/history_command"
@@ -1299,7 +1299,7 @@
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="历史命令"
+                                        android:text="@string/终端开机命令"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />
@@ -1310,7 +1310,8 @@
                                         android:layout_marginTop="2dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="查看历史命令"
+                                        android:id="@+id/status_zd"
+                                        android:text="@string/目前关"
                                         android:layout_marginBottom="10dp"
                                         android:textColor="#fff"
                                         android:textSize="10sp"
