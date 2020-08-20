@@ -15,7 +15,7 @@
         android:background="@color/md_white_1000"
         android:padding="10dp">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -52,7 +52,7 @@
         android:background="@color/md_white_1000"
         android:padding="10dp">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -89,7 +89,7 @@
         android:background="@color/md_white_1000"
         android:padding="10dp">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -125,7 +125,7 @@
         android:paddingBottom="5dp">
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_all_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
             android:textColor="@color/md_blue_grey_600"
             android:textSize="14dp"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -22,7 +22,7 @@
 
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -31,7 +31,7 @@
                 android:text="@string/欢迎来到实验室"
                 android:textColor="#fff"
                 android:textSize="18sp" />
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -51,14 +51,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/使用此功能必须打开短信息权限"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -99,14 +99,14 @@
                     android:layout_toRightOf="@+id/wenhou"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/修改启动问候语"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -128,7 +128,7 @@
 
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -147,14 +147,14 @@
                     android:layout_toRightOf="@+id/kaiji"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/增加开机启动命令8833"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -182,7 +182,7 @@
             </RelativeLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -201,14 +201,14 @@
                     android:layout_toRightOf="@+id/xiazai"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/修改下载源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -225,7 +225,7 @@
                     android:layout_height="40dp" />
 
             </RelativeLayout>
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -244,14 +244,14 @@
                     android:layout_toRightOf="@+id/guanfang"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/一键切换到官方源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -268,7 +268,7 @@
                     android:src="@drawable/guanfang"
                     android:layout_height="40dp" />
             </RelativeLayout>
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -286,14 +286,14 @@
                     android:layout_toRightOf="@+id/qinghua"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/一键切换到清华源889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -311,7 +311,7 @@
                     android:layout_height="40dp" />
 
             </RelativeLayout>
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />
@@ -330,14 +330,14 @@
                     android:layout_toRightOf="@+id/ubuntu_user"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/安装userlAnd旗下系统"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -355,7 +355,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="10dp"
@@ -375,14 +375,14 @@
                     android:layout_toRightOf="@+id/xiufu"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/修复操作系统权限889"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -401,7 +401,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#fff" />

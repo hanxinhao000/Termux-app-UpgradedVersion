@@ -42,7 +42,7 @@
                         android:src="@drawable/def_img" />
 
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:text="使用busyBox恢复/解压tar"
                         android:textColor="#fff"
@@ -90,7 +90,7 @@
 
 
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:text="使用内置termux环境进行恢复/解压tar"
                         android:textColor="#fff"

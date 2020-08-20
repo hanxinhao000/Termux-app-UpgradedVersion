@@ -9,7 +9,7 @@
     tools:context="main.java.com.termux.app.TestActivity">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -19,7 +19,7 @@
         android:textSize="20sp" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:layout_marginTop="28dp"
@@ -47,7 +47,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ubuntu_1" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/ubuntu_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ubuntu_2" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -97,7 +97,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/kaiji" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -129,7 +129,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/lixian_1" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/debian_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ubuntu_2" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -180,7 +180,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/huohu" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -212,7 +212,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/zhuomian" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/xfce4_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/zhuomian" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -259,7 +259,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/lixian" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -271,7 +271,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:layout_marginTop="28dp"

@@ -13,7 +13,7 @@
 
         android:layout_alignParentBottom="true">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/prefix_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -42,7 +42,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/output_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

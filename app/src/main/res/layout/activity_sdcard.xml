@@ -20,7 +20,7 @@
         android:background="@drawable/shape_path"
         android:gravity="center_vertical">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:background="@color/color_48baf3"
             android:orientation="horizontal">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="粘贴到此处"
@@ -64,7 +64,7 @@
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="取消"
@@ -85,7 +85,7 @@
       >
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_all_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             android:textColor="@color/md_blue_grey_600"
             android:textSize="14dp"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

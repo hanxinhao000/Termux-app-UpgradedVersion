@@ -8,7 +8,7 @@
 
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,7 +18,7 @@
         android:textColor="#fff"
         android:textSize="16sp" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -48,7 +48,7 @@
 
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="确定"
@@ -58,7 +58,7 @@
             android:textColor="#fff"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="取消"

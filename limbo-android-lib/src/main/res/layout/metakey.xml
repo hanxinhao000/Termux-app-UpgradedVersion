@@ -43,7 +43,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/send_button"
 		/>
-		<TextView android:id="@+id/textKeyDesc"
+		<main.java.com.termux.utils.CustomTextView android:id="@+id/textKeyDesc"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 		/>
@@ -65,15 +65,15 @@
 				android:padding="10dip"
 				>
 				<TableRow>
-					<TextView android:text="@string/keys_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<main.java.com.termux.utils.CustomTextView android:text="@string/keys_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
 					<Spinner android:id="@+id/spinnerKeysInList" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" />
 				</TableRow>
 				<TableRow>
-					<TextView android:text="@string/list_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<main.java.com.termux.utils.CustomTextView android:text="@string/list_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
 					<Spinner android:id="@+id/spinnerLists" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" />
 				</TableRow>
 				<TableRow>
-					<TextView android:text="@string/list_name_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<main.java.com.termux.utils.CustomTextView android:text="@string/list_name_caption" android:paddingRight="10dip" android:gravity="right|center_vertical" android:textAppearance="?android:attr/textAppearanceMedium" />
 					<EditText android:id="@+id/textListName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1" />
 				</TableRow>
 			</TableLayout>

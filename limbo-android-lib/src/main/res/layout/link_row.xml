@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/LINK_NAME"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:textSize="20dip"
             android:textStyle="bold" />
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/LINK_DESCR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

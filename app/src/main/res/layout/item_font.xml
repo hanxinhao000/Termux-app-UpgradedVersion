@@ -6,14 +6,14 @@
     android:padding="10dp"
     android:layout_height="match_parent">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:text="字体名称:"
         android:id="@+id/font_name"
         android:textSize="14sp"
         android:layout_height="wrap_content"/>
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:text="字体示例:"
@@ -21,7 +21,7 @@
         android:textSize="14sp"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:text="Utermux|中文字体"
@@ -31,7 +31,7 @@
         android:textSize="17sp"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:text="字体路径:"

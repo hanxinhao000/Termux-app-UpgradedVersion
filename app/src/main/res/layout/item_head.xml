@@ -5,7 +5,7 @@
                 android:background="@color/md_grey_50"
                 android:orientation="vertical">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +26,7 @@
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_arrow_drop_up_grey_700_24dp"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="main.java.com.termux.activity.RootActivity">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:textSize="20sp" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:layout_marginTop="28dp"
@@ -48,7 +48,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/install_linux_deploy" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/ubuntu_text_root"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/iso_jx" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -100,7 +100,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/kaiji" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -113,7 +113,7 @@
     </LinearLayout>
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -122,7 +122,7 @@
         android:textColor="#fff"
         android:textSize="16sp" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:layout_marginTop="10dp"
@@ -153,7 +153,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ubuntu_2" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/ubuntu_text_root_system"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/kali_linux" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -204,7 +204,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/arch_bai" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

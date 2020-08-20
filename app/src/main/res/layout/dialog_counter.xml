@@ -13,7 +13,7 @@
         android:text="▲"
         android:textSize="28sp" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/counterTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

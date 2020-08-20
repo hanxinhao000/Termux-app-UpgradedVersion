@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#000"
         android:textSize="16sp"
@@ -26,12 +26,12 @@
         android:textColorHint="#666"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="1px"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#000"
         android:layout_marginTop="10dp"
@@ -53,12 +53,12 @@
         android:textColorHint="#666"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="1px"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#000"
         android:layout_marginTop="10dp"

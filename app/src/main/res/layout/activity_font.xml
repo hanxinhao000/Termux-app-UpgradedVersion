@@ -9,7 +9,7 @@
     tools:context="main.java.com.termux.activity.FontActivity">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:text="@string/字体选择"
         android:gravity="center"
@@ -19,7 +19,7 @@
         android:textColor="#fff"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:text="@string/您一切选择的字体来源于互联网"
         android:gravity="center"

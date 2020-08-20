@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<main.java.com.termux.utils.CustomTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     android:singleLine="true"

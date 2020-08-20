@@ -24,7 +24,7 @@
         android:layout_gravity="end"
         android:orientation="horizontal" >
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:text="UTermux-API"
             android:textColor="#10202f"

@@ -33,7 +33,7 @@
         android:layout_height="45dp"
         android:background="#e6e5e5">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:textSize="14dp"
             android:visibility="gone"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_all_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:textColor="@color/md_blue_grey_600"
             android:textSize="14dp"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

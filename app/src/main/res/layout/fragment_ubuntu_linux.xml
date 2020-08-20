@@ -7,7 +7,7 @@
     android:padding="10dp">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="预留"

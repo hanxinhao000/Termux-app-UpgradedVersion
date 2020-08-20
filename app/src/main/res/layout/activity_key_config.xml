@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="main.java.com.termux.activity.KeyConfigActivity">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/title_window"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

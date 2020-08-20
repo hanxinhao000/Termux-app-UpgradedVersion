@@ -7,7 +7,7 @@
     android:padding="10dp">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/msg_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:textSize="15sp"
         android:textStyle="bold" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/msg_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

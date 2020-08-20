@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scanning"/>
@@ -49,7 +49,7 @@
                 android:paddingRight="@dimen/list_margin">
             </ListView>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@android:id/empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/clipboard_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/navbar_details"/>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/clipboard_separator"
                 android:layout_width="2dp"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                 android:paddingRight="@dimen/list_margin"
                 android:paddingTop="8dp"/>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/clipboard_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

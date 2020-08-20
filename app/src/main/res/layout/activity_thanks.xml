@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"
             android:textColor="#fff"

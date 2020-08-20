@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.termux.R;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +16,7 @@ import java.lang.reflect.Field;
 import main.java.com.termux.activity.UncaughtExceptionHandlerActivity;
 import main.java.com.termux.filemanage.filemanager.FileManagerApplication;
 import main.java.com.termux.utils.UUtils;
+
 
 //import com.youdao.sdk.app.YouDaoApplication;
 
@@ -32,8 +35,8 @@ public class TermuxApplication extends FileManagerApplication {
         //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
 
 
-      /*  Typeface fromFile = Typeface.createFromFile("/data/data/com.termux/files/home/.termux/font.ttf");
-        try {
+    /*    try {
+            Typeface fromFile = Typeface.createFromFile("/data/data/com.termux/files/home/.termux/font.ttf");
             Field field = Typeface.class.getDeclaredField("SERIF");
             field.setAccessible(true);
             field.set(null, fromFile);
@@ -41,8 +44,10 @@ public class TermuxApplication extends FileManagerApplication {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        }*/
-
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+*/
 
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
@@ -56,6 +61,12 @@ public class TermuxApplication extends FileManagerApplication {
 
             }
         });
+
+       /* CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+            .setDefaultFontPath("/data/data/com.termux/files/home/.termux/font.ttf")
+            .setFontAttrId(R.attr.fontPath)
+            .build()
+        );*/
     }
 
     private String collectExceptionInfo(Exception extra) {

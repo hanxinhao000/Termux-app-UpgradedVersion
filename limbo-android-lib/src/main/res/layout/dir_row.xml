@@ -18,7 +18,7 @@
         android:paddingRight="5dp"
         />
 
-    <TextView android:id="@+id/FILE_NAME"
+    <main.java.com.termux.utils.CustomTextView android:id="@+id/FILE_NAME"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_gravity="center"

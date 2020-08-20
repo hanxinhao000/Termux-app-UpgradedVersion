@@ -15,7 +15,7 @@
             android:layout_above="@+id/boom"
             android:layout_height="match_parent">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top|left"
@@ -54,7 +54,7 @@
                     android:src="@drawable/start"
                     android:layout_height="40dp" />
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:text="@string/开始备份1"
                     android:textColor="#fff"

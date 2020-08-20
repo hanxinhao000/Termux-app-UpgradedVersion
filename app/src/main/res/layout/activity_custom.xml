@@ -10,7 +10,7 @@
     tools:context="main.java.com.termux.activity.CustomActivity">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/title_window"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
@@ -39,14 +39,14 @@
             android:layout_toRightOf="@+id/qinghua"
             android:padding="10dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/官方布局"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -64,13 +64,13 @@
             android:layout_height="40dp" />
 
     </RelativeLayout>
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
@@ -88,14 +88,14 @@
             android:layout_toRightOf="@+id/mogai"
             android:padding="10dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/魔改Termux布局"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -113,13 +113,13 @@
             android:layout_height="40dp" />
 
     </RelativeLayout>
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
@@ -137,14 +137,14 @@
             android:layout_toRightOf="@+id/ziding"
             android:padding="10dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/导入底部布局配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -162,13 +162,13 @@
             android:layout_height="40dp" />
 
     </RelativeLayout>
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
@@ -186,14 +186,14 @@
             android:layout_toRightOf="@+id/zidingyou"
             android:padding="10dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/导入右边键盘配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -214,7 +214,7 @@
 
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />
@@ -232,14 +232,14 @@
             android:layout_toRightOf="@+id/zidingyou_def"
             android:padding="10dp">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/恢复默认右边键盘配置文件"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -258,7 +258,7 @@
 
     </RelativeLayout>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#fff" />

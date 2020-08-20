@@ -9,7 +9,7 @@
     tools:context="main.java.com.termux.activity.LinuxDeployActivity">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/activity_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:textSize="20sp" />
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:layout_marginTop="28dp"
@@ -68,7 +68,7 @@
                 </RelativeLayout>
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/ubuntu_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -153,7 +153,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -203,7 +203,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:layout_marginTop="10dp"
@@ -243,7 +243,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:layout_marginTop="10dp"
@@ -283,7 +283,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:layout_marginTop="10dp"
@@ -320,7 +320,7 @@
                     android:src="@drawable/qidong" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:gravity="center"
@@ -358,7 +358,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:layout_marginTop="10dp"
@@ -397,7 +397,7 @@
 
             </RelativeLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:textColor="#0f0"
                 android:layout_marginTop="10dp"

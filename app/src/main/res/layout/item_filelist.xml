@@ -31,7 +31,7 @@
         android:contentDescription="@string/item_icon"
         android:scaleType="fitCenter"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/primary_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/secondary_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorTertiary"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/tertiary_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

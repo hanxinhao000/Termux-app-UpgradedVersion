@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
@@ -71,7 +71,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -92,14 +92,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/Web恢复包f8g9"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -107,7 +107,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -191,14 +191,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/ubuntu图形系统12"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -206,7 +206,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -271,7 +271,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -291,14 +291,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/WINLOG提供的debian图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -306,7 +306,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -370,7 +370,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -389,14 +389,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/WINLOG提供的第二版debian图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -404,7 +404,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -469,7 +469,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -489,14 +489,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/一个ubuntu的图形包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -504,7 +504,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -571,7 +571,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_5"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -591,14 +591,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/ccccccccccc"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -606,7 +606,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_5"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -672,7 +672,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_6"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -692,14 +692,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/kail系统核心完整包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -707,7 +707,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_6"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -772,7 +772,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_7"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -792,14 +792,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/termux核心包qemu"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -807,7 +807,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_7"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -873,7 +873,7 @@
                                     android:src="@drawable/tuxing_home_dis" />
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_size_8"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -893,14 +893,14 @@
                                 android:orientation="vertical">
 
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/渗透包渗透包渗透包"
                                     android:textColor="#1BBC9B"
                                     android:textSize="16sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -908,7 +908,7 @@
                                     android:textColor="#FF2400"
                                     android:textSize="14sp" />
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/down_text_8"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

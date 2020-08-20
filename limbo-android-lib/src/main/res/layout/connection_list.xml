@@ -5,7 +5,7 @@
   android:layout_height="wrap_content"
   android:orientation="vertical"
   >
-  <TextView
+  <main.java.com.termux.utils.CustomTextView
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
   	android:id="@+id/list_text_nickname"
@@ -17,27 +17,27 @@
 	android:orientation="horizontal"
 	android:padding="5dip"
   	>
-	  <TextView
+	  <main.java.com.termux.utils.CustomTextView
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:id="@+id/list_text_address"
 	  	/>
-	  <TextView
+	  <main.java.com.termux.utils.CustomTextView
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:text=":"
 	  	/> 	
-	  <TextView
+	  <main.java.com.termux.utils.CustomTextView
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:id="@+id/list_text_port"
 	  	/> 	
-	  <TextView
+	  <main.java.com.termux.utils.CustomTextView
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:text=" "
 	  	/> 	
-	  <TextView
+	  <main.java.com.termux.utils.CustomTextView
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:id="@+id/list_text_repeater"

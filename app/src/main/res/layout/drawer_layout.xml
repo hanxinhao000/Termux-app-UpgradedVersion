@@ -96,7 +96,7 @@
                       android:layout_height="match_parent"
                       android:layout_above="@+id/function_ll">-->
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/visition4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                             android:layout_height="25dp"
                             android:src="@drawable/fun_all" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
@@ -179,7 +179,7 @@
 
         <RelativeLayout
             android:id="@+id/main_right_drawer_layout"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:background="@android:color/transparent">
@@ -187,7 +187,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#AA2b2b2b"
+
                 android:orientation="horizontal">
 
 
@@ -196,7 +196,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
 
                     <ListView
@@ -209,16 +209,38 @@
 
                     <Button
                         android:id="@+id/item_key_linux"
-                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_ecit_rd_2b2b2b"
                         android:layout_height="wrap_content"
-                        android:text="自带\n键盘"
+                        android:text="@string/更多功能"
+                        android:visibility="gone"
+                        android:textColor="#fff" />
+
+
+                    <main.java.com.termux.utils.CustomTextView
+                        android:id="@+id/other_text"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="13dp"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="13dp"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/shape_ecit_rd_2b2b2b"
+                        android:layout_height="wrap_content"
+                        android:text="@string/更多功能"
                         android:textColor="#fff" />
 
                     <Button
                         android:id="@+id/item_key_user"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:text="用户\n导入\n键盘"
                         android:textColor="#fff" />
@@ -231,6 +253,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="#AA2b2b2b"
                     android:orientation="vertical">
 
                     <ListView
@@ -302,7 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -324,7 +347,7 @@
         android:layout_height="match_parent"
         android:background="#2b2b2b">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -350,7 +373,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ubuntu" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -375,7 +398,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/position_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -384,7 +407,7 @@
                 android:textSize="15sp"
                 android:visibility="gone" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -393,7 +416,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -402,7 +425,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -427,7 +450,7 @@
         android:src="@drawable/jiahao1"
         android:visibility="gone" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/download_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -474,12 +497,12 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#3fff" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -498,7 +521,7 @@
                 android:orientation="horizontal">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/wenzi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -511,7 +534,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/wenzijianpan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -526,7 +549,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#3fff" />
@@ -539,7 +562,7 @@
                 android:orientation="horizontal">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/jianpan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -551,7 +574,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/beijin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -566,7 +589,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#3fff" />

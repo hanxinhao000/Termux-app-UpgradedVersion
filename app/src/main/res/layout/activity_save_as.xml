@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".SaveAsActivity">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:text="移动文件到UTermux"
         android:textColor="#fff"
@@ -17,7 +17,7 @@
         android:textSize="14sp"
         android:layout_height="60dp"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:text="文件信息:\n\n大小:1MB\n\n路径:\n\n后戳名(文件类型)："
         android:textColor="#fff"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"/>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="请点击图标开始复制"
                 android:textColor="#fff"

@@ -10,7 +10,7 @@
         android:layout_centerInParent="true"
         android:src="@drawable/rc_file_icon_else"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv"

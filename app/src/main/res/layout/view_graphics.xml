@@ -38,14 +38,14 @@
                     android:layout_height="match_parent">
 
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
                         android:text="@string/ubuntu图形包linuxdeploy离线包"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
                         android:text="@string/一键安装ubuntu全能图形包"
@@ -79,14 +79,14 @@
                     android:layout_height="match_parent">
 
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:textSize="16sp"
                         android:text="@string/manjaro系统包"
                         android:textColor="#1BBC9B"
                         android:layout_height="wrap_content" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:textSize="14sp"
                         android:text="@string/一键安装manjaro全能系统包"

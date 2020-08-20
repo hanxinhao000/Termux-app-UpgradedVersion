@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="5dp">
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -15,7 +15,7 @@
         android:textColor="#fff"
         android:textSize="14sp" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -32,7 +32,7 @@
         android:id="@+id/dialog_pro_prog"
         android:layout_marginTop="5dp" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:layout_marginTop="5dp"

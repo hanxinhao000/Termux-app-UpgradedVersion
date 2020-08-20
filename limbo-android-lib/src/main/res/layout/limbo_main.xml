@@ -46,7 +46,7 @@
                         android:paddingRight="5dp"
                         android:src="@drawable/limbo" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:id="@+id/machineStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                         android:paddingRight="5dp"
                         android:src="@drawable/snapshot" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:id="@+id/snapshotStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:id="@+id/statusStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                             android:layout_height="48dp"
                             android:src="@drawable/ui" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/userInterfaceSectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
                             android:textStyle="bold" />
 
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/uisectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -252,7 +252,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/ui" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/uiStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/keyboard" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/keyboardstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -322,7 +322,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/mouse" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/mousestr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -357,7 +357,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/refresh" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/orientationstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -405,7 +405,7 @@
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
-                                    <TextView
+                                    <main.java.com.termux.utils.CustomTextView
                                         android:id="@+id/showtoolbarStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -432,7 +432,7 @@
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
-                                    <TextView
+                                    <main.java.com.termux.utils.CustomTextView
                                         android:id="@+id/desktopmodeStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -468,7 +468,7 @@
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
-                                    <TextView
+                                    <main.java.com.termux.utils.CustomTextView
                                         android:id="@+id/fullscreenstr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -494,7 +494,7 @@
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
-                                    <TextView
+                                    <main.java.com.termux.utils.CustomTextView
                                         android:id="@+id/vncExternalStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -521,7 +521,7 @@
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
-                                    <TextView
+                                    <main.java.com.termux.utils.CustomTextView
                                         android:id="@+id/qmpExternalStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -563,7 +563,7 @@
                             android:layout_height="48dp"
                             android:src="@drawable/machinetype" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/cpusectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -574,7 +574,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/cpusectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -608,7 +608,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/arch" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/archtypeStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -641,7 +641,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/machinetype" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/machinetypeStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -674,7 +674,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/cpu" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/cpuStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -701,7 +701,7 @@
                             android:orientation="horizontal"
                             android:padding="10dp">
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/cpunumStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -728,7 +728,7 @@
                             android:orientation="horizontal"
                             android:padding="10dp">
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/rammemStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -768,7 +768,7 @@
                                 android:orientation="horizontal"
                                 android:padding="5dp">
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/enablemttcgstr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -796,7 +796,7 @@
                                 android:orientation="horizontal"
                                 android:padding="5dp">
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/enablekvmstr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -830,7 +830,7 @@
                                 android:orientation="horizontal"
                                 android:padding="5dp">
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/hpetStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -858,7 +858,7 @@
                                 android:orientation="horizontal"
                                 android:padding="5dp">
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/tscStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -893,7 +893,7 @@
                                 android:orientation="horizontal"
                                 android:padding="5dp">
 
-                                <TextView
+                                <main.java.com.termux.utils.CustomTextView
                                     android:id="@+id/acpiStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -935,7 +935,7 @@
                             android:layout_height="48dp"
                             android:src="@drawable/harddisk" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/storagesectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -947,7 +947,7 @@
                             android:textStyle="bold" />
 
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:id="@+id/storagesectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -989,7 +989,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/harddisk" />
 
-                            <TextView
+                            <main.java.com.termux.utils.CustomTextView
                                 android:id="@+id/hdimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1029,7 +1029,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/harddisk" />
 
-                            <TextView
+                            <CustomTextView
                                 android:id="@+id/hdbimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1069,7 +1069,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/harddisk" />
 
-                            <TextView
+                            <CustomTextView
                                 android:id="@+id/hdcimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1109,7 +1109,7 @@
                                 android:paddingRight="5dp"
                                 android:src="@drawable/harddisk" />
 
-                            <TextView
+                            <CustomTextView
                                 android:id="@+id/hddimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

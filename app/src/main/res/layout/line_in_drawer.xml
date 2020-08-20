@@ -1,4 +1,4 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<main.java.com.termux.utils.CustomTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/row_line"
     android:layout_width="fill_parent"
     android:textColor="#fff"

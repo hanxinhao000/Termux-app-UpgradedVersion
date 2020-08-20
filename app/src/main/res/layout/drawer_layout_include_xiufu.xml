@@ -24,7 +24,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/github" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -53,7 +53,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/add_fun" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -81,7 +81,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/start_lan" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -93,7 +93,7 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -136,7 +136,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/xiufuquanxian" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -169,7 +169,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/ganxie" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -200,7 +200,7 @@
                 android:src="@drawable/android_error" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -241,7 +241,7 @@
                 android:src="@drawable/jianpan" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -274,7 +274,7 @@
                 android:src="@drawable/chuangkou" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -306,7 +306,7 @@
                 android:src="@drawable/chuangkou" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -342,7 +342,7 @@
             android:src="@drawable/chuangkou" />
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/title1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                         android:layout_height="50dp"
                         android:src="@drawable/winlog" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -58,7 +58,7 @@
 
                 </LinearLayout>
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_below="@+id/ll_title2"
                     android:layout_marginTop="15dp"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textColor="#fff"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textColor="#fff"

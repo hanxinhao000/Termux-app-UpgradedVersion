@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
@@ -62,7 +62,7 @@
 
                 <TableRow>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dip"
                         android:text="@string/nickname_caption"
@@ -78,7 +78,7 @@
 
                 <TableRow>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dip"
                         android:text="@string/password_caption"
@@ -109,7 +109,7 @@
 
                 <TableRow>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:gravity="right|center_vertical"
                         android:hint="localhost"
                         android:paddingRight="10dip"
@@ -126,7 +126,7 @@
 
                 <TableRow>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dip"
                         android:text="@string/port_caption"
@@ -143,7 +143,7 @@
 
                 <TableRow>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:gravity="right|center_vertical"
                         android:paddingRight="10dip"
                         android:text="@string/username_caption"
@@ -159,7 +159,7 @@
                 </TableRow>
             </TableLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
@@ -184,7 +184,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp" >
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/force_full_check" />
@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/repeater_button" />
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:id="@+id/textRepeaterId"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

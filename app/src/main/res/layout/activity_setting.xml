@@ -38,14 +38,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/当前版本ffg"
                         android:textColor="#fff"
                         android:textSize="24sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -60,7 +60,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -87,14 +87,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/备份当前操作Linuxvvb"
                         android:textColor="@android:color/holo_red_dark"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -109,7 +109,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -136,14 +136,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/恢复当前操作Linuxzzxx"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -158,7 +158,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -186,14 +186,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/打开目录文件"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -208,7 +208,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -234,14 +234,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/切换linux系统fffjjj"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -256,7 +256,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -280,14 +280,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/常用命令"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -303,7 +303,7 @@
 
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -327,14 +327,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/恢复当前操作Linux到默认状态"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -348,7 +348,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />
@@ -372,14 +372,14 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/关于"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -394,7 +394,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#f0f0f0" />

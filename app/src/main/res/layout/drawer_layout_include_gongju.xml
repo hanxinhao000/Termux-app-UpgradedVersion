@@ -28,7 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/shiyanshi" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/shiyan"
@@ -69,7 +69,7 @@
                 android:src="@drawable/xuanfu_img" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -100,7 +100,7 @@
                 android:src="@drawable/kaiguan" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:id="@+id/start_end_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/quanping" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -184,7 +184,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/lishi" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -195,7 +195,7 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -225,7 +225,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/quanping" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

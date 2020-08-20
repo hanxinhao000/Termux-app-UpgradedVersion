@@ -10,7 +10,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#708090"

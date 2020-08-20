@@ -34,7 +34,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_file_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:textColor="#353535"
             android:textSize="14dp"/>
 
-        <TextView
+        <Custommain.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_file_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textColor="#999999"
             android:textSize="10dp"/>
 
-        <TextView
+        <Custommain.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_file_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

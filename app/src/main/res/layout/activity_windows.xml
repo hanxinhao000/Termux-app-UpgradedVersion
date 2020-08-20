@@ -9,7 +9,7 @@
     tools:context="main.java.com.termux.activity.WindowsActivity">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:gravity="center"
@@ -20,7 +20,7 @@
         android:text="@string/请选择一个镜像"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:gravity="center"

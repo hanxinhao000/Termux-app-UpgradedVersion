@@ -33,7 +33,7 @@
                 android:padding="10dp">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/VNC地址rrkk"
@@ -75,7 +75,7 @@
                 android:padding="10dp">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/端口号rrnn"
@@ -120,7 +120,7 @@
                 android:padding="10dp">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/密码qqpp"
@@ -164,7 +164,7 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/开始连接"

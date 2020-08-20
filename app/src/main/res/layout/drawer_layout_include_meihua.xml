@@ -27,7 +27,7 @@
                 android:src="@drawable/keyboard" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -57,7 +57,7 @@
                 android:src="@drawable/yanse_ziti" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -67,7 +67,7 @@
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -98,7 +98,7 @@
                 android:src="@drawable/back_color" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -108,7 +108,7 @@
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -154,7 +154,7 @@
                 android:src="@drawable/video_image" />
 
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -164,7 +164,7 @@
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -194,7 +194,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/zidingyijianpan" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -206,7 +206,7 @@
                 android:textStyle="bold"
                 android:visibility="visible" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -237,7 +237,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/font_item" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -249,7 +249,7 @@
                 android:textStyle="bold"
                 android:visibility="visible" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -289,7 +289,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/termux_color" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -301,7 +301,7 @@
                 android:textStyle="bold"
                 android:visibility="visible" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -330,7 +330,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/left_backkkkkk" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -342,7 +342,7 @@
                 android:textStyle="bold"
                 android:visibility="visible" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -370,7 +370,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/font_item" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -382,7 +382,7 @@
                 android:textStyle="bold"
                 android:visibility="visible" />
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"

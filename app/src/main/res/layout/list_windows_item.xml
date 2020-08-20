@@ -7,7 +7,7 @@
     android:padding="10dp">
 
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="windows.img"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="类型:img"
@@ -28,7 +28,7 @@
             android:id="@+id/type"
             android:textSize="16sp" />
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="大小:15MB"

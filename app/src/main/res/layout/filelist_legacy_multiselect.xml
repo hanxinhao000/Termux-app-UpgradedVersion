@@ -9,7 +9,7 @@
         android:layout_height="@dimen/topBar_height"
         android:background="?attr/topBarBackground"/>
 
-    <TextView
+    <main.java.com.termux.utils.CustomTextView
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

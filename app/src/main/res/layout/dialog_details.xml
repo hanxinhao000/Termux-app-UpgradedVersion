@@ -12,52 +12,52 @@
         android:paddingRight="8dp">
 
         <!-- Size -->
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_size_text"
             style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_size"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_size_value"
             style="@style/dialogDetailsSecondaryText"/>
 
         <!-- Type -->
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_type_text"
             style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_type"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_type_value"
             style="@style/dialogDetailsSecondaryText"/>
 
         <!-- Modification date -->
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_lastmodified_text"
             style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_lastmodified"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_lastmodified_value"
             style="@style/dialogDetailsSecondaryText"/>
 
         <!-- Visibility -->
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_hidden_text"
             style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_hidden"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_hidden_value"
             style="@style/dialogDetailsSecondaryText"/>
 
         <!-- Permissions -->
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_permissions_text"
             style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_permissions"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/details_permissions_value"
             style="@style/dialogDetailsSecondaryText"/>
     </LinearLayout>

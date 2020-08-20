@@ -26,7 +26,7 @@
                 android:layout_height="match_parent">
 
 
-                <TextView
+                <main.java.com.termux.utils.CustomTextView
                     android:layout_width="1px"
                     android:layout_alignParentRight="true"
                     android:background="#fff"
@@ -37,7 +37,7 @@
                     android:orientation="vertical"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginTop="2dp"
@@ -56,7 +56,7 @@
                             android:layout_height="25dp"
                             android:src="@drawable/beifengxitong" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
@@ -72,7 +72,7 @@
                     </LinearLayout>
 
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginTop="2dp"
@@ -91,7 +91,7 @@
                             android:layout_height="25dp"
                             android:src="@drawable/huifuxitong" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
@@ -106,7 +106,7 @@
 
                     </LinearLayout>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginTop="2dp"
@@ -126,7 +126,7 @@
                             android:layout_height="25dp"
                             android:src="@drawable/xiazaixitong" />
 
-                        <TextView
+                        <main.java.com.termux.utils.CustomTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
@@ -141,7 +141,7 @@
 
                     </LinearLayout>
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="1px"
                         android:layout_marginTop="2dp"

@@ -38,7 +38,7 @@
         android:layout_toRightOf="@+id/iv_cover"
         android:orientation="vertical">
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textColor="@color/md_grey_900"
             android:textSize="14dp"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:textColor="@color/md_grey_600"
             android:textSize="10dp"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:id="@+id/tv_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

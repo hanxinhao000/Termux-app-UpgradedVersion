@@ -30,7 +30,7 @@
   		/>
   </TableRow>
   <TableRow>
-  	<TextView
+  	<main.java.com.termux.utils.CustomTextView
   		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
   		android:text="@string/export_settings_path"
