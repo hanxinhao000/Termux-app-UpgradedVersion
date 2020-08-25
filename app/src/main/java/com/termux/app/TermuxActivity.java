@@ -35,7 +35,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.system.ErrnoException;
+import android.system.Os;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -129,6 +132,7 @@ import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.ListDataActivity;
 import main.java.com.termux.activity.LunTanActivity;
 import main.java.com.termux.activity.RepairActivity;
+import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
 import main.java.com.termux.activity.UbuntuListActivity;
@@ -1556,7 +1560,21 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             service_title.setTextColor(Color.WHITE);
                             visition.setTextColor(Color.WHITE);
-                            service_title.setText(serviceDataBean.getNote());
+
+                            UUtils.showLog("当前语言环境:" + getResources().getConfiguration().locale.getCountry());
+                            if(getResources().getConfiguration().locale.getCountry().equals("CN")){
+                                service_title.setText(serviceDataBean.getNote());
+                                return;
+                            }
+
+                            if(getResources().getConfiguration().locale.getCountry().equals("US")){
+                                service_title.setText(serviceDataBean.getNote5());
+                                return;
+                            }
+
+
+                            service_title.setText(serviceDataBean.getNote5());
+
                         } catch (Exception e) {
                             service_title.setText(UUtils.getString(R.string.服务器离线sd5fsd5));
                             service_title.setTextColor(Color.YELLOW);
@@ -2047,6 +2065,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         item_3.setVisibility(View.GONE);
 
         item_4.setVisibility(View.GONE);
+        root_group_content.setVisibility(View.GONE);
 
 
         //----------------------
@@ -2060,6 +2079,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         item_3_img.setImageResource(R.drawable.down_saojiao);
         item_4_img.setImageResource(R.drawable.down_saojiao);
         item_5_img.setImageResource(R.drawable.down_saojiao);
+        item_root_img.setImageResource(R.drawable.down_saojiao);
     }
 
 
@@ -2090,6 +2110,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             item_4.setVisibility(View.VISIBLE);
 
+            root_group_content.setVisibility(View.VISIBLE);
+
 
             item_1_5_img.setVisibility(View.GONE);
             item_8_img.setVisibility(View.GONE);
@@ -2100,6 +2122,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             item_3_img.setVisibility(View.GONE);
             item_4_img.setVisibility(View.GONE);
             item_5_img.setVisibility(View.GONE);
+            item_root_img.setVisibility(View.GONE);
 
 
 
@@ -2145,7 +2168,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 item_3.setVisibility(View.GONE);
 
                 item_4.setVisibility(View.GONE);
+
                 item_1_5.setVisibility(View.GONE);
+
+                root_group_content.setVisibility(View.GONE);
 
 
                 item_1_5_img.setVisibility(View.VISIBLE);
@@ -2157,6 +2183,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 item_3_img.setVisibility(View.VISIBLE);
                 item_4_img.setVisibility(View.VISIBLE);
                 item_5_img.setVisibility(View.VISIBLE);
+                item_root_img.setVisibility(View.VISIBLE);
 
                 item_1_5_img.setImageResource(R.drawable.down_saojiao);
                 item_8_img.setImageResource(R.drawable.down_saojiao);
@@ -2167,6 +2194,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 item_3_img.setImageResource(R.drawable.down_saojiao);
                 item_4_img.setImageResource(R.drawable.down_saojiao);
                 item_5_img.setImageResource(R.drawable.down_saojiao);
+                item_root_img.setImageResource(R.drawable.down_saojiao);
             }
         });
             chouti_2.setOnClickListener(new View.OnClickListener() {
@@ -2192,6 +2220,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     item_1_5.setVisibility(View.GONE);
 
+                    root_group_content.setVisibility(View.GONE);
+
 
                     item_1_5_img.setVisibility(View.VISIBLE);
                     item_8_img.setVisibility(View.VISIBLE);
@@ -2202,6 +2232,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     item_3_img.setVisibility(View.VISIBLE);
                     item_4_img.setVisibility(View.VISIBLE);
                     item_5_img.setVisibility(View.VISIBLE);
+                    item_root_img.setVisibility(View.VISIBLE);
 
                     item_1_5_img.setImageResource(R.drawable.down_saojiao);
                     item_8_img.setImageResource(R.drawable.down_saojiao);
@@ -2212,6 +2243,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     item_3_img.setImageResource(R.drawable.down_saojiao);
                     item_4_img.setImageResource(R.drawable.down_saojiao);
                     item_5_img.setImageResource(R.drawable.down_saojiao);
+                    item_root_img.setImageResource(R.drawable.down_saojiao);
                 }
             });
 
@@ -2238,6 +2270,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 item_4.setVisibility(View.VISIBLE);
 
+                root_group_content.setVisibility(View.VISIBLE);
+
 
                 item_1_5_img.setVisibility(View.GONE);
                 item_8_img.setVisibility(View.GONE);
@@ -2248,6 +2282,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 item_3_img.setVisibility(View.GONE);
                 item_4_img.setVisibility(View.GONE);
                 item_5_img.setVisibility(View.GONE);
+                item_root_img.setVisibility(View.GONE);
             }
         });
 
@@ -2289,6 +2324,57 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         item_1_5_img.setImageResource(R.drawable.up_sanjiao);
 
                         item_1_5.setVisibility(View.VISIBLE);
+                    }
+
+
+
+
+
+                }
+
+            }
+        });
+
+
+
+        root_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String zhedie = SaveData.getData("zhedie");
+
+
+                if("false".equals(zhedie)){
+                    return;
+                }
+
+
+                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+
+                    if (root_group_content.getVisibility() == View.GONE) {
+                        root_group_content.setVisibility(View.VISIBLE);
+                        item_root_img.setImageResource(R.drawable.up_sanjiao);
+                    } else {
+                        root_group_content.setVisibility(View.GONE);
+
+
+                        item_root_img.setImageResource(R.drawable.down_saojiao);
+                    }
+                }else{
+
+
+
+                    if (root_group_content.getVisibility() == View.VISIBLE){
+
+                        setLayGone();
+
+                    }else {
+
+                        setLayGone();
+
+                        item_root_img.setImageResource(R.drawable.up_sanjiao);
+
+                        root_group_content.setVisibility(View.VISIBLE);
                     }
 
 
@@ -3054,7 +3140,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout termux_layout_1;
     private LinearLayout adb_install;
     private LinearLayout apk_install;
+    private LinearLayout cli_install;
     private LinearLayout history_command;
+    private LinearLayout root_group;
     private TextView check_up;
     private TextView seek_bar_tv;
     private SeekBar seek_bar;
@@ -3068,13 +3156,79 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private TextView chouti_2;
     private TextView chouti_1;
     private TextView chouti_3;
+    private View root_group_content;
 
 
     private TextView english;
     private TextView zhongwen;
     private TextView status_zd;
+    private ImageView item_root_img;
 
     //start_zd_mingl
+    //
+    //创建 deployLinux 需要的目录
+
+    private void isDep(){
+
+        UUtils.showMsg(UUtils.getString(R.string.正在安装环境));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File file = new File("/data/data/com.termux/files/usr/share/deploy");
+
+                if(!file.exists()){
+                    file.mkdirs();
+
+                    File file1 = new File("/data/data/com.termux/files/usr/share/deploy/include.zip");
+                    File file2 = new File("/data/data/com.termux/files/usr/share/deploy/cli");
+
+
+
+                    writerFile("include.zip",file1);
+                    writerFile("cli",file2);
+
+                    try {
+                        Runtime.getRuntime().exec("chmod 777 /data/data/com.termux/files/usr/share/deploy/cli");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    ZipUtils.unZip(file1, "/data/data/com.termux/files/usr/share/deploy/", new ZipUtils.ZipNameListener() {
+                        @Override
+                        public void zip(String FileName, int size, int position) {
+
+                        }
+
+                        @Override
+                        public void complete() {
+
+                            file1.delete();
+                            try {
+                                Os.symlink("/data/data/com.termux/files/usr/share/deploy/cli","/data/data/com.termux/files/usr/bin/cli");
+                            } catch (ErrnoException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        @Override
+                        public void progress(long size, long position) {
+
+                        }
+                    });
+
+                }else{
+                    UUtils.showMsg(UUtils.getString(R.string.您已安装cli环境));
+
+                }
+
+            }
+        }).start();
+
+        UUtils.showMsg(UUtils.getString(R.string.安装完成));
+
+
+    }
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -3109,16 +3263,30 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         isHistory();
 
+
         chouti_2 = findViewById(R.id.chouti_2);
+        root_group = findViewById(R.id.root_group);
+        root_group_content = findViewById(R.id.root_group_content);
         chouti_1 = findViewById(R.id.chouti_1);
         chouti_3 = findViewById(R.id.chouti_3);
         english = findViewById(R.id.english);
         zhongwen = findViewById(R.id.zhongwen);
+        item_root_img = findViewById(R.id.item_root_img);
         status_zd = findViewById(R.id.status_zd);
+        cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
 
         startZd();
 
+
+        cli_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                isDep();
+                getDrawer().closeDrawer(Gravity.LEFT);
+            }
+        });
 
         english.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -4367,7 +4535,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 if(true){
 
-                    UUtils.showMsg("在线包已被关闭,请到[百度网盘]下载\n就是那个下载站提取码为:gzdp那个!");
+                    UUtils.showMsg(UUtils.getString(R.string.在线包已被关闭));
 
                     return;
                 }
@@ -4424,7 +4592,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-              /*  final EditText et = new EditText(TermuxActivity.this);
+             /*   final EditText et = new EditText(TermuxActivity.this);
                 et.setHint("输入\"确定\"继续");
                 et.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 new androidx.appcompat.app.AlertDialog.Builder(TermuxActivity.this).setTitle("测试版本区域,分风险自行承担")
@@ -4448,6 +4616,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.请在测试版本中打开), Toast.LENGTH_SHORT).show();
 
+               // startActivity(new Intent(TermuxActivity.this, RootActivity.class));
             }
         });
 
@@ -5752,6 +5921,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (!("def".equals(key_bot1))) {
             hideInput();
         }
+
+
     }
 
 
@@ -8427,6 +8598,7 @@ Solaris(APP美化)
                         }
 
 
+
                         if (!smsFileSms.exists()) {
 
                             getDrawer().openDrawer(Gravity.LEFT);
@@ -8444,6 +8616,7 @@ Solaris(APP美化)
 
 
 
+                            isDep();
 
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(this);

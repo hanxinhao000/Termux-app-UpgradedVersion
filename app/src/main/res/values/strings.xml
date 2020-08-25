@@ -925,9 +925,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.98.91]</string>
+    <string name="本地版本552">本地版本:[0.98.92]</string>
     <string name="云端版本552">云端版本:[0.92.77]</string>
-    <string name="云端版本553">云端版本:[0.98.91]\n本地版本[-.—.—]</string>
+    <string name="云端版本553">云端版本:[0.98.92]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -939,6 +939,7 @@
     <string name="电话权限887">"电话权限:   [已获取]"</string>
 
     <string name="短信权限">"短信权限:   [没有权限]"</string>
+    <string name="短信权限已获取">"短信权限:   [已获取]"</string>
     <string name="源功能">"源功能"</string>
     <string name="更多资源">"更多资源[请勿违法,只适用于学习交流,所有法律责任由使用者承担]"</string>
     <string name="常用功能554">"常用功能"</string>
@@ -1067,7 +1068,7 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.98.91]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.98.92]\n最新版本:[-.--.--]"</string>
     <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.92.77]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
@@ -1373,7 +1374,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.98.91</string>
+    <string name="当前版本ffg">当前版本:0.98.92</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1579,4 +1580,17 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="参考页面5555555">赞助[只是技术帮助](排名不分先后):\n\n-----------------------------------\n\nOuter[¥:2] | QQ:8387**536\n\nhexahedron yell[¥:1]|19869**359\n\n沫雪一[¥：10]：29307**324\n\n渗透工具 [¥：10]:2411**013\n\n天龙八部 [¥:30]6955**042\n\n\n-----------------------------------\n\nubuntu图形:\n\n特此鸣谢:userland\n地址:https://github.com/CypherpunkArmory/UserLAnd\n\n悬浮窗口[重要鸣谢!]:Leonid Plyushch\n个人主页:https://github.com/xeffyr\nmp3:paulumi项目地址:https://github.com/paulumi/Ekualizers-Music\n\n鸣谢termux\n项目地址:https://github.com/termux/termux-app \n\n等等提供脚本的作者\n\n本APP只是整合了所有资源\n遵循所有原作者的协议\n\n切勿在各大应用商店发布\n\n法律责任由发布者承担(全部法律)\n\n再次声明\n\n本程序只是学习交流使用,切勿超出适用范围!!!\n\n如果在使用当中出现的任何法律责任，由使用者承担!\n\n您下载或使用,即代表了您同意本页面所有条件!</string>
 
     <string name="更多功能">更多功能</string>
+    <string name="正在安装环境">正在安装Deploy环境</string>
+    <string name="安装完成">安装完成,请输入cli命令使用</string>
+
+    <string name="root标题">环境安装|杂项区域</string>
+    <string name="cli环境">cli环境安装</string>
+    <string name="您已安装cli环境">您已安装cli环境</string>
+
+    <string name="ADB安装">ADB安装</string>
+    <string name="终端字体">终端字体</string>
+
+    <string name="在线包已被关闭">"在线包已被关闭,请到[百度网盘]下载\n
+就是那个下载站提取码为:gzdp那个!"</string>
+
 </resources>

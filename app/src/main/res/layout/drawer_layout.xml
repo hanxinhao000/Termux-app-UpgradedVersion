@@ -352,7 +352,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.98.91]"
+            android:text="Termux[0.98.92]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

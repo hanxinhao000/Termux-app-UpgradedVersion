@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.termux.R;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -211,7 +213,7 @@ public class SmsUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        textView.setText("短信权限:   [没有权限]");
+                        textView.setText(UUtils.getString(R.string.短信权限));
                        // Toast.makeText(TermuxApplication.mContext, "你没有开启短信权限!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -223,7 +225,7 @@ public class SmsUtils {
                 TermuxApplication.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        textView.setText("短信权限:   [没有权限]");
+                        textView.setText(UUtils.getString(R.string.短信权限));
                        // Toast.makeText(TermuxApplication.mContext, "你没有开启短信权限!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -299,7 +301,7 @@ public class SmsUtils {
                         if (s1.length() > 200) {
                             sizeLeng++;
                         }
-                        textView.setText("短信权限:   [已获取]");
+                        textView.setText(UUtils.getString(R.string.短信权限已获取));
                         break;
 
                     } while (cur.moveToNext());

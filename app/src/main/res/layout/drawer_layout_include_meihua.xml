@@ -243,7 +243,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="终端字体"
+                android:text="@string/终端字体"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold"

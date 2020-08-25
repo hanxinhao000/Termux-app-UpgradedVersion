@@ -440,6 +440,62 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:id="@+id/root_group"
+                        android:background="#552b2b2b"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/root_huan" />
+
+                            <main.java.com.termux.utils.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
+                                android:text="@string/root标题"
+                                android:textColor="#fff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:src="@drawable/down_saojiao"
+                                android:id="@+id/item_root_img"
+                                android:layout_height="20dp"/>
+
+                        </LinearLayout>
+
+
+                        <include
+                            layout="@layout/drawer_layout_include_root"
+                            android:id="@+id/root_group_content"
+                            android:visibility="gone"
+                            />
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
 
 
 
@@ -697,7 +753,7 @@
                                         android:layout_marginTop="15dp"
                                         android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="ADB安装"
+                                        android:text="@string/ADB安装"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:textStyle="bold" />

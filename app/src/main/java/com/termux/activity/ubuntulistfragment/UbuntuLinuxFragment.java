@@ -177,6 +177,7 @@ public class UbuntuLinuxFragment extends BaseFragment implements View.OnClickLis
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
                 ab.setTitle(UUtils.getString(R.string.启动选项));
+
                 ab.setMessage(UUtils.getString(R.string.请选择启动方式12009));
                 ab.setPositiveButton("SSH", new DialogInterface.OnClickListener() {
                     @Override

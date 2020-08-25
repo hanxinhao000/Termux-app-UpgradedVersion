@@ -582,7 +582,7 @@ public class EnvUtils {
         }
 
         Log.e("XINHAO_HAN", "命令集合: " +params.toString()  );
-        return params.size() > 0 && exec(c, "sh", params);
+        return params.size() > 0 && exec(c, "su", params);
     }
 
     /**
@@ -611,7 +611,7 @@ public class EnvUtils {
                 params.add("cd " + PrefStore.getWebDir(c));
                 params.add("httpd " + " -p " + PrefStore.getHttpPort(c) + " -c " + PrefStore.getEnvDir(c) + "/httpd.conf");
         }
-        return params.size() > 0 && exec(c, "sh", params);
+        return params.size() > 0 && exec(c, "su", params);
     }
 
     /**
