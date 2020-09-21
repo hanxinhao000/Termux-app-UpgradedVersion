@@ -179,7 +179,7 @@
 
         <RelativeLayout
             android:id="@+id/main_right_drawer_layout"
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:background="@android:color/transparent">
@@ -253,6 +253,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:background="#AA2b2b2b"
                     android:orientation="vertical">
 
@@ -352,7 +353,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.98.92]"
+            android:text="Termux[0.99.92]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

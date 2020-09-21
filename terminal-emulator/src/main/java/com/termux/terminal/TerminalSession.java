@@ -111,7 +111,7 @@ public final class TerminalSession extends TerminalOutput {
         @Override
         public void handleMessage(Message msg) {
             int bytesRead = mProcessToTerminalIOQueue.read(mReceiveBuffer, false);
-            if (msg.what == MSG_NEW_INPUT && isRunning()) {
+            if (bytesRead > 0) {
                 if (bytesRead > 0) {
                     mEmulator.append(mReceiveBuffer, bytesRead);
                     notifyScreenUpdate();

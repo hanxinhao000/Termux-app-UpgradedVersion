@@ -6027,6 +6027,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             arrayList.add("vncserver-start \n ");
             arrayList.add("vncserver-stop \n ");
             arrayList.add("ifconfig \n ");
+            arrayList.add("tar zxvf  ");
+            arrayList.add("tar zcvf  ");
             arrayList.add("pkg uninstall ");
             arrayList.add("apt-get install ");
             arrayList.add("apt-get remove  ");

@@ -4,7 +4,7 @@ public class UpDateHttpCode {
 
     //当前版本型号
     public static final int CODE = 92;
-    public static final String CODE1 = "0.98.92";
+    public static final String CODE1 = "0.99.92";
 
 
 }
