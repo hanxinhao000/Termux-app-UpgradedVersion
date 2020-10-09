@@ -1225,7 +1225,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="功能_false">功能</string>
     <string name="会话_false">会话</string>
     <string name="功能_true">[*]功能</string>
-    <string name="乌班图发行版asd6">[ubuntu]乌班图发行版[19.10][./start.sh]</string>
+    <string name="乌班图发行版asd6">[ubuntu]乌班图发行版[20.04][./start.sh]</string>
     <string name="乌班图子系统asd6">debian  乌班图子系统[安装约30分钟][./bin/enter_deb]</string>
     <string name="安装后谨慎卸载kj6lj">fedora  [安装后谨慎卸载,未root用户,某些文件无法删除!!]</string>
     <string name="请思考后在安装huoi6">Kali [此文件下载1.2GB 安装后 3+GB 请思考后在安装]</string>

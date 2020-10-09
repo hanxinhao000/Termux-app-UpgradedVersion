@@ -1219,7 +1219,7 @@ Is it open or not?"</string>
     <string name="功能_false">function</string>
     <string name="会话_false">The session</string>
     <string name="功能_true">[*] function</string>
-    <string name="乌班图发行版asd6">[Ubuntu] Ubuntu Distribution [19.10][./start.sh]</string>
+    <string name="乌班图发行版asd6">[Ubuntu] Ubuntu Distribution [20.04][./start.sh]</string>
     <string name="乌班图子系统asd6">Debian Ubuntu Subsystem [about 30 minutes to install][./bin/enter_deb]</string>
     <string name="安装后谨慎卸载kj6lj">Fedora [uninstall carefully after installation, no root user, some files cannot be deleted!!]</string>
     <string name="请思考后在安装huoi6">Kali [This file downloads 1.2GB after installation 3+GB please think after installation]</string>
