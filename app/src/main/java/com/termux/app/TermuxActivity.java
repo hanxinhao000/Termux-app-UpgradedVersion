@@ -54,6 +54,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.autofill.AutofillManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -207,7 +208,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private static final int REQUEST_WRITE = 33333;
     private static final int INSTALL_PACKAGES_REQUEST_CODE = 8888;
 
-
+    private static final int CONTEXTMENU_AUTOFILL_ID = 10;
     /**
      * The main view of the activity showing the terminal. Initialized in onCreate().
      */
@@ -1277,6 +1278,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     }
 
     private File mFileSystem = new File(Environment.getExternalStorageDirectory(), "/xinhao/system");
+    private File mFileSystem1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/sd");
     private File mFileIso = new File(Environment.getExternalStorageDirectory(), "/xinhao/iso");
     private File mFileMysql = new File(Environment.getExternalStorageDirectory(), "/xinhao/mysql");
 
@@ -1325,6 +1327,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (!mFileMysql.exists()) {
             mFileMysql.mkdirs();
         }
+      /*  if (!mFileSystem1.exists()) {
+            mFileSystem1.mkdirs();
+        }*/
 
     }
 
@@ -5723,9 +5728,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         }
 
 
-        if (mFileSystem.exists()) {
+        mFileSystem1.mkdirs();
+        if (mFileSystem1.exists()) {
+
             mkdirFile();
             startOk();
+           // mkdirFilePermission();
         } else {
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
             ab.setTitle(UUtils.getString(R.string.注意));
@@ -5734,12 +5742,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             ab.setNegativeButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    mFileSystem1.delete();
                     mkdirFilePermission();
                 }
             });
             ab.setPositiveButton(UUtils.getString(R.string.可以), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    mFileSystem1.delete();
                     mkdirFilePermission();
                 }
             });
@@ -8971,6 +8981,12 @@ Solaris(APP美化)
 
         menu.add(Menu.NONE, CONTEXTMENU_SELECT_URL_ID, Menu.NONE, R.string.select_url);
         menu.add(Menu.NONE, CONTEXTMENU_SHARE_TRANSCRIPT_ID, Menu.NONE, R.string.select_all_and_share);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AutofillManager autofillManager = getSystemService(AutofillManager.class);
+            if (autofillManager != null && autofillManager.isEnabled()) {
+                menu.add(Menu.NONE, CONTEXTMENU_AUTOFILL_ID, Menu.NONE, R.string.autofill_password);
+            }
+        }
         menu.add(Menu.NONE, CONTEXTMENU_RESET_TERMINAL_ID, Menu.NONE, R.string.reset_terminal);
         menu.add(Menu.NONE, CONTEXTMENU_KILL_PROCESS_ID, Menu.NONE, getResources().getString(R.string.kill_process, getCurrentTermSession().getPid())).setEnabled(currentSession.isRunning());
         menu.add(Menu.NONE, CONTEXTMENU_STYLING_ID, Menu.NONE, R.string.style_terminal);
@@ -9121,6 +9137,14 @@ Solaris(APP美化)
                     mSettings.setScreenAlwaysOn(this, true);
                 }
                 return true;
+            }
+            case CONTEXTMENU_AUTOFILL_ID: {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    AutofillManager autofillManager = getSystemService(AutofillManager.class);
+                    if (autofillManager != null && autofillManager.isEnabled()) {
+                        autofillManager.requestAutofill(mTerminalView);
+                    }
+                }
             }
             default:
                 return super.onContextItemSelected(item);

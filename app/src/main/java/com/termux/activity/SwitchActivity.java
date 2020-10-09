@@ -227,7 +227,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                                                     if(new File(mList.get(position).dir).exists()){
                                                         Toast.makeText(SwitchActivity.this, "正在清除系统残留文件", Toast.LENGTH_SHORT).show();
 
-                                                        TermuxActivity.mTerminalView.sendTextToTerminal("rm -rf " + mList.get(position).dir + " \n");
+                                                        TermuxActivity.mTerminalView.sendTextToTerminal("chmod 777 -R "+mList.get(position).dir+"&& rm -rf " + mList.get(position).dir + " \n");
                                                         finish();
                                                     }else{
                                                         Toast.makeText(SwitchActivity.this, "删除成功!", Toast.LENGTH_SHORT).show();

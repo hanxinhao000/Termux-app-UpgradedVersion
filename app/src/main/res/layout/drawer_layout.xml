@@ -28,7 +28,9 @@
             android:layout_height="match_parent"
             android:focusableInTouchMode="true"
             android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:importantForAutofill="no"
+            android:autofillHints="password" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,7 +198,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
 
                     <ListView
@@ -253,7 +255,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:background="#AA2b2b2b"
                     android:orientation="vertical">
 
@@ -353,7 +355,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.99.92]"
+            android:text="Termux[0.102.93]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

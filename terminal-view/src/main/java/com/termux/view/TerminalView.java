@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputType;
@@ -30,6 +31,7 @@ import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
+import android.view.autofill.AutofillValue;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
@@ -43,6 +45,8 @@ import com.termux.terminal.TerminalBuffer;
 import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
 import com.termux.terminal.WcWidth;
+
+import androidx.annotation.RequiresApi;
 
 /** View displaying and interacting with a {@link TerminalSession}. */
 public final class TerminalView extends View {
@@ -999,7 +1003,9 @@ public final class TerminalView extends View {
                 android.R.attr.textSelectHandleWindowStyle);
             mContainer.setSplitTouchEnabled(true);
             mContainer.setClippingEnabled(false);
-            mContainer.setWindowLayoutType(WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mContainer.setWindowLayoutType(WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
+            }
             mContainer.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
             mContainer.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -1329,44 +1335,51 @@ public final class TerminalView extends View {
                 }
 
             };
-            mActionMode = startActionMode(new ActionMode.Callback2() {
-                @Override
-                public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                    return callback.onCreateActionMode(mode, menu);
-                }
-
-                @Override
-                public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                    return false;
-                }
-
-                @Override
-                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                    return callback.onActionItemClicked(mode, item);
-                }
-
-                @Override
-                public void onDestroyActionMode(ActionMode mode) {
-                    // Ignore.
-                }
-
-                @Override
-                public void onGetContentRect(ActionMode mode, View view, Rect outRect) {
-                    int x1 = Math.round(mSelX1 * mRenderer.mFontWidth);
-                    int x2 = Math.round(mSelX2 * mRenderer.mFontWidth);
-                    int y1 = Math.round((mSelY1 - mTopRow) * mRenderer.mFontLineSpacing);
-                    int y2 = Math.round((mSelY2 + 1 - mTopRow) * mRenderer.mFontLineSpacing);
-
-
-                    if (x1 > x2) {
-                        int tmp = x1;
-                        x1 = x2;
-                        x2 = tmp;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mActionMode = startActionMode(new ActionMode.Callback2() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                        return callback.onCreateActionMode(mode, menu);
                     }
 
-                    outRect.set(x1, y1 + mHandleHeight, x2, y2 + mHandleHeight);
-                }
-            }, ActionMode.TYPE_FLOATING);
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        return callback.onActionItemClicked(mode, item);
+                    }
+
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
+                        // Ignore.
+                    }
+
+                    @Override
+                    public void onGetContentRect(ActionMode mode, View view, Rect outRect) {
+                        int x1 = Math.round(mSelX1 * mRenderer.mFontWidth);
+                        int x2 = Math.round(mSelX2 * mRenderer.mFontWidth);
+                        int y1 = Math.round((mSelY1 - mTopRow) * mRenderer.mFontLineSpacing);
+                        int y2 = Math.round((mSelY2 + 1 - mTopRow) * mRenderer.mFontLineSpacing);
+
+
+                        if (x1 > x2) {
+                            int tmp = x1;
+                            x1 = x2;
+                            x2 = tmp;
+                        }
+
+                        outRect.set(x1, y1 + mHandleHeight, x2, y2 + mHandleHeight);
+                    }
+                }, ActionMode.TYPE_FLOATING);
+            }else{
+
+
+
+
+            }
 
         }
 
@@ -1598,7 +1611,9 @@ public final class TerminalView extends View {
         @Override
         public void run() {
             if (mActionMode != null) {
-                mActionMode.hide(0);  // hide off.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mActionMode.hide(0);  // hide off.
+                }
             }
         }
     };
@@ -1606,7 +1621,9 @@ public final class TerminalView extends View {
     void hideFloatingToolbar(int duration) {
         if (mActionMode != null) {
             removeCallbacks(mShowFloatingToolbar);
-            mActionMode.hide(duration);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mActionMode.hide(duration);
+            }
         }
     }
 
@@ -1633,5 +1650,26 @@ public final class TerminalView extends View {
     public CharSequence getText1() {
         Log.e("键盘", "getText1: " + mEmulator.getScreen().getTranscriptText() );
         return mEmulator.getScreen().getTranscriptText();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void autofill(AutofillValue value) {
+        if (value.isText()) {
+            mTermSession.write(value.getTextValue().toString());
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public int getAutofillType() {
+        return AUTOFILL_TYPE_TEXT;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public AutofillValue getAutofillValue() {
+        return AutofillValue.forText("");
     }
 }
