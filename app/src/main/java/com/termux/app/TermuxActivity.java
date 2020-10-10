@@ -5860,7 +5860,36 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         String back_color_view = SaveData.getData("back_color_view");
         String video_back = SaveData.getData("video_back");
 
-        mTerminalView.setPromptListener(TermuxActivity.this);
+        try {
+            mTerminalView.setPromptListener(TermuxActivity.this);
+        }catch (Exception e){
+            e.printStackTrace();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+                                mTerminalView.setPromptListener(TermuxActivity.this);
+                            }catch (Exception e1){
+                                e1.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+            }).start();
+        }
 
         try {
             if (!text_color_view.equals("def")) {

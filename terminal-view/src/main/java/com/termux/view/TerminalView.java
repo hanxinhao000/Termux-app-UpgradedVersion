@@ -352,13 +352,6 @@ public final class TerminalView extends View {
 
     public void sendTextToTerminal(CharSequence text) {
 
-        Log.e("XINHAO_HANCCC", " mTermSession.getCwd(): " +  mTermSession.getCwd() );
-        Log.e("XINHAO_HANCCC", " mTermSession.getTitle(): " +  mTermSession.getTitle() );
-        Log.e("XINHAO_HANCCC", " mTermSession.getPid(): " +  mTermSession.getPid() );
-        Log.e("XINHAO_HANCCC", " mTermSession.getExitStatus(): " +  mTermSession.getExitStatus() );
-        Log.e("XINHAO_HANCCC", " mTermSession.mSessionName(): " +  mTermSession.mSessionName );
-        Log.e("XINHAO_HANCCC", " mTermSession.getEmulator().getTitle(): " +  mTermSession.getEmulator().getTitle() );
-
         SharedPreferences xinhao = mContext.getSharedPreferences("xinhao", Context.MODE_PRIVATE);
 
         String z_d_t_s = xinhao.getString("z_d_t_s", "def");
