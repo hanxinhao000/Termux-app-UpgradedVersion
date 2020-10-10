@@ -208,7 +208,7 @@ public final class TerminalRow {
         // Store char. A combining character is stored at the end of the existing contents so that it modifies them:
         //noinspection ResultOfMethodCallIgnored - since we already now how many java chars is used.
         Character.toChars(codePoint, text, oldStartOfColumnIndex + (newIsCombining ? oldCharactersUsedForColumn : 0));
-        Log.e("XINHAO_HAN04", "copyInterval: " + Arrays.toString(text) );
+       // Log.e("XINHAO_HAN04", "copyInterval: " + Arrays.toString(text) );
         if (oldCodePointDisplayWidth == 2 && newCodePointDisplayWidth == 1) {
             // Replace second half of wide char with a space. Which mean that we actually add a ' ' java character.
             if (mSpaceUsed + 1 > text.length) {
@@ -238,7 +238,7 @@ public final class TerminalRow {
 
                 // Shift the array leftwards.
                 System.arraycopy(text, newNextNextColumnIndex, text, newNextColumnIndex, mSpaceUsed - newNextNextColumnIndex);
-                Log.e("XINHAO_HAN07", "copyInterval: " + Arrays.toString(text) );
+                //Log.e("XINHAO_HAN07", "copyInterval: " + Arrays.toString(text) );
                 mSpaceUsed -= nextLen;
             }
         }

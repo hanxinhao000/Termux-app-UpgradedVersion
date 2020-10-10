@@ -538,6 +538,10 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="请选择打开方式s5d">"请选择打开方式?\n打开选项:\n1.带小图标打开[图标打开]\n2.不带小图标打开"</string>
     <string name="图标打开">图标打开</string>
     <string name="无标打开">无标打开</string>
+    <string name="自动提示设置">"自动提示设置"</string>
+    <string name="请选择自动提示获取命令的路径">"请选择自动提示获取命令的路径"</string>
+    <string name="自动提示开">"自动提示[开]"</string>
+    <string name="自动提示关">"自动提示[关]"</string>
     <string name="关于">关于</string>
     <string name="软件制作asd56">"软件制作:XINHAO_HAN\n作者姓名:韩**\n软件类型:termux功能集合\n项目开始时间:2019年7月11日\n集合外部资源:github.com/谷歌\n开发地点:西安雁塔区、西安未央区"</string>
     <string name="进入后台管理dsf56">进入后台管理</string>

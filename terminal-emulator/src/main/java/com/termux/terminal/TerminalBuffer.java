@@ -94,7 +94,7 @@ public final class TerminalBuffer {
             }
             if (lastPrintingCharIndex != -1)
                 builder.append(line, x1Index, lastPrintingCharIndex - x1Index + 1);
-            // Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
+             Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
             if (!rowLineWrap && row < selY2 && row < mScreenRows - 1) builder.append('\n');
         }
         return builder.toString();

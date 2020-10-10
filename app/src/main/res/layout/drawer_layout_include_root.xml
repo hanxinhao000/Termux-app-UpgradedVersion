@@ -49,14 +49,15 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:visibility="invisible"
+            android:visibility="visible"
+            android:id="@+id/zidongtishi_ll"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/xuanfu_img" />
+                android:src="@drawable/auto_tishi" />
 
 
             <main.java.com.termux.utils.CustomTextView
@@ -66,7 +67,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/悬浮命令行"
+                android:id="@+id/zidongtishi"
+                android:text="@string/自动提示开"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -81,13 +83,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/kaiguan" />
+                android:src="@drawable/aito_sishi_set" />
 
 
             <main.java.com.termux.utils.CustomTextView
@@ -97,7 +99,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/开机命令556"
+                android:text="@string/自动提示设置"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />

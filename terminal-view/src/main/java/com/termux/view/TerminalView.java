@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -46,24 +47,37 @@ import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
 import com.termux.terminal.WcWidth;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import androidx.annotation.RequiresApi;
 
-/** View displaying and interacting with a {@link TerminalSession}. */
+/**
+ * View displaying and interacting with a {@link TerminalSession}.
+ */
 public final class TerminalView extends View {
 
-    /** Log view key and IME events. */
+    /**
+     * Log view key and IME events.
+     */
     private static final boolean LOG_KEY_EVENTS = false;
 
-    /** The currently displayed terminal session, whose emulator is {@link #mEmulator}. */
+    /**
+     * The currently displayed terminal session, whose emulator is {@link #mEmulator}.
+     */
     TerminalSession mTermSession;
-    /** Our terminal emulator whose session is {@link #mTermSession}. */
+    /**
+     * Our terminal emulator whose session is {@link #mTermSession}.
+     */
     TerminalEmulator mEmulator;
 
     TerminalRenderer mRenderer;
 
     TerminalViewClient mClient;
 
-    /** The top row of text to display. Ranges from -activeTranscriptRows to 0. */
+    /**
+     * The top row of text to display. Ranges from -activeTranscriptRows to 0.
+     */
     int mTopRow;
 
     boolean mIsSelectingText = false;
@@ -78,23 +92,39 @@ public final class TerminalView extends View {
     float mScaleFactor = 1.f;
     final GestureAndScaleRecognizer mGestureRecognizer;
 
-    /** Keep track of where mouse touch event started which we report as mouse scroll. */
+    /**
+     * Keep track of where mouse touch event started which we report as mouse scroll.
+     */
     private int mMouseScrollStartX = -1, mMouseScrollStartY = -1;
-    /** Keep track of the time when a touch event leading to sending mouse scroll events started. */
+    /**
+     * Keep track of the time when a touch event leading to sending mouse scroll events started.
+     */
     private long mMouseStartDownTime = -1;
 
     final Scroller mScroller;
 
-    /** What was left in from scrolling movement. */
+    /**
+     * What was left in from scrolling movement.
+     */
     float mScrollRemainder;
 
-    /** If non-zero, this is the last unicode code point received if that was a combining character. */
+    /**
+     * If non-zero, this is the last unicode code point received if that was a combining character.
+     */
     int mCombiningAccent;
 
     private boolean mAccessibilityEnabled;
 
+    private PromptMsg mPromptMsg;
+    private Context mContext;
+
+    private ArrayList<File> arrayListFile;
+
     public TerminalView(Context context, AttributeSet attributes) { // NO_UCD (unused code)
         super(context, attributes);
+        mPromptMsg = new PromptMsg();
+        this.mContext = context;
+        arrayListFile = new ArrayList<File>();
         mGestureRecognizer = new GestureAndScaleRecognizer(context, new GestureAndScaleRecognizer.Listener() {
 
             boolean scrolledWithFinger;
@@ -305,7 +335,74 @@ public final class TerminalView extends View {
         };
     }
 
+    private String inputString = "";
+
+    public interface PromptListener {
+
+        void promptList(ArrayList<File> arrayListFile);
+
+    }
+
+    private PromptListener mPromptListener;
+
+    public void setPromptListener(PromptListener mPromptListener) {
+        this.mPromptListener = mPromptListener;
+    }
+
+
     public void sendTextToTerminal(CharSequence text) {
+
+        Log.e("XINHAO_HANCCC", " mTermSession.getCwd(): " +  mTermSession.getCwd() );
+        Log.e("XINHAO_HANCCC", " mTermSession.getTitle(): " +  mTermSession.getTitle() );
+        Log.e("XINHAO_HANCCC", " mTermSession.getPid(): " +  mTermSession.getPid() );
+        Log.e("XINHAO_HANCCC", " mTermSession.getExitStatus(): " +  mTermSession.getExitStatus() );
+        Log.e("XINHAO_HANCCC", " mTermSession.mSessionName(): " +  mTermSession.mSessionName );
+        Log.e("XINHAO_HANCCC", " mTermSession.getEmulator().getTitle(): " +  mTermSession.getEmulator().getTitle() );
+
+        SharedPreferences xinhao = mContext.getSharedPreferences("xinhao", Context.MODE_PRIVATE);
+
+        String z_d_t_s = xinhao.getString("z_d_t_s", "def");
+
+        if(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")){
+            inputString += text.toString();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (inputString.isEmpty() || inputString.equals("")) {
+                            mPromptListener.promptList(null);
+                            return;
+                        }
+                        //arrayListFile
+
+                        File[] files = new File(mPromptMsg.getPath()).listFiles();
+
+                        arrayListFile.clear();
+
+                        for (int i = 0; i < files.length; i++) {
+
+                            Log.e("XINHAO_HAN", "files[i].getName(): " + files[i].getName());
+                            Log.e("XINHAO_HAN", "inputString: " + inputString);
+                            if (files[i].getName().replace("-", "").trim().contains(inputString)) {
+                                arrayListFile.add(files[i]);
+                            }
+
+
+                        }
+                        Log.e("XINHAO_HANYYYY", "sendTextToTerminal: " + arrayListFile.toString());
+                        if (mPromptListener != null)
+                            mPromptListener.promptList(arrayListFile);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+        }
+
+
+
         stopTextSelectionMode();
         final int textLengthInChars = text.length();
         for (int i = 0; i < textLengthInChars; i++) {
@@ -357,6 +454,58 @@ public final class TerminalView extends View {
         }
     }
 
+
+    public void sendTextToTerminalToToTo(CharSequence text) {
+        stopTextSelectionMode();
+        final int textLengthInChars = text.length();
+        for (int i = 0; i < textLengthInChars; i++) {
+            char firstChar = text.charAt(i);
+            int codePoint;
+            if (Character.isHighSurrogate(firstChar)) {
+                if (++i < textLengthInChars) {
+                    codePoint = Character.toCodePoint(firstChar, text.charAt(i));
+                } else {
+                    // At end of string, with no low surrogate following the high:
+                    codePoint = TerminalEmulator.UNICODE_REPLACEMENT_CHAR;
+                }
+            } else {
+                codePoint = firstChar;
+            }
+
+            boolean ctrlHeld = false;
+            if (codePoint <= 31 && codePoint != 27) {
+                if (codePoint == '\n') {
+                    // The AOSP keyboard and descendants seems to send \n as text when the enter key is pressed,
+                    // instead of a key event like most other keyboard apps. A terminal expects \r for the enter
+                    // key (although when icrnl is enabled this doesn't make a difference - run 'stty -icrnl' to
+                    // check the behaviour).
+                    codePoint = '\r';
+                }
+
+                // E.g. penti keyboard for ctrl input.
+                ctrlHeld = true;
+                switch (codePoint) {
+                    case 31:
+                        codePoint = '_';
+                        break;
+                    case 30:
+                        codePoint = '^';
+                        break;
+                    case 29:
+                        codePoint = ']';
+                        break;
+                    case 28:
+                        codePoint = '\\';
+                        break;
+                    default:
+                        codePoint += 96;
+                        break;
+                }
+            }
+
+            inputCodePoint(codePoint, ctrlHeld, false);
+        }
+    }
 
     public void sendTextToTerminalCtrl(CharSequence text, boolean isCtrl) {
         stopTextSelectionMode();
@@ -542,7 +691,9 @@ public final class TerminalView extends View {
         return true;
     }
 
-    /** Send a single mouse event code to the terminal. */
+    /**
+     * Send a single mouse event code to the terminal.
+     */
     void sendMouseEventCode(MotionEvent e, int button, boolean pressed) {
         int x = (int) (e.getX() / mRenderer.mFontWidth) + 1;
         int y = (int) ((e.getY() - mRenderer.mFontLineSpacingAndAscent) / mRenderer.mFontLineSpacing) + 1;
@@ -559,7 +710,9 @@ public final class TerminalView extends View {
         mEmulator.sendMouseEvent(button, x, y, pressed);
     }
 
-    /** Perform a scroll, either from dragging the screen or by scrolling a mouse wheel. */
+    /**
+     * Perform a scroll, either from dragging the screen or by scrolling a mouse wheel.
+     */
     void doScroll(MotionEvent event, int rowsDown) {
         boolean up = rowsDown < 0;
         int amount = Math.abs(rowsDown);
@@ -577,7 +730,9 @@ public final class TerminalView extends View {
         }
     }
 
-    /** Overriding {@link View#onGenericMotionEvent(MotionEvent)}. */
+    /**
+     * Overriding {@link View#onGenericMotionEvent(MotionEvent)}.
+     */
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {
         if (mEmulator != null && event.isFromSource(InputDevice.SOURCE_MOUSE) && event.getAction() == MotionEvent.ACTION_SCROLL) {
@@ -776,11 +931,83 @@ public final class TerminalView extends View {
         }
     }
 
-    /** Input the specified keyCode if applicable and return if the input was consumed. */
+    public void removeStringAll(){
+
+        if(inputString.isEmpty() || inputString.length() == 1){
+            handleKeyCode(67,0);
+            inputString = "";
+            return;
+        }
+
+        for (int i = 0; i < inputString.length() + 10; i++) {
+
+            handleKeyCode(67,0);
+
+        }
+
+        inputString = "";
+
+
+    }
+
+    /**
+     * Input the specified keyCode if applicable and return if the input was consumed.
+     */
     public boolean handleKeyCode(int keyCode, int keyMod) {
         TerminalEmulator term = mTermSession.getEmulator();
         String code = KeyHandler.getCode(keyCode, keyMod, term.isCursorKeysApplicationMode(), term.isKeypadApplicationMode());
         if (code == null) return false;
+        Log.e("XINHAO_HANENTER", "handleKeyCode: " + code);
+        Log.e("XINHAO_HANENTER", "keyCode: " + keyCode);
+        Log.e("XINHAO_HANENTER", "keyMod: " + keyMod);
+
+        if(keyCode == 66){
+            inputString = "";
+        }else{
+
+            try {
+                if (inputString.isEmpty() || inputString.length() == 1) {
+                    inputString = "";
+                } else {
+                    inputString = inputString.substring(0, inputString.length() - 1);
+                }
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                    try {
+                        if (inputString.isEmpty() || inputString.equals("")) {
+                            mPromptListener.promptList(null);
+                            return;
+                        }
+                        //arrayListFile
+
+                        File[] files = new File(mPromptMsg.getPath()).listFiles();
+
+                        arrayListFile.clear();
+
+                        for (int i = 0; i < files.length; i++) {
+
+                            if (files[i].getName().replace("-", "").trim().contains(inputString)) {
+                                arrayListFile.add(files[i]);
+                            }
+
+
+                        }
+
+                        if (mPromptListener != null)
+                            mPromptListener.promptList(arrayListFile);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    }
+                }).start();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         mTermSession.write(code);
         return true;
     }
@@ -818,7 +1045,9 @@ public final class TerminalView extends View {
         updateSize();
     }
 
-    /** Check if the terminal size in rows and columns should be updated. */
+    /**
+     * Check if the terminal size in rows and columns should be updated.
+     */
     public void updateSize() {
         int viewWidth = getWidth();
         int viewHeight = getHeight();
@@ -853,7 +1082,9 @@ public final class TerminalView extends View {
         }
     }
 
-    /** Toggle text selection mode in the view. */
+    /**
+     * Toggle text selection mode in the view.
+     */
     @TargetApi(23)
     public void startSelectingText(MotionEvent ev) {
         int cx = (int) (ev.getX() / mRenderer.mFontWidth);
@@ -1020,8 +1251,8 @@ public final class TerminalView extends View {
                 case LEFT: {
                     if (mSelectHandleLeft == null) {
 
-                            mSelectHandleLeft = getContext().getDrawable(
-                                R.drawable.text_select_handle_left_material);
+                        mSelectHandleLeft = getContext().getDrawable(
+                            R.drawable.text_select_handle_left_material);
                     }
                     //
                     mDrawable = mSelectHandleLeft;
@@ -1032,8 +1263,8 @@ public final class TerminalView extends View {
 
                 case RIGHT: {
                     if (mSelectHandleRight == null) {
-                            mSelectHandleRight = getContext().getDrawable(
-                                R.drawable.text_select_handle_right_material);
+                        mSelectHandleRight = getContext().getDrawable(
+                            R.drawable.text_select_handle_right_material);
                     }
                     mDrawable = mSelectHandleRight;
                     handleWidth = mDrawable.getIntrinsicWidth();
@@ -1075,10 +1306,10 @@ public final class TerminalView extends View {
             coords[1] += mPointY;
             try {
                 mContainer.showAtLocation(TerminalView.this, 0, coords[0], coords[1]);
-            }catch (Exception e){
+            } catch (Exception e) {
                 try {
                     Toast.makeText(mContainer.getContentView().getContext(), "发现一个错误,已被纠正", Toast.LENGTH_SHORT).show();
-                }catch (Exception e1){
+                } catch (Exception e1) {
 
                 }
             }
@@ -1374,9 +1605,7 @@ public final class TerminalView extends View {
                         outRect.set(x1, y1 + mHandleHeight, x2, y2 + mHandleHeight);
                     }
                 }, ActionMode.TYPE_FLOATING);
-            }else{
-
-
+            } else {
 
 
             }
@@ -1648,7 +1877,7 @@ public final class TerminalView extends View {
     }
 
     public CharSequence getText1() {
-        Log.e("键盘", "getText1: " + mEmulator.getScreen().getTranscriptText() );
+        Log.e("键盘", "getText1: " + mEmulator.getScreen().getTranscriptText());
         return mEmulator.getScreen().getTranscriptText();
     }
 

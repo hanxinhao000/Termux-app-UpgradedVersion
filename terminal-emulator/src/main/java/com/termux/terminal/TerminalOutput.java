@@ -1,5 +1,7 @@
 package com.termux.terminal;
 
+import android.util.Log;
+
 import java.nio.charset.StandardCharsets;
 
 /** A client which receives callbacks from events triggered by feeding input to a {@link TerminalEmulator}. */
@@ -7,6 +9,10 @@ public abstract class TerminalOutput {
 
     /** Write a string using the UTF-8 encoding to the terminal client. */
     public final void write(String data) {
+
+        if(mEnterListener != null){
+            mEnterListener.enterListener();
+        }
         byte[] bytes = data.getBytes(StandardCharsets.UTF_8);
         write(bytes, 0, bytes.length);
     }
@@ -25,4 +31,20 @@ public abstract class TerminalOutput {
 
     public abstract void onColorsChanged();
 
+    private EnterListener mEnterListener;
+
+    public void setEnterListener(EnterListener mEnterListener){
+
+        this.mEnterListener = mEnterListener;
+
+
+    }
+
+
+    public interface EnterListener{
+
+
+        void enterListener();
+
+    }
 }

@@ -1827,6 +1827,8 @@ public final class TerminalEmulator {
             }
         }
 
+
+        Log.e("XINHAO_HANCCC", "textParameter: " + textParameter + " value:" + value );
         switch (value) {
             case 0: // Change icon name and window title to T.
             case 1: // Change icon name to T.

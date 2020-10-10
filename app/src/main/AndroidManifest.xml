@@ -4,15 +4,14 @@
     package="com.termux"
     android:installLocation="auto"
     android:sharedUserId="com.termux"
-
     android:sharedUserLabel="@string/shared_user_label">
 
     <application
         android:name="main.java.com.termux.application.TermuxApplication"
         android:allowBackup="true"
         android:banner="@drawable/banner"
-        android:extractNativeLibs="true"
         android:configChanges="locale"
+        android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backupscheme"
         android:icon="@drawable/ic_launcher"
         android:label="@string/application_name"
@@ -20,7 +19,7 @@
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-
+        <activity android:name="main.java.com.termux.app.PromptSettingActivity"></activity>
         <activity
             android:name=".SaveAsActivity"
             android:label="保存到UTermux/linux/home目录"
@@ -248,62 +247,31 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.DownloadActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
-        <!--   api   -->
-
-
-        <receiver android:name="com.termux.api.TermuxApiReceiver" />
-
-        <activity android:name="com.termux.api.DialogActivity" android:theme="@style/DialogTheme" android:noHistory="true" android:excludeFromRecents="true" android:exported="false"/>
-        <activity android:name=".FingerprintAPI$FingerprintActivity" android:theme="@style/TransparentTheme"
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- api -->
+        <activity
+            android:name=".api.DialogActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
             android:noHistory="true"
+            android:theme="@style/DialogTheme" />
+
+        <activity
+            android:name=".FingerprintAPI$FingerprintActivity"
             android:excludeFromRecents="true"
-            android:exported="false"/>
-        <activity android:name="com.termux.api.util.TermuxApiPermissionActivity"
-            android:theme="@android:style/Theme.NoDisplay"
+            android:exported="false"
             android:noHistory="true"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".api.util.TermuxApiPermissionActivity"
             android:excludeFromRecents="true"
-            android:exported="false"/>
-        <activity android:name="com.termux.api.StorageGetAPI$StorageActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+        <activity
+            android:name=".api.StorageGetAPI$StorageActivity"
             android:excludeFromRecents="true"
-            android:exported="false"/>
-        <service android:name="com.termux.api.SpeechToTextAPI$SpeechToTextService"/>
-        <service android:name="com.termux.api.TextToSpeechAPI$TextToSpeechService" />
-        <service android:name=".SensorAPI$SensorReaderService"/>
-        <provider android:authorities="com.termux.sharedfiles"
-            android:readPermission="com.termux.sharedfiles.READ"
-            android:exported="true"
-            android:grantUriPermissions="true"
-            android:name="com.termux.api.ShareAPI$ContentProvider" />
-        <service android:name=".MediaPlayerAPI$PlayerService" android:exported="false"/>
-        <service android:name=".MicRecorderAPI$MicRecorderService" android:exported="false"/>
-        <service android:name=".WallpaperAPI$WallpaperService"/>
-        <service
-            android:name=".NotificationService"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
-            android:enabled="true"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.service.notification.NotificationListenerService" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".SchedulerJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
-
-
-
-        <!--   api   -->
-
-
-
-
-
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="main.java.com.termux.app.TermuxActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
@@ -325,6 +293,7 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
+
         <activity
             android:name="main.java.com.termux.app.TermuxHelpActivity"
             android:exported="false"
@@ -332,7 +301,41 @@
             android:parentActivityName=".app.TermuxActivity"
             android:resizeableActivity="true"
             android:theme="@android:style/Theme.Material.Light.DarkActionBar" />
-     <!--   <activity
+        <activity android:name="main.java.com.termux.app.SettingActivity" />
+        <activity android:name="main.java.com.termux.app.BackupActivity" />
+
+        <activity android:name="main.java.com.termux.app.RestoreActivity" />
+
+        <activity
+            android:name="main.java.com.termux.activity.RepairActivity"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity android:name="sharedcode.turboeditor.activity.MarkdownActivity" />
+        <activity android:name="sharedcode.turboeditor.activity.SelectFileActivity" />
+        <activity
+            android:name="main.java.com.termux.app.EditTextActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="org.openintents.distribution.EulaActivity"
+            android:theme="@style/Theme.AppCompat"
+            tools:ignore="NewApi" /> <!-- api -->
+        <activity
+            android:name="org.openintents.distribution.NewVersionActivity"
+            android:theme="@style/Theme.AppCompat"
+            tools:ignore="NewApi" />
+        <activity
+            android:name=".search.SearchableActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <!--
+   <activity
             android:name=".GZHFStartActivity"
             android:excludeFromRecents="true"
             android:label="恢复当UTermux系统包"
@@ -350,45 +353,8 @@
             </intent-filter>
             &lt;!&ndash; Be more restrictive for viewing files, restricting ourselves to text files. &ndash;&gt;
 
-        </activity>-->
-
-
-
-        <activity android:name="main.java.com.termux.app.SettingActivity" />
-        <activity android:name="main.java.com.termux.app.BackupActivity" />
-        <activity android:name="main.java.com.termux.app.RestoreActivity" />
-        <activity
-            android:name="main.java.com.termux.activity.RepairActivity"
-            android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name="sharedcode.turboeditor.activity.MarkdownActivity" />
-        <activity android:name="sharedcode.turboeditor.activity.SelectFileActivity" />
-        <activity
-            android:name="main.java.com.termux.app.EditTextActivity"
-            android:theme="@style/Theme.Design.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity
-            android:name="org.openintents.distribution.EulaActivity"
-            android:theme="@style/Theme.AppCompat"
-            tools:ignore="NewApi" />
-        <!--
-             This (or rather, value 2.1 or higher) is needed to make the Samsung Galaxy S8
-             mark the app with "This app is optimized to run in full screen."
-        -->
-        <activity
-            android:name="org.openintents.distribution.NewVersionActivity"
-            android:theme="@style/Theme.AppCompat"
-            tools:ignore="NewApi" />
-        <activity
-            android:name=".search.SearchableActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
         </activity>
+        -->
         <activity android:name="main.java.com.termux.filemanage.filemanager.IntentFilterActivity">
             <intent-filter>
                 <action android:name="org.openintents.action.PICK_FILE" />
@@ -471,14 +437,22 @@
         <activity
             android:name="main.java.com.termux.floatwindows.TermuxFloatPermissionActivity"
             android:theme="@android:style/Theme.Material" />
-
         <meta-data
             android:name="android.max_aspect"
             android:value="10.0" />
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
-
+        <provider
+            android:name=".api.ShareAPI$ContentProvider"
+            android:authorities="com.termux.sharedfiles"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:readPermission="com.termux.sharedfiles.READ" />
+        <!--
+             This (or rather, value 2.1 or higher) is needed to make the Samsung Galaxy S8
+             mark the app with "This app is optimized to run in full screen."
+        -->
         <provider
             android:name="main.java.com.termux.filepicker.TermuxDocumentsProvider"
             android:authorities="com.termux.documents"
@@ -513,6 +487,7 @@
         <provider
             android:name="main.java.com.termux.filemanage.filemanager.search.RecentsSuggestionsProvider"
             android:authorities="com.termux.filemanager.filemanager.search.SuggestionProvider" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -522,8 +497,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <receiver android:name=".api.TermuxApiReceiver" />
 
-        <receiver android:name="com.termux.app.TermuxOpenReceiver" />
+        <receiver android:name=".app.TermuxOpenReceiver" />
         <receiver
             android:name=".tuils.stuff.PolicyReceiver"
             android:description="@string/admin_permission"
@@ -536,17 +512,38 @@
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/policy" />
-        </receiver> <!-- Activities from OI Distribution Library -->
+        </receiver>
+        <service android:name=".api.SpeechToTextAPI$SpeechToTextService" />
+        <service android:name=".api.TextToSpeechAPI$TextToSpeechService" />
+        <service android:name=".SensorAPI$SensorReaderService" />
+        <service
+            android:name=".MediaPlayerAPI$PlayerService"
+            android:exported="false" />
+        <service
+            android:name=".MicRecorderAPI$MicRecorderService"
+            android:exported="false" />
+        <service android:name=".WallpaperAPI$WallpaperService" />
 
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".SchedulerJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- Activities from OI Distribution Library -->
         <service
             android:name="main.java.com.termux.activity.DownLoadService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name="main.java.com.termux.app.RunCommandService"
             android:exported="true"
-            android:permission="com.termux.permission.RUN_COMMAND" >
+            android:permission="com.termux.permission.RUN_COMMAND">
             <intent-filter>
                 <action android:name="com.termux.RUN_COMMAND" />
             </intent-filter>
@@ -597,18 +594,23 @@
         <service
             android:name="main.java.com.termux.floatwindows.TermuxFloatService"
             android:exported="false" />
-    </application>
-
+    </application> <!-- features -->
     <meta-data
         android:name="com.sec.android.support.multiwindow"
-        android:value="true" /> <!-- features -->
+        android:value="true" />
+
     <permission
         android:name="android.permission.FLASHLIGHT"
         android:description="@string/help_flash"
         android:label="@string/help_flash"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
         android:protectionLevel="normal" />
-
+    <permission
+        android:name="com.termux.permission.RUN_COMMAND"
+        android:description="@string/run_command_permission_description"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/run_command_permission_label"
+        android:protectionLevel="dangerous" />
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
@@ -645,14 +647,43 @@
     <uses-feature
         android:name="android.hardware.location.network"
         android:required="false" />
+
     <uses-feature
         android:name="android.hardware.audio.output"
         android:required="false" />
-
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -674,10 +705,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!--  发送消息 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!--  阅读消息 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!--  写入消息 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 接收消息 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -688,13 +719,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" /> <!--  发送消息 -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!--  阅读消息 -->
-    <uses-permission android:name="android.permission.VIBRATE" /> <!--  写入消息 -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 接收消息 -->
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- api -->
+    <uses-permission android:name="android.permission.READ_SMS" /> <!-- Resolve phone numbers to contact names: -->
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -704,54 +736,32 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
-
-    <permission android:name="com.termux.permission.RUN_COMMAND"
-        android:label="@string/run_command_permission_label"
-        android:description="@string/run_command_permission_description"
-        android:icon="@drawable/ic_launcher"
-        android:protectionLevel="dangerous" />
-
-
-    <!-- api -->
-
-    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
-
-    <!-- Resolve phone numbers to contact names: -->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" /> <!-- permissions to install/uninstall apps -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.TRANSMIT_IR" />
+    <!--
+ Some of the used permissions imply uses-feature, so we need to make it optional.
+         See http://developer.android.com/guide/topics/manifest/uses-feature-element.html#permissions
+    -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <!-- permissions to install/uninstall apps -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
-
-    <!-- Some of the used permissions imply uses-feature, so we need to make it optional.
-         See http://developer.android.com/guide/topics/manifest/uses-feature-element.html#permissions -->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-    <uses-feature android:name="android.hardware.location" android:required="false" />
-    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
-    <uses-feature android:name="android.hardware.location.network" android:required="false" />
-    <uses-feature android:name="android.hardware.microphone" android:required="false" />
-    <uses-feature android:name="android.hardware.telephony" android:required="false" />
-    <uses-feature android:name="android.hardware.wifi" android:required="false" />
-    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
-
 
 </manifest>

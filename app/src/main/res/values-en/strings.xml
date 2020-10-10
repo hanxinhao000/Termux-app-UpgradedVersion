@@ -1204,6 +1204,10 @@ Is it open or not?"</string>
     <string name="图标打开">Icon to open the</string>
     <string name="无标打开">Without the open</string>
     <string name="关于">about</string>
+    <string name="自动提示设置">"Automatic prompt setting"</string>
+    <string name="请选择自动提示获取命令的路径">"Select the path to automatically prompt for the command"</string>
+    <string name="自动提示开">Automatic prompt[on]</string>
+    <string name="自动提示关">Automatic prompt[off]</string>
     <string name="软件制作asd56">"Software production :XINHAO_HAN\n author name: han **\n software type :termux function collection \n project start date: July 11, 2019 \n collection external resources :github.com/ Google \n development location: xi 'an yanta district, xi 'an weiyang district"</string>
     <string name="进入后台管理dsf56">Enter the background management</string>
     <string name="注意">Pay attention to</string>

@@ -22,15 +22,37 @@
         android:layout_above="@+id/key_boy_layout"
         android:layout_alignParentTop="true">
 
-        <com.termux.view.TerminalView
-            android:id="@+id/terminal_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
-            android:scrollbars="vertical"
-            android:importantForAutofill="no"
-            android:autofillHints="password" />
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <com.termux.view.TerminalView
+               android:id="@+id/terminal_view"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:focusableInTouchMode="true"
+               android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
+               android:scrollbars="vertical"
+               android:layout_above="@+id/protem_1"
+               android:importantForAutofill="no"
+               android:autofillHints="password" />
+
+          <HorizontalScrollView
+              android:layout_width="match_parent"
+              android:id="@+id/protem_1"
+              android:layout_alignParentBottom="true"
+              android:layout_height="wrap_content">
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:id="@+id/protem"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:layout_height="25dp"/>
+
+          </HorizontalScrollView>
+
+       </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -348,6 +370,7 @@
         android:id="@+id/lay_r"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         android:background="#2b2b2b">
 
         <main.java.com.termux.utils.CustomTextView

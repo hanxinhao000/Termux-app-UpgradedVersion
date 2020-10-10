@@ -157,6 +157,7 @@ import main.java.com.termux.http.UpDateHttpCode;
 import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
+import main.java.com.termux.utils.CustomTextView;
 import main.java.com.termux.utils.LocaleUtils;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
@@ -185,7 +186,7 @@ import static main.java.com.termux.service.BackService.BACK_FILES;
  * </ul>
  * about memory leaks.
  */
-public final class TermuxActivity extends Activity implements ServiceConnection, View.OnClickListener {
+public final class TermuxActivity extends Activity implements ServiceConnection, View.OnClickListener, TerminalView.PromptListener {
 
     public static final String TERMUX_FAILSAFE_SESSION_ACTION = "com.termux.app.failsafe_session";
 
@@ -215,6 +216,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     @SuppressWarnings("NullableProblems")
     @NonNull
     public static TerminalView mTerminalView;
+
+    private LinearLayout protem;
 
     main.java.com.termux.app.ExtraKeysView mExtraKeysView;
 
@@ -3235,6 +3238,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     }
 
+
+    private LinearLayout zidongtishi_ll;
+    private CustomTextView zidongtishi;
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -3269,6 +3275,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         isHistory();
 
 
+
         chouti_2 = findViewById(R.id.chouti_2);
         root_group = findViewById(R.id.root_group);
         root_group_content = findViewById(R.id.root_group_content);
@@ -3276,12 +3283,42 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         chouti_3 = findViewById(R.id.chouti_3);
         english = findViewById(R.id.english);
         zhongwen = findViewById(R.id.zhongwen);
+        protem = findViewById(R.id.protem);
+        zidongtishi_ll = findViewById(R.id.zidongtishi_ll);
+        zidongtishi = findViewById(R.id.zidongtishi);
         item_root_img = findViewById(R.id.item_root_img);
         status_zd = findViewById(R.id.status_zd);
         cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
 
         startZd();
+
+        zidongtishi_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String z_d_t_s = SaveData.getData("z_d_t_s");
+                if(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")){
+                    zidongtishi.setText(UUtils.getString(R.string.自动提示关));
+                    protem.setVisibility(View.GONE);
+                    SaveData.saveData("z_d_t_s","true");
+                }else{
+                    zidongtishi.setText(UUtils.getString(R.string.自动提示开));
+                    SaveData.saveData("z_d_t_s","def");
+                    protem.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        String z_d_t_s = SaveData.getData("z_d_t_s");
+        if(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")){
+            zidongtishi.setText(UUtils.getString(R.string.自动提示开));
+            protem.setVisibility(View.VISIBLE);
+        }else{
+            zidongtishi.setText(UUtils.getString(R.string.自动提示关));
+            protem.setVisibility(View.GONE);
+        }
 
 
         cli_install.setOnClickListener(new View.OnClickListener() {
@@ -5813,6 +5850,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         String key_color_view = SaveData.getData("key_color_view");
         String back_color_view = SaveData.getData("back_color_view");
         String video_back = SaveData.getData("video_back");
+
+        mTerminalView.setPromptListener(TermuxActivity.this);
 
         try {
             if (!text_color_view.equals("def")) {
@@ -9679,4 +9718,112 @@ other_text;
 
     }
 
+    @Override
+    public void promptList(ArrayList<File> arrayListFile) {
+
+        String z_d_t_s = SaveData.getData("z_d_t_s");
+        if(!(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def"))){
+          return;
+        }
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                protem.removeAllViews();
+                if(arrayListFile == null){
+                    return;
+                }
+
+
+                try {
+                    for (int i = 0; i < arrayListFile.size(); i++) {
+
+                        if (i == 0) {
+
+                            TextView textView = new TextView(TermuxActivity.this);
+
+                            textView.setText(arrayListFile.get(i).getName());
+
+                            textView.setTextSize(12);
+
+                            textView.setPadding(20, 8, 20, 8);
+
+                            textView.setBackgroundColor(Color.parseColor("#22ffffff"));
+
+                            textView.setTextColor(Color.parseColor("#ffffff"));
+                            LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                            int finalI = i;
+                            textView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    try {
+                                        mTerminalView.removeStringAll();
+                                        mTerminalView.sendTextToTerminalToToTo(textView.getText().toString());
+                                        protem.removeAllViews();
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+                            ll.leftMargin = 5;
+
+                            textView.setLayoutParams(ll);
+
+                            protem.addView(textView);
+
+                        } else {
+
+                            TextView textView = new TextView(TermuxActivity.this);
+
+                            textView.setText(arrayListFile.get(i).getName());
+
+                            textView.setTextSize(12);
+
+                            textView.setPadding(20, 8, 20, 8);
+
+                            textView.setBackgroundColor(Color.parseColor("#22ffffff"));
+
+                            textView.setTextColor(Color.parseColor("#ffffff"));
+
+                            LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                            ll.leftMargin = 10;
+
+                            int finalI1 = i;
+                            textView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    try {
+                                        mTerminalView.removeStringAll();
+                                        mTerminalView.sendTextToTerminalToToTo(textView.getText().toString());
+                                        protem.removeAllViews();
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+                            textView.setLayoutParams(ll);
+
+                            protem.addView(textView);
+
+                        }
+
+
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                    protem.removeAllViews();
+                }
+
+
+            }
+        });
+
+
+
+    }
 }

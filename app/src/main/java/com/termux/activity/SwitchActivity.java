@@ -37,6 +37,7 @@ import main.java.com.termux.app.TermuxService;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.ReadSystemBean;
 import main.java.com.termux.utils.ExeCommand;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.view.MyDialog;
 
 public class SwitchActivity extends AppCompatActivity implements View.OnClickListener {
@@ -86,7 +87,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
 
                 CreateSystemBean createSystemBean = new CreateSystemBean();
 
-                createSystemBean.systemName = "默认系统";
+                createSystemBean.systemName = UUtils.getString(R.string.默认系统5556);
 
                 createSystemBean.dir = "/data/data/com.termux/files";
 
@@ -129,11 +130,11 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                 //当前系统
 
 
-                String[] strings = {"删除", "切换"};
+                String[] strings = {UUtils.getString(R.string.删除889), UUtils.getString(R.string.切换8885)};
 
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog
                     .Builder(SwitchActivity.this);
-                builder.setTitle("删除完成,需要重进才能刷新");
+                builder.setTitle(UUtils.getString(R.string.删除完成_需要重进才能刷新));
                 // builder.setMessage("这是个滚动列表，往下滑");
                 builder.setItems(strings, new DialogInterface.OnClickListener() {
                     @Override
@@ -145,7 +146,7 @@ public class SwitchActivity extends AppCompatActivity implements View.OnClickLis
                             builder.create().dismiss();
                             AlertDialog.Builder a = new AlertDialog.Builder(SwitchActivity.this);
                             a.setTitle("你确定要删除吗");
-                            a.setMessage("你确定要删除掉你的系统吗?\n请慎重,删除后你的数据不可恢复!!!!!!");
+                            a.setMessage("请确保你的sd卡权限未被获取!\n否则很可能会清空你SD卡(内部存储)上的所有内容!\n否则很可能会清空你SD卡(内部存储)上的所有内容!\n否则很可能会清空你SD卡(内部存储)上的所有内容!\n你确定要删除掉你的系统吗?\n请慎重,删除后你的数据不可恢复!!!!!!");
                             a.setNegativeButton("我确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

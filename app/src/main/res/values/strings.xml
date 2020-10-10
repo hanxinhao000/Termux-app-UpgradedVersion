@@ -863,49 +863,11 @@
     <string name="shell">/system/bin/sh</string>
     <string name="username">android</string>
     <string name="password">changeme</string>
-    <string-array name="preference_sortby_names">
-        <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
-        <item>File extension</item>
-    </string-array>
-    <string-array name="hints">
-        <item name="hint_twitter">Did you know? t-ui is on Twitter. Have a look (\"$ tui -twitter\")</item>
-        <item name="hint_telegram">Did you know? There\'s a Telegram group with many enthusiastic users, where you can discuss, share and chat (\"$ tui -telegram\")</item>
-        <item name="hint_googlep">Did you know? Our official Google+ community is full of tips, experimental apks and discussions (\"$ tui -googlep\")</item>
-        <item name="hint_tutorial">Did you read the tutorial? (\"$ tutorial\")</item>
-        <item name="hint_theme">Did you know that you can easily switch your theme? Have a look at the cmd \"$ theme\"</item>
-        <item name="hint_theme2">Did you know? You can create your custom theme and share it with other users. Have a look at the cmd \"$ theme -create\"</item>
-        <item name="hint_help">Doubts about a command? Use \"$ help cmdName\"</item>
-        <item name="hint_music">Did you know? You can listen to music using t-ui. Have a look at the cmd \"$ music\"</item>
-        <item name="hint_appgroups">Did you know? t-ui 6.4 introduced App Groups.\nYou can get more details with the cmd \"$ apps -tutorial\"</item>
-        <item name="hint_notifications">Did you know? You can see your notifications inside t-ui. If you\'re interested, have a look at the tutorial: \"$ notifications -tutorial\"</item>
-        <item name="hint_clear">Are you sick of clearing your screen? Have a look at the options \"clear_after_cmds\", \"clear_after_seconds\" and \"maxlines\"</item>
-        <item name="hint_wallpaper">Do you want to use your wallpaper as t-ui background? Use the cmd: \"$ config -set system_wallpaper true\"</item>
-        <item name="hint_config">Doubts about any config option? Use the cmd \"$ config -info [option]\"table</item>
-        <item name="hint_alias">Did you know that t-ui supports aliases? For more info, use the cmd \"$ alias -tutorial\"</item>
-        <item name="hint_excludenotification">Did you know? You can exclude an unwanted notification by long-clicking on it</item>
-        <item name="hint_disable">You can disable this messages with the cmd \"$ config -set show_hints false\"</item>
-    </string-array>
-    <string-array name="tutorial">
-        <item>Use the command \"help\" to get a list of available commands</item>
-        <item>If you want to get info about the behavior of a command, type \"help cmdName\"</item>
-        <item>Launch your apps typing their name</item>
-        <item>You can call your contacts with the cmd \"call contactName\"</item>
-        <item>t-ui is highly customizable. Check \"config -ls\" or use the cmd \"config -tutorial\" to see what you can change</item>
-        <item>You can choose within a large database of themes uploaded by t-ui users. Check the cmd \"theme -view\"</item>
-        <item>Join our community! Google+, Twitter, Telegram and GitHub. Use the cmd \"tui\"</item>
-    </string-array>
-
-
     <string name="run_command_permission_label">在Termux环境中运行命令</string>
     <string name="run_command_permission_description">允许第三方应用程序在Termux环境中执行任意命令。</string>
-
-
-
-    <!-- 开始执行 汉语和英语翻译 -->
-
     <string name="正在完成操作">正在完成操作,请等待!(根据Termux更改的)</string>
+
+
     <string name="测试版本">测试版本!有些手机可能不支持,如果有不支持的请及时反馈问题</string>
     <string name="请保持此页面在最前端">"
         请保持此页面在最前端，并且不要有其他操作！\n
@@ -919,6 +881,10 @@
         网站管理目录[在备份的压缩包中]:/files/usr/share/nginx/html/\n
         您可以选择复制进去重新压缩，然后点击恢复linux\n刚启动可能有点卡，等待5-10分钟，就正常了\n
         不想自启动命令,删除掉[/usr/etc/XINHAO_HAN]文件,就不会每次启动命令了,如果还原启动命令,创建一个[XINHAO_HAN]空文件"</string>
+
+
+    <!-- 开始执行 汉语和英语翻译 -->
+
     <string name="请选择变化信息">请选择变化信息:</string>
     <string name="文字">文字</string>
     <string name="文字123">文字 + 底部键盘</string>
@@ -934,13 +900,13 @@
     <string name="权限信息886">权限信息</string>
     <string name="内存权限886">内存权限:   [没有权限]</string>
     <string name="内存权限887">内存权限:   [已获取]</string>
-
     <string name="电话权限886">"电话权限:   [没有权限]"</string>
     <string name="电话权限887">"电话权限:   [已获取]"</string>
-
     <string name="短信权限">"短信权限:   [没有权限]"</string>
+
     <string name="短信权限已获取">"短信权限:   [已获取]"</string>
     <string name="源功能">"源功能"</string>
+
     <string name="更多资源">"更多资源[请勿违法,只适用于学习交流,所有法律责任由使用者承担]"</string>
     <string name="常用功能554">"常用功能"</string>
     <string name="包恢复功能885">"包恢复功能"</string>
@@ -1028,7 +994,10 @@
     <string name="更改左侧栏背景图片">"更改左侧栏背景图片"</string>
     <string name="实验室">"实验室"</string>
     <string name="悬浮命令行">"悬浮命令行"</string>
+    <string name="自动提示开">"自动提示[开]"</string>
+    <string name="自动提示关">"自动提示[关]"</string>
     <string name="开机命令556">"开机命令[开]"</string>
+    <string name="自动提示设置">"自动提示设置"</string>
     <string name="全屏模式asf5sd5">"全屏模式\n[再次点击关闭]"</string>
     <string name="替换官方版本">"替换官方版本"</string>
     <string name="用官版的请点击">"用官版的请点击"</string>
@@ -1056,12 +1025,13 @@
         解压前:不知道 \n
         解压后:1000 MB
     </string>
-
-
     <string name="正在启动开机命令">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开 [ finalI1 / split.length ]"</string>
     <string name="开始启动mysqlsgdfg">"开始启动mysql"</string>
     <string name="mysql_已启动">"mysql 已启动"</string>
+
+
     <string name="正在启动_php环境">"正在启动 php环境"</string>
+    <string name="请选择自动提示获取命令的路径">"请选择自动提示获取命令的路径"</string>
     <string name="启动VNC_d5f5">"启动VNC!"</string>
     <string name="启动完成yyy">"启动完成!右下角的+号可以点啦~"</string>
     <string name="正在启动开机命令s5gsd5g">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开"</string>
@@ -1115,19 +1085,19 @@ xinhao/apk/fdrPlugins.apk\n
     <string name="已切换到新版启动器">已切换到新版启动器</string>
     <string name="需要重启APP才能改变当前启动器">需要重启APP才能改变当前启动器\n
 是否重启?</string>
-
     <string name="需要">需要</string>
     <string name="稍后">稍后</string>
     <string name="运行">运行</string>
+
     <string name="即将开始运行网页版本的Utermuxsd5fsd5">即将开始运行网页版本的Utermux\n
 密码默认(password def):123\n
 是否开始运行?\n
 端口(port):4200</string>
-
-
     <string name="命令执行成功">命令执行成功</string>
     <string name="请在浏览器打开">请在浏览器打开 [本机(phone)ip]:4200</string>
     <string name="好的">好的</string>
+
+
     <string name="坏境错误">坏境错误</string>
     <string name="你没有安装shellinaboxdfg56">你没有安装shellinabox\n
 离线安装只支持arm和aarch!!!!!\n
@@ -1136,7 +1106,6 @@ xinhao/apk/fdrPlugins.apk\n
 请查看您的源是否正确!\n
 
 注意!离线安装如果有报错,不用管!</string>
-
     <string name="离线安装">离线安装</string>
     <string name="未安装插件sdf1sd6f8s1df">未安装插件，是否安装插件?\n
 如果自动安装插件失败\n
@@ -1144,6 +1113,7 @@ xinhao/apk/fdrPlugins.apk\n
 xinhao/apk/DosBoxApplication.apk\n
 手动安装</string>
     <string name="请在测试版本中打开">请在测试版本中打开!</string>
+
     <string name="恢复功能正在维护中">备份/恢复功能正在维护中...</string>
     <string name="请选择">请选择</string>
     <string name="请选择你需要的操作dfgdf651">请选择你需要的操作\n
@@ -1184,10 +1154,10 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="你需要离线还是在线sdf56">"你需要离线还是在线\n
 在线需要:vpn以及20KB~200KB的捉急网速\n
 离线：直接在群文件下载放到[sdcared ->xinhao/iso/]目录下"</string>
-
     <string name="我选择离线">"我选择离线"</string>
     <string name="正在复制文件到工作区域asd5">"正在复制文件到工作区域"</string>
     <string name="fuzhisdfsd">"TO MB/FROM MB"</string>
+
     <string name="正在复制文件到工作区域sdf456">"正在复制文件到工作区域\n
 如果复制很慢请耐心等待\n
 页面刷新可能有延时\n
@@ -1196,11 +1166,11 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="请耐心等待a6dsf15sdf16">"请耐心等待,如果一直卡这\n
 请去看看你的sd卡权限\n
 有没有打开"</string>
-
-
     <string name="如果一直卡在asd6">"如果一直卡在(正在安装 wget proot…),请ctrl + c 然后再按 ↑建 重新执行一下"</string>
     <string name="如果一直卡在asd67">"如果一直卡在(正在安装 wget proot…)\n\n请ctrl + c 然后再按 ↑建 重新执行一下\n\n或者 重新执行脚本[./Install_cn_li.sh]"</string>
     <string name="未发现文件f5">在 sdcard ->xinhao/iso 未发现 fedora.7z 文件</string>
+
+
     <string name="我选择在线">我选择在线</string>
     <string name="您确定">您确定?</string>
     <string name="你确定要卸载fedora系统吗">你确定要卸载fedora系统吗?</string>
@@ -1578,7 +1548,6 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="目前关">目前[关]</string>
     <string name="目前关提示">想要生效,您必须在切换系统当中新建一个系统并且切换!</string>
     <string name="参考页面5555555">赞助[只是技术帮助](排名不分先后):\n\n-----------------------------------\n\nOuter[¥:2] | QQ:8387**536\n\nhexahedron yell[¥:1]|19869**359\n\n沫雪一[¥：10]：29307**324\n\n渗透工具 [¥：10]:2411**013\n\n天龙八部 [¥:30]6955**042\n\n\n-----------------------------------\n\nubuntu图形:\n\n特此鸣谢:userland\n地址:https://github.com/CypherpunkArmory/UserLAnd\n\n悬浮窗口[重要鸣谢!]:Leonid Plyushch\n个人主页:https://github.com/xeffyr\nmp3:paulumi项目地址:https://github.com/paulumi/Ekualizers-Music\n\n鸣谢termux\n项目地址:https://github.com/termux/termux-app \n\n等等提供脚本的作者\n\n本APP只是整合了所有资源\n遵循所有原作者的协议\n\n切勿在各大应用商店发布\n\n法律责任由发布者承担(全部法律)\n\n再次声明\n\n本程序只是学习交流使用,切勿超出适用范围!!!\n\n如果在使用当中出现的任何法律责任，由使用者承担!\n\n您下载或使用,即代表了您同意本页面所有条件!</string>
-
     <string name="更多功能">更多功能</string>
     <string name="正在安装环境">正在安装Deploy环境</string>
     <string name="安装完成">安装完成,请输入cli命令使用</string>
@@ -1589,9 +1558,49 @@ xinhao/apk/DosBoxApplication.apk\n
 
     <string name="ADB安装">ADB安装</string>
     <string name="终端字体">终端字体</string>
-
     <string name="在线包已被关闭">"在线包已被关闭,请到[百度网盘]下载\n
 就是那个下载站提取码为:gzdp那个!"</string>
+
     <string name="autofill_password">自动填充密码</string>
+    <string name="默认系统5556">默认系统</string>
+
+    <string name="删除889">删除</string>
+    <string name="切换8885">切换</string>
+
+
+    <string name="删除完成_需要重进才能刷新">删除完成,需要重进才能刷新</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Size</item>
+        <item>Last modified</item>
+        <item>File extension</item>
+    </string-array>
+    <string-array name="hints">
+        <item name="hint_twitter">Did you know? t-ui is on Twitter. Have a look (\"$ tui -twitter\")</item>
+        <item name="hint_telegram">Did you know? There\'s a Telegram group with many enthusiastic users, where you can discuss, share and chat (\"$ tui -telegram\")</item>
+        <item name="hint_googlep">Did you know? Our official Google+ community is full of tips, experimental apks and discussions (\"$ tui -googlep\")</item>
+        <item name="hint_tutorial">Did you read the tutorial? (\"$ tutorial\")</item>
+        <item name="hint_theme">Did you know that you can easily switch your theme? Have a look at the cmd \"$ theme\"</item>
+        <item name="hint_theme2">Did you know? You can create your custom theme and share it with other users. Have a look at the cmd \"$ theme -create\"</item>
+        <item name="hint_help">Doubts about a command? Use \"$ help cmdName\"</item>
+        <item name="hint_music">Did you know? You can listen to music using t-ui. Have a look at the cmd \"$ music\"</item>
+        <item name="hint_appgroups">Did you know? t-ui 6.4 introduced App Groups.\nYou can get more details with the cmd \"$ apps -tutorial\"</item>
+        <item name="hint_notifications">Did you know? You can see your notifications inside t-ui. If you\'re interested, have a look at the tutorial: \"$ notifications -tutorial\"</item>
+        <item name="hint_clear">Are you sick of clearing your screen? Have a look at the options \"clear_after_cmds\", \"clear_after_seconds\" and \"maxlines\"</item>
+        <item name="hint_wallpaper">Do you want to use your wallpaper as t-ui background? Use the cmd: \"$ config -set system_wallpaper true\"</item>
+        <item name="hint_config">Doubts about any config option? Use the cmd \"$ config -info [option]\"table</item>
+        <item name="hint_alias">Did you know that t-ui supports aliases? For more info, use the cmd \"$ alias -tutorial\"</item>
+        <item name="hint_excludenotification">Did you know? You can exclude an unwanted notification by long-clicking on it</item>
+        <item name="hint_disable">You can disable this messages with the cmd \"$ config -set show_hints false\"</item>
+    </string-array>
+    <string-array name="tutorial">
+        <item>Use the command \"help\" to get a list of available commands</item>
+        <item>If you want to get info about the behavior of a command, type \"help cmdName\"</item>
+        <item>Launch your apps typing their name</item>
+        <item>You can call your contacts with the cmd \"call contactName\"</item>
+        <item>t-ui is highly customizable. Check \"config -ls\" or use the cmd \"config -tutorial\" to see what you can change</item>
+        <item>You can choose within a large database of themes uploaded by t-ui users. Check the cmd \"theme -view\"</item>
+        <item>Join our community! Google+, Twitter, Telegram and GitHub. Use the cmd \"tui\"</item>
+    </string-array>
 
 </resources>
