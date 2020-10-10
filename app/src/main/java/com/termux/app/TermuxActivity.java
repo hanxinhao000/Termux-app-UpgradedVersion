@@ -3240,6 +3240,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
     private LinearLayout zidongtishi_ll;
+    private LinearLayout zdti_set;
     private CustomTextView zidongtishi;
     @Override
     public void onCreate(Bundle bundle) {
@@ -3281,6 +3282,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         root_group_content = findViewById(R.id.root_group_content);
         chouti_1 = findViewById(R.id.chouti_1);
         chouti_3 = findViewById(R.id.chouti_3);
+        zdti_set = findViewById(R.id.zdti_set);
         english = findViewById(R.id.english);
         zhongwen = findViewById(R.id.zhongwen);
         protem = findViewById(R.id.protem);
@@ -3292,6 +3294,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         history_command = findViewById(R.id.history_command);
 
         startZd();
+
+        zdti_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TermuxActivity.this,PromptSettingActivity.class));
+            }
+        });
 
         zidongtishi_ll.setOnClickListener(new View.OnClickListener() {
             @Override

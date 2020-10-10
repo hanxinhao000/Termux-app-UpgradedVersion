@@ -6,6 +6,34 @@ package com.termux.view;
  **/
 public class PromptMsg {
 
+    private static PromptMsg mPromptMsg;
+
+    public static PromptMsg getInstall(){
+
+        if(mPromptMsg == null){
+
+            synchronized (PromptMsg.class){
+
+                if(mPromptMsg == null){
+
+                    mPromptMsg = new PromptMsg();
+
+                    return mPromptMsg;
+
+                }else{
+
+                    return mPromptMsg;
+                }
+
+            }
+        }else{
+
+            return mPromptMsg;
+        }
+
+
+    }
+
     //默认获取目录
     private String path = "/data/data/com.termux/files/usr/bin";
 

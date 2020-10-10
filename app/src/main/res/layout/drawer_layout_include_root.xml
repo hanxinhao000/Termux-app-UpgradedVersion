@@ -82,8 +82,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:id="@+id/zdti_set"
             android:gravity="center"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:orientation="vertical">
 
             <ImageView

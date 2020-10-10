@@ -122,7 +122,7 @@ public final class TerminalView extends View {
 
     public TerminalView(Context context, AttributeSet attributes) { // NO_UCD (unused code)
         super(context, attributes);
-        mPromptMsg = new PromptMsg();
+        mPromptMsg = PromptMsg.getInstall();
         this.mContext = context;
         arrayListFile = new ArrayList<File>();
         mGestureRecognizer = new GestureAndScaleRecognizer(context, new GestureAndScaleRecognizer.Listener() {
