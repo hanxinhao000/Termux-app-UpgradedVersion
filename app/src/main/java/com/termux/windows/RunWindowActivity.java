@@ -846,7 +846,7 @@ public class RunWindowActivity extends AppCompatActivity implements TermuxData.I
 
     private void runCommite(String cmd,boolean isStartVnc){
 
-        isError = false;
+
    /*     if (mFileQemuStart.exists()) {
             boolean delete = mFileQemuStart.delete();
             if(!delete){
@@ -955,7 +955,7 @@ public class RunWindowActivity extends AppCompatActivity implements TermuxData.I
                     }
                 });
 
-
+                isError = false;
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
