@@ -23,6 +23,7 @@
     <!--自定义BaseDialog样式-->
     <style name="BaseDialog222" parent="@android:style/Theme.Dialog">
         <!-- 无标题 -->
+        <!--自定义BaseDialog样式-->
         <item name="android:windowNoTitle">true</item>
         <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>

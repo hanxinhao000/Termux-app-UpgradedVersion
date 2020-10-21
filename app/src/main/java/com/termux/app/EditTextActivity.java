@@ -80,7 +80,7 @@ public class EditTextActivity extends AppCompatActivity implements View.OnClickL
 
             Log.e("XINHAO_HAN", "onCreate: " + txt);
 
-
+            bufferedReader.close();
             text.setText(txt);
 
 
@@ -131,6 +131,7 @@ public class EditTextActivity extends AppCompatActivity implements View.OnClickL
             printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(TermuxData.getInstall().fileUrl))));
             printWriter.print(textString);
             printWriter.flush();
+            printWriter.close();
             Toast.makeText(this, "成功保存!", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "保存失败!", Toast.LENGTH_SHORT).show();

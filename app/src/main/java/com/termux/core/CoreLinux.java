@@ -156,7 +156,7 @@ public class CoreLinux {
                 transcriptTextBuilder = changedSession.getEmulator().getScreen().getTranscriptTextBuilder();
 
 
-                Log.e("XINHAO_HAN", "onTextChanged: " + transcriptTextBuilder);
+               // Log.e("XINHAO_HAN", "onTextChanged: " + transcriptTextBuilder);
 
                 if (transcriptTextBuilder.equals("$")) {
                     IS_RUN = false;

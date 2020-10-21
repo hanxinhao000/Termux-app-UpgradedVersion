@@ -84,13 +84,13 @@
             android:layout_marginTop="15dp"
             android:id="@+id/zdti_set"
             android:gravity="center"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/aito_sishi_set" />
+                android:src="@drawable/windows" />
 
 
             <main.java.com.termux.utils.CustomTextView
@@ -100,7 +100,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/自动提示设置"
+                android:text="@string/高级windows运行"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />

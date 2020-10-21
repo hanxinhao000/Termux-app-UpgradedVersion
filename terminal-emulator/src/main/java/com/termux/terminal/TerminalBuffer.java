@@ -3,6 +3,7 @@ package com.termux.terminal;
 import android.util.Log;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * A circular buffer of {@link TerminalRow}:s which keeps notes about what is visible on a logical screen and the scroll
@@ -94,15 +95,18 @@ public final class TerminalBuffer {
             }
             if (lastPrintingCharIndex != -1)
                 builder.append(line, x1Index, lastPrintingCharIndex - x1Index + 1);
-             Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
+            // Log.e("XINHAO_HAN222", "getSelectedText: " + Arrays.toString(line));
             if (!rowLineWrap && row < selY2 && row < mScreenRows - 1) builder.append('\n');
         }
         return builder.toString();
     }
 
 
+
     public String getTranscriptTextBuilder() {
-        return getSelectedTextStringBuilder(0, -getActiveTranscriptRows(), mColumns, mScreenRows).trim();
+        String trim = getSelectedTextStringBuilder(0, -getActiveTranscriptRows(), mColumns, mScreenRows).trim();
+        Log.e("内容3", "getTranscriptTextBuilder: " + trim );
+        return trim;
     }
 
 

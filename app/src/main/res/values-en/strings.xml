@@ -1204,6 +1204,7 @@ Is it open or not?"</string>
     <string name="图标打开">Icon to open the</string>
     <string name="无标打开">Without the open</string>
     <string name="关于">about</string>
+    <string name="修改">edit</string>
     <string name="自动提示设置">"Automatic prompt setting"</string>
     <string name="请选择自动提示获取命令的路径">"Select the path to automatically prompt for the command"</string>
     <string name="自动提示开">Automatic prompt[on]</string>

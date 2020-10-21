@@ -37,7 +37,10 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import main.java.com.termux.app.dialog.EditTextDialog;
 import main.java.com.termux.application.TermuxApplication;
+import main.java.com.termux.datat.TermuxData;
+import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.view.MyDialog;
 
 /**
@@ -1080,6 +1083,20 @@ public final class TermuxInstaller {
         if (!fileOrDirectory.delete()) {
             throw new RuntimeException("Unable to delete " + (fileOrDirectory.isDirectory() ? "directory " : "file ") + fileOrDirectory.getAbsolutePath());
         }
+    }
+
+    static void editTextDialog(String path,Activity mActivity){
+
+       // UUtils.showMsg("开始弹出编辑框:" + path);
+        TermuxData.getInstall().fileUrl = path;
+        Intent intent = new Intent(mActivity, EditTextActivity.class);
+        mActivity.startActivity(intent);
+
+       // EditTextDialog editTextDialog = new EditTextDialog(mActivity);
+
+       // editTextDialog.setStringData(path);
+
+        //editTextDialog.show();
     }
 
     static void setupStorageSymlinks(final Context context) {

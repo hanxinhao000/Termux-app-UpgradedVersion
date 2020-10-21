@@ -375,15 +375,15 @@ public final class TerminalView extends View {
 
                         for (int i = 0; i < files.length; i++) {
 
-                            Log.e("XINHAO_HAN", "files[i].getName(): " + files[i].getName());
-                            Log.e("XINHAO_HAN", "inputString: " + inputString);
+                           // Log.e("XINHAO_HAN", "files[i].getName(): " + files[i].getName());
+                           // Log.e("XINHAO_HAN", "inputString: " + inputString);
                             if (files[i].getName().replace("-", "").trim().contains(inputString)) {
                                 arrayListFile.add(files[i]);
                             }
 
 
                         }
-                        Log.e("XINHAO_HANYYYY", "sendTextToTerminal: " + arrayListFile.toString());
+                       // Log.e("XINHAO_HANYYYY", "sendTextToTerminal: " + arrayListFile.toString());
                         if (mPromptListener != null)
                             mPromptListener.promptList(arrayListFile);
                     }catch (Exception e){
@@ -1106,10 +1106,13 @@ public final class TerminalView extends View {
         return mTermSession;
     }
 
-    private CharSequence getText() {
+    public CharSequence getText() {
         return mEmulator.getScreen().getSelectedText(0, mTopRow, mEmulator.mColumns, mTopRow + mEmulator.mRows);
     }
 
+    public String getText555(){
+        return  mEmulator.getScreen().getTranscriptText();
+    }
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -1881,6 +1884,9 @@ public final class TerminalView extends View {
         if (value.isText()) {
             mTermSession.write(value.getTextValue().toString());
         }
+    }
+    public String getTextrr(){
+        return mEmulator.getSelectedText(mSelX1, mSelY1, mSelX2, mSelY2).trim();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

@@ -1,0 +1,53 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+B="/"
+xinhaotext="$(pwd)/$1"
+if [ ! -n "$1" ]; then
+
+ 	echo '   版本:v0.256.9865'
+	echo ''
+	echo '   欢迎使用Utermux自带图形文本编辑器'
+	echo ''
+	echo ''
+	echo '   使用方法:'
+	echo '   XINHAO_HAN_TextUT [文件名或路径]'
+	echo ''
+	echo '   例如:'
+	echo '   XINHAO_HAN_TextUT aaa.text'
+	echo '   使用方法与 vim简单使用相同'
+	exit
+fi 
+#`(ls `pwd`/$1)`
+
+if [[ $1 =~ $B ]]; then
+
+	if [[ -f $1 ]]; then
+	
+		am broadcast --user 0 \
+		 --es com.termux.app.reload_style $1 \
+		 -a com.termux.app.reload_style com.termux > /dev/null
+	else
+	  touch $1
+	  am broadcast --user 0 \
+	  	 --es com.termux.app.reload_style $1 \
+	  	 -a com.termux.app.reload_style com.termux > /dev/null
+	fi
+
+else
+
+	if [[ -f $xinhaotext ]]; then
+		am broadcast --user 0 \
+		 --es com.termux.app.reload_style $xinhaotext \
+		 -a com.termux.app.reload_style com.termux > /dev/null
+	else
+		touch $xinhaotext
+		am broadcast --user 0 \
+		 --es com.termux.app.reload_style $xinhaotext \
+		 -a com.termux.app.reload_style com.termux > /dev/null
+	fi
+
+fi 
+
+
+
+#echo ${xinhaotext}

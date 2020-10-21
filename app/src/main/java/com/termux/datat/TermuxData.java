@@ -42,4 +42,18 @@ public class TermuxData {
 
     public String fileUrl;
 
+    private IsQemuSul mIsQemuSul;
+
+    public IsQemuSul getmIsQemuSul(){
+        return mIsQemuSul;
+    }
+
+    public void setIsQemuSul(IsQemuSul mIsQemuSul){
+        this.mIsQemuSul = mIsQemuSul;
+    }
+
+    public interface IsQemuSul{
+        void error();
+
+    }
 }

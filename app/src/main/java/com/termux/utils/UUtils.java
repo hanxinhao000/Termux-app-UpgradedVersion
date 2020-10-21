@@ -1,5 +1,6 @@
 package main.java.com.termux.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,10 +18,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +38,7 @@ import java.util.Locale;
 import java.util.zip.GZIPInputStream;
 
 import androidx.annotation.LayoutRes;
+import main.java.com.termux.datat.TermuxData;
 import okio.ByteString;
 
 /**
@@ -91,6 +100,62 @@ public class UUtils {
             //子线程
             getHandler().post(r);
 
+        }
+
+
+    }
+    public static void setFileString(File fileString,String msg){
+
+
+        try {
+            PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileString)));
+            printWriter.print(msg);
+            printWriter.flush();
+            printWriter.close();
+            Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String getFileString(File file){
+        UUtils.showLog("获取文件目录:" + file.getAbsolutePath());
+        String txt = "";
+
+        String temp = "";
+
+        if (!file.exists()) {
+            try {
+
+
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+
+
+            while ((temp = bufferedReader.readLine()) != null) {
+                txt = txt + temp + "\n";
+            }
+            bufferedReader.close();
+
+            Log.e("XINHAO_HAN", "onCreate: " + txt);
+
+
+           return txt;
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return "文件加载失败!" + e.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "文件加载失败!" + e.toString();
         }
 
 
@@ -627,6 +692,7 @@ public class UUtils {
      *
      * @return  手机IMEI
      */
+    @SuppressLint("MissingPermission")
     public static String getIMEI(Context ctx) {
         TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Activity.TELEPHONY_SERVICE);
         if (tm != null) {

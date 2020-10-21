@@ -36,7 +36,7 @@ import java.util.Enumeration;
 
 import androidx.annotation.RequiresApi;
 
-class KeystoreAPI {
+public class KeystoreAPI {
     // this is the only provider name that is supported by Android
     private static final String PROVIDER = "AndroidKeyStore";
 

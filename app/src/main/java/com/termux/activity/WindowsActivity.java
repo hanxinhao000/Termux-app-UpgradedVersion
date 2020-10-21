@@ -83,6 +83,11 @@ public class WindowsActivity extends AppCompatActivity {
                                 TermuxActivity.mTerminalView.sendTextToTerminal("cd ~  \n");
                                 TermuxActivity.mTerminalView.sendTextToTerminal("cd ~  \n");
                                 TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage \n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y \n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y \n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y \n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y \n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y \n");
 
 
                             }

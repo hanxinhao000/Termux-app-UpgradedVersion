@@ -538,6 +538,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="请选择打开方式s5d">"请选择打开方式?\n打开选项:\n1.带小图标打开[图标打开]\n2.不带小图标打开"</string>
     <string name="图标打开">图标打开</string>
     <string name="无标打开">无标打开</string>
+    <string name="修改">修改</string>
     <string name="自动提示设置">"自动提示设置"</string>
     <string name="请选择自动提示获取命令的路径">"请选择自动提示获取命令的路径"</string>
     <string name="自动提示开">"自动提示[开]"</string>

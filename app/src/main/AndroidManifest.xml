@@ -5,7 +5,7 @@
     android:installLocation="auto"
     android:sharedUserId="com.termux"
     android:sharedUserLabel="@string/shared_user_label">
-
+    <!-- features -->
     <application
         android:name="main.java.com.termux.application.TermuxApplication"
         android:allowBackup="true"
@@ -19,7 +19,8 @@
         android:theme="@style/Theme.Termux"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:theme">
-        <activity android:name="main.java.com.termux.app.PromptSettingActivity"></activity>
+
+        <activity android:name="main.java.com.termux.app.PromptSettingActivity" />
         <activity
             android:name=".SaveAsActivity"
             android:label="保存到UTermux/linux/home目录"
@@ -61,6 +62,10 @@
         <activity
             android:name="main.java.com.termux.weblinux.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity android:name="main.java.com.termux.windows.RunWindowActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+           />
         <activity
             android:name="main.java.com.termux.weblinux.AboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -254,7 +259,6 @@
             android:exported="false"
             android:noHistory="true"
             android:theme="@style/DialogTheme" />
-
         <activity
             android:name=".FingerprintAPI$FingerprintActivity"
             android:excludeFromRecents="true"
@@ -293,7 +297,6 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-
         <activity
             android:name="main.java.com.termux.app.TermuxHelpActivity"
             android:exported="false"
@@ -303,9 +306,7 @@
             android:theme="@android:style/Theme.Material.Light.DarkActionBar" />
         <activity android:name="main.java.com.termux.app.SettingActivity" />
         <activity android:name="main.java.com.termux.app.BackupActivity" />
-
         <activity android:name="main.java.com.termux.app.RestoreActivity" />
-
         <activity
             android:name="main.java.com.termux.activity.RepairActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
@@ -437,12 +438,14 @@
         <activity
             android:name="main.java.com.termux.floatwindows.TermuxFloatPermissionActivity"
             android:theme="@android:style/Theme.Material" />
+
         <meta-data
             android:name="android.max_aspect"
             android:value="10.0" />
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
+
         <provider
             android:name=".api.ShareAPI$ContentProvider"
             android:authorities="com.termux.sharedfiles"
@@ -487,7 +490,6 @@
         <provider
             android:name="main.java.com.termux.filemanage.filemanager.search.RecentsSuggestionsProvider"
             android:authorities="com.termux.filemanager.filemanager.search.SuggestionProvider" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -497,7 +499,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <receiver android:name=".api.TermuxApiReceiver" />
 
         <receiver android:name=".app.TermuxOpenReceiver" />
         <receiver
@@ -513,6 +514,7 @@
                 android:name="android.app.device_admin"
                 android:resource="@xml/policy" />
         </receiver>
+
         <service android:name=".api.SpeechToTextAPI$SpeechToTextService" />
         <service android:name=".api.TextToSpeechAPI$TextToSpeechService" />
         <service android:name=".SensorAPI$SensorReaderService" />
@@ -523,7 +525,6 @@
             android:name=".MicRecorderAPI$MicRecorderService"
             android:exported="false" />
         <service android:name=".WallpaperAPI$WallpaperService" />
-
         <service
             android:name=".NotificationService"
             android:enabled="true"
@@ -594,17 +595,18 @@
         <service
             android:name="main.java.com.termux.floatwindows.TermuxFloatService"
             android:exported="false" />
-    </application> <!-- features -->
+    </application>
+
     <meta-data
         android:name="com.sec.android.support.multiwindow"
         android:value="true" />
-
     <permission
         android:name="android.permission.FLASHLIGHT"
         android:description="@string/help_flash"
         android:label="@string/help_flash"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
         android:protectionLevel="normal" />
+
     <permission
         android:name="com.termux.permission.RUN_COMMAND"
         android:description="@string/run_command_permission_description"
@@ -647,7 +649,6 @@
     <uses-feature
         android:name="android.hardware.location.network"
         android:required="false" />
-
     <uses-feature
         android:name="android.hardware.audio.output"
         android:required="false" />
@@ -681,6 +682,7 @@
     <uses-feature
         android:name="android.hardware.wifi"
         android:required="false" />
+
     <uses-feature
         android:name="android.hardware.usb.host"
         android:required="false" />
@@ -704,11 +706,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!--  发送消息 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!--  阅读消息 -->
-    <uses-permission android:name="android.permission.VIBRATE" /> <!--  写入消息 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 接收消息 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!--  发送消息 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!--  阅读消息 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!--  写入消息 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 接收消息 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -723,10 +725,9 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_SMS" /> <!-- api -->
+    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- Resolve phone numbers to contact names: -->
     <uses-permission android:name="android.permission.READ_SMS" />
-
-    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- api -->
-    <uses-permission android:name="android.permission.READ_SMS" /> <!-- Resolve phone numbers to contact names: -->
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -742,14 +743,14 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER" /> <!-- permissions to install/uninstall apps -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- permissions to install/uninstall apps -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.TRANSMIT_IR" />
     <!--
  Some of the used permissions imply uses-feature, so we need to make it optional.
          See http://developer.android.com/guide/topics/manifest/uses-feature-element.html#permissions
     -->
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

@@ -40,6 +40,7 @@
           <HorizontalScrollView
               android:layout_width="match_parent"
               android:id="@+id/protem_1"
+              android:background="#662b2b2b"
               android:layout_alignParentBottom="true"
               android:layout_height="wrap_content">
 

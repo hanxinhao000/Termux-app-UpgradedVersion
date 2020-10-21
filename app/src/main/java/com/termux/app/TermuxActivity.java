@@ -89,6 +89,7 @@ import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 import com.termux.R;
+import com.termux.api.TermuxApiReceiver;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
 import com.termux.terminal.TerminalSession;
@@ -149,6 +150,7 @@ import main.java.com.termux.core.CoreGuiInstall;
 import main.java.com.termux.core.CoreLinux;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
+import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.datat.UrlDataHtml;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
@@ -167,6 +169,7 @@ import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.DownDialog;
 import main.java.com.termux.view.MyDialog;
 import main.java.com.termux.weblinux.MainActivity;
+import main.java.com.termux.windows.RunWindowActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -252,12 +255,29 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         @Override
         public void onReceive(Context context, Intent intent) {
             if (mIsVisible) {
+
                 String whatToReload = intent.getStringExtra(RELOAD_STYLE_ACTION);
+                //UUtils.showMsg("收到广播...:" + whatToReload);
                 if ("storage".equals(whatToReload)) {
                     if (ensureStoragePermissionGranted())
                         main.java.com.termux.app.TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
                     return;
                 }
+
+                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.contains("/data/data/")){
+                    main.java.com.termux.app.TermuxInstaller.editTextDialog(whatToReload,TermuxActivity.this);
+                    return;
+                }
+
+                if(whatToReload!= null && (!whatToReload.isEmpty()) &&(whatToReload.trim()).startsWith("qemu_run_error")){
+                    TermuxData.IsQemuSul isQemuSul = TermuxData.getInstall().getmIsQemuSul();
+                  //  UUtils.showMsg("收到广播ffffffffffffffffffffff" + isQemuSul);
+                    if(isQemuSul!= null){
+                        isQemuSul.error();
+                    }
+
+                }
+
                 checkForFontAndColors();
                 mSettings.reloadFromProperties(TermuxActivity.this);
 
@@ -267,6 +287,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             }
         }
     };
+
+
+    private TermuxApiReceiver mTermuxApiReceiver = new TermuxApiReceiver();
+
+
+
     private AnimatorSet mRightOutSet;
     private AnimatorSet mLeftInSet;
     private ListView listView;
@@ -495,7 +521,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     public void run() {
                         //pro_file
 
-                       // position_text.setText("文件数量:(" + position + "/" + size + ")\n  解压前:不知道 \n  解压后:" + (mSize / 1024 / 1024) + "MB");
+                        // position_text.setText("文件数量:(" + position + "/" + size + ")\n  解压前:不知道 \n  解压后:" + (mSize / 1024 / 1024) + "MB");
                         String string = UUtils.getString(R.string.解压文件文本);
 
                         String position1 = string.replace("position", position + "");
@@ -503,7 +529,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         String size1 = position1.replace("size", size + "");
 
                         String replace = size1.replace("1000", (mSize / 1024 / 1024) + "");
-
 
 
                         position_text.setText(replace);
@@ -582,7 +607,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                 @Override
                                 public void run() {
                                     mTerminalView.sendTextToTerminal(split[finalI] + " \n");
-                                   // msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开" + "[" + finalI1 + "/" + split.length + "]");
+                                    // msg.setText("正在启动开机命令[命令目录/home/BootCommand]命令之间用'&&'隔开" + "[" + finalI1 + "/" + split.length + "]");
 
 
                                     String string = UUtils.getString(R.string.正在启动开机命令);
@@ -590,7 +615,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                     String finalI11 = string.replace("finalI1", finalI1 + "");
 
                                     String replace = finalI11.replace("split.length", split.length + "");
-
 
 
                                     msg.setText(replace);
@@ -1137,8 +1161,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 SaveData.saveData("img_back_left", compressPath22);
 
 
-
-
                 termux_layout_1.setBackground(new BitmapDrawable(bitmap22));
 
 
@@ -1482,7 +1504,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             } else {
                                 visition1.setTextColor(Color.WHITE);
                             }
-                           // visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
+                            // visition4.setText("本地版本:[0.92.77]\n最新版本:[" + versionName + "]");
 
                             String string1 = UUtils.getString(R.string.本地版本sdfgdsgsdf5asdf5);
 
@@ -1515,7 +1537,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                             String versionName2 = string2.replace("versionName", versionName + "");
 
                                             visition1.setText(versionName2);
-
 
 
                                             //visition4.setText("本地版本:[0.95.89]\n最新版本:[" + versionName + "]");
@@ -1570,12 +1591,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                             visition.setTextColor(Color.WHITE);
 
                             UUtils.showLog("当前语言环境:" + getResources().getConfiguration().locale.getCountry());
-                            if(getResources().getConfiguration().locale.getCountry().equals("CN")){
+                            if (getResources().getConfiguration().locale.getCountry().equals("CN")) {
                                 service_title.setText(serviceDataBean.getNote());
                                 return;
                             }
 
-                            if(getResources().getConfiguration().locale.getCountry().equals("US")){
+                            if (getResources().getConfiguration().locale.getCountry().equals("US")) {
                                 service_title.setText(serviceDataBean.getNote5());
                                 return;
                             }
@@ -1982,69 +2003,69 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout tool_x;
     private LinearLayout tbomb;
 
-    private void mianbanSwitch(int index){
+    private void mianbanSwitch(int index) {
 
 
-        switch (index){
+        switch (index) {
 
             case 0:
-                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
-                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_1.setTextColor(Color.parseColor("#ffffff"));
+                chouti_2.setTextColor(Color.parseColor("#ffffff"));
+                chouti_1.setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2.setBackgroundColor(Color.parseColor("#00000000"));
 
-                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_3.setTextColor(Color.parseColor("#ffffff"));
+                chouti_3.setBackgroundColor(Color.parseColor("#00000000"));
 
 
-                chouti_1 .setTextColor(Color.parseColor("#10202f"));
-                chouti_1 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                chouti_1.setTextColor(Color.parseColor("#10202f"));
+                chouti_1.setBackgroundResource(R.drawable.shape_login_btn_true);
 
-               SaveData.saveData("zhedie","true");
+                SaveData.saveData("zhedie", "true");
 
 
                 break;
 
             case 1:
 
-                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_1.setTextColor(Color.parseColor("#ffffff"));
+                chouti_2.setTextColor(Color.parseColor("#ffffff"));
 
 
-                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
-                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_1.setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2.setBackgroundColor(Color.parseColor("#00000000"));
 
-                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
-
-
-                chouti_2 .setTextColor(Color.parseColor("#10202f"));
-                chouti_2 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                chouti_3.setTextColor(Color.parseColor("#ffffff"));
+                chouti_3.setBackgroundColor(Color.parseColor("#00000000"));
 
 
-                SaveData.saveData("zhedie","def");
+                chouti_2.setTextColor(Color.parseColor("#10202f"));
+                chouti_2.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("zhedie", "def");
 
 
                 break;
 
             case 2:
 
-                chouti_1 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_2 .setTextColor(Color.parseColor("#ffffff"));
+                chouti_1.setTextColor(Color.parseColor("#ffffff"));
+                chouti_2.setTextColor(Color.parseColor("#ffffff"));
 
 
-                chouti_1 .setBackgroundColor(Color.parseColor("#00000000"));
-                chouti_2 .setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_1.setBackgroundColor(Color.parseColor("#00000000"));
+                chouti_2.setBackgroundColor(Color.parseColor("#00000000"));
 
-                chouti_3 .setTextColor(Color.parseColor("#ffffff"));
-                chouti_3 .setBackgroundColor(Color.parseColor("#00000000"));
-
-
-                chouti_3 .setTextColor(Color.parseColor("#10202f"));
-                chouti_3 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                chouti_3.setTextColor(Color.parseColor("#ffffff"));
+                chouti_3.setBackgroundColor(Color.parseColor("#00000000"));
 
 
-                SaveData.saveData("zhedie","false");
+                chouti_3.setTextColor(Color.parseColor("#10202f"));
+                chouti_3.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+
+                SaveData.saveData("zhedie", "false");
 
                 break;
 
@@ -2054,7 +2075,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     }
 
-    private void setLayGone(){
+    private void setLayGone() {
 
         item_1_5.setVisibility(View.GONE);
 
@@ -2091,13 +2112,11 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     }
 
 
-
-
     private void startCT() {
 
         String zhedie = SaveData.getData("zhedie");
 
-        if("false".equals(zhedie)){
+        if ("false".equals(zhedie)) {
 
 
             item_1_5.setVisibility(View.VISIBLE);
@@ -2133,25 +2152,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             item_root_img.setVisibility(View.GONE);
 
 
-
-           // return;
+            // return;
         }
 
 
-        if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+        if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
             mianbanSwitch(1);
 
 
-        }else{
+        } else {
 
-            if(zhedie.equals("false")){
+            if (zhedie.equals("false")) {
                 mianbanSwitch(2);
-            }else{
+            } else {
                 mianbanSwitch(0);
             }
-
 
 
         }
@@ -2205,55 +2222,55 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 item_root_img.setImageResource(R.drawable.down_saojiao);
             }
         });
-            chouti_2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mianbanSwitch(1);
+        chouti_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch(1);
 
-                    other_group_content.setVisibility(View.GONE);
+                other_group_content.setVisibility(View.GONE);
 
-                    gongju_group_content.setVisibility(View.GONE);
+                gongju_group_content.setVisibility(View.GONE);
 
-                    meihua_group_content.setVisibility(View.GONE);
+                meihua_group_content.setVisibility(View.GONE);
 
-                    item_1.setVisibility(View.GONE);
+                item_1.setVisibility(View.GONE);
 
-                    item_2.setVisibility(View.GONE);
+                item_2.setVisibility(View.GONE);
 
-                    ziyuan_group_content.setVisibility(View.GONE);
+                ziyuan_group_content.setVisibility(View.GONE);
 
-                    item_3.setVisibility(View.GONE);
+                item_3.setVisibility(View.GONE);
 
-                    item_4.setVisibility(View.GONE);
+                item_4.setVisibility(View.GONE);
 
-                    item_1_5.setVisibility(View.GONE);
+                item_1_5.setVisibility(View.GONE);
 
-                    root_group_content.setVisibility(View.GONE);
+                root_group_content.setVisibility(View.GONE);
 
 
-                    item_1_5_img.setVisibility(View.VISIBLE);
-                    item_8_img.setVisibility(View.VISIBLE);
-                    item_7_img.setVisibility(View.VISIBLE);
-                    item_6_img.setVisibility(View.VISIBLE);
-                    item_1_img.setVisibility(View.VISIBLE);
-                    item_2_img.setVisibility(View.VISIBLE);
-                    item_3_img.setVisibility(View.VISIBLE);
-                    item_4_img.setVisibility(View.VISIBLE);
-                    item_5_img.setVisibility(View.VISIBLE);
-                    item_root_img.setVisibility(View.VISIBLE);
+                item_1_5_img.setVisibility(View.VISIBLE);
+                item_8_img.setVisibility(View.VISIBLE);
+                item_7_img.setVisibility(View.VISIBLE);
+                item_6_img.setVisibility(View.VISIBLE);
+                item_1_img.setVisibility(View.VISIBLE);
+                item_2_img.setVisibility(View.VISIBLE);
+                item_3_img.setVisibility(View.VISIBLE);
+                item_4_img.setVisibility(View.VISIBLE);
+                item_5_img.setVisibility(View.VISIBLE);
+                item_root_img.setVisibility(View.VISIBLE);
 
-                    item_1_5_img.setImageResource(R.drawable.down_saojiao);
-                    item_8_img.setImageResource(R.drawable.down_saojiao);
-                    item_7_img.setImageResource(R.drawable.down_saojiao);
-                    item_6_img.setImageResource(R.drawable.down_saojiao);
-                    item_1_img.setImageResource(R.drawable.down_saojiao);
-                    item_2_img.setImageResource(R.drawable.down_saojiao);
-                    item_3_img.setImageResource(R.drawable.down_saojiao);
-                    item_4_img.setImageResource(R.drawable.down_saojiao);
-                    item_5_img.setImageResource(R.drawable.down_saojiao);
-                    item_root_img.setImageResource(R.drawable.down_saojiao);
-                }
-            });
+                item_1_5_img.setImageResource(R.drawable.down_saojiao);
+                item_8_img.setImageResource(R.drawable.down_saojiao);
+                item_7_img.setImageResource(R.drawable.down_saojiao);
+                item_6_img.setImageResource(R.drawable.down_saojiao);
+                item_1_img.setImageResource(R.drawable.down_saojiao);
+                item_2_img.setImageResource(R.drawable.down_saojiao);
+                item_3_img.setImageResource(R.drawable.down_saojiao);
+                item_4_img.setImageResource(R.drawable.down_saojiao);
+                item_5_img.setImageResource(R.drawable.down_saojiao);
+                item_root_img.setImageResource(R.drawable.down_saojiao);
+            }
+        });
 
         chouti_3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2301,12 +2318,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 String zhedie = SaveData.getData("zhedie");
 
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
                     if (item_1_5.getVisibility() == View.GONE) {
                         item_1_5.setVisibility(View.VISIBLE);
@@ -2317,15 +2334,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         item_1_5_img.setImageResource(R.drawable.down_saojiao);
                     }
-                }else{
+                } else {
 
 
-
-                    if (item_1_5.getVisibility() == View.VISIBLE){
+                    if (item_1_5.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2335,14 +2351,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
-
-
-
                 }
 
             }
         });
-
 
 
         root_group.setOnClickListener(new View.OnClickListener() {
@@ -2352,12 +2364,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 String zhedie = SaveData.getData("zhedie");
 
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
                     if (root_group_content.getVisibility() == View.GONE) {
                         root_group_content.setVisibility(View.VISIBLE);
@@ -2368,15 +2380,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         item_root_img.setImageResource(R.drawable.down_saojiao);
                     }
-                }else{
+                } else {
 
 
-
-                    if (root_group_content.getVisibility() == View.VISIBLE){
+                    if (root_group_content.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2384,9 +2395,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         root_group_content.setVisibility(View.VISIBLE);
                     }
-
-
-
 
 
                 }
@@ -2402,12 +2410,12 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
                     if (other_group_content.getVisibility() == View.GONE) {
                         other_group_content.setVisibility(View.VISIBLE);
@@ -2421,14 +2429,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         item_8_img.setImageResource(R.drawable.down_saojiao);
                     }
 
-                }else{
+                } else {
 
 
-                    if (other_group_content.getVisibility() == View.VISIBLE){
+                    if (other_group_content.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2436,8 +2444,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         other_group_content.setVisibility(View.VISIBLE);
                     }
-
-
 
 
                 }
@@ -2451,15 +2457,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (gongju_group_content.getVisibility() == View.GONE) {
@@ -2475,14 +2480,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
-                }else{
+                } else {
 
 
-                    if (gongju_group_content.getVisibility() == View.VISIBLE){
+                    if (gongju_group_content.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2490,7 +2495,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         gongju_group_content.setVisibility(View.VISIBLE);
                     }
-
 
 
                 }
@@ -2503,17 +2507,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
-
                 String zhedie = SaveData.getData("zhedie");
 
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (meihua_group_content.getVisibility() == View.GONE) {
@@ -2529,14 +2531,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
-                }else{
-
-                    if (meihua_group_content.getVisibility() == View.VISIBLE){
+                    if (meihua_group_content.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
 
                         setLayGone();
@@ -2545,7 +2546,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         meihua_group_content.setVisibility(View.VISIBLE);
                     }
-
 
 
                 }
@@ -2559,16 +2559,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
-
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (item_1.getVisibility() == View.GONE) {
@@ -2581,16 +2579,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
 
-                }else{
-
-
-                    if (item_1.getVisibility() == View.VISIBLE){
+                    if (item_1.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
 
                         setLayGone();
@@ -2611,17 +2607,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
-
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (item_2.getVisibility() == View.GONE) {
@@ -2634,18 +2627,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
 
-                }else{
-
-
-
-
-                    if (item_2.getVisibility() == View.VISIBLE){
+                    if (item_2.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
 
                         setLayGone();
@@ -2666,16 +2655,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (ziyuan_group_content.getVisibility() == View.GONE) {
@@ -2688,15 +2675,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
-
-                }else{
-
-                    if (ziyuan_group_content.getVisibility() == View.VISIBLE){
+                    if (ziyuan_group_content.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
 
                         setLayGone();
@@ -2705,8 +2690,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                         ziyuan_group_content.setVisibility(View.VISIBLE);
                     }
-
-
 
 
                 }
@@ -2720,15 +2703,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (item_3.getVisibility() == View.GONE) {
@@ -2741,19 +2723,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
 
-
-                }else{
-
-
-
-
-                    if (item_3.getVisibility() == View.VISIBLE){
+                    if (item_3.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2772,16 +2749,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-
-
                 String zhedie = SaveData.getData("zhedie");
 
-                if("false".equals(zhedie)){
+                if ("false".equals(zhedie)) {
                     return;
                 }
 
 
-                if(zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
+                if (zhedie == null || zhedie.isEmpty() || zhedie.equals("def")) {
 
 
                     if (item_4.getVisibility() == View.GONE) {
@@ -2797,18 +2772,14 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     }
 
 
+                } else {
 
 
-
-                }else{
-
-
-
-                    if (item_4.getVisibility() == View.VISIBLE){
+                    if (item_4.getVisibility() == View.VISIBLE) {
 
                         setLayGone();
 
-                    }else {
+                    } else {
 
                         setLayGone();
 
@@ -2941,27 +2912,23 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
 
 
-                item_25 .setTextColor(Color.parseColor("#ffffff"));
-                item_50 .setTextColor(Color.parseColor("#ffffff"));
-                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_25.setTextColor(Color.parseColor("#ffffff"));
+                item_50.setTextColor(Color.parseColor("#ffffff"));
+                item_75.setTextColor(Color.parseColor("#ffffff"));
                 item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                item_75.setBackgroundColor(Color.parseColor("#00000000"));
                 item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                item_25 .setTextColor(Color.parseColor("#10202f"));
-                item_25 .setBackgroundResource(R.drawable.shape_login_btn_true);
-
+                item_25.setTextColor(Color.parseColor("#10202f"));
+                item_25.setBackgroundResource(R.drawable.shape_login_btn_true);
 
 
                 SaveData.saveData("toumingdu", "#222b2b2b");
                 SaveData.saveData("img_back_left", "def");
                 termux_layout_1.setBackgroundColor(Color.parseColor("#222b2b2b"));
-
-
-
 
 
             }
@@ -2970,18 +2937,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                item_25 .setTextColor(Color.parseColor("#ffffff"));
-                item_50 .setTextColor(Color.parseColor("#ffffff"));
-                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_25.setTextColor(Color.parseColor("#ffffff"));
+                item_50.setTextColor(Color.parseColor("#ffffff"));
+                item_75.setTextColor(Color.parseColor("#ffffff"));
                 item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                item_75.setBackgroundColor(Color.parseColor("#00000000"));
                 item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                item_50 .setTextColor(Color.parseColor("#10202f"));
-                item_50 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                item_50.setTextColor(Color.parseColor("#10202f"));
+                item_50.setBackgroundResource(R.drawable.shape_login_btn_true);
 
 
                 SaveData.saveData("toumingdu", "#552b2b2b");
@@ -2995,18 +2962,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                item_25 .setTextColor(Color.parseColor("#ffffff"));
-                item_50 .setTextColor(Color.parseColor("#ffffff"));
-                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_25.setTextColor(Color.parseColor("#ffffff"));
+                item_50.setTextColor(Color.parseColor("#ffffff"));
+                item_75.setTextColor(Color.parseColor("#ffffff"));
                 item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                item_75.setBackgroundColor(Color.parseColor("#00000000"));
                 item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                item_75 .setTextColor(Color.parseColor("#10202f"));
-                item_75 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                item_75.setTextColor(Color.parseColor("#10202f"));
+                item_75.setBackgroundResource(R.drawable.shape_login_btn_true);
 
 
                 SaveData.saveData("toumingdu", "#992b2b2b");
@@ -3020,18 +2987,18 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                item_25 .setTextColor(Color.parseColor("#ffffff"));
-                item_50 .setTextColor(Color.parseColor("#ffffff"));
-                item_75 .setTextColor(Color.parseColor("#ffffff"));
+                item_25.setTextColor(Color.parseColor("#ffffff"));
+                item_50.setTextColor(Color.parseColor("#ffffff"));
+                item_75.setTextColor(Color.parseColor("#ffffff"));
                 item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                item_75.setBackgroundColor(Color.parseColor("#00000000"));
                 item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                item_100 .setTextColor(Color.parseColor("#10202f"));
-                item_100 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                item_100.setTextColor(Color.parseColor("#10202f"));
+                item_100.setBackgroundResource(R.drawable.shape_login_btn_true);
 
 
                 SaveData.saveData("toumingdu", "#2b2b2b");
@@ -3072,7 +3039,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
 
-
     }
 
     /**
@@ -3096,50 +3062,47 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     }
 
 
-    private void switchENorZH(int index){
+    private void switchENorZH(int index) {
 
 
-        english .setTextColor(Color.parseColor("#ffffff"));
-        zhongwen .setTextColor(Color.parseColor("#ffffff"));
+        english.setTextColor(Color.parseColor("#ffffff"));
+        zhongwen.setTextColor(Color.parseColor("#ffffff"));
 
 
-        english .setBackgroundColor(Color.parseColor("#00000000"));
-        zhongwen .setBackgroundColor(Color.parseColor("#00000000"));
+        english.setBackgroundColor(Color.parseColor("#00000000"));
+        zhongwen.setBackgroundColor(Color.parseColor("#00000000"));
 
 
-
-        switch (index){
+        switch (index) {
 
 
             case 0:
 
 
-                english .setTextColor(Color.parseColor("#10202f"));
-                english .setBackgroundResource(R.drawable.shape_login_btn_true);
+                english.setTextColor(Color.parseColor("#10202f"));
+                english.setBackgroundResource(R.drawable.shape_login_btn_true);
 
                 changeAppLanguage(Locale.US);
 
-              //  recreate();
+                //  recreate();
 
                 break;
             case 1:
-                zhongwen .setTextColor(Color.parseColor("#10202f"));
-                zhongwen .setBackgroundResource(R.drawable.shape_login_btn_true);
+                zhongwen.setTextColor(Color.parseColor("#10202f"));
+                zhongwen.setBackgroundResource(R.drawable.shape_login_btn_true);
 
-               // LocaleUtils.initAppLanguage(this,"zh_CN");
+                // LocaleUtils.initAppLanguage(this,"zh_CN");
 
                 changeAppLanguage(Locale.SIMPLIFIED_CHINESE);
 
-               // recreate();
+                // recreate();
                 break;
-
 
 
         }
 
 
     }
-
 
 
     private LinearLayout lazymux;
@@ -3176,7 +3139,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     //
     //创建 deployLinux 需要的目录
 
-    private void isDep(){
+    private void isDep() {
 
         UUtils.showMsg(UUtils.getString(R.string.正在安装环境));
         new Thread(new Runnable() {
@@ -3184,16 +3147,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void run() {
                 File file = new File("/data/data/com.termux/files/usr/share/deploy");
 
-                if(!file.exists()){
+                if (!file.exists()) {
                     file.mkdirs();
 
                     File file1 = new File("/data/data/com.termux/files/usr/share/deploy/include.zip");
                     File file2 = new File("/data/data/com.termux/files/usr/share/deploy/cli");
 
 
-
-                    writerFile("include.zip",file1);
-                    writerFile("cli",file2);
+                    writerFile("include.zip", file1);
+                    writerFile("cli", file2);
 
                     try {
                         Runtime.getRuntime().exec("chmod 777 /data/data/com.termux/files/usr/share/deploy/cli");
@@ -3212,7 +3174,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             file1.delete();
                             try {
-                                Os.symlink("/data/data/com.termux/files/usr/share/deploy/cli","/data/data/com.termux/files/usr/bin/cli");
+                                Os.symlink("/data/data/com.termux/files/usr/share/deploy/cli", "/data/data/com.termux/files/usr/bin/cli");
                             } catch (ErrnoException e) {
                                 e.printStackTrace();
                             }
@@ -3225,7 +3187,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         }
                     });
 
-                }else{
+                } else {
                     UUtils.showMsg(UUtils.getString(R.string.您已安装cli环境));
 
                 }
@@ -3242,6 +3204,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout zidongtishi_ll;
     private LinearLayout zdti_set;
     private CustomTextView zidongtishi;
+
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -3276,7 +3239,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         isHistory();
 
 
-
         chouti_2 = findViewById(R.id.chouti_2);
         root_group = findViewById(R.id.root_group);
         root_group_content = findViewById(R.id.root_group_content);
@@ -3298,22 +3260,24 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         zdti_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TermuxActivity.this,PromptSettingActivity.class));
+                getDrawer().closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(TermuxActivity.this, RunWindowActivity.class));
             }
         });
+
 
         zidongtishi_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String z_d_t_s = SaveData.getData("z_d_t_s");
-                if(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")){
+                if (z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")) {
                     zidongtishi.setText(UUtils.getString(R.string.自动提示关));
                     protem.setVisibility(View.GONE);
-                    SaveData.saveData("z_d_t_s","true");
-                }else{
+                    SaveData.saveData("z_d_t_s", "true");
+                } else {
                     zidongtishi.setText(UUtils.getString(R.string.自动提示开));
-                    SaveData.saveData("z_d_t_s","def");
+                    SaveData.saveData("z_d_t_s", "def");
                     protem.setVisibility(View.VISIBLE);
                 }
 
@@ -3321,10 +3285,10 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         });
 
         String z_d_t_s = SaveData.getData("z_d_t_s");
-        if(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")){
+        if (z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def")) {
             zidongtishi.setText(UUtils.getString(R.string.自动提示开));
             protem.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             zidongtishi.setText(UUtils.getString(R.string.自动提示关));
             protem.setVisibility(View.GONE);
         }
@@ -3355,7 +3319,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
         tool_x = findViewById(R.id.tool_x);
         termux_layout_1 = findViewById(R.id.termux_layout_1);
-       // mHistoryCommand = findViewById(R.id.history_command);
+        // mHistoryCommand = findViewById(R.id.history_command);
         text_system = findViewById(R.id.text_system);
         text_system.setSelected(true);
         mnj_tv = findViewById(R.id.mnj_tv);
@@ -3495,74 +3459,74 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             try {
 
-                switch (toumingdu){
+                switch (toumingdu) {
 
                     case "#222b2b2b":
 
-                        item_25 .setTextColor(Color.parseColor("#ffffff"));
-                        item_50 .setTextColor(Color.parseColor("#ffffff"));
-                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_25.setTextColor(Color.parseColor("#ffffff"));
+                        item_50.setTextColor(Color.parseColor("#ffffff"));
+                        item_75.setTextColor(Color.parseColor("#ffffff"));
                         item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75.setBackgroundColor(Color.parseColor("#00000000"));
                         item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                        item_25 .setTextColor(Color.parseColor("#10202f"));
-                        item_25 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                        item_25.setTextColor(Color.parseColor("#10202f"));
+                        item_25.setBackgroundResource(R.drawable.shape_login_btn_true);
 
                         break;
 
                     case "#552b2b2b":
 
-                        item_25 .setTextColor(Color.parseColor("#ffffff"));
-                        item_50 .setTextColor(Color.parseColor("#ffffff"));
-                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_25.setTextColor(Color.parseColor("#ffffff"));
+                        item_50.setTextColor(Color.parseColor("#ffffff"));
+                        item_75.setTextColor(Color.parseColor("#ffffff"));
                         item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75.setBackgroundColor(Color.parseColor("#00000000"));
                         item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                        item_50 .setTextColor(Color.parseColor("#10202f"));
-                        item_50 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                        item_50.setTextColor(Color.parseColor("#10202f"));
+                        item_50.setBackgroundResource(R.drawable.shape_login_btn_true);
 
                         break;
 
                     case "#992b2b2b":
 
-                        item_25 .setTextColor(Color.parseColor("#ffffff"));
-                        item_50 .setTextColor(Color.parseColor("#ffffff"));
-                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_25.setTextColor(Color.parseColor("#ffffff"));
+                        item_50.setTextColor(Color.parseColor("#ffffff"));
+                        item_75.setTextColor(Color.parseColor("#ffffff"));
                         item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75.setBackgroundColor(Color.parseColor("#00000000"));
                         item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                        item_75 .setTextColor(Color.parseColor("#10202f"));
-                        item_75 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                        item_75.setTextColor(Color.parseColor("#10202f"));
+                        item_75.setBackgroundResource(R.drawable.shape_login_btn_true);
 
                         break;
 
                     case "#2b2b2b":
 
 
-                        item_25 .setTextColor(Color.parseColor("#ffffff"));
-                        item_50 .setTextColor(Color.parseColor("#ffffff"));
-                        item_75 .setTextColor(Color.parseColor("#ffffff"));
+                        item_25.setTextColor(Color.parseColor("#ffffff"));
+                        item_50.setTextColor(Color.parseColor("#ffffff"));
+                        item_75.setTextColor(Color.parseColor("#ffffff"));
                         item_100.setTextColor(Color.parseColor("#ffffff"));
 
-                        item_25 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_50 .setBackgroundColor(Color.parseColor("#00000000"));
-                        item_75 .setBackgroundColor(Color.parseColor("#00000000"));
+                        item_25.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_50.setBackgroundColor(Color.parseColor("#00000000"));
+                        item_75.setBackgroundColor(Color.parseColor("#00000000"));
                         item_100.setBackgroundColor(Color.parseColor("#00000000"));
 
-                        item_100 .setTextColor(Color.parseColor("#10202f"));
-                        item_100 .setBackgroundResource(R.drawable.shape_login_btn_true);
+                        item_100.setTextColor(Color.parseColor("#10202f"));
+                        item_100.setBackgroundResource(R.drawable.shape_login_btn_true);
 
                         break;
 
@@ -4584,7 +4548,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
-                if(true){
+                if (true) {
 
                     UUtils.showMsg(UUtils.getString(R.string.在线包已被关闭));
 
@@ -4667,7 +4631,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.请在测试版本中打开), Toast.LENGTH_SHORT).show();
 
-               // startActivity(new Intent(TermuxActivity.this, RootActivity.class));
+                // startActivity(new Intent(TermuxActivity.this, RootActivity.class));
             }
         });
 
@@ -4893,9 +4857,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 SaveData.saveData("toumingdu", "def");
 
                 Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.不要选择过大sdf53), Toast.LENGTH_SHORT).show();
-
-
-
 
 
             }
@@ -5237,7 +5198,6 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             String replace = string.replace("main.java.com.termux.app.TermuxInstaller.determineTermuxArchName().toUpperCase()", TermuxInstaller.determineTermuxArchName().toUpperCase() + "");
 
 
-
             text_jiagou.setText(replace);
 
         }
@@ -5484,14 +5444,13 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                                         public void run() {
                                                             myDialog.getDialog_title().setText(UUtils.getString(R.string.正在复制文件到工作区域sdf456));
 
-                                                           // myDialog.getDialog_pro().setText((t[0] / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
+                                                            // myDialog.getDialog_pro().setText((t[0] / 1024 / 1024) + "MB/" + (fileF.length() / 1024 / 1024) + "MB");
 
                                                             String string1 = UUtils.getString(R.string.fuzhisdfsd);
 
                                                             String to = string1.replace("TO", (t[0] / 1024 / 1024) + "");
 
                                                             String from = to.replace("FROM", (fileF.length() / 1024 / 1024) + "");
-
 
 
                                                             myDialog.getDialog_pro().setText(from);
@@ -5777,9 +5736,35 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         mFileSystem1.mkdirs();
         if (mFileSystem1.exists()) {
 
+            boolean delete = mFileSystem1.delete();
+
+            if(!delete){
+                AlertDialog.Builder ab = new AlertDialog.Builder(this);
+                ab.setTitle(UUtils.getString(R.string.注意));
+                ab.setMessage(UUtils.getString(R.string.我们需要你的sd卡权限df56));
+                ab.setCancelable(false);
+                ab.setNegativeButton(UUtils.getString(R.string.好的), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mFileSystem1.delete();
+                        mkdirFilePermission();
+                    }
+                });
+                ab.setPositiveButton(UUtils.getString(R.string.可以), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mFileSystem1.delete();
+                        mkdirFilePermission();
+                    }
+                });
+                ab.show();
+
+                return;
+            }
+
             mkdirFile();
             startOk();
-           // mkdirFilePermission();
+            // mkdirFilePermission();
         } else {
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
             ab.setTitle(UUtils.getString(R.string.注意));
@@ -5861,8 +5846,69 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         String video_back = SaveData.getData("video_back");
 
         try {
-            mTerminalView.setPromptListener(TermuxActivity.this);
-        }catch (Exception e){
+            if (mTerminalView != null){
+                mTerminalView.setPromptListener(TermuxActivity.this);
+                }
+            else{
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                try {
+                                    if (mTerminalView != null){
+                                        mTerminalView.setPromptListener(TermuxActivity.this);
+                                    }else{
+
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                try {
+                                                    Thread.sleep(5000);
+                                                } catch (InterruptedException ex) {
+                                                    ex.printStackTrace();
+                                                }
+
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+
+                                                        try {
+                                                            if (mTerminalView != null){
+                                                                mTerminalView.setPromptListener(TermuxActivity.this);
+                                                            }
+
+                                                        } catch (Exception e1) {
+                                                            e1.printStackTrace();
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+                                        }).start();
+                                    }
+
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+
+                            }
+                        });
+                    }
+                }).start();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
 
             new Thread(new Runnable() {
@@ -5881,7 +5927,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                             try {
                                 mTerminalView.setPromptListener(TermuxActivity.this);
-                            }catch (Exception e1){
+                            } catch (Exception e1) {
                                 e1.printStackTrace();
                             }
 
@@ -6621,6 +6667,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             }
         });
 
+
+
         if (!smsFileSms.exists()) {
 
             if (new File("/data/data/com.termux/files/usr/bin/pkg").exists()) {
@@ -6650,6 +6698,42 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     Log.e("XINHAO_HAN", "onCreate: " + e.toString());
                 }
             }
+
+
+        }
+
+        File file3 = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_TextUT");
+        if(!(file3.exists())) {
+
+
+            if (new File("/data/data/com.termux/files/usr/bin/pkg").exists()) {
+
+              /*  if (!file3.exists()) {
+                    file3.mkdirs();
+                }*/
+
+                try {
+                    InputStream xinhao_han_sms = getAssets().open("XINHAO_HAN_TextUT");
+
+                    int len = 0;
+                    file3.createNewFile();
+                    FileOutputStream fileOutputStream = new FileOutputStream(file3);
+                    while ((len = xinhao_han_sms.read()) != -1) {
+                        fileOutputStream.write(len);
+                    }
+
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+
+                    Runtime.getRuntime().exec("chmod 777 " + file3.getAbsolutePath());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                    Log.e("XINHAO_HAN", "onCreate: " + e.toString());
+                }
+            }
+
 
 
         }
@@ -8687,7 +8771,6 @@ Solaris(APP美化)
                         }
 
 
-
                         if (!smsFileSms.exists()) {
 
                             getDrawer().openDrawer(Gravity.LEFT);
@@ -8697,12 +8780,11 @@ Solaris(APP美化)
 
                             String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
-                            if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                            if (start_zd_mingl != null && start_zd_mingl.equals("true")) {
                                 File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
                                 writerFile("bash.bashrc", file222);
 
                             }
-
 
 
                             isDep();
@@ -8722,10 +8804,9 @@ Solaris(APP美化)
                                     startActivity(new Intent(TermuxActivity.this, ThanksActivity.class));
                                     String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
-                                    if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                                    if (start_zd_mingl != null && start_zd_mingl.equals("true")) {
                                         mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
                                     }
-
 
 
                                 }
@@ -8737,7 +8818,7 @@ Solaris(APP美化)
                                     ab.create().dismiss();
                                     String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
-                                    if(start_zd_mingl != null  && start_zd_mingl.equals("true")){
+                                    if (start_zd_mingl != null && start_zd_mingl.equals("true")) {
                                         mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
                                     }
                                 }
@@ -8848,6 +8929,7 @@ Solaris(APP美化)
         }
 
         registerReceiver(mBroadcastReceiever, new IntentFilter(RELOAD_STYLE_ACTION));
+        registerReceiver(mTermuxApiReceiver, new IntentFilter());
 
         // The current terminal session may have changed while being away, force
         // a refresh of the displayed terminal:
@@ -8862,6 +8944,7 @@ Solaris(APP美化)
         TerminalSession currentSession = getCurrentTermSession();
         if (currentSession != null) TermuxPreferences.storeCurrentSession(this, currentSession);
         unregisterReceiver(mBroadcastReceiever);
+        unregisterReceiver(mTermuxApiReceiver);
         getDrawer().closeDrawers();
     }
 
@@ -9461,7 +9544,7 @@ Solaris(APP美化)
                                     String[] split = msg.split("@截取符号@");
 
                                     printWriter.println("-------------------------------");
-                                    printWriter.println("|          "+UUtils.getString(R.string.条短信dfg56).replace("i",i + "")+"           |");
+                                    printWriter.println("|          " + UUtils.getString(R.string.条短信dfg56).replace("i", i + "") + "           |");
 
                                     printWriter.println("-------------------------------");
                                     printWriter.println(split[0]);
@@ -9721,8 +9804,7 @@ other_text;
     }
 
 
-
-    private void startZd(){
+    private void startZd() {
 
         history_command.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -9730,14 +9812,14 @@ other_text;
 
                 String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
-                if(start_zd_mingl == null || start_zd_mingl.isEmpty()||start_zd_mingl.equals("def")){
+                if (start_zd_mingl == null || start_zd_mingl.isEmpty() || start_zd_mingl.equals("def")) {
 
-                    SaveData.saveData("start_zd_mingl","true");
+                    SaveData.saveData("start_zd_mingl", "true");
                     status_zd.setText(UUtils.getString(R.string.目前开));
                     UUtils.showMsg(UUtils.getString(R.string.目前关提示));
 
-                }else {
-                    SaveData.saveData("start_zd_mingl","def");
+                } else {
+                    SaveData.saveData("start_zd_mingl", "def");
                     status_zd.setText(UUtils.getString(R.string.目前关));
                 }
 
@@ -9746,12 +9828,11 @@ other_text;
 
         String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
-        if(start_zd_mingl == null || start_zd_mingl.isEmpty()||start_zd_mingl.equals("def")){
+        if (start_zd_mingl == null || start_zd_mingl.isEmpty() || start_zd_mingl.equals("def")) {
             status_zd.setText(UUtils.getString(R.string.目前关));
-        }else {
+        } else {
             status_zd.setText(UUtils.getString(R.string.目前开));
         }
-
 
 
     }
@@ -9760,8 +9841,8 @@ other_text;
     public void promptList(ArrayList<File> arrayListFile) {
 
         String z_d_t_s = SaveData.getData("z_d_t_s");
-        if(!(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def"))){
-          return;
+        if (!(z_d_t_s == null || z_d_t_s.isEmpty() || z_d_t_s.equals("def"))) {
+            return;
         }
 
         runOnUiThread(new Runnable() {
@@ -9769,7 +9850,7 @@ other_text;
             public void run() {
 
                 protem.removeAllViews();
-                if(arrayListFile == null){
+                if (arrayListFile == null) {
                     return;
                 }
 
@@ -9800,7 +9881,7 @@ other_text;
                                         mTerminalView.removeStringAll();
                                         mTerminalView.sendTextToTerminalToToTo(textView.getText().toString());
                                         protem.removeAllViews();
-                                    }catch (Exception e){
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
@@ -9838,7 +9919,7 @@ other_text;
                                         mTerminalView.removeStringAll();
                                         mTerminalView.sendTextToTerminalToToTo(textView.getText().toString());
                                         protem.removeAllViews();
-                                    }catch (Exception e){
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
@@ -9852,7 +9933,7 @@ other_text;
 
 
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     protem.removeAllViews();
                 }
@@ -9860,7 +9941,6 @@ other_text;
 
             }
         });
-
 
 
     }
