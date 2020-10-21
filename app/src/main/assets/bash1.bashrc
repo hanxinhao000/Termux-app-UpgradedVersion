@@ -5,6 +5,3 @@ if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
 fi
 
 PS1='\$ '
-cd ~   > /dev/null&
- chmod 777 .xinhao_history/start_command.sh   > /dev/null&
-  ./.xinhao_history/start_command.sh

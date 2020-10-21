@@ -112,7 +112,7 @@ public class UUtils {
             printWriter.print(msg);
             printWriter.flush();
             printWriter.close();
-            Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
             e.printStackTrace();

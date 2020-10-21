@@ -8781,8 +8781,19 @@ Solaris(APP美化)
                             String start_zd_mingl = SaveData.getData("start_zd_mingl");
 
                             if (start_zd_mingl != null && start_zd_mingl.equals("true")) {
-                                File file222 = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
-                                writerFile("bash.bashrc", file222);
+
+                                File file = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+                                String fileString = UUtils.getFileString(file);
+
+                                StringBuffer stringBuffer = new StringBuffer();
+
+                                stringBuffer.append(fileString);
+                                stringBuffer.append("\n");
+                                stringBuffer.append("cd ~   > /dev/null&\n");
+                                stringBuffer.append("chmod 777 .xinhao_history/start_command.sh   > /dev/null&\n");
+                                stringBuffer.append("./.xinhao_history/start_command.sh  \n");
+
+                                UUtils.setFileString(file,stringBuffer.toString());
 
                             }
 
@@ -9816,11 +9827,25 @@ other_text;
 
                     SaveData.saveData("start_zd_mingl", "true");
                     status_zd.setText(UUtils.getString(R.string.目前开));
-                    UUtils.showMsg(UUtils.getString(R.string.目前关提示));
+                    UUtils.showMsg(UUtils.getString(R.string.重启后生效));
+
+                    File file = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+                    String fileString = UUtils.getFileString(file);
+
+                    StringBuffer stringBuffer = new StringBuffer();
+
+                    stringBuffer.append(fileString);
+                    stringBuffer.append("\n");
+                    stringBuffer.append("cd ~   > /dev/null&\n");
+                    stringBuffer.append("chmod 777 .xinhao_history/start_command.sh   > /dev/null&\n");
+                    stringBuffer.append("./.xinhao_history/start_command.sh  \n");
+                    mTerminalView.sendTextToTerminal("cd ~ && cd .xinhao_history && chmod 777 start_command.sh \n");
+                    UUtils.setFileString(file,stringBuffer.toString());
 
                 } else {
                     SaveData.saveData("start_zd_mingl", "def");
                     status_zd.setText(UUtils.getString(R.string.目前关));
+                    writerFile("bash1.bashrc",new File("/data/data/com.termux/files/usr/etc/bash.bashrc"));
                 }
 
             }
@@ -9830,8 +9855,24 @@ other_text;
 
         if (start_zd_mingl == null || start_zd_mingl.isEmpty() || start_zd_mingl.equals("def")) {
             status_zd.setText(UUtils.getString(R.string.目前关));
+           // writerFile("bash1.bashrc",new File("/data/data/com.termux/files/usr/etc/bash.bashrc"));
         } else {
             status_zd.setText(UUtils.getString(R.string.目前开));
+            File file = new File("/data/data/com.termux/files/usr/etc/bash.bashrc");
+            String fileString = UUtils.getFileString(file);
+            if(!(fileString.contains("xinhao_history/start_command.sh"))){
+                StringBuffer stringBuffer = new StringBuffer();
+
+                stringBuffer.append(fileString);
+                stringBuffer.append("\n");
+                stringBuffer.append("cd ~   > /dev/null&\n");
+                stringBuffer.append("chmod 777 .xinhao_history/start_command.sh   > /dev/null&\n");
+                stringBuffer.append("./.xinhao_history/start_command.sh  \n");
+
+                UUtils.setFileString(file,stringBuffer.toString());
+            }
+
+
         }
 
 

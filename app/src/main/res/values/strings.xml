@@ -1629,7 +1629,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="请选择模拟器配置文件">请选择模拟器启动配置文件\n[内部存储/xinhao/windows_config/]</string>
 
     <string name="你没有安装相关环境qemuppp5555p">"你没有安装相关环境,请点击安装"</string>
-
+    <string name="重启后生效">重启APP后生效</string>
 
 
 
@@ -1660,6 +1660,7 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
     <string name="删除完成_需要重进才能刷新">删除完成,需要重进才能刷新</string>
+
     <string-array name="preference_sortby_names">
         <item>Name</item>
         <item>Size</item>
