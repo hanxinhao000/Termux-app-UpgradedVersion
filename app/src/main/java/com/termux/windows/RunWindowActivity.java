@@ -62,6 +62,7 @@ public class RunWindowActivity extends AppCompatActivity implements TermuxData.I
     private File mWin7RunPath =new File("/data/data/com.termux/files/home/storage/shared/xinhao/windows/Utermux_win7.vhd");
 
     private File mWinConfig = new File(Environment.getExternalStorageDirectory(),"/xinhao/windows_config/");
+    private File mWinWindows = new File(Environment.getExternalStorageDirectory(),"/xinhao/windows/");
 
     private File mWinxp = new File(Environment.getExternalStorageDirectory(),"/xinhao/windows/Utermux_xp.qcow2");
     private File mWinxpRunPath =new File("/data/data/com.termux/files/home/storage/shared/xinhao/windows/Utermux_xp.qcow2");
@@ -98,7 +99,12 @@ public class RunWindowActivity extends AppCompatActivity implements TermuxData.I
     //判断qemu是否存在
     private void isQemuExe() {
 
-        mWinConfig.mkdirs();
+        if(!mWinConfig.exists()) {
+            mWinConfig.mkdirs();
+        }
+        if(!mWinWindows.exists()) {
+            mWinWindows.mkdirs();
+        }
 
         winxp.setOnClickListener(new View.OnClickListener() {
             @Override
