@@ -53,6 +53,8 @@
         <activity
             android:name="main.java.com.termux.activity.UncaughtExceptionHandlerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name="main.java.com.termux.filemanage.filemanager.bookmarks.BookmarkListActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="main.java.com.termux.activity.LinuxDeployInstallActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

@@ -1727,6 +1727,20 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         }
     }
 
+    private void checkIsAndroidO3() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            boolean b = getPackageManager().canRequestPackageInstalls();
+            if (b) {
+                CheckUpDateCodeUtils.installApk(this, new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/utermuxFiles.apk").getAbsolutePath());
+            } else {
+                //请求安装未知应用来源的权限
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_PACKAGES_REQUEST_CODE);
+            }
+        } else {
+
+        }
+    }
+
     private void checkIsAndroidO3(String str) {
         if (Build.VERSION.SDK_INT >= 26) {
             boolean b = getPackageManager().canRequestPackageInstalls();
@@ -3203,6 +3217,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     private LinearLayout zidongtishi_ll;
     private LinearLayout zdti_set;
+    private LinearLayout file_mf;
     private CustomTextView zidongtishi;
 
     @Override
@@ -3247,6 +3262,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         zdti_set = findViewById(R.id.zdti_set);
         english = findViewById(R.id.english);
         zhongwen = findViewById(R.id.zhongwen);
+        file_mf = findViewById(R.id.file_mf);
         protem = findViewById(R.id.protem);
         zidongtishi_ll = findViewById(R.id.zidongtishi_ll);
         zidongtishi = findViewById(R.id.zidongtishi);
@@ -3262,6 +3278,58 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(TermuxActivity.this, RunWindowActivity.class));
+            }
+        });
+
+        file_mf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                try {
+                    Intent intent = new Intent();
+                    intent.setAction("com.utermux.files.action");
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
+                    ad.setTitle(UUtils.getString(R.string.未安装插件));
+                    ad.setMessage(UUtils.getString(R.string.未安装插件asfas6f5sdf));
+                    ad.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            //File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/test.z");
+
+
+                            File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/");
+                            if (file1.exists()) {
+                                File file2 = new File(file1, "utermuxFiles.apk");
+                                writerFileRaw(file2, R.raw.utermux_file_plug);
+
+                                //installAPK(file2.getAbsolutePath());
+                                checkIsAndroidO3();
+                            } else {
+
+                                file1.mkdirs();
+                            }
+
+
+                            ad.create().dismiss();
+
+                        }
+                    });
+                    ad.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ad.create().dismiss();
+                        }
+                    });
+                    ad.show();
+
+                }
+
+
             }
         });
 
@@ -9983,6 +10051,35 @@ other_text;
             }
         });
 
+
+    }
+
+
+    //写出文件
+    private void writerFileRaw(File mFile,int id) {
+
+        try {
+            InputStream open = getResources().openRawResource(id);
+
+            int len = 0;
+            byte[] lll = new byte[1024];
+
+            if (!mFile.exists()) {
+                mFile.createNewFile();
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(mFile);
+
+            while ((len = open.read(lll)) != -1) {
+                fileOutputStream.write(lll,0,len);
+            }
+
+            fileOutputStream.flush();
+            open.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+
+        }
 
     }
 }
