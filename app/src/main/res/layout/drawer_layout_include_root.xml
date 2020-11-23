@@ -270,13 +270,14 @@
             android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:id="@+id/bendi"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/auto_tishi" />
+                android:src="@drawable/bendirootfs" />
 
 
             <main.java.com.termux.utils.CustomTextView
@@ -287,7 +288,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/自动提示开"
+                android:text="@string/本地rootfs下载"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />

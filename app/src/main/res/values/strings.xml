@@ -891,9 +891,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.102.99]</string>
-    <string name="云端版本552">云端版本:[0.102.99]</string>
-    <string name="云端版本553">云端版本:[0.102.99]\n本地版本[-.—.—]</string>
+    <string name="本地版本552">本地版本:[0.103.100]</string>
+    <string name="云端版本552">云端版本:[0.103.100]</string>
+    <string name="云端版本553">云端版本:[0.103.100]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -1038,7 +1038,7 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.102.99]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.100]\n最新版本:[-.--.--]"</string>
     <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.92.77]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
@@ -1344,7 +1344,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.102.99</string>
+    <string name="当前版本ffg">当前版本:0.103.100</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1632,7 +1632,21 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="你没有安装相关环境qemuppp5555p">"你没有安装相关环境,请点击安装"</string>
     <string name="重启后生效">重启APP后生效</string>
 
+    <string name="本地rootfs下载">离线rootfs</string>
+    <string name="本地服务端sdfsdf">本地服务端未检测到或未启动,是否下载?</string>
+    <string name="请选择要安装的rootfs">请选择要安装的rootfs</string>
+    <string name="选择系统的安装方式">选择系统的安装方式</string>
+    <string name="离线安装ffff方式">离线安装(arm64)</string>
+    <string name="从本地安装55599963">从本地安装</string>
+    <string name="termux官网安装">下载离线系统</string>
+    <string name="选择您要安装的系统dsfadfdf">选择您要安装的系统</string>
+    <string name="当前目录下没有khfwhefwehfsb">当前目录下没有系统文件\n内部存储/xinhao/online_system</string>
+    <string name="请选择一个系统dhdgsdgadfg">选择系统(当前架构:</string>
+    <string name="你当前的操作失败了sdfsdf">你当前的操作失败了,请重新尝试一下</string>
+    <string name="当前选择系统可能无法使用">当前选择系统可能无法使用,你确定要继续?\n如果选择错误系统将会无法正常进入\n系统错误请手动清除数据重新进入选择</string>
 
+    <string name="离线系统yyyyuuu">是否前往离线系统下载地址?\n提取码:573u</string>
+    <string name="没有基础系统会导致">该选项被禁止了~\n由于没有基础系统会导致tar.gz恢复异常\n所以暂时无法使用</string>
 
 
 

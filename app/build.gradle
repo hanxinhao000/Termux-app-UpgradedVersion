@@ -57,7 +57,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 92
-        versionName "0.102.99"
+        versionName "0.103.100"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }

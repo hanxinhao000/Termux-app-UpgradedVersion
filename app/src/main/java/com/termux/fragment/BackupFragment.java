@@ -160,6 +160,7 @@ public class BackupFragment extends BaseFragment implements View.OnClickListener
 
                         myDialog.show();
 
+                        yesNoDialog.setCancelable(true);
 
 
 

@@ -143,6 +143,7 @@ import main.java.com.termux.activity.WindowsActivity;
 import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.android_cm.LauncherActivity;
+import main.java.com.termux.app.dialog.RootfsDialog;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.UpDateBean;
@@ -3218,6 +3219,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout zidongtishi_ll;
     private LinearLayout zdti_set;
     private LinearLayout file_mf;
+    private LinearLayout bendi;
     private CustomTextView zidongtishi;
 
     @Override
@@ -3264,12 +3266,86 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         zhongwen = findViewById(R.id.zhongwen);
         file_mf = findViewById(R.id.file_mf);
         protem = findViewById(R.id.protem);
+        bendi = findViewById(R.id.bendi);
         zidongtishi_ll = findViewById(R.id.zidongtishi_ll);
         zidongtishi = findViewById(R.id.zidongtishi);
         item_root_img = findViewById(R.id.item_root_img);
         status_zd = findViewById(R.id.status_zd);
         cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
+
+        bendi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                OkHttpClient okHttpClient = new OkHttpClient();
+
+                Request request = new Request.Builder().get().url("http://127.0.0.1:19956/user/utermux_tz").build();
+
+                Call call = okHttpClient.newCall(request);
+
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                ab.setTitle(UUtils.getString(R.string.提示));
+
+                                ab.setMessage(UUtils.getString(R.string.本地服务端sdfsdf));
+
+                                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ab.create().dismiss();
+
+                                        Intent intent = new Intent();
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1nWqcYv8Htfojos21fmIrzw"));//Url 就是你要打开的网址
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        startActivity(intent); //启动浏览器
+
+                                    }
+                                });
+
+                                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ab.create().dismiss();
+                                    }
+                                });
+
+                                ab.show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                getDrawer().closeDrawer(Gravity.LEFT);
+
+                                RootfsDialog rootfsDialog = new RootfsDialog(TermuxActivity.this);
+                                rootfsDialog.show();
+                                rootfsDialog.setCancelable(true);
+                            }
+                        });
+
+
+                    }
+                });
+
+            }
+        });
 
         startZd();
 
