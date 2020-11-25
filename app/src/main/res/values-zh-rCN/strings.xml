@@ -913,4 +913,100 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="run_command_permission_description">允许第三方应用程序在Termux环境中执行任意命令。</string>
 
 
+
+
+
+    <string name="欢迎来到windows模拟器页面">欢迎来到windows模拟器页面</string>
+    <string name="环境5555j">环境</string>
+    <string name="qamu环境">QEMU环境:</string>
+    <string name="qamu环境开">[已安装]</string>
+    <string name="qamu环境关">[未安装]</string>
+    <string name="显示环境">显示环境:</string>
+    <string name="显示环境开">[已安装]</string>
+    <string name="显示环境关">[未安装]</string>
+    <string name="win10系统">win10系统[不推荐]</string>
+    <string name="win8系统">win8系统</string>
+    <string name="win7系统">win7系统[一般]</string>
+    <string name="winXP系统">WIN_XP系统[推荐]</string>
+    <string name="我自己的系统">其它(暂未开通)</string>
+    <string name="我自己的系统1">其它镜像</string>
+    <string name="ROOT运行">ROOT运行:</string>
+    <string name="ROOT运行1">请在Termux输入tsu进入</string>
+    <string name="帮我安装">帮我安装</string>
+    <string name="QEMU执行">执行</string>
+    <string name="高级windows运行">Windows++</string>
+    <string name="QEMU执行并打开显示器">执行并打开显示器</string>
+    <string name="清空命令行">清空命令行</string>
+    <string name="请输入QEMU命令">请输入QEMU命令,屏幕右边缘(右边栏)滑动可查看常用命令..</string>
+    <string name="请显示QEMU命令">所有执行的命令都将在这块显示</string>
+    <string name="当前操作镜像">当前操作镜像:</string>
+    <string name="无">无</string>
+    <string name="恢复默认命令">恢复默认命令</string>
+    <string name="快捷运行">快捷运行</string>
+    <string name="打开操作镜像">打开操作镜像</string>
+    <string name="填充默认命令">填充默认命令</string>
+    <string name="使用1默认命令">使用默认配置</string>
+    <string name="MAC系统">MAC系统</string>
+    <string name="正在加载00">正在加载,请稍后…</string>
+    <string name="正在疏通所需要的环境">正在疏通所需要的环境</string>
+    <string name="请输入回车键继续55">请输入回车键,然后再次打开windows++</string>
+    <string name="没有找到win10文件">没有找到win10文件,路径[内部存储/xinhao/windows/Utermux_win10.vhd]</string>
+    <string name="没有找到win7文件">没有找到win7文件,路径[内部存储/xinhao/windows/Utermux_win7.qcow2]</string>
+    <string name="没有找到mac文件">没有找到Mac文件,路径[内部存储/xinhao/windows/Utermux-mac.qcow2]</string>
+    <string name="系统初始化失败">系统初始化失败!请重启termux再试!</string>
+    <string name="清空操作镜像">清空操作镜像</string>
+    <string name="Windows注意">注意:该镜像会被复制到UTermux的工作区域[/Home/UTWindow/]</string>
+    <string name="一键启动">一键启动</string>
+    <string name="文件名不能为空">文件名不能为空</string>
+    <string name="目录下有一个相同文件">目录下已有一个相同文件,请重新输入文件名</string>
+    <string name="请输入保存的文件名">请输入保存的文件名</string>
+    <string name="保存文件sdfsdfsd">保存文件</string>
+    <string name="保存当前配置">保存当前配置到文件</string>
+    <string name="打开当前VNC任务">打开当前VNC任务</string>
+    <string name="qemu_x86_win">Win/linux/(x64_x86)</string>
+    <string name="qemu_i386_win">Win/linux/(i386)</string>
+    <string name="qemu_ppc_win">MAC(ppc)</string>
+    <string name="镜像运行结束">镜像运行结束:</string>
+    <string name="当前目录下没有镜像文件">当前目录下没有镜像文件\n内部存储/xinhao/windows/</string>
+    <string name="当前目录下没有配置文件">当前目录下没有配置文件\n内部存储/xinhao/windows_config/</string>
+    <string name="安装vnc显示插件">安装vnc显示插件</string>
+    <string name="获取镜像655465">获取 win10/7/xp/mac 镜像</string>
+    <string name="是否前往下载系统">是否前往下载系统 win10/7/xp/mac 镜像\n\n提取码:6fhz</string>
+    <string name="请选择运行的架构">请选择运行的架构</string>
+    <string name="文件操作失败pppp">请检查你是否有sd卡权限，或重新再试一次</string>
+    <string name="请选择模拟器配置文件">请选择模拟器启动配置文件\n[内部存储/xinhao/windows_config/]</string>
+
+    <string name="你没有安装相关环境qemuppp5555p">"你没有安装相关环境,请点击安装"</string>
+    <string name="重启后生效">重启APP后生效</string>
+    <string name="在线rootfsdddddd">在线rootfs</string>
+    <string name="本地rootfs下载">离线rootfs</string>
+    <string name="本地服务端sdfsdf">本地服务端未检测到或未启动,是否下载?(yiu2)</string>
+    <string name="请选择要安装的rootfs">请选择要安装的rootfs</string>
+    <string name="选择系统的安装方式">选择系统的安装方式</string>
+    <string name="离线安装ffff方式">离线安装(arm64)</string>
+    <string name="从本地安装55599963">从本地安装</string>
+    <string name="termux官网安装">下载离线系统</string>
+    <string name="选择您要安装的系统dsfadfdf">选择您要安装的系统</string>
+    <string name="当前目录下没有khfwhefwehfsb">当前目录下没有系统文件\n内部存储/xinhao/online_system</string>
+    <string name="请选择一个系统dhdgsdgadfg">选择系统(当前架构:</string>
+    <string name="你当前的操作失败了sdfsdf">你当前的操作失败了,请重新尝试一下\n如果您使用本地服务器,请确保服务器在后台运行!</string>
+    <string name="当前选择系统可能无法使用">当前选择系统可能无法使用,你确定要继续?\n如果选择错误系统将会无法正常进入\n系统错误请手动清除数据重新进入选择</string>
+
+    <string name="离线系统yyyyuuu">是否前往离线系统下载地址?\n提取码:573u</string>
+    <string name="没有基础系统会导致">该选项被禁止了~\n由于没有基础系统会导致tar.gz恢复异常\n所以该页面无法使用</string>
+    <string name="使用本地服务器安装6541323221">使用本地服务器安装</string>
+    <string name="下载本地服务器df052255">下载本地安装服务器</string>
+    <string name="离线本地系统yyyyuuu">是否前往本地服务器下载地址?\n提取码:f24q</string>
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

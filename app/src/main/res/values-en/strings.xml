@@ -1601,4 +1601,93 @@ Is it open or not?"</string>
     <string name="autofill_password">AutoFillPassword</string>
     <string name="在线包已被关闭">"The online package has been closed, please download \n
         from [Baidu Disk] That is the download station extraction code for: GZDP that!"</string>
+
+
+
+
+
+    <string name="欢迎来到windows模拟器页面">Welcome to the Windows Emulator page</string>
+    <string name="环境5555j">environment</string>
+    <string name="qamu环境">QEMU environment:</string>
+    <string name="qamu环境开">[Has been installed]</string>
+    <string name="qamu环境关">[Not installed]</string>
+    <string name="显示环境">According to the environment:</string>
+    <string name="显示环境开">[Has been installed]</string>
+    <string name="显示环境关">[Not installed]</string>
+    <string name="win10系统">Win10 [Not recommended]</string>
+    <string name="win8系统">win8</string>
+    <string name="win7系统">win7[general]</string>
+    <string name="winXP系统">WIN_XP[recommended]</string>
+    <string name="我自己的系统">Others (not yet open)</string>
+    <string name="我自己的系统1">Other mirror</string>
+    <string name="ROOT运行">ROOT run:</string>
+    <string name="ROOT运行1">Please enter TSU in Termux</string>
+    <string name="帮我安装">Help me to install</string>
+    <string name="QEMU执行">perform</string>
+    <string name="高级windows运行">Windows++</string>
+    <string name="QEMU执行并打开显示器">Execute and turn on the monitor</string>
+    <string name="清空命令行">Clear the command line</string>
+    <string name="请输入QEMU命令">Please enter the QEMU command, and swipe the right edge of the screen (right bar) to view common commands..</string>
+    <string name="请显示QEMU命令">All commands executed will be displayed on this block</string>
+    <string name="当前操作镜像">Current operation image:</string>
+    <string name="无">nothing</string>
+    <string name="恢复默认命令">Restore default command</string>
+    <string name="快捷运行">Quick run</string>
+    <string name="打开操作镜像">Open operation image</string>
+    <string name="填充默认命令">Populate the default command</string>
+    <string name="使用1默认命令">Use the default configuration</string>
+    <string name="MAC系统">MAC</string>
+    <string name="正在加载00">Loading, please hold on…</string>
+    <string name="正在疏通所需要的环境">The required environment is being dredged</string>
+    <string name="请输入回车键继续55">Please enter the enter key and open it againwindows++</string>
+    <string name="没有找到win10文件">Win10 file not found, path [internal storage/xinhao/Windows/Utermux_win10.vhd]</string>
+    <string name="没有找到win7文件">Win7 file not found, path [internal storage/xinhao/Windows/Utermux_win7.qcow2]</string>
+    <string name="没有找到mac文件">No Mac file is found, path [internal storage /xinhao/Windows/Utermux-Mac.qcow2]</string>
+    <string name="系统初始化失败">System initialization failed! Please restart Termux and try again!</string>
+    <string name="清空操作镜像">Empty operation image</string>
+    <string name="Windows注意">Note: The image will be copied to the work area [/Home/UTWindow/]</string>
+    <string name="一键启动">key to start</string>
+    <string name="文件名不能为空"> filename cannot be empty</string>
+    <string name="目录下有一个相同文件">The same file already exists in the directory. Please re-enter the file name</string>
+    <string name="请输入保存的文件名">Please enter the filename to save</string>
+    <string name="保存文件sdfsdfsd">Save the file</string>
+    <string name="保存当前配置">Save the current configuration to the file</string>
+    <string name="打开当前VNC任务">Open the current VNC task</string>
+    <string name="qemu_x86_win">Win/linux/(x64_x86)</string>
+    <string name="qemu_i386_win">Win/linux/(i386)</string>
+    <string name="qemu_ppc_win">MAC(ppc)</string>
+    <string name="镜像运行结束">End of mirror run:</string>
+    <string name="当前目录下没有镜像文件">There is no mirror file \n internal storage/Xinhao/Windows/in the current directory</string>
+    <string name="当前目录下没有配置文件">There is no configuration file \n internal storage/Xinhao/Windows_config/under the current directory</string>
+    <string name="安装vnc显示插件">Install the VNC display plug-in</string>
+    <string name="获取镜像655465">Gets the Win10/7/XP/MAC image</string>
+    <string name="是否前往下载系统">Do you want to go to download the win10/7/ XP/MAC image \n\n extraction code: 6fHz</string>
+    <string name="请选择运行的架构">Select the architecture to run</string>
+    <string name="文件操作失败pppp">Please check if you have SD card permissions or try again</string>
+    <string name="请选择模拟器配置文件">Please select Emulator boot configuration file \n[Internal storage/Xinhao/Windows_config/]</string>
+
+    <string name="你没有安装相关环境qemuppp5555p">"You do not have the environment installed, please click Install"</string>
+    <string name="重启后生效">Restart the APP and it will take effect</string>
+
+    <string name="本地rootfs下载">Offline rootfs</string>
+    <string name="本地服务端sdfsdf">The local server has not been detected or started. Do you want to download? (yiu2)</string>
+    <string name="请选择要安装的rootfs">Select the rootFS to install</string>
+    <string name="选择系统的安装方式">Select the installation mode of the system</string>
+    <string name="离线安装ffff方式">Off-line installation (ARM64)</string>
+    <string name="从本地安装55599963">Install locally</string>
+    <string name="termux官网安装">Download the offline system</string>
+    <string name="选择您要安装的系统dsfadfdf">Select the system you want to install</string>
+    <string name="当前目录下没有khfwhefwehfsb">There is no system file \n internal storage /xinhao/online_system in the current directory</string>
+    <string name="请选择一个系统dhdgsdgadfg">Select the system (current architecture:</string>
+    <string name="你当前的操作失败了sdfsdf">Your current operation failed, please try \n again if you are using a local server, make sure the server is running in the background!</string>
+    <string name="当前选择系统可能无法使用">The current selection system may not work. Are you sure you want to continue? \n System will not enter properly \n system error if you select incorrectly please manually clear the data to re-enter the selection</string>
+
+    <string name="在线rootfsdddddd">Online rootfs</string>
+
+    <string name="离线系统yyyyuuu">Do you want to go offline to download the address? \n Extraction code: 573U</string>
+    <string name="没有基础系统会导致">This option is disabled ~\n because having no base system would cause tar.gz recovery exception \n so this page is not available</string>
+    <string name="使用本地服务器安装6541323221">Use the local server installation</string>
+    <string name="下载本地服务器df052255">Download the local installation server</string>
+    <string name="离线本地系统yyyyuuu">Do you want to download the address from the local server? \n Extraction code: F24Q</string>
+
 </resources>

@@ -55,9 +55,14 @@ public class SystemInstallDialog extends BaseDialogCentre {
     private LinearLayout file_install;
     private LinearLayout termux_install;
     private LinearLayout tar;
+    private LinearLayout download_server;
+    private LinearLayout install_location_server;
     private Activity activity;
     private Runnable whenDone;
     final File PREFIX_FILE = new File(TermuxService.PREFIX_PATH);
+    private TextShowDialog textShowDialog;
+    private MyDialog myDialog;
+
     public SystemInstallDialog(@NonNull Context context, Activity activity,  Runnable whenDone) {
         super(context);
         this.activity = activity;
@@ -76,6 +81,8 @@ public class SystemInstallDialog extends BaseDialogCentre {
         location_install = mView.findViewById(R.id.location_install);
         file_install = mView.findViewById(R.id.file_install);
         termux_install = mView.findViewById(R.id.termux_install);
+        download_server = mView.findViewById(R.id.download_server);
+        install_location_server = mView.findViewById(R.id.install_location_server);
         tar = mView.findViewById(R.id.tar);
         tar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,12 +102,65 @@ public class SystemInstallDialog extends BaseDialogCentre {
             }
         });
 
+        install_location_server.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                installSystem(3);
+            }
+        });
+
 
         location_install.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 installSystem(0);
+
+            }
+        });
+
+        download_server.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /***
+                 *
+                 *
+                 * 链接: https://pan.baidu.com/s/1LXkPQCGSh32sjjLxeOxnHg 提取码: f24q 复制这段内容后打开百度网盘手机App，操作更方便哦
+                 * --来自百度网盘超级会员v3的分享
+                 *
+                 */
+                //链接：https://pan.baidu.com/s/1j7s2F_stI7cJ4A96rnV7jg
+                //提取码：573u
+                AlertDialog.Builder ab = new AlertDialog.Builder(activity);
+
+                ab.setTitle(UUtils.getString(R.string.提示));
+
+                ab.setMessage(UUtils.getString(R.string.离线本地系统yyyyuuu));
+
+                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ab.create().dismiss();
+
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("https://pan.baidu.com/s/1LXkPQCGSh32sjjLxeOxnHg"));//Url 就是你要打开的网址
+                        intent.setAction(Intent.ACTION_VIEW);
+                        activity.startActivity(intent); //启动浏览器
+
+                    }
+                });
+
+                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                    }
+                });
+
+                ab.show();
+
 
             }
         });
@@ -165,8 +225,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
     private void installSystem(int index){
 
 
-
-        MyDialog myDialog = new MyDialog(activity);
+        myDialog = new MyDialog(activity);
 
         myDialog.setCancelable(false);
 
@@ -174,7 +233,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
 
         TextView dialog_title = myDialog.getDialog_title();
 
-        dialog_title.setText("正在安装[群:714730084]...\n不挂vpn是比较绝望(慢)的...\n本程序已稳定,除非出现和官方一样的BUG");
+        dialog_title.setText("正在安装[群:714730084]...\n现已全部使用本地安装方式\n本程序已稳定,除非出现和官方一样的BUG");
 
         myDialog.getDialog_pro_prog().setMax(2066);
 
@@ -226,6 +285,35 @@ public class SystemInstallDialog extends BaseDialogCentre {
                             break;
                         case 2:
                             inputStream = zipUrl.openStream();
+                            break;
+                        case 3:
+
+                            String s = TermuxInstaller.determineTermuxArchName();
+
+                            switch (s){
+
+
+                                case "aarch64":
+                                    String urlArm64 = "http://127.0.0.1:19955/utermux/bootstrap-aarch64-v32.zip";
+                                    inputStream = new URL(urlArm64).openStream();
+                                    break;
+                                case "arm":
+                                    String urlArm = "http://127.0.0.1:19955/utermux/bootstrap-arm-v32.zip";
+                                    inputStream = new URL(urlArm).openStream();
+                                    break;
+                                case "x86_64":
+                                    String urlAmd = "http://127.0.0.1:19955/utermux/bootstrap-x86_64-v32.zip";
+                                    inputStream = new URL(urlAmd).openStream();
+                                    break;
+                                case "i686":
+                                    String urlI686 = "http://127.0.0.1:19955/utermux/bootstrap-i686-v32.zip";
+                                    inputStream = new URL(urlI686).openStream();
+                                    break;
+
+                            }
+
+
+
                             break;
 
 
@@ -306,30 +394,75 @@ public class SystemInstallDialog extends BaseDialogCentre {
                     if (!STAGING_PREFIX_FILE.renameTo(PREFIX_FILE)) {
                         throw new RuntimeException("Unable to rename staging folder");
                     }
-                    dismiss();
+                    try {
+                        if(textShowDialog!= null){
+                            textShowDialog.dismiss();
+                        }
+                        myDialog.dismiss();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     activity.runOnUiThread(whenDone);
 
                 }catch (Exception e){
 
 
-                    TextShowDialog textShowDialog = new TextShowDialog(activity);
-                    textShowDialog.edit_text.setText(UUtils.getString(R.string.你当前的操作失败了sdfsdf));
+                   UUtils.runOnUIThread(new Runnable() {
+                       @Override
+                       public void run() {
 
-                    textShowDialog.show();
+                           if (PREFIX_FILE.isDirectory()) {
+                               if(textShowDialog!= null){
+                                   textShowDialog.dismiss();
+                               }
+                               return;
+                           }
+                           if(textShowDialog != null){
+                               textShowDialog.dismiss();
+                           }
+                           textShowDialog = new TextShowDialog(activity);
+                           textShowDialog.edit_text.setText(UUtils.getString(R.string.你当前的操作失败了sdfsdf)+"\n" + e.toString());
 
-                    textShowDialog.start.setOnClickListener(new View.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(View v) {
-                                                                    TermuxInstaller.setupIfNeeded(activity, whenDone);
-                                                                }
-                                                            }
-                    );
+                           textShowDialog.show();
+
+                           textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                                                                       @Override
+                                                                       public void onClick(View v) {
+                                                                           if(myDialog!= null){
+                                                                               myDialog.dismiss();
+                                                                           }
+                                                                           if(textShowDialog!= null){
+                                                                               textShowDialog.dismiss();
+                                                                           }
+
+                                                                           dismiss();
+                                                                           TermuxInstaller.setupIfNeeded(activity, whenDone);
+                                                                       }
+                                                                   }
+                           );
+
+                           final File PREFIX_FILE = new File(TermuxService.PREFIX_PATH);
+                           if (PREFIX_FILE.isDirectory()) {
+                               try {
+                                   if(textShowDialog!= null){
+                                       textShowDialog.dismiss();
+                                   }
+                                   myDialog.dismiss();
+                               }catch (Exception e){
+                                   e.printStackTrace();
+                               }
+                               return;
+                           }
+
+                       }
+                   });
 
                 } finally {
                     activity.runOnUiThread(() -> {
                         try {
                             //activity.startActivity(new Intent(activity,TestActivity.class));
-                            myDialog.dismiss();
+
+                            dismiss();
                         } catch (RuntimeException e) {
                             // Activity already dismissed - ignore.
                         }

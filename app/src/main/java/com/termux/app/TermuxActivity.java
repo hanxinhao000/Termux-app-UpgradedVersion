@@ -61,6 +61,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -1206,6 +1207,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     termux_layout.setBackground(new BitmapDrawable(bitmap));
 
                     mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem_1.setBackgroundColor(Color.parseColor("#44000000"));
 
                     mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
 
@@ -1224,6 +1227,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 List<LocalMedia> selectList1 = PictureSelector.obtainMultipleResult(data);
 
                 if (selectList1 == null || selectList1.size() == 0) {
+                    UUtils.showLog("返回值为空");
                     return;
                 }
 
@@ -1246,6 +1250,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
 
                     mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem_1.setBackgroundColor(Color.parseColor("#44000000"));
 
                     mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
 
@@ -1288,6 +1294,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     termux_layout.setBackgroundColor(Color.parseColor("#00000000"));
 
                     mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem.setBackgroundColor(Color.parseColor("#44000000"));
+                    protem_1.setBackgroundColor(Color.parseColor("#44000000"));
 
                     mExtraKeysView.setBackgroundColor(Color.parseColor("#44000000"));
 
@@ -1295,6 +1303,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         viewPager.setBackgroundColor(Color.parseColor("#44000000"));
                 } catch (Exception e) {
 
+                    e.printStackTrace();
 
                 }
                 break;
@@ -3220,6 +3229,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout zdti_set;
     private LinearLayout file_mf;
     private LinearLayout bendi;
+    private LinearLayout line_rootfs;
+    private HorizontalScrollView protem_1;
     private CustomTextView zidongtishi;
 
     @Override
@@ -3257,6 +3268,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         chouti_2 = findViewById(R.id.chouti_2);
+        line_rootfs = findViewById(R.id.line_rootfs);
         root_group = findViewById(R.id.root_group);
         root_group_content = findViewById(R.id.root_group_content);
         chouti_1 = findViewById(R.id.chouti_1);
@@ -3266,6 +3278,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         zhongwen = findViewById(R.id.zhongwen);
         file_mf = findViewById(R.id.file_mf);
         protem = findViewById(R.id.protem);
+        protem_1 = findViewById(R.id.protem_1);
         bendi = findViewById(R.id.bendi);
         zidongtishi_ll = findViewById(R.id.zidongtishi_ll);
         zidongtishi = findViewById(R.id.zidongtishi);
@@ -3274,9 +3287,58 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
 
+        line_rootfs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+                writerFile("termux_toolx.sh",new File("/data/data/com.termux/files/home/termux_toolx.sh"));
+
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("chmod 777 termux_toolx.sh \n");
+                mTerminalView.sendTextToTerminal("./termux_toolx.sh \n");
+
+            }
+        });
+
         bendi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                File fileProot = new File("/data/data/com.termux/files/usr/bin/termux-chroot");
+                File fileWget = new File("/data/data/com.termux/files/usr/bin/wget");
+
+                if (!fileProot.exists() || !fileWget.exists()) {
+
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle(UUtils.getString(R.string.环境不达要求));
+
+                    ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
+
+                    ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getDrawer().closeDrawer(Gravity.LEFT);
+                            mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+
+                    return;
+                }
 
 
                 OkHttpClient okHttpClient = new OkHttpClient();
@@ -3284,7 +3346,15 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 Request request = new Request.Builder().get().url("http://127.0.0.1:19956/user/utermux_tz").build();
 
                 Call call = okHttpClient.newCall(request);
-
+/***
+ *
+ *
+ *
+ * 链接: https://pan.baidu.com/s/1TmBRmmfBnWWMKfN1mwalQQ 提取码: yiu2 复制这段内容后打开百度网盘手机App，操作更方便哦
+ * --来自百度网盘超级会员v3的分享
+ *
+ *
+ */
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -3305,7 +3375,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                                         ab.create().dismiss();
 
                                         Intent intent = new Intent();
-                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1nWqcYv8Htfojos21fmIrzw"));//Url 就是你要打开的网址
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1TmBRmmfBnWWMKfN1mwalQQ"));//Url 就是你要打开的网址
                                         intent.setAction(Intent.ACTION_VIEW);
                                         startActivity(intent); //启动浏览器
 
@@ -5080,7 +5150,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 // 进入相册 以下是例子：用不到的api可以不写
                 PictureSelector.create(TermuxActivity.this)
-                    .openGallery(PictureConfig.TYPE_VIDEO)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    .openGallery(PictureConfig.TYPE_PICTURE)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                     //.theme()//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
                     .maxSelectNum(1)// 最大图片选择数量 int
                     .minSelectNum(0)// 最小选择数量 int
@@ -5115,8 +5185,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                     // .rotateEnabled() // 裁剪是否可旋转图片 true or false
                     // .scaleEnabled()// 裁剪是否可放大缩小图片 true or false
                     // .videoQuality()// 视频录制质量 0 or 1 int
-                    .videoMaxSecond(15)// 显示多少秒以内的视频or音频也可适用 int
-                    .videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
+                    //.videoMaxSecond(15)// 显示多少秒以内的视频or音频也可适用 int
+                   // .videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
                     // .recordVideoSecond()//视频秒数录制 默认60s int
                     .isDragFrame(false)// 是否可拖动裁剪框(固定)
                     .forResult(REQUEST_SELECT_IMAGES_CODE_VIDEO);//结果回调onActivityResult code
@@ -6097,6 +6167,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 int back_color_view1 = Integer.parseInt(SaveData.getData("back_color_view"));
                 mTerminalView.setBackgroundColor(back_color_view1);
                 fun_all.setBackgroundColor(back_color_view1);
+                protem.setBackgroundColor(back_color_view1);
+                protem_1.setBackgroundColor(back_color_view1);
                 // function_ll.setBackgroundColor(back_color_view1);
 
             }
@@ -6107,6 +6179,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 Bitmap bitmap = BitmapFactory.decodeFile(image_back);
                 termux_layout.setBackground(new BitmapDrawable(bitmap));
                 mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
+                protem.setBackgroundColor(Color.parseColor("#44000000"));
+                protem_1.setBackgroundColor(Color.parseColor("#44000000"));
                 //  fun_all.setBackgroundColor(Color.parseColor("#22000000"));
                 //   function_ll.setBackgroundColor(Color.parseColor("#22000000"));
                 //   getDrawer().setBackgroundColor(Color.parseColor("#22000000"));
@@ -6114,7 +6188,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
             if (!video_back.equals("def")) {
                 mTerminalView.setBackgroundColor(Color.parseColor("#44000000"));
-
+                protem.setBackgroundColor(Color.parseColor("#44000000"));
+                protem_1.setBackgroundColor(Color.parseColor("#44000000"));
                 video_view.setVisibility(View.VISIBLE);
                 video_view.setVideoPath(video_back);
 
@@ -6222,6 +6297,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         if (image_back.equals("def") && video_back.equals("def")) {
             mTerminalView.setBackgroundColor(color);
             mExtraKeysView.setBackgroundColor(color);
+            protem.setBackgroundColor(color);
+            protem_1.setBackgroundColor(color);
         } else {
             //  Toast.makeText(this, "你已设置背景图,无法再次设置背景颜色!", Toast.LENGTH_SHORT).show();
         }

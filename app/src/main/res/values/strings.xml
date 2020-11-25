@@ -1633,7 +1633,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="重启后生效">重启APP后生效</string>
 
     <string name="本地rootfs下载">离线rootfs</string>
-    <string name="本地服务端sdfsdf">本地服务端未检测到或未启动,是否下载?</string>
+    <string name="本地服务端sdfsdf">本地服务端未检测到或未启动,是否下载?(yiu2)</string>
     <string name="请选择要安装的rootfs">请选择要安装的rootfs</string>
     <string name="选择系统的安装方式">选择系统的安装方式</string>
     <string name="离线安装ffff方式">离线安装(arm64)</string>
@@ -1642,12 +1642,15 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="选择您要安装的系统dsfadfdf">选择您要安装的系统</string>
     <string name="当前目录下没有khfwhefwehfsb">当前目录下没有系统文件\n内部存储/xinhao/online_system</string>
     <string name="请选择一个系统dhdgsdgadfg">选择系统(当前架构:</string>
-    <string name="你当前的操作失败了sdfsdf">你当前的操作失败了,请重新尝试一下</string>
+    <string name="你当前的操作失败了sdfsdf">你当前的操作失败了,请重新尝试一下\n如果您使用本地服务器,请确保服务器在后台运行!</string>
     <string name="当前选择系统可能无法使用">当前选择系统可能无法使用,你确定要继续?\n如果选择错误系统将会无法正常进入\n系统错误请手动清除数据重新进入选择</string>
 
     <string name="离线系统yyyyuuu">是否前往离线系统下载地址?\n提取码:573u</string>
-    <string name="没有基础系统会导致">该选项被禁止了~\n由于没有基础系统会导致tar.gz恢复异常\n所以暂时无法使用</string>
-
+    <string name="没有基础系统会导致">该选项被禁止了~\n由于没有基础系统会导致tar.gz恢复异常\n所以该页面无法使用</string>
+    <string name="使用本地服务器安装6541323221">使用本地服务器安装</string>
+    <string name="下载本地服务器df052255">下载本地安装服务器</string>
+    <string name="在线rootfsdddddd">在线rootfs</string>
+    <string name="离线本地系统yyyyuuu">是否前往本地服务器下载地址?\n提取码:f24q</string>
 
 
 
