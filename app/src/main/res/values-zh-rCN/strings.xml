@@ -983,7 +983,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="本地服务端sdfsdf">本地服务端未检测到或未启动,是否下载?(yiu2)</string>
     <string name="请选择要安装的rootfs">请选择要安装的rootfs</string>
     <string name="选择系统的安装方式">选择系统的安装方式</string>
-    <string name="离线安装ffff方式">离线安装(arm64)</string>
+    <string name="离线安装ffff方式">离线安装(AARCH64)</string>
     <string name="从本地安装55599963">从本地安装</string>
     <string name="termux官网安装">下载离线系统</string>
     <string name="选择您要安装的系统dsfadfdf">选择您要安装的系统</string>

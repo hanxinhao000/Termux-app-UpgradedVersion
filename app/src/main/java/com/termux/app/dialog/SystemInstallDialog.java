@@ -13,6 +13,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,8 @@ public class SystemInstallDialog extends BaseDialogCentre {
     private LinearLayout tar;
     private LinearLayout download_server;
     private LinearLayout install_location_server;
+    private TextView title_install;
+    private ImageView install_close;
     private Activity activity;
     private Runnable whenDone;
     final File PREFIX_FILE = new File(TermuxService.PREFIX_PATH);
@@ -80,10 +83,21 @@ public class SystemInstallDialog extends BaseDialogCentre {
 
         location_install = mView.findViewById(R.id.location_install);
         file_install = mView.findViewById(R.id.file_install);
+        title_install = mView.findViewById(R.id.title_install);
+        install_close = mView.findViewById(R.id.install_close);
         termux_install = mView.findViewById(R.id.termux_install);
         download_server = mView.findViewById(R.id.download_server);
         install_location_server = mView.findViewById(R.id.install_location_server);
         tar = mView.findViewById(R.id.tar);
+        String s = TermuxInstaller.determineTermuxArchName();
+        if(s.equals("aarch64")){
+            install_close.setVisibility(View.GONE);
+        }else{
+            install_close.setVisibility(View.VISIBLE);
+        }
+        //install_close
+
+        title_install.setText(UUtils.getString(R.string.选择系统的安装方式) + "("+TermuxInstaller.determineTermuxArchName().toUpperCase()+")");
         tar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +127,23 @@ public class SystemInstallDialog extends BaseDialogCentre {
         location_install.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!(s.equals("aarch64"))){
+
+                    // activity.startActivity(new Intent(activity, BackNewActivity.class));
+                    TextShowDialog textShowDialog = new TextShowDialog(activity);
+                    textShowDialog.edit_text.setText(UUtils.getString(R.string.当前CPU不是arm64架构));
+                    textShowDialog.show();
+                    textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            textShowDialog.dismiss();
+                            installSystem(0);
+                        }
+                    });
+
+                    return;
+                }
 
                 installSystem(0);
 
