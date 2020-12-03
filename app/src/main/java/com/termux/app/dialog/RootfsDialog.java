@@ -1,6 +1,7 @@
 package main.java.com.termux.app.dialog;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,6 +13,7 @@ import java.io.InputStream;
 
 import androidx.annotation.NonNull;
 import main.java.com.termux.app.TermuxActivity;
+import main.java.com.termux.app.TermuxInstaller;
 import main.java.com.termux.utils.UUtils;
 
 /**
@@ -27,6 +29,7 @@ public class RootfsDialog extends BaseDialogCentre {
     private LinearLayout centos;
     private LinearLayout debian;
     private LinearLayout kali;
+    private LinearLayout raspberrypi;
     public RootfsDialog(@NonNull Context context) {
         super(context);
     }
@@ -45,6 +48,7 @@ public class RootfsDialog extends BaseDialogCentre {
         centos = mView.findViewById(R.id.centos);
         debian = mView.findViewById(R.id.debian);
         kali = mView.findViewById(R.id.kali);
+        raspberrypi = mView.findViewById(R.id.raspberrypi);
 
         ubuntu_18.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +108,28 @@ public class RootfsDialog extends BaseDialogCentre {
             public void onClick(View v) {
                 dismiss();
                 installShell("utassets/kali.sh","kali.sh");
+
+            }
+        });
+        raspberrypi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextShowDialog textShowDialog = new TextShowDialog(mContext);
+                textShowDialog.show();
+                textShowDialog.setCancelable(true);
+                textShowDialog.edit_text.setTextSize(18);
+                textShowDialog.edit_text.setTextColor(Color.parseColor("#d81e06"));
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.你必须安装armsdfsdf));
+
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                        dismiss();
+                        installShell("shumei_install.sh","shumei_install.sh");
+                    }
+                });
 
             }
         });

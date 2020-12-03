@@ -391,16 +391,17 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:visibility="visible"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
                                 android:gravity="center"
+                                android:id="@+id/waiguoyu"
                                 android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/yuan_code" />
+                                    android:src="@drawable/beijingyuan" />
 
                                 <main.java.com.termux.utils.CustomTextView
                                     android:layout_width="match_parent"
@@ -408,7 +409,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="[新]清华源"
+                                    android:text="@string/北京外国语大学"
                                     android:textColor="#fff"
                                     android:textSize="13sp"
                                     android:textStyle="bold" />
@@ -419,7 +420,7 @@
                                     android:layout_marginTop="2dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="官方源在实验室"
+                                    android:text="@string/北京外国语大学源"
                                     android:layout_marginBottom="10dp"
                                     android:textColor="#fff"
                                     android:textSize="10sp"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 clear
+
 ##################
 YELLOW="\e[1;33m"
 GREEN="\e[1;32m"
@@ -9,22 +10,36 @@ BLUE="\e[1;34m"
 PINK="\e[0;35m"
 RES="\e[0m"
 ##################
-ARCH(){
+echo -e "\n${GREEN}部分系统没相应的架构包，可能会导致下载不成功d(ŐдŐ๑)                                              
+${PINK}手上资源有限，无法每个架构都通过测试(>﹏<)${RES}\n"   
+read -r -p "按回车键继续" input                           
+case $input in                                            
+*) ;; esac
+##################
+ARCH_(){
 	if [ "$(dpkg --print-architecture)" = "aarch64" ];then
+		ARCH=arm64
 		echo "aarch64"
         elif [ "$(dpkg --print-architecture)" = "arm64" ];then
+		ARCH=arm64
 		echo "arm64"
         elif [ "$(dpkg --print-architecture)" = "x86_64" ];then
+		ARCH=amd64
 		echo "x86_64"
         elif [ "$(dpkg --print-architecture)" = "x86" ];then
+		ARCH=i386
 		echo "x86"
         elif [ "$(dpkg --print-architecture)" = "amd64" ];then
+		ARCH=amd64
 		echo "amd64"
         elif [ "$(dpkg --print-architecture)" = "i686" ];then
+		ARCH=i386
 		echo "i686"
         elif [ "$(dpkg --print-architecture)" = "i386" ];then
+		ARCH=i386
 		echo "i386"
         elif [ "$(dpkg --print-architecture)" = "i586" ];then
+		ARCH=i386
 		echo "i586"
         else
             printf 'unknown architecture\n'
@@ -58,22 +73,22 @@ read -r -p ":" input
 case $input in
 	1) echo "即将下载安装debian(buster)"
 		sys_name=buster
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/debian/buster/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/debian/buster/$ARCH/default/" ;;
 	2) echo "即将下载安装ubuntu(bionic)"
 		sys_name=bionic
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/bionic/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/bionic/$ARCH/default/" ;;
 	3) echo "即将下载安装ubuntu(focal)"
 		sys_name=focal
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/focal/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/focal/$ARCH/default/" ;;
 	4) echo "即将下载安装kali"
                 sys_name=kali
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/kali/current/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/kali/current/$ARCH/default/" ;;
 	5) echo "即将下载安装centos"
                 sys_name=centos
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/centos/8/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/centos/8/$ARCH/default/" ;;
 	6) echo "即将下载安装arch"
                 sys_name=arch
-		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/archlinux/current/arm64/default/" ;;
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/archlinux/current/$ARCH/default/" ;;
 	7) echo "别乱选"
 		SYS_SELECT
                 #sys_name=alpine
@@ -104,22 +119,22 @@ read -r -p ":" input
 case $input in
         1) echo "即将下载安装debian(buster)"
                 sys_name=buster
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/debian/buster/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/debian/buster/$ARCH/default/" ;;
         2) echo "即将下载安装ubuntu(bionic)"
                 sys_name=bionic
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/bionic/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/bionic/$ARCH/default/" ;;
         3) echo "即将下载安装ubuntu(focal)"
                 sys_name=focal
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/focal/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/focal/$ARCH/default/" ;;
         4) echo "即将下载安装kali"
                 sys_name=kali
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/kali/current/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/kali/current/$ARCH/default/" ;;
         5) echo "即将下载安装centos"
                 sys_name=centos
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/centos/8/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/centos/8/$ARCH/default/" ;;
         6) echo "即将下载安装arch"
                 sys_name=arch
-                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/archlinux/current/arm64/default/" ;;
+                DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/archlinux/current/$ARCH/default/" ;;
         7) echo "别乱选"
                 SYS_SELECT
                 #sys_name=alpine
@@ -221,6 +236,8 @@ echo -e "${YELLOW}现在可以执行 ./$sys_name.sh 运行 $sys_name 了${RES}"
 }
 ####################
 MAIN(){
+	printf "\n检测到你的CPU架构是"
+	ARCH_
 	echo -e "\n${YELLOW}请选择系统下载地址(推荐北京外国语大学)\n
 	1) 北京外国语大学
 	2) 清华大学

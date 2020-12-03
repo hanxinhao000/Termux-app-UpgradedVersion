@@ -58,6 +58,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
     private LinearLayout tar;
     private LinearLayout download_server;
     private LinearLayout install_location_server;
+    private LinearLayout ziyou_install;
     private TextView title_install;
     private ImageView install_close;
     private Activity activity;
@@ -83,6 +84,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
 
         location_install = mView.findViewById(R.id.location_install);
         file_install = mView.findViewById(R.id.file_install);
+        ziyou_install = mView.findViewById(R.id.ziyou_install);
         title_install = mView.findViewById(R.id.title_install);
         install_close = mView.findViewById(R.id.install_close);
         termux_install = mView.findViewById(R.id.termux_install);
@@ -120,6 +122,23 @@ public class SystemInstallDialog extends BaseDialogCentre {
             @Override
             public void onClick(View v) {
                 installSystem(3);
+            }
+        });
+
+        ziyou_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JiaGouDialog jiaGouDialog = new JiaGouDialog(mContext);
+                jiaGouDialog.show();
+                jiaGouDialog.setJiaGouListener(new JiaGouDialog.JiaGouListener() {
+                    @Override
+                    public void jiagouString(int name) {
+                        installSystem(name);
+                        jiaGouDialog.dismiss();
+                    }
+                });
+                jiaGouDialog.setCancelable(true);
             }
         });
 
@@ -346,7 +365,22 @@ public class SystemInstallDialog extends BaseDialogCentre {
 
 
                             break;
-
+                        case 10:
+                            String urlArm64 = "http://127.0.0.1:19955/utermux/bootstrap-aarch64-v32.zip";
+                            inputStream = new URL(urlArm64).openStream();
+                            break;
+                        case 11:
+                            String urlArm = "http://127.0.0.1:19955/utermux/bootstrap-arm-v32.zip";
+                            inputStream = new URL(urlArm).openStream();
+                            break;
+                        case 12:
+                            String urlI686 = "http://127.0.0.1:19955/utermux/bootstrap-i686-v32.zip";
+                            inputStream = new URL(urlI686).openStream();
+                            break;
+                        case 13:
+                            String urlAmd = "http://127.0.0.1:19955/utermux/bootstrap-x86_64-v32.zip";
+                            inputStream = new URL(urlAmd).openStream();
+                            break;
 
 
                     }

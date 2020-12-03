@@ -30,14 +30,14 @@
             android:textSize="16sp"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:background="#5E5E5E"
             android:layout_marginTop="10dp"
             android:layout_height="1px"/>
 
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -56,7 +56,7 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/qamu环境"
                 android:textColor="#fff"
@@ -65,7 +65,7 @@
                 android:textSize="14sp"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/qamu环境关"
                 android:textColor="#fff"
@@ -86,7 +86,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:text="@string/点击安装"
                         android:textColor="#5288D8"
@@ -117,7 +117,7 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/显示环境"
                 android:textColor="#fff"
@@ -126,7 +126,7 @@
                 android:textSize="14sp"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/显示环境关"
                 android:visibility="gone"
@@ -149,7 +149,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:text="@string/点击安装"
                         android:textColor="#5288D8"
@@ -181,7 +181,7 @@
             android:visibility="gone"
             android:layout_height="wrap_content">
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/ROOT运行"
                 android:textColor="#fff"
@@ -190,7 +190,7 @@
                 android:textSize="14sp"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+            <main.java.com.termux.utils.CustomTextView
                 android:layout_width="wrap_content"
                 android:text="@string/ROOT运行1"
                 android:textColor="#fff"
@@ -211,7 +211,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <main.java.com.termux.utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:text="@string/帮我安装"
                         android:textColor="#5288D8"
@@ -235,14 +235,14 @@
 
         </LinearLayout>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:background="#5E5E5E"
             android:visibility="invisible"
             android:layout_marginTop="10dp"
             android:layout_height="1px"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -253,7 +253,7 @@
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:background="#5E5E5E"
             android:layout_marginTop="10dp"

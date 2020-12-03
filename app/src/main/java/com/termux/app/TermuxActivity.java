@@ -1880,6 +1880,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout utermux_downlod;
     private LinearLayout winlog_download;
     private LinearLayout switch_qinghua_new;
+    private LinearLayout waiguoyu;
     private LinearLayout switch_main_new;
     private LinearLayout switch_code_vnc;
     private LinearLayout cof_vnc;
@@ -3542,6 +3543,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         xom_tv.setSelected(true);
         moe_ll = findViewById(R.id.moe_ll);
         switch_qinghua_new = findViewById(R.id.switch_qinghua_new);
+        waiguoyu = findViewById(R.id.waiguoyu);
         seek_bar_tv = findViewById(R.id.seek_bar_tv);
         seek_bar = findViewById(R.id.seek_bar);
         adb_install = findViewById(R.id.adb_install);
@@ -4138,6 +4140,53 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                         Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
 
                         mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list && sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && apt update && apt upgrade \n");
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+
+                ab.setPositiveButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.未做任何改动), Toast.LENGTH_SHORT).show();
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                        ab.create().dismiss();
+                    }
+                });
+                ab.show();
+
+
+            }
+        });
+
+
+
+
+
+        waiguoyu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle(UUtils.getString(R.string.提示));
+
+                ab.setMessage(UUtils.getString(R.string.该操作会覆盖你原来的源文件));
+
+                ab.setNegativeButton(UUtils.getString(R.string.是), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                 /*       writerFile("qh_sources.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
+                        writerFile("qh_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
+                        writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
+                        Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
+
+                        mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list &&" +
+                            "sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list &&" +
+                            "sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list &&" +
+                            "apt update && apt upgrade \n");
 
                         getDrawer().closeDrawer(Gravity.LEFT);
                     }
@@ -6380,6 +6429,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             arrayList.add("ip neigh \n ");
             arrayList.add("vncserver-start \n ");
             arrayList.add("vncserver-stop \n ");
+            arrayList.add("dpkg --print-architecture \n ");
             arrayList.add("ifconfig \n ");
             arrayList.add("tar zxvf  ");
             arrayList.add("tar zcvf  ");

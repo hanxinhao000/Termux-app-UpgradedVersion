@@ -297,14 +297,15 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:visibility="invisible"
+                android:visibility="visible"
+                android:id="@+id/raspberrypi"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/debianos" />
+                    android:src="@drawable/raspberrypi" />
 
 
                 <main.java.com.termux.utils.CustomTextView
@@ -314,7 +315,7 @@
                     android:layout_marginBottom="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="debian"
+                    android:text="raspios"
                     android:textColor="#fff"
                     android:textSize="13sp"
                     android:textStyle="bold" />
