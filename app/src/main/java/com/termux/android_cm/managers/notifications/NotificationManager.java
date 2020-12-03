@@ -319,8 +319,8 @@ public class NotificationManager implements XMLPrefsElement {
     }
 
     public static class NotificatedApp {
-        String pkg, color, format;
-        boolean enabled;
+        public String pkg, color, format;
+        public boolean enabled;
 
         public NotificatedApp(String pkg, String color, String format, boolean enabled) {
             this.pkg = pkg;

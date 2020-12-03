@@ -29,6 +29,7 @@ public class RootfsDialog extends BaseDialogCentre {
     private LinearLayout centos;
     private LinearLayout debian;
     private LinearLayout kali;
+    private LinearLayout fedora;
     private LinearLayout raspberrypi;
     public RootfsDialog(@NonNull Context context) {
         super(context);
@@ -48,6 +49,7 @@ public class RootfsDialog extends BaseDialogCentre {
         centos = mView.findViewById(R.id.centos);
         debian = mView.findViewById(R.id.debian);
         kali = mView.findViewById(R.id.kali);
+        fedora = mView.findViewById(R.id.fedora);
         raspberrypi = mView.findViewById(R.id.raspberrypi);
 
         ubuntu_18.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +111,13 @@ public class RootfsDialog extends BaseDialogCentre {
                 dismiss();
                 installShell("utassets/kali.sh","kali.sh");
 
+            }
+        });
+        fedora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //fedora.sh
+                dismiss();
+                installShell("utassets/fedora.sh","fedora.sh");
             }
         });
         raspberrypi.setOnClickListener(new View.OnClickListener() {
