@@ -10,23 +10,83 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:background="@drawable/windows_line"
-        android:layout_height="300dp">
+        android:layout_height="400dp">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:background="@null"
-            android:textColor="@color/color_48baf3"
-            android:id="@+id/edit_text"
-            android:text="@string/镜像运行结束"
-            android:lineSpacingExtra="2dp"
-            android:lineSpacingMultiplier="1.2"
-            android:padding="10dp"
-            android:layout_above="@+id/boom_rl"
-            android:gravity="top|left"
-            android:layout_marginBottom="10dp"
-            android:layout_height="290dp"/>
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <main.java.com.termux.utils.CustomTextView
+                android:layout_width="match_parent"
+                android:textSize="13sp"
+                android:visibility="visible"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/color_48baf3"
+                android:text="@string/捐赠入口sdfgdfg"
+                android:layout_height="wrap_content"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+
+                        android:id="@+id/wx_image"
+                        android:layout_height="270dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:id="@+id/zfb_image"
+
+                        android:layout_height="270dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:background="@null"
+                android:textColor="@color/color_48baf3"
+                android:id="@+id/edit_text"
+                android:text="@string/镜像运行结束"
+                android:lineSpacingExtra="2dp"
+                android:lineSpacingMultiplier="1.2"
+                android:padding="10dp"
+                android:layout_above="@+id/boom_rl"
+                android:gravity="top|left"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
 
     </ScrollView>
 

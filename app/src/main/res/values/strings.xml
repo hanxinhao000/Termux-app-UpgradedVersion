@@ -891,9 +891,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.103.101]</string>
-    <string name="云端版本552">云端版本:[0.103.101]</string>
-    <string name="云端版本553">云端版本:[0.103.101]\n本地版本[-.—.—]</string>
+    <string name="本地版本552">本地版本:[0.103.102]</string>
+    <string name="云端版本552">云端版本:[0.103.102]</string>
+    <string name="云端版本553">云端版本:[0.103.102]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -1038,7 +1038,7 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.101]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.102]\n最新版本:[-.--.--]"</string>
     <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.92.77]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
@@ -1344,7 +1344,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.103.101</string>
+    <string name="当前版本ffg">当前版本:0.103.102</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1664,8 +1664,25 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="i686架构sssdd">i686(x86、i386)架构</string>
     <string name="x86_64架构sssdd">x86_64(amd、x64)架构</string>
     <string name="你必须安装armsdfsdf">你必须安装arm的termux原版系统才能使用 \n查看当前架构请在右侧栏查找\n命令:dpkg --print-architecture</string>
+    <string name="吴轩沐提供">吴轩沐提供 \n映射/系统安装</string>
+    <string name="请注意oerpqpf">法律声明:\n此脚本为学习交流使用\n使用此脚本并非UTermux强制\n如果在使用当中无论出现错误操作、有意操作、或者其它\n出现的法律责任都由使用者(使用UTermux的用户)承担\n\n这是一个与UTermux脱离的脚本\n内容可能会被原作者更改\n作者项目地址:\nhttps://gitee.com/wuxuanmu/termux</string>
+    <string name="我承担的双方各">同意</string>
+    <string name="我不承担">不同意</string>
+    <string name="贡献jpsdjfp">贡献人员</string>
+    <string name="捐赠kkkk">捐赠|贡献</string>
 
+    <string name="捐赠入口sdfgdfg">捐赠入口(长按保存图片到本地)\n注:捐赠为自愿，并不是强制\n谢谢各位请我喝冰阔落~</string>
+    <string name="保存图片成功">保存图片成功,请打开相册查看</string>
+    <string name="保存图片失败">请检查内存卡权限，保存失败!</string>
+    <string name="捐赠者名单sdfhdfj">捐赠者名单[排名不分前后]:\n
+        Outer(qq:8387**536)[¥:2]\n
+        hexahedron yell(qq:19869**359)[¥:1]\n
+        黑色曼陀罗(qq:24833**368)[¥:200]\n
+        沫雪一(qq:29307**324)[¥:10]\n
+        渗透工具(qq:2411**013)[¥:10]\n
+        天龙八部(qq:6955**042)[¥:30]\n
 
+    </string>
 
 
 

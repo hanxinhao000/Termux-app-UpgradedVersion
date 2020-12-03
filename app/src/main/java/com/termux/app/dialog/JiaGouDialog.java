@@ -64,7 +64,6 @@ public class JiaGouDialog extends BaseDialogCentre {
                     TextShowDialog textShowDialog = new TextShowDialog(mContext);
                     textShowDialog.show();
                     textShowDialog.setCancelable(true);
-                    textShowDialog.edit_text.setTextSize(18);
                     textShowDialog.edit_text.setTextColor(Color.parseColor("#d81e06"));
                     textShowDialog.edit_text.setText(UUtils.getString(R.string.当前选择系统可能无法使用));
 
@@ -99,7 +98,6 @@ public class JiaGouDialog extends BaseDialogCentre {
                     TextShowDialog textShowDialog = new TextShowDialog(mContext);
                     textShowDialog.show();
                     textShowDialog.setCancelable(true);
-                    textShowDialog.edit_text.setTextSize(18);
                     textShowDialog.edit_text.setTextColor(Color.parseColor("#d81e06"));
                     textShowDialog.edit_text.setText(UUtils.getString(R.string.当前选择系统可能无法使用));
 
@@ -127,7 +125,6 @@ public class JiaGouDialog extends BaseDialogCentre {
                     TextShowDialog textShowDialog = new TextShowDialog(mContext);
                     textShowDialog.show();
                     textShowDialog.setCancelable(true);
-                    textShowDialog.edit_text.setTextSize(18);
                     textShowDialog.edit_text.setTextColor(Color.parseColor("#d81e06"));
                     textShowDialog.edit_text.setText(UUtils.getString(R.string.当前选择系统可能无法使用));
 
@@ -156,7 +153,6 @@ public class JiaGouDialog extends BaseDialogCentre {
                     textShowDialog.show();
                     textShowDialog.setCancelable(true);
                     textShowDialog.edit_text.setText(UUtils.getString(R.string.当前选择系统可能无法使用));
-                    textShowDialog.edit_text.setTextSize(18);
                     textShowDialog.edit_text.setTextColor(Color.parseColor("#d81e06"));
 
                     textShowDialog.start.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,8 @@ package main.java.com.termux.app.dialog;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.termux.R;
@@ -16,7 +18,9 @@ import main.java.com.termux.utils.UUtils;
  **/
 public class TextShowDialog extends BaseDialogCentre {
     public TextView start;
-    public TextView edit_text;
+    public EditText edit_text;
+    public TextView commit;
+    public LinearLayout commit_ll;
     public TextShowDialog(@NonNull Context context) {
         super(context);
     }
@@ -29,6 +33,8 @@ public class TextShowDialog extends BaseDialogCentre {
     void initViewDialog(View mView) {
         start = mView.findViewById(R.id.start);
         edit_text = mView.findViewById(R.id.edit_text);
+        commit = mView.findViewById(R.id.commit);
+        commit_ll = mView.findViewById(R.id.commit_ll);
 
 
 
@@ -40,6 +46,7 @@ public class TextShowDialog extends BaseDialogCentre {
                 dismiss();
             }
         });
+
     }
 
     @Override

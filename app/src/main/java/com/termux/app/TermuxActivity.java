@@ -145,6 +145,10 @@ import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.app.dialog.RootfsDialog;
+//可删除，无用代码 ↓
+import main.java.com.termux.app.dialog.TextJZShowDialog;
+//              ↑
+import main.java.com.termux.app.dialog.TextShowDialog;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.UpDateBean;
@@ -268,6 +272,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                 if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.contains("/data/data/")){
                     main.java.com.termux.app.TermuxInstaller.editTextDialog(whatToReload,TermuxActivity.this);
+                    return;
+                }
+
+                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.contains("left")){
+                    getDrawer().openDrawer(Gravity.LEFT);
+                    return;
+                }
+
+                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.contains("right")){
+                    getDrawer().openDrawer(Gravity.RIGHT);
                     return;
                 }
 
@@ -3231,6 +3245,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private LinearLayout file_mf;
     private LinearLayout bendi;
     private LinearLayout line_rootfs;
+    private LinearLayout juanzeng;
+    private LinearLayout install_wu;
     private HorizontalScrollView protem_1;
     private CustomTextView zidongtishi;
 
@@ -3268,7 +3284,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         isHistory();
 
 
+        juanzeng = findViewById(R.id.juanzeng);
         chouti_2 = findViewById(R.id.chouti_2);
+        install_wu = findViewById(R.id.install_wu);
         line_rootfs = findViewById(R.id.line_rootfs);
         root_group = findViewById(R.id.root_group);
         root_group_content = findViewById(R.id.root_group_content);
@@ -3287,6 +3305,56 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         status_zd = findViewById(R.id.status_zd);
         cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
+
+        juanzeng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //如果在编译时这块报错找不到注释掉就行
+
+                //如报错,注释即可,无用代码
+
+                //可注释/删除
+                TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
+                //可注释/删除
+                textJZShowDialog.show();
+                //可注释/删除
+                textJZShowDialog.setCancelable(true);
+            }
+        });
+
+        install_wu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity.this);
+                textShowDialog.show();
+                textShowDialog.setCancelable(true);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.请注意oerpqpf));
+                textShowDialog.start.setText(UUtils.getString(R.string.我承担的双方各));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("pkg install git -y && cd && git clone https://gitee.com/wuxuanmu/termux && chmod -R 777 termux && cd termux && bash SetSource.sh \n");
+                        textShowDialog.dismiss();
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+                textShowDialog.commit.setText(UUtils.getString(R.string.我不承担));
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                    }
+                });
+
+
+            }
+        });
 
         line_rootfs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -6951,6 +7019,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 try {
                     InputStream xinhao_han_sms = getAssets().open("XINHAO_HAN_Sms");
 
+
                     int len = 0;
                     smsFileSms.createNewFile();
                     FileOutputStream fileOutputStream = new FileOutputStream(smsFileSms);
@@ -6963,6 +7032,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
                     Runtime.getRuntime().exec("chmod 777 " + smsFileSms.getAbsolutePath());
 
+
                 } catch (IOException e) {
                     e.printStackTrace();
 
@@ -6972,6 +7042,24 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         }
+
+
+        try {
+            File file = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_LEFT");
+            File file1 = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_RIGHT");
+            if(!file.exists()) {
+                writerFile("XINHAO_HAN_LEFT", file);
+            }
+            if(!file1.exists()){
+                writerFile("XINHAO_HAN_RIGHT",file1);
+            }
+
+            Runtime.getRuntime().exec("chmod 777 " + file.getAbsolutePath());
+            Runtime.getRuntime().exec("chmod 777 " + file1.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         File file3 = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_TextUT");
         if(!(file3.exists())) {
@@ -8747,6 +8835,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             fileOutputStream.close();
         } catch (Exception e) {
 
+            e.printStackTrace();
         }
 
     }

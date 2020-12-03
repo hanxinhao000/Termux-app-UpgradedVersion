@@ -344,7 +344,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <LinearLayout
@@ -352,14 +352,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_weight="1"
+            android:id="@+id/install_wu"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/quanping" />
+                android:src="@drawable/wu_install" />
 
             <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
@@ -368,7 +369,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/全屏模式asf5sd5"
+                android:text="@string/吴轩沐提供"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -381,14 +382,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_weight="1"
+            android:id="@+id/juanzeng"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/lishi" />
+                android:src="@drawable/gxb" />
 
             <main.java.com.termux.utils.CustomTextView
                 android:layout_width="match_parent"
@@ -396,7 +398,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/替换官方版本"
+                android:text="@string/贡献jpsdjfp"
                 android:textColor="#fff"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -408,7 +410,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/用官版的请点击"
+                android:text="@string/捐赠kkkk"
                 android:textColor="#fff"
                 android:textSize="10sp"
                 android:textStyle="bold" />
