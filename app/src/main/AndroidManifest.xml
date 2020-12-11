@@ -5,7 +5,8 @@
     android:installLocation="auto"
     android:sharedUserId="com.termux"
     android:sharedUserLabel="@string/shared_user_label">
-    <!-- features -->
+
+
     <application
         android:name="main.java.com.termux.application.TermuxApplication"
         android:allowBackup="true"
@@ -71,6 +72,7 @@
         <activity
             android:name="main.java.com.termux.weblinux.AboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <receiver android:name="com.termux.api.TermuxApiReceiver"/>
         <activity
             android:name="main.java.com.termux.activity.ListDataActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -98,6 +100,9 @@
             android:taskAffinity=""
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+
+
+
         <!--
 <activity
             android:name="main.java.com.termux.android_cm.commands.tuixt.TuixtActivity"
@@ -262,7 +267,7 @@
             android:noHistory="true"
             android:theme="@style/DialogTheme" />
         <activity
-            android:name=".FingerprintAPI$FingerprintActivity"
+            android:name=".api.FingerprintAPI$FingerprintActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:noHistory="true"
@@ -448,12 +453,7 @@
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
 
-        <provider
-            android:name=".api.ShareAPI$ContentProvider"
-            android:authorities="com.termux.sharedfiles"
-            android:exported="true"
-            android:grantUriPermissions="true"
-            android:readPermission="com.termux.sharedfiles.READ" />
+
         <!--
              This (or rather, value 2.1 or higher) is needed to make the Samsung Galaxy S8
              mark the app with "This app is optimized to run in full screen."
@@ -519,14 +519,14 @@
 
         <service android:name=".api.SpeechToTextAPI$SpeechToTextService" />
         <service android:name=".api.TextToSpeechAPI$TextToSpeechService" />
-        <service android:name=".SensorAPI$SensorReaderService" />
+        <service android:name=".api.SensorAPI$SensorReaderService" />
         <service
-            android:name=".MediaPlayerAPI$PlayerService"
+            android:name=".api.MediaPlayerAPI$PlayerService"
             android:exported="false" />
         <service
-            android:name=".MicRecorderAPI$MicRecorderService"
+            android:name=".api.MicRecorderAPI$MicRecorderService"
             android:exported="false" />
-        <service android:name=".WallpaperAPI$WallpaperService" />
+        <service android:name=".api.WallpaperAPI$WallpaperService" />
         <service
             android:name=".NotificationService"
             android:enabled="true"
@@ -536,8 +536,18 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+        <activity android:name=".api.NfcActivity" android:theme="@style/DialogTheme" android:noHistory="true" android:excludeFromRecents="true" android:exported="false" >
+
+
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+            </intent-filter>
+
+        </activity>
         <service
-            android:name=".SchedulerJobService"
+            android:name=".api.SchedulerJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- Activities from OI Distribution Library -->
         <service
             android:name="main.java.com.termux.activity.DownLoadService"

@@ -90,6 +90,7 @@ import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 import com.termux.R;
+import com.termux.api.NfcActivity;
 import com.termux.api.TermuxApiReceiver;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
@@ -3277,6 +3278,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //insFile();
 
 
+        startActivity(new Intent(this, NfcActivity.class));
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
         mTermux_keybot = findViewById(R.id.termux_keybot);

@@ -394,7 +394,7 @@ public final class TermuxService extends Service implements SessionChangedCallba
         String execPath = appContext.getApplicationInfo().nativeLibraryDir;
 
         environment.add("PREFIX=" + prefix);
-        environment.add("LANG=en_US.UTF-8");
+        environment.add("LANG=zh_CN.UTF-8");
         environment.add("TERM=xterm-256color");
         environment.add("HOME=" + home);
         environment.add("PWD=" + home);
