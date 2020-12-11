@@ -3278,7 +3278,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         //insFile();
 
 
-        startActivity(new Intent(this, NfcActivity.class));
+      //  startActivity(new Intent(this, NfcActivity.class));
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.drawer_layout);
         mTermux_keybot = findViewById(R.id.termux_keybot);
