@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+
+       <main.java.com.termux.view.MyHorizontalScrollView
+           android:layout_width="match_parent"
+           android:id="@+id/huadong"
+           android:layout_height="wrap_content">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:gravity="center_vertical"
+               android:visibility="visible"
+               android:layout_height="wrap_content">
+
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:id="@+id/jichu_mod"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:background="@drawable/shape_login_btn_true"
+                      android:text="@string/基础功能fffg"
+                      android:textColor="#10202f"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:id="@+id/rootfs_mod"
+                      android:text="@string/rootfs集合"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:id="@+id/mingling"
+                      android:text="@string/自定义命令123"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:id="@+id/windows_mod"
+                      android:text="@string/模拟windowsdfdf"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/other_mod"
+                      android:padding="2dp"
+                      android:text="@string/其他功能5555"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+              </LinearLayout>
+
+           </LinearLayout>
+
+
+
+       </main.java.com.termux.view.MyHorizontalScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <include layout="@layout/drawer_layout_left_jiandan_jichu" android:id="@+id/jichu_view_5" android:visibility="visible"/>
+
+        <include layout="@layout/drawer_layout_left_jiandan_rootfs" android:id="@+id/rootfs_view_5" android:visibility="gone"/>
+
+        <include layout="@layout/drawer_layout_left_jiandan_mingl" android:id="@+id/mingl_view_5" android:visibility="gone"/>
+
+        <include layout="@layout/drawer_layout_left_jiandan_windows" android:id="@+id/windows_view_5" android:visibility="gone"/>
+
+        <include layout="@layout/drawer_layout_left_jiandan_other" android:id="@+id/other_view_5" android:visibility="gone"/>
+
+
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/xuanxiangka"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <main.java.com.termux.utils.CustomTextView
+                android:layout_width="wrap_content"
+                android:text="@string/UT功能解释kkkl"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="2dp"
+                android:textSize="10sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/color_5E5E5E"
+                android:layout_height="wrap_content"/>
+
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <main.java.com.termux.utils.CustomTextView
+                android:layout_width="wrap_content"
+                android:text="@string/本页面思路提供者"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/color_5E5E5E"
+                android:layout_height="wrap_content"/>
+
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+</LinearLayout>

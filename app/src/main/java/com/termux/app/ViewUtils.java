@@ -33,11 +33,31 @@ public class ViewUtils {
 
     }
 
+    public static void xuanzhuanView1(View view1,View view2){
+
+
+        if(view1.getVisibility() == View.VISIBLE){
+            isBooean = false;
+        }else{
+            isBooean = true;
+        }
+
+        if(isBooean){
+            fan(view1, view2);
+        }else {
+
+            zhen(view1, view2);
+        }
+
+
+    }
+
     //正旋转
 
     public static void zhen(View view1,View view2){
 
 
+        
         new Thread(new Runnable() {
             @Override
             public void run() {

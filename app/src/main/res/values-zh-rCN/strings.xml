@@ -259,8 +259,8 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.103.103]</string>
-    <string name="云端版本552">云端版本:[0.103.103]</string>
+    <string name="本地版本552">本地版本:[0.103.105]</string>
+    <string name="云端版本552">云端版本:[0.103.105]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -281,7 +281,7 @@
     <string name="美化885">"美化[字体背景]"</string>
     <string name="工具885">"工具[备份恢复]"</string>
     <string name="修复885">"修复/其他[杂项选择]"</string>
-    <string name="更新885">"更新"</string>
+    <string name="更新885">点击检查更新</string>
     <string name="功能885">"[*]功能"</string>
     <string name="会话885">"会话"</string>
     <string name="清华源885">"[新]清华源"</string>
@@ -397,8 +397,8 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.103]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.92.77]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.105]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.105]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -708,7 +708,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.103.103</string>
+    <string name="当前版本ffg">当前版本:0.103.105</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1006,6 +1006,143 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
 
+
+
+    <string name="界面选择kjsdhf">界面选择:</string>
+    <string name="精简模式sdfsd">精简模式</string>
+    <string name="高级模式dfgdf">高级模式</string>
+
+    <string name="源功能ghjghj110">源功能</string>
+    <string name="北京大学源222">北京大学外国语源</string>
+    <string name="北京大学源2223">初学者/国内推荐使用</string>
+
+
+    <string name="切换系统54545">切换系统/切换linux</string>
+    <string name="切换功能123fddf">切换功能</string>
+    <string name="创建以及切换多个系统ppp">创建以及切换多个linux系统</string>
+
+
+    <string name="恢复功能555f">恢复功能</string>
+    <string name="恢复包数据包恢复45">恢复包/数据包/TAR.GZ恢复</string>
+    <string name="恢复下载站54">恢复下载站的/恢复包/tar.gz</string>
+
+
+    <string name="基础功能fffg">基础功能</string>
+    <string name="rootfs集合">linux发行集合</string>
+
+    <string name="下载站fff">下载站</string>
+    <string name="百度云下载站ssdd">百度云下载站</string>
+    <string name="下载UT的图形包">下载UT的图形包、恢复包,如 ubuntu、kali、centOs</string>
+
+    <string name="离线linuxdf">离线linux</string>
+    <string name="本地服务器linuxghj">本地服务器linux</string>
+    <string name="您需要下载安装yy">您需要下载安装rootfs服务器,才能安装 ubuntu、树莓派、等系统</string>
+
+    <string name="在线linuxfdf">在线linux</string>
+    <string name="在线下载各种发行版本fgfg">在线下载各种发行版本</string>
+    <string name="如在线下载sdhlsdg">如：ubuntu、centOs、模拟amd、x86、架构</string>
+
+    <string name="其他linux5556">其他linux</string>
+
+    <string name="moe万能linux脚本123">MOE万能LINUX脚本</string>
+    <string name="由MOE提供56456df">由MOE提供,支持各种市面上的发行版本以及图形桌面</string>
+
+    <string name="由空夏提供的56456dfi">UBUNTU一键图形系统</string>
+    <string name="s564由空夏提供的56dfi">由空夏提供的UBUNTU图形系统</string>
+
+
+    <string name="XOM工具脚本sdf">XOM工具脚本</string>
+
+    <string name="由XOM作者提供gfg">由XOM作者提供的一种工具脚本</string>
+
+    <string name="模拟windowsdfdf">模拟WINDOWS</string>
+
+    <string name="模拟功能123">模拟功能</string>
+
+    <string name="模拟windows板块dfdf">模拟WINDOWS板块</string>
+    <string name="模拟windowsmac板块dfdf">模拟WINDOWS、MAC板块，以及自定义系统板块</string>
+
+    <string name="DosBox5556">DosBox</string>
+    <string name="DosBox简介df">DosBox为Windows3.2功能</string>
+
+    <string name="alpine功能">Alpine X86功能</string>
+    <string name="alpine功能简介">使用qemu模拟的x86架构Alpine</string>
+
+    <string name="其他功能5555">显示/免费映射/其它</string>
+
+
+    <string name="显示功能122">显示功能</string>
+
+    <string name="Vnc启动fdgd">Vnc配置启动</string>
+    <string name="Vnc启动高级fdgd">更高级的vnc配置请前往【高级模式->常用功能->配置VNC(高级)】</string>
+
+    <string name="映射功能556">映射功能</string>
+    <string name="一键远控">一键远控</string>
+    <string name="一键映射UT到">一键映射UT到外网(脚本当中已携带免费服务器)</string>
+
+
+    <string name="linux文件夹fff">linux文件夹</string>
+
+    <string name="打开linux目录fgfgfg">打开linux目录</string>
+    <string name="我已阅读">我已阅读并同意</string>
+    <string name="贡献565656">贡献</string>
+    <string name="贡献565656ff">请作者喝冰阔落啦~</string>
+    <string name="如果Utermux对您有帮助请我喝杯颗粒吧">如果Utermux对您有帮助,请我喝杯冰阔落吧~</string>
+
+    <string name="可控制linux目录fff">可控制linux目录复制、粘贴、编辑文件等功能</string>
+
+    <string name="本页面思路提供者">页面策划\n王怡帆\n墨轩\n1355**0324</string>
+    <string name="UT功能解释kkkl">UT功能解释\n长按底部选项卡【会话】创建新的会话\nXINHAO_HAN_LEFT命令打开左侧栏\nXINHAO_HAN_RIGHT 命令打开右侧栏\nXINHAO_HAN_Sms 查看短信命令\nXINHAO_HAN_TextUT 简易编辑器</string>
+
+    <string name="许可证sdsd">法律声明:\n
+        1.本软件(UTermux)为开源软件,你可以自由分发、复制、更改,但请遵循GPL协议!\n
+        2.软件遵循GPL协议(http://www.opensource.org/licenses/gpl-2.0.php)\n\n
+        3.本软件(UTermux)的所有功能均为学习交流使用,切勿商用,如用户(使用UTermux用户)的意外操作、有意操作、无意操作等由用户承担!\n
+        4.本软件(UTermux)由第一条例一样为免费学习交流使用，软件内涉及的图标以及字体均来源于互联网。\n
+         4.1.字体为Android默认字体,如使用其他字体请用户(使用UTermux用户)承担所有风险以及法律责任。\n
+         4.2.图标使用为阿里巴巴ICO公用图库，使用该图标的原则是学习与交流,并非商用,如有侵权立即删除。\n
+        5.在本软件(UTermux)内使用的的恢复包、数据包、zip包等都有使用风险，切全部都来源于互联网，请用户酌情使用,如有造成无法挽回的损失,请用户承担风险。\n
+        6.所有恢复包、数据包、zip包UTermux不能控制其内容,如有包内侵权本软件作者不承担任何责任，均由恢复包、数据包、zip包制作者承担(tar.gz备份功能法律声明)。\n
+        7.感谢所有该项目所应用到功能的作者。\n
+        8.使用UTermux会有直接或间接的损害你的设备,如有造成无法挽回的损失由用户(使用Utermux用户)承担,本软件以及作者不承担任何法律等责任\n
+
+
+
+
+
+
+    </string>
+
+
+    <string name="自定义命令123">自定义命令</string>
+    <string name="自定义方案dfg">自定义方案</string>
+    <string name="添加一个命令">添加一个命令</string>
+    <string name="添加一个命令解释">添加完成之后,长按表示【删除】或【修改】命令</string>
+    <string name="请输入您要添加的命令fg">请输入您要添加的命令</string>
+    <string name="请输入命令名称">请输入命令名称</string>
+    <string name="名称不能为空fgfg">名称不能为空!</string>
+    <string name="命令不能为空yy">命令不能为空!</string>
+    <string name="添加成功654d6sf">添加成功!</string>
+    <string name="您的命令出错了dfdf">您的命令出错了,我们无法修复,请您手动修复</string>
+    <string name="清空">清空</string>
+    <string name="已完成清空fff">已完成清空,请重新创建命令</string>
+    <string name="已完成修改656">已完成修改</string>
+    <string name="配置文件出错dfsdf">配置文件出错,请在添加命令中修复!</string>
+    <string name="删除当前命令fgfg">删除当前命令</string>
+    <string name="修改当前命令fgfg">修改当前命令</string>
+    <string name="删除成功">删除成功</string>
+    <string name="修改成功">修改成功</string>
+    <string name="导入">导入</string>
+    <string name="导出">导出</string>
+    <string name="导入的配置文件不正确">导入的配置文件不正确!</string>
+    <string name="当前没有数据">没有导出的可用数据!</string>
+    <string name="请选择一个配置文件">请选择一个配置文件</string>
+    <string name="请再试一次">请再试一次</string>
+    <string name="导入导出命令dfdf">导入导出命令</string>
+    <string name="导入导出命令dfdf讲解">导入/导出当前的命令配置文件</string>
+    <string name="当前目录下没有配置文件dfgdfjjk">当前目录下没有配置文件\n内部存储->xinhao->command</string>
+    <string name="保存成功">配置文件保存成功【内部存储->xinhao->command】</string>
+    <string name="已导入配置文件">已导入配置文件!</string>
 
 
 

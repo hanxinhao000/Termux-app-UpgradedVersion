@@ -19,6 +19,11 @@
         <item name="android:typeface">serif</item>
     </style>
 
+    <style name="textEllipsis">
+        <item name="android:ellipsize">middle</item>
+        <item name="android:singleLine">true</item>
+
+    </style>
 
     <!--自定义BaseDialog样式-->
     <style name="BaseDialog222" parent="@android:style/Theme.Dialog">

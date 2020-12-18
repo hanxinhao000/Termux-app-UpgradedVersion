@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#2b2b2b"
     android:orientation="vertical"
     android:layout_height="wrap_content">
@@ -9,24 +10,92 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:background="@drawable/windows_line"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
 
-        <EditText
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:background="@null"
-            android:textColor="@color/color_48baf3"
-            android:id="@+id/edit_text"
-            android:text="@string/镜像运行结束"
-            android:lineSpacingExtra="2dp"
-            android:lineSpacingMultiplier="1.2"
-            android:padding="10dp"
-            android:layout_above="@+id/boom_rl"
-            android:gravity="top|left"
-            android:layout_marginBottom="10dp"
-            android:layout_height="290dp"/>
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tishi_card_view"
+                app:cardElevation="0dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/color_553E3E3E"
+                app:cardCornerRadius="5dp"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:background="@null"
+                        android:textColor="@color/color_48baf3"
+
+                        android:id="@+id/name_edit"
+                        android:hint="@string/请输入命令名称"
+                        android:textColorHint="@color/color_BABABA"
+                        android:inputType="text"
+                        android:layout_above="@+id/boom_rl"
+                        android:gravity="top|left"
+                        android:layout_height="40dp"/>
+
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/windows_line"
+                android:layout_height="wrap_content">
+
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:textColor="@color/color_48baf3"
+                    android:id="@+id/edit_text"
+                    android:text="@string/镜像运行结束"
+                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:padding="10dp"
+                    android:layout_above="@+id/boom_rl"
+                    android:gravity="top|left"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="290dp"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
 
     </ScrollView>
 
@@ -46,6 +115,7 @@
           android:paddingBottom="8dp"
           android:visibility="invisible"
           android:orientation="vertical"
+          android:id="@+id/diyige_ll"
           android:layout_height="wrap_content">
 
           <TextView

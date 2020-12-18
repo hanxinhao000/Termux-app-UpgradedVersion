@@ -13,6 +13,7 @@ import android.os.UserManager;
 import android.system.Os;
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import java.util.zip.ZipInputStream;
 
 import main.java.com.termux.app.dialog.EditTextDialog;
 import main.java.com.termux.app.dialog.SystemInstallDialog;
+import main.java.com.termux.app.dialog.TextShowDialog;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.utils.UUtils;
@@ -89,12 +91,40 @@ public final class TermuxInstaller {
 
         //判定没有系统
 
+        TextShowDialog textShowDialog = new TextShowDialog(activity);
 
-        SystemInstallDialog systemInstallDialog = new SystemInstallDialog(activity,activity,whenDone);
+        textShowDialog.show();
 
-        systemInstallDialog.show();
+        textShowDialog.edit_text.setText(UUtils.getString(R.string.许可证sdsd));
+        textShowDialog.edit_text.setFocusable(false);
 
-        systemInstallDialog.setCancelable(false);
+        textShowDialog.start.setText(UUtils.getString(R.string.我已阅读));
+        textShowDialog.start.setTextSize(12);
+        textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textShowDialog.dismiss();
+
+                SystemInstallDialog systemInstallDialog = new SystemInstallDialog(activity,activity,whenDone);
+
+                systemInstallDialog.show();
+
+                systemInstallDialog.setCancelable(false);
+            }
+        });
+
+        textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+        textShowDialog.commit.setTextSize(12);
+        textShowDialog.commit.setText(UUtils.getString(R.string.我不同意));
+        textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textShowDialog.dismiss();
+                System.exit(1);
+            }
+        });
+
+
 
 
 

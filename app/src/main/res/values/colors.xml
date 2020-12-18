@@ -17,6 +17,11 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
+    <color name="color_553E3E3E">#553E3E3E</color>
+    <color name="color_55005293">#55009688</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_5E5E5E">#5E5E5E</color>
+    <color name="color_BABABA">#BABABA</color>
 
     <color name="black_overlay">#66000000</color>
     <!--grey-->

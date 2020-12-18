@@ -51,6 +51,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -75,9 +76,12 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -144,7 +148,11 @@ import main.java.com.termux.activity.VNCMessageActivity;
 import main.java.com.termux.activity.WindowsActivity;
 import main.java.com.termux.activity.XINHAO_HANActivity;
 import main.java.com.termux.adapter.ItemSelectAdapter;
+import main.java.com.termux.adapter.MinLAdapter;
+import main.java.com.termux.adapter.databean.MinLBean;
 import main.java.com.termux.android_cm.LauncherActivity;
+import main.java.com.termux.app.dialog.MingLShowDialog;
+import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
 //可删除，无用代码 ↓
 import main.java.com.termux.app.dialog.TextJZShowDialog;
@@ -175,6 +183,8 @@ import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.DownDialog;
 import main.java.com.termux.view.MyDialog;
+import main.java.com.termux.view.MyDrawerLayout;
+import main.java.com.termux.view.MyHorizontalScrollView;
 import main.java.com.termux.weblinux.MainActivity;
 import main.java.com.termux.windows.RunWindowActivity;
 import okhttp3.Call;
@@ -322,6 +332,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private static TermuxActivity mTermuxActivity;
     private View mKeyBotView;
     private KeyData keyData;
+    private ArrayList<MinLBean.DataNum> arrayList;
+    private ArrayList<MinLBean.DataNum> minglArrayList;
 
     public static TermuxActivity getTermux() {
 
@@ -2115,6 +2127,143 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
     }
 
+    /*
+    *
+    * jichu_mod
+rootfs_mod
+windows_mod
+other_mod
+    * */
+
+
+
+    private void mianbanSwitch2(int index) {
+
+        jichu_mod.setBackgroundColor(Color.parseColor("#00000000"));
+        jichu_mod.setTextColor(Color.parseColor("#ffffff"));
+
+        rootfs_mod.setBackgroundColor(Color.parseColor("#00000000"));
+        rootfs_mod.setTextColor(Color.parseColor("#ffffff"));
+
+        windows_mod.setBackgroundColor(Color.parseColor("#00000000"));
+        windows_mod.setTextColor(Color.parseColor("#ffffff"));
+
+        mingling.setBackgroundColor(Color.parseColor("#00000000"));
+        mingling.setTextColor(Color.parseColor("#ffffff"));
+
+        other_mod.setBackgroundColor(Color.parseColor("#00000000"));
+        other_mod.setTextColor(Color.parseColor("#ffffff"));
+        jichu_view_5.setVisibility(View.GONE);
+        rootfs_view_5.setVisibility(View.GONE);
+        windows_view_5.setVisibility(View.GONE);
+        other_view_5.setVisibility(View.GONE);
+        mingl_view_5.setVisibility(View.GONE);
+        xuanxiangka.setVisibility(View.VISIBLE);
+
+        switch (index) {
+
+            case 0:
+
+                jichu_mod.setTextColor(Color.parseColor("#10202f"));
+                jichu_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                jichu_view_5.setVisibility(View.VISIBLE);
+
+                break;
+
+            case 1:
+
+                 rootfs_mod.setTextColor(Color.parseColor("#10202f"));
+                 rootfs_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                rootfs_view_5.setVisibility(View.VISIBLE);
+
+                break;
+
+            case 2:
+
+                mingling.setTextColor(Color.parseColor("#10202f"));
+                mingling.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                mingl_view_5.setVisibility(View.VISIBLE);
+                xuanxiangka.setVisibility(View.GONE);
+                break;
+
+            case 3:
+
+                windows_mod.setTextColor(Color.parseColor("#10202f"));
+                windows_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                windows_view_5.setVisibility(View.VISIBLE);
+
+                break;
+            case 4:
+
+               other_mod.setTextColor(Color.parseColor("#10202f"));
+               other_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                other_view_5.setVisibility(View.VISIBLE);
+
+                break;
+
+
+        }
+
+
+    }
+
+    private void mianbanSwitch1(int index) {
+
+
+        switch (index) {
+
+            case 0:
+
+                jingjian_mod.setBackgroundColor(Color.parseColor("#00000000"));
+                jingjian_mod.setTextColor(Color.parseColor("#ffffff"));
+
+                gaoji_mod.setBackgroundColor(Color.parseColor("#00000000"));
+                gaoji_mod.setTextColor(Color.parseColor("#ffffff"));
+
+
+                jingjian_mod.setTextColor(Color.parseColor("#10202f"));
+                jingjian_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                SaveData.saveData("jiandan_mod", "true");
+                jiandan_layout.setVisibility(View.VISIBLE);
+                fuza_layout.setVisibility(View.GONE);
+
+               // ViewUtils.xuanzhuanView1(jiandan_layout,fuza_layout);
+
+
+                break;
+
+            case 1:
+
+                jingjian_mod.setBackgroundColor(Color.parseColor("#00000000"));
+                jingjian_mod.setTextColor(Color.parseColor("#ffffff"));
+
+                gaoji_mod.setBackgroundColor(Color.parseColor("#00000000"));
+                gaoji_mod.setTextColor(Color.parseColor("#ffffff"));
+
+
+                gaoji_mod.setTextColor(Color.parseColor("#10202f"));
+                gaoji_mod.setBackgroundResource(R.drawable.shape_login_btn_true);
+
+                SaveData.saveData("gaoji_mod", "true");
+                jiandan_layout.setVisibility(View.GONE);
+                fuza_layout.setVisibility(View.VISIBLE);
+
+                break;
+
+
+
+        }
+
+
+    }
+
+
     private void setLayGone() {
 
         item_1_5.setVisibility(View.GONE);
@@ -3251,6 +3400,48 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
     private HorizontalScrollView protem_1;
     private CustomTextView zidongtishi;
 
+    private CustomTextView jingjian_mod;
+    private CustomTextView gaoji_mod;
+
+
+    private CustomTextView jichu_mod  ;
+    private CustomTextView rootfs_mod ;
+    private CustomTextView windows_mod;
+    private CustomTextView other_mod  ;
+    private CustomTextView mingling  ;
+
+    private View jiandan_layout;
+    private View fuza_layout;
+
+    private View jichu_view_5;
+    private View rootfs_view_5;
+    private View windows_view_5;
+    private View  other_view_5;
+    private View  mingl_view_5;
+    private MyHorizontalScrollView huadong;
+
+    private RelativeLayout jiandan_yuan_click;
+    private RelativeLayout jiandan_qiehuan_click;
+    private RelativeLayout jiandan_jisu_click;
+    private RelativeLayout jiandan_baiduyun_click;
+    private RelativeLayout jiandan_bendi_linux_click;
+    private RelativeLayout jiandan_zaixian_linux_click;
+    private RelativeLayout jiandan_moe_linux_click;
+    private RelativeLayout jiandan_kongxia_linux_click;
+    private RelativeLayout jiandan_xom_linux_click;
+    private RelativeLayout jiandan_windows_click;
+    private RelativeLayout jiandan_dos_box_click;
+    private RelativeLayout jiandan_alpine_click;
+    private RelativeLayout jiandan_vnc_click;
+    private RelativeLayout jiandan_yuankong_click;
+    private RelativeLayout jiandan_open_linux_mulu_click;
+    private RelativeLayout jiandan_juanzeng_mulu_click;
+    private RelativeLayout jiandan_mingl_click;
+    private RecyclerView recyclerView;
+    private CardView xuanxiangka;
+    private CardView daoru_daochu;
+    private MinLAdapter mMinLAdapter;
+
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -3287,6 +3478,42 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
 
 
         juanzeng = findViewById(R.id.juanzeng);
+        jiandan_mingl_click = findViewById(R.id.jiandan_mingl_click);
+        daoru_daochu = findViewById(R.id.daoru_daochu);
+
+        jichu_view_5   = findViewById(R.id.jichu_view_5);
+        mingling   = findViewById(R.id.mingling);
+        rootfs_view_5  = findViewById(R.id.rootfs_view_5);
+        windows_view_5 = findViewById(R.id.windows_view_5);
+        other_view_5   = findViewById(R.id.other_view_5);
+        huadong   = findViewById(R.id.huadong);
+        jiandan_yuan_click   = findViewById(R.id.jiandan_yuan_click);
+        jiandan_qiehuan_click   = findViewById(R.id.jiandan_qiehuan_click);
+        jiandan_jisu_click   = findViewById(R.id.jiandan_jisu_click);
+        jiandan_baiduyun_click   = findViewById(R.id.jiandan_baiduyun_click);
+        jiandan_bendi_linux_click   = findViewById(R.id.jiandan_bendi_linux_click);
+        jiandan_zaixian_linux_click   = findViewById(R.id.jiandan_zaixian_linux_click);
+        jiandan_moe_linux_click   = findViewById(R.id.jiandan_moe_linux_click);
+        jiandan_kongxia_linux_click   = findViewById(R.id.jiandan_kongxia_linux_click);
+        jiandan_xom_linux_click   = findViewById(R.id.jiandan_xom_linux_click);
+        jiandan_windows_click   = findViewById(R.id.jiandan_windows_click);
+        jiandan_dos_box_click   = findViewById(R.id.jiandan_dos_box_click);
+        jiandan_alpine_click   = findViewById(R.id.jiandan_alpine_click);
+        jiandan_vnc_click   = findViewById(R.id.jiandan_vnc_click);
+        jiandan_yuankong_click   = findViewById(R.id.jiandan_yuankong_click);
+        jiandan_open_linux_mulu_click   = findViewById(R.id.jiandan_open_linux_mulu_click);
+        jiandan_juanzeng_mulu_click   = findViewById(R.id.jiandan_juanzeng_mulu_click);
+        mingl_view_5   = findViewById(R.id.mingl_view_5);
+
+        recyclerView   = findViewById(R.id.recyclerView);
+        xuanxiangka   = findViewById(R.id.xuanxiangka);
+
+
+
+        jiandan_layout = findViewById(R.id.jiandan_layout);
+        fuza_layout = findViewById(R.id.fuza_layout);
+        jingjian_mod = findViewById(R.id.jingjian_mod);
+        gaoji_mod = findViewById(R.id.gaoji_mod);
         chouti_2 = findViewById(R.id.chouti_2);
         install_wu = findViewById(R.id.install_wu);
         line_rootfs = findViewById(R.id.line_rootfs);
@@ -3307,6 +3534,720 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         status_zd = findViewById(R.id.status_zd);
         cli_install = findViewById(R.id.cli_install);
         history_command = findViewById(R.id.history_command);
+
+        jichu_mod  = findViewById(R.id.jichu_mod);
+        rootfs_mod = findViewById(R.id.rootfs_mod);
+        windows_mod= findViewById(R.id.windows_mod);
+        other_mod  = findViewById(R.id.other_mod);
+        File file5555 = new File(Environment.getExternalStorageDirectory(),"/xinhao/command/");
+        if(!file5555.exists()){
+            file5555.mkdir();
+        }
+
+        daoru_daochu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MinglingDaoruDaoChuDialog minglingDaoruDaoChuDialog = new MinglingDaoruDaoChuDialog(TermuxActivity.this);
+
+                minglingDaoruDaoChuDialog.show();
+                minglingDaoruDaoChuDialog.setSXXXXlistener(new MinglingDaoruDaoChuDialog.SXXXXlistener() {
+                    @Override
+                    public void shuaxin() {
+                        shuaxingML();
+                    }
+                });
+            }
+        });
+
+
+        minglArrayList = new ArrayList<>();
+
+
+        mMinLAdapter = new MinLAdapter(minglArrayList,this);
+
+
+        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        recyclerView.setAdapter(mMinLAdapter);
+
+        shuaxingML();
+
+        mMinLAdapter.setSXListener(new MinLAdapter.SXListener() {
+            @Override
+            public void sx() {
+                shuaxingML();
+            }
+        });
+
+        mMinLAdapter.setCloseLiftListener(new MinLAdapter.CloseLiftListener() {
+            @Override
+            public void close() {
+                getDrawer().closeDrawer(Gravity.LEFT);
+            }
+        });
+
+        jiandan_mingl_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MingLShowDialog mingLShowDialog = new MingLShowDialog(TermuxActivity.this);
+                mingLShowDialog.show();
+                mingLShowDialog.setCancelable(false);
+
+                mingLShowDialog.setAddCommitListener(new MingLShowDialog.AddCommitListener() {
+                    @Override
+                    public void commit() {
+                        shuaxingML();
+                    }
+                });
+
+            }
+        });
+
+        jiandan_juanzeng_mulu_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //如果在编译时这块报错找不到注释掉就行
+
+                //如报错,注释即可,无用代码
+
+                //可注释/删除
+                TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
+                //可注释/删除
+                textJZShowDialog.show();
+                //可注释/删除
+                textJZShowDialog.setCancelable(true);
+            }
+        });
+
+        jiandan_open_linux_mulu_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    Intent intent = new Intent();
+                    intent.setAction("com.utermux.files.action");
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
+                    ad.setTitle(UUtils.getString(R.string.未安装插件));
+                    ad.setMessage(UUtils.getString(R.string.未安装插件asfas6f5sdf));
+                    ad.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            //File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/test.z");
+
+
+                            File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/");
+                            if (file1.exists()) {
+                                File file2 = new File(file1, "utermuxFiles.apk");
+                                writerFileRaw(file2, R.raw.utermux_file_plug);
+
+                                //installAPK(file2.getAbsolutePath());
+                                checkIsAndroidO3();
+                            } else {
+
+                                file1.mkdirs();
+                            }
+
+
+                            ad.create().dismiss();
+
+                        }
+                    });
+                    ad.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ad.create().dismiss();
+                        }
+                    });
+                    ad.show();
+
+                }
+
+
+            }
+        });
+
+        jiandan_yuankong_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity.this);
+                textShowDialog.show();
+                textShowDialog.setCancelable(true);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.请注意oerpqpf));
+                textShowDialog.start.setText(UUtils.getString(R.string.我承担的双方各));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("pkg install git -y && cd && git clone https://gitee.com/wuxuanmu/termux && chmod -R 777 termux && cd termux && bash SetSource.sh \n");
+                        textShowDialog.dismiss();
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+                textShowDialog.commit.setText(UUtils.getString(R.string.我不承担));
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                    }
+                });
+
+
+            }
+        });
+        jiandan_vnc_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle(UUtils.getString(R.string.输入信息));
+
+                View inflate = View.inflate(TermuxApplication.mContext, R.layout.dialog_view_vnc, null);
+
+                EditText address = inflate.findViewById(R.id.address);
+                EditText port = inflate.findViewById(R.id.port);
+                EditText password = inflate.findViewById(R.id.password);
+
+                ab.setView(inflate);
+
+                ab.setPositiveButton(UUtils.getString(R.string.连接), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ab.create().dismiss();
+
+                        String help_vnc = SaveData.getData("help_vnc_1");
+
+                        if (true) {
+
+                            AlertDialog.Builder abb = new AlertDialog.Builder(TermuxActivity.this);
+
+                            abb.setTitle(UUtils.getString(R.string.如果鼠标不动));
+
+
+                            abb.setCancelable(false);
+
+                            abb.setView(R.layout.dialog_view_vnc_2);
+
+                            abb.setPositiveButton(UUtils.getString(R.string.我知道了), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    abb.create().dismiss();
+                                    SaveData.saveData("help_vnc_1", "xinhao");
+
+                                    try {
+
+                                        Intent intent = new Intent();
+
+                                        intent.setAction("com.utermux.action.vnc");
+                                        intent.putExtra("utermux_as", "false");
+                                        intent.putExtra("address", address.getText().toString());
+                                        intent.putExtra("port", port.getText().toString());
+                                        intent.putExtra("password", password.getText().toString());
+
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                        ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
+
+                                        //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                        ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
+
+                                        ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                ab.create().dismiss();
+
+                                                Intent intent = new Intent();
+                                                intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                                intent.setAction(Intent.ACTION_VIEW);
+                                                startActivity(intent); //启动浏览器
+
+                                            }
+                                        });
+
+                                        ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                ab.create().dismiss();
+                                            }
+                                        });
+
+                                        ab.show();
+                                    }
+                                }
+                            });
+
+                            abb.show();
+                        } else {
+
+                            try {
+
+                                Intent intent = new Intent();
+
+                                intent.setAction("com.utermux.action.vnc");
+                                intent.putExtra("utermux_as", "false");
+                                intent.putExtra("address", address.getText().toString());
+                                intent.putExtra("port", port.getText().toString());
+                                intent.putExtra("password", password.getText().toString());
+
+                                startActivity(intent);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                ab.setTitle(UUtils.getString(R.string.您还未安装该插件));
+
+                                //链接: https://pan.baidu.com/s/17l6_bJ3EQN41I7Axs0USvQ 提取码: bxht
+
+                                ab.setMessage(UUtils.getString(R.string.是否前往下载该插件));
+
+                                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ab.create().dismiss();
+
+                                        Intent intent = new Intent();
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1qklFmSu53L83okqFC-S8JQ"));//Url 就是你要打开的网址
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        startActivity(intent); //启动浏览器
+
+                                    }
+                                });
+
+                                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ab.create().dismiss();
+                                    }
+                                });
+
+                                ab.show();
+                            }
+
+                        }
+
+
+                    }
+                });
+
+                ab.show();
+
+            }
+        });
+        jiandan_alpine_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setX86_64();
+            }
+        });
+
+        jiandan_dos_box_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent2 = new Intent("com.jrmf360.action.ENTER2");
+                    startActivity(intent2);
+                } catch (Exception e) {
+                    AlertDialog.Builder ad = new AlertDialog.Builder(TermuxActivity.this);
+                    ad.setTitle(UUtils.getString(R.string.未安装插件));
+                    ad.setMessage(UUtils.getString(R.string.未安装插件sdf1sd6f8s1df));
+                    ad.setNegativeButton(UUtils.getString(R.string.安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/test.z");
+
+
+                            File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/apk/");
+                            if (file1.exists()) {
+                                File file2 = new File(file1, "dosPlugins.apk");
+                                writerFile("xdos.plugins", file2, 1024);
+
+                                //installAPK(file2.getAbsolutePath());
+                                checkIsAndroidO1();
+                            } else {
+
+                                file1.mkdirs();
+                            }
+
+
+                            ad.create().dismiss();
+
+                        }
+                    });
+                    ad.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ad.create().dismiss();
+                        }
+                    });
+                    ad.show();
+                }
+            }
+        });
+
+        jiandan_windows_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(TermuxActivity.this, RunWindowActivity.class));
+            }
+        });
+
+        jiandan_xom_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                mTerminalView.sendTextToTerminal("echo 'deb [trusted=yes] https://xomandwhy.tk/ termux extras' > $PREFIX/etc/apt/sources.list.d/whyandxom.list; apt update; apt install xom ; xom \n");
+
+            }
+        });
+
+        jiandan_kongxia_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                writerFile("ubuntu_oo1.sh", new File("/data/data/com.termux/files/home/ubuntu_oo1.sh"));
+
+
+                TermuxActivity.mTerminalView.sendTextToTerminal("cd ~ \n");
+                TermuxActivity.mTerminalView.sendTextToTerminal("chmod 777 ubuntu_oo1.sh \n");
+                TermuxActivity.mTerminalView.sendTextToTerminal("./ubuntu_oo1.sh \n");
+            }
+        });
+
+        jiandan_moe_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+                mTerminalView.sendTextToTerminal("apt install -y curl && bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+
+            }
+        });
+
+        jiandan_zaixian_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+
+                File fileProot = new File("/data/data/com.termux/files/usr/bin/termux-chroot");
+                File fileWget = new File("/data/data/com.termux/files/usr/bin/wget");
+
+                if (!fileProot.exists() || !fileWget.exists()) {
+
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle(UUtils.getString(R.string.环境不达要求));
+
+                    ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
+
+                    ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getDrawer().closeDrawer(Gravity.LEFT);
+                            mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+
+                    return;
+                }
+
+
+
+
+                writerFile("termux_toolx.sh",new File("/data/data/com.termux/files/home/termux_toolx.sh"));
+
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("chmod 777 termux_toolx.sh \n");
+                mTerminalView.sendTextToTerminal("./termux_toolx.sh \n");
+            }
+        });
+
+        jiandan_bendi_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File fileProot = new File("/data/data/com.termux/files/usr/bin/termux-chroot");
+                File fileWget = new File("/data/data/com.termux/files/usr/bin/wget");
+
+                if (!fileProot.exists() || !fileWget.exists()) {
+
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle(UUtils.getString(R.string.环境不达要求));
+
+                    ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
+
+                    ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getDrawer().closeDrawer(Gravity.LEFT);
+                            mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+
+                    return;
+                }
+
+
+                OkHttpClient okHttpClient = new OkHttpClient();
+
+                Request request = new Request.Builder().get().url("http://127.0.0.1:19956/user/utermux_tz").build();
+
+                Call call = okHttpClient.newCall(request);
+/***
+ *
+ *
+ *
+ * 链接: https://pan.baidu.com/s/1TmBRmmfBnWWMKfN1mwalQQ 提取码: yiu2 复制这段内容后打开百度网盘手机App，操作更方便哦
+ * --来自百度网盘超级会员v3的分享
+ *
+ *
+ */
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                                ab.setTitle(UUtils.getString(R.string.提示));
+
+                                ab.setMessage(UUtils.getString(R.string.本地服务端sdfsdf));
+
+                                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ab.create().dismiss();
+
+                                        Intent intent = new Intent();
+                                        intent.setData(Uri.parse("https://pan.baidu.com/s/1TmBRmmfBnWWMKfN1mwalQQ"));//Url 就是你要打开的网址
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        startActivity(intent); //启动浏览器
+
+                                    }
+                                });
+
+                                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ab.create().dismiss();
+                                    }
+                                });
+
+                                ab.show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                getDrawer().closeDrawer(Gravity.LEFT);
+
+                                RootfsDialog rootfsDialog = new RootfsDialog(TermuxActivity.this);
+                                rootfsDialog.show();
+                                rootfsDialog.setCancelable(true);
+                            }
+                        });
+
+
+                    }
+                });
+
+            }
+        });
+
+        jiandan_baiduyun_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+                ab.setTitle(UUtils.getString(R.string.请注意));
+
+                ab.setMessage(UUtils.getString(R.string.提取码a5dfsdf));
+
+                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("https://pan.baidu.com/s/1iJj84b1o2ElXp_8TXmg8cw"));//Url 就是你要打开的网址
+                        intent.setAction(Intent.ACTION_VIEW);
+                        startActivity(intent); //启动浏览器
+                    }
+                });
+
+                ab.show();
+            }
+        });
+
+        jiandan_jisu_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                startActivity(new Intent(TermuxActivity.this, BackNewActivity.class));
+            }
+        });
+        jiandan_qiehuan_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(TermuxActivity.this, SwitchActivity.class));
+            }
+        });
+
+        jiandan_yuan_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                ab.setTitle(UUtils.getString(R.string.提示));
+
+                ab.setMessage(UUtils.getString(R.string.该操作会覆盖你原来的源文件));
+
+                ab.setNegativeButton(UUtils.getString(R.string.是), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                 /*       writerFile("qh_sources.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list"));
+                        writerFile("qh_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
+                        writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
+                        Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
+
+                        mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list &&" +
+                            "sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list &&" +
+                            "sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list &&" +
+                            "apt update && apt upgrade \n");
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+
+                ab.setPositiveButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(TermuxActivity.this, UUtils.getString(R.string.未做任何改动), Toast.LENGTH_SHORT).show();
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                        ab.create().dismiss();
+                    }
+                });
+                ab.show();
+            }
+        });
+
+
+        //mianbanSwitch1
+
+        jingjian_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch1(0);
+            }
+        });
+        gaoji_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch1(1);
+            }
+        });
+
+            /*
+    *
+    * jichu_mod
+rootfs_mod
+windows_mod
+other_mod
+    * */
+
+        jichu_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch2(0);
+            }
+        });
+
+        rootfs_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch2(1);
+            }
+        });
+        mingling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch2(2);
+            }
+        });
+        windows_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch2(3);
+            }
+        });
+        other_mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mianbanSwitch2(4);
+            }
+        });
+
+
+
 
         juanzeng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3680,6 +4621,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
                 getDrawer().closeDrawer(Gravity.LEFT);
 
                 mTerminalView.sendTextToTerminal("echo 'deb [trusted=yes] https://xomandwhy.tk/ termux extras' > $PREFIX/etc/apt/sources.list.d/whyandxom.list; apt update; apt install xom ; xom \n");
+
             }
         });
 
@@ -4327,6 +5269,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
             @Override
             public void onClick(View v) {
 
+                getDrawer().closeDrawer(Gravity.LEFT);
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
                 ab.setTitle(UUtils.getString(R.string.请注意));
@@ -9163,7 +10106,7 @@ Solaris(APP美化)
                             isDep();
 
 
-                            AlertDialog.Builder ab = new AlertDialog.Builder(this);
+                           /* AlertDialog.Builder ab = new AlertDialog.Builder(this);
 
                             ab.setTitle(UUtils.getString(R.string.条款许可));
 
@@ -9206,9 +10149,14 @@ Solaris(APP美化)
                                     mTerminalView.sendTextToTerminal(UUtils.getString(R.string.如果出现Permission556));
 
                                 }
-                            });
+                            });*/
 
-                            ab.show();
+                            TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity.this);
+                            textShowDialog.show();
+                            textShowDialog.setCancelable(true);
+                            textShowDialog.edit_text.setText(UUtils.getString(R.string.更新日志fff));
+
+                           // ab.show();
 
                             //Toast.makeText(this, "打开侧边栏", Toast.LENGTH_SHORT).show();
 
@@ -9346,8 +10294,12 @@ Solaris(APP美化)
         //  unbindService(this);
     }
 
-    DrawerLayout getDrawer() {
-        return (DrawerLayout) findViewById(R.id.drawer_layout);
+    MyDrawerLayout getDrawer() {
+
+        //huadong
+        MyDrawerLayout viewById = (MyDrawerLayout) findViewById(R.id.drawer_layout);
+        viewById.setInterceptTouchEventChildId(R.id.huadong);
+        return viewById;
     }
 
     void addNewSession(boolean failSafe, String sessionName) {
@@ -10373,6 +11325,32 @@ other_text;
             fileOutputStream.close();
         } catch (Exception e) {
 
+        }
+
+    }
+
+
+    public void shuaxingML(){
+
+
+
+        try {
+            minglArrayList.clear();
+
+            String commi22 = SaveData.getData("commi22");
+            if (commi22 == null || commi22.isEmpty() || commi22.equals("def")) {
+                return;
+            }
+
+            MinLBean minLBean = new Gson().fromJson(commi22, MinLBean.class);
+
+            minglArrayList.addAll(minLBean.data.list);
+
+
+            mMinLAdapter.notifyDataSetChanged();
+        }catch (Exception e){
+            UUtils.showMsg(UUtils.getString(R.string.配置文件出错dfsdf));
+            e.printStackTrace();
         }
 
     }

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:background="#2b2b2b"
     android:padding="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -30,2738 +31,117 @@
 
 
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:padding="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/color_553E3E3E"
+                        app:cardCornerRadius="3dp"
                         android:layout_height="wrap_content">
-
-                        <main.java.com.termux.utils.CustomTextView
-                            android:id="@+id/service_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="@string/公告552"
-                            android:textColor="#33CCFF"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:orientation="vertical"
+                            android:padding="8dp"
                             android:layout_height="wrap_content">
 
-
                             <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/visition"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/service_title"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="2dp"
-                                android:text="@string/本地版本552"
-                                android:textColor="#fff"
-                                android:textSize="14sp"
+                                android:text="@string/公告552"
+                                android:textColor="#33CCFF"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
-
-                            <RelativeLayout
+                            <LinearLayout
                                 android:layout_width="match_parent"
+                                android:orientation="vertical"
                                 android:layout_height="wrap_content">
 
 
-
-
                                 <main.java.com.termux.utils.CustomTextView
-                                    android:id="@+id/visition1"
+                                    android:id="@+id/visition"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="2dp"
-                                    android:text="@string/云端版本552"
+                                    android:text="@string/本地版本552"
                                     android:textColor="#fff"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
 
-
-
-
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:id="@+id/check_up"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:padding="2dp"
-                                    android:text="@string/更新885"
-                                    android:layout_alignParentRight="true"
-                                    android:textColor="#2e84e6"
-                                    android:textSize="12sp" />
-
-                            </RelativeLayout>
-
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:layout_height="wrap_content">
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/text_jiagou"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/架构"
-                                android:textColor="#fff"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/text_ip"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/IP"
-                                android:textColor="#fff"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/text_system"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/系统作者"
-                                android:visibility="visible"
-                                android:singleLine="true"
-                                android:ellipsize="marquee"
-                                android:marqueeRepeatLimit="marquee_forever"
-                                android:textColor="#fff"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/quanxian" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/权限信息886"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="10dp"
-                            android:layout_height="wrap_content">
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/quanxian_123"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="0dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/内存权限886"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/dianhua_123"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/电话权限886"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="10dp"
-                            android:layout_height="wrap_content">
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/duanxin_123"
-                                android:layout_marginLeft="10dp"
-                                android:layout_width="0dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="@string/短信权限"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:id="@+id/item_1_title"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/termux_code" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/源功能"
-                                android:textColor="#fff"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_1_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:id="@+id/item_1"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:visibility="visible"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:id="@+id/switch_qinghua_new"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/termux_qh" />
-
-                                <main.java.com.termux.utils.CustomTextView
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/清华源885"
-                                    android:textColor="#fff"
-                                    android:textSize="13sp"
-                                    android:textStyle="bold" />
+                                    android:layout_height="wrap_content">
 
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/不稳定886"
-                                    android:layout_marginBottom="10dp"
-                                    android:textColor="#fff"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:visibility="visible"
-                                android:id="@+id/switch_main_new"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/yuan_code" />
-
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/官方源886"
-                                    android:textColor="#fff"
-                                    android:textSize="13sp"
-                                    android:textStyle="bold" />
-
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/切换到官方886"
-                                    android:layout_marginBottom="10dp"
-                                    android:textColor="#fff"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:visibility="visible"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:gravity="center"
-                                android:id="@+id/waiguoyu"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/beijingyuan" />
-
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/北京外国语大学"
-                                    android:textColor="#fff"
-                                    android:textSize="13sp"
-                                    android:textStyle="bold" />
-
-                                <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="@string/北京外国语大学源"
-                                    android:layout_marginBottom="10dp"
-                                    android:textColor="#fff"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:id="@+id/root_group"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/root_huan" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/root标题"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_root_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-                        <include
-                            layout="@layout/drawer_layout_include_root"
-                            android:id="@+id/root_group_content"
-                            android:visibility="gone"
-                            />
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:id="@+id/item_1_5_title"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/more_img" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/更多资源"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_1_5_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:id="@+id/item_1_5"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:id="@+id/tool_x"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/tool_x" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/TOOL886"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者1"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_weight="1"
-                                    android:id="@+id/tbomb"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:visibility="visible">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/hongzha" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/TBomb"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者2"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:id="@+id/lazymux"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/code_jjjjjjjjjjjjjjjjjjj" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="Lazymux"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者3"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-
-
-
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:visibility="visible"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:id="@+id/hacktronian"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/hackkt" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="HACKTRONIAN"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者4"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:id="@+id/adb_install"
-                                    android:orientation="vertical"
-                                    android:visibility="visible">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/adb_zuozhe" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/ADB安装"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者5"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:id="@+id/apk_install"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/apk_zuozhe" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/APK构建工具"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/作者6"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-
-
-                        </LinearLayout>
-
-
-
-
-
-
-
-                    </LinearLayout>
-
-
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:id="@+id/item_2_title"
-                            android:padding="8dp"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/zuijinchangyong" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/常用功能554"
-                                android:textColor="#fff"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_2_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:id="@+id/item_2"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/x86_64"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/x86_64" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="x86_64 alpine"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="aarch64"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/switch_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/qiehuan" />
 
 
                                     <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/切换linux"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/扩展无数个linux"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/linux_system_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/linux_install" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/更多linux"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/ubuntu665"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:id="@+id/repair"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/ruanjiananzhuang" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/linux软件63"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold"
-                                        android:visibility="visible" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/msf669"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/file_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/mulu" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/linux目录"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/以图形方式打开"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/web_linux_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:layout_marginTop="15dp"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/liulanqi" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/web命令"
-                                        android:layout_marginTop="18dp"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/以浏览器方式打开终端"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/file_btn1"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/mulu" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/linux高级目录"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/更高级的文件访问器"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:id="@+id/switch_code"
-                                    android:visibility="visible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/dsk" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/快速vnc"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/默认端口558"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:id="@+id/cof_vnc"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/dsk" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/配置vnc"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/高级设置"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:id="@+id/gaoji_vnc"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/dsk" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/配置vnc552"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/更高级的设置"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="visible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:id="@+id/history_command"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/lishi_command" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/终端开机命令"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:id="@+id/status_zd"
-                                        android:text="@string/目前关"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="invisible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/dsk" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="配置vnc"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="高级设置"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-
-                        </LinearLayout>
-
-
-
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:id="@+id/ziyuan_group"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/os_group" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/system_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/包恢复功能885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_3_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:visibility="gone"
-                            android:id="@+id/ziyuan_group_content"
-                            android:layout_height="wrap_content">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/linux_data_zaixian"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/zaixian_data" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/在线包"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/linux_data"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/kuozhanbao" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/zip恢复"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/linux_data_jisu"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/jisu_back" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:gravity="center"
-
-                                        android:layout_weight="1"
-                                        android:text="@string/targz"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/旧版556"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/setting"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/beifenghuifu" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/旧版备份882"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/不推荐使用"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:visibility="invisible"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/beifenghuifu" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="旧版备份"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="不推荐使用"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-
-
-
-
-
-
-                            </LinearLayout>
-
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="100dp"
-                                android:background="#fff"
-                                android:layout_marginTop="20dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_height="1px"/>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="20dp"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/utermux_downlod"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/baidu_download" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/下载站"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/百度网盘"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-
-                                    android:layout_width="0dp"
-                                    android:id="@+id/winlog_download"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/winlog" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/下载站2"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/WINLOG提供"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="invisible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/baidu_download" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="Utermux下载站"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="百度网盘[gzdp]"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-
-
-
-                            </LinearLayout>
-
-
-
-
-
-
-                        </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:id="@+id/item_3_title"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/zhuomian_fenlei" />
-
-                            <main.java.com.termux.utils.CustomTextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/图形系统885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_4_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:id="@+id/item_3"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:id="@+id/linux_gui_list_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/ubuntu_list" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/图形系统442"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:id="@+id/linux_gui_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/ubuntuinstall" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/图形ubuntu884"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:id="@+id/fedora_linux_gui_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/icon_fedora" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/图形fedora553"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/unfedora_linux_gui_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <RelativeLayout
+                                        android:id="@+id/visition1"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/icon_fedora" />
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/jingzhi" />
-
-                                    </RelativeLayout>
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/卸载图形fedora"
+                                        android:padding="2dp"
+                                        android:text="@string/云端版本552"
                                         android:textColor="#fff"
-                                        android:textSize="13sp"
+                                        android:textSize="14sp"
                                         android:textStyle="bold" />
 
 
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="invisible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/icon_fedora" />
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/jingzhi" />
-
-                                    </RelativeLayout>
 
 
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="卸载图形fedora"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
 
 
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:visibility="invisible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/icon_fedora" />
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_centerHorizontal="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/jingzhi" />
-
-                                    </RelativeLayout>
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="卸载图形fedora"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
+                                </RelativeLayout>
 
 
                             </LinearLayout>
-
 
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="vertical"
-                                android:layout_marginTop="10dp"
                                 android:layout_height="wrap_content">
-
 
                                 <main.java.com.termux.utils.CustomTextView
-                                    android:layout_width="100dp"
-                                    android:background="#fff"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_height="1px"/>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="horizontal"
-                                    android:layout_height="wrap_content">
-
-
-
-                                    <LinearLayout
-                                        android:id="@+id/kongxia_linux"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/qunyou_1" />
-
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="20dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="@string/ubuntu图形59874"
-                                            android:textColor="#fff"
-                                            android:textSize="13sp"
-                                            android:textStyle="bold" />
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="@string/由空夏提供"
-                                            android:layout_marginBottom="10dp"
-                                            android:textColor="#fff"
-                                            android:textSize="10sp"
-                                            android:textStyle="bold" />
-
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:visibility="visible"
-                                        android:id="@+id/moe_ll"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/mnj" />
-
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="20dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="@string/图形系统8485285"
-                                            android:textColor="#fff"
-                                            android:textSize="13sp"
-                                            android:textStyle="bold" />
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_weight="1"
-                                            android:singleLine="true"
-                                            android:ellipsize="marquee"
-                                            android:marqueeRepeatLimit="marquee_forever"
-                                            android:id="@+id/mnj_tv"
-                                            android:gravity="center"
-                                            android:text="@string/由Moe提供8520566"
-                                            android:layout_marginBottom="10dp"
-                                            android:textColor="#fff"
-                                            android:textSize="10sp"
-                                            android:textStyle="bold" />
-
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="15dp"
-                                        android:visibility="visible"
-                                        android:layout_weight="1"
-                                        android:id="@+id/xom_tv_ll"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:src="@drawable/yuan_code" />
-
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="20dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="@string/由xom作者提供8212541"
-                                            android:textColor="#fff"
-                                            android:textSize="13sp"
-                                            android:textStyle="bold" />
-
-                                        <main.java.com.termux.utils.CustomTextView
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:layout_weight="1"
-                                            android:singleLine="true"
-                                            android:ellipsize="marquee"
-                                            android:marqueeRepeatLimit="marquee_forever"
-                                            android:id="@+id/xom_tv"
-                                            android:gravity="center"
-                                            android:text="@string/由xom作者提供552596"
-                                            android:layout_marginBottom="10dp"
-                                            android:textColor="#fff"
-                                            android:textSize="10sp"
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-
-
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-
-
-
-                        </LinearLayout>
-
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:id="@+id/item_4_title"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/shiyong_fun" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/实用功能885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_5_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:id="@+id/item_4"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/windows_32_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
+                                    android:id="@+id/text_jiagou"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                                    android:padding="2dp"
+                                    android:text="@string/架构"
+                                    android:textColor="#fff"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
 
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/windows" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="DosBox"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/打开Windows3"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/linux_vnc_btn"
-                                    android:layout_width="0dp"
+                                <main.java.com.termux.utils.CustomTextView
+                                    android:id="@+id/text_ip"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                                    android:padding="2dp"
+                                    android:text="@string/IP"
+                                    android:textColor="#fff"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
 
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/vnc" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/内置Vncfghfgh"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-                                <LinearLayout
-                                    android:id="@+id/android_start_commd"
-                                    android:layout_width="0dp"
+                                <main.java.com.termux.utils.CustomTextView
+                                    android:id="@+id/text_system"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/android" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="Android boot"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:id="@+id/linux_root_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/android_root" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/root功能"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/linux_luntan_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/luntan_wanghui" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/论坛"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/有问题上论坛"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:id="@+id/linux_sea_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/ruanjian_fanyi" />
-
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/查询包"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/当前源的包"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-
-
-                                <LinearLayout
-                                    android:id="@+id/repair_bl"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/baolixiufu" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/修复termux"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/windows"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/windows" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="windows"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold"
-                                        android:visibility="visible" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="@string/qemu原理"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:visibility="invisible"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:src="@drawable/windows" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="运行windows"
-                                        android:textColor="#fff"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold"
-                                        android:visibility="visible" />
-
-                                    <main.java.com.termux.utils.CustomTextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="Termux-qemu原理"
-                                        android:layout_marginBottom="10dp"
-                                        android:textColor="#fff"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-
+                                    android:padding="2dp"
+                                    android:text="@string/系统作者"
+                                    android:visibility="visible"
+                                    android:singleLine="true"
+                                    android:ellipsize="marquee"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:textColor="#fff"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -2771,531 +151,260 @@
                         </LinearLayout>
 
 
-                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
 
 
 
                 </RelativeLayout>
 
 
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/color_553E3E3E"
+                    app:cardCornerRadius="3dp"
                     android:layout_height="wrap_content">
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-
-
-
-
-
-
-
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-
-
-
-
-
-
-
-                    </LinearLayout>
-
-
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:padding="8dp"
-                        android:gravity="center_vertical"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:id="@+id/meihua_group"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/meihua_group" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/meihua_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="@string/美化885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_6_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-                        <include
-                            layout="@layout/drawer_layout_include_meihua"
-                            android:id="@+id/meihua_group_content"
-                            android:visibility="gone"
-                            />
-
-
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:padding="8dp"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:id="@+id/gongju_group"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/gongju_group" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/tool_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/工具885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_7_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-
-                        <include
-                            layout="@layout/drawer_layout_include_gongju"
-                            android:id="@+id/gongju_group_content"
-                            android:visibility="gone"
-                            />
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="#552b2b2b"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:id="@+id/other_group"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/other_group" />
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:id="@+id/other_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/修复885"
-                                android:textColor="#fff"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:src="@drawable/down_saojiao"
-                                android:id="@+id/item_8_img"
-                                android:layout_height="20dp"/>
-
-                        </LinearLayout>
-
-                        <include
-                            layout="@layout/drawer_layout_include_xiufu"
-                            android:id="@+id/other_group_content"
-                            android:visibility="gone"
-                            />
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-
-
-
-                    <LinearLayout
+                    <main.java.com.termux.utils.CustomTextView
+                        android:id="@+id/check_up"
                         android:layout_width="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_centerVertical="true"
-                        android:background="#552b2b2b"
-                        android:layout_centerHorizontal="true"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:orientation="horizontal"
-
-                            android:background="#552b2b2b"
-                            android:paddingLeft="8dp"
-                            android:paddingRight="8dp"
-                            android:gravity="center_vertical"
-                            android:layout_height="wrap_content">
-
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:src="@drawable/jinggao_xiao"
-                                android:layout_height="15dp"/>
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/seek_bar_tv"
-                                android:text="@string/面板透明度"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <SeekBar
-                                android:layout_width="200dp"
-                                android:layout_marginLeft="10dp"
-                                android:id="@+id/seek_bar"
-                                android:progress="100"
-                                android:visibility="gone"
-                                android:layout_height="wrap_content"/>
-
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="25%"
-                                android:id="@+id/item_25"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:id="@+id/item_50"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="50%"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:id="@+id/item_75"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:text="75%"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/item_100"
-                                android:text="100%"
-                                android:background="@drawable/shape_login_btn_true"
-                                android:textColor="#10202f"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:padding="2dp"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/更新885"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/color_FFFFFF"
+                        android:textSize="12sp" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="match_parent"
+                       android:layout_marginLeft="5dp"
+                       android:paddingTop="5dp"
+                       android:layout_marginTop="20dp"
+                       android:paddingBottom="5dp"
+                       android:layout_marginRight="5dp"
+                       app:cardElevation="0dp"
+                       app:cardBackgroundColor="@color/color_553E3E3E"
+                       app:cardCornerRadius="3dp"
+                       android:layout_height="wrap_content">
+
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:orientation="vertical"
+                           android:layout_height="wrap_content">
+
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:padding="8dp"
+                               android:gravity="center_vertical"
+                               android:orientation="horizontal">
+
+                               <ImageView
+                                   android:layout_width="25dp"
+                                   android:layout_height="25dp"
+                                   android:src="@drawable/quanxian" />
+
+                               <main.java.com.termux.utils.CustomTextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:layout_marginLeft="10dp"
+                                   android:text="@string/权限信息886"
+                                   android:textColor="#fff"
+                                   android:textSize="13sp"
+                                   android:textStyle="bold" />
+
+                           </LinearLayout>
+
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:orientation="horizontal"
+                               android:layout_marginBottom="10dp"
+                               android:layout_height="wrap_content">
+
+                               <main.java.com.termux.utils.CustomTextView
+                                   android:id="@+id/quanxian_123"
+                                   android:layout_marginLeft="10dp"
+                                   android:layout_marginTop="10dp"
+                                   android:layout_width="0dp"
+                                   android:layout_marginBottom="10dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:padding="2dp"
+                                   android:text="@string/内存权限886"
+                                   android:textColor="#fff"
+                                   android:textSize="10sp"
+                                   android:textStyle="bold" />
+
+                               <main.java.com.termux.utils.CustomTextView
+                                   android:id="@+id/dianhua_123"
+                                   android:layout_marginLeft="10dp"
+                                   android:layout_marginTop="10dp"
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_marginBottom="10dp"
+                                   android:layout_height="wrap_content"
+                                   android:padding="2dp"
+                                   android:text="@string/电话权限886"
+                                   android:textColor="#fff"
+                                   android:textSize="10sp"
+                                   android:textStyle="bold" />
 
 
-                        </LinearLayout>
 
+                           </LinearLayout>
 
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:orientation="horizontal"
+                               android:layout_marginBottom="10dp"
+                               android:layout_height="wrap_content">
 
+                               <main.java.com.termux.utils.CustomTextView
+                                   android:id="@+id/duanxin_123"
+                                   android:layout_marginLeft="10dp"
+                                   android:layout_width="0dp"
+                                   android:layout_marginBottom="10dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:padding="2dp"
+                                   android:text="@string/短信权限"
+                                   android:textColor="#fff"
+                                   android:textSize="10sp"
+                                   android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_height="wrap_content">
 
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:visibility="invisible"
-                                android:src="@drawable/jinggao_xiao"
-                                android:layout_height="15dp"/>
+                           </LinearLayout>
 
 
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/seek_bar_tv_1"
-                                android:text="@string/面板抽屉模式"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
+                       </LinearLayout>
 
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/chouti_1"
-                                android:text="@string/折叠557"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/chouti_3"
-                                android:text="@string/全开557"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:id="@+id/chouti_2"
-                                android:text="@string/普通557"
-                                android:background="@drawable/shape_login_btn_true"
-                                android:textColor="#10202f"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-
-
-
-
-                        </LinearLayout>
-
-
-
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:visibility="invisible"
-
-                                android:src="@drawable/jinggao_xiao"
-                                android:layout_height="15dp"/>
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-
-                                android:text="@string/语言5558"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:background="@drawable/shape_login_btn_true"
-                                android:text="ENGLISH"
-                                android:id="@+id/english"
-                                android:textColor="#10202f"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-                            <main.java.com.termux.utils.CustomTextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-
-                                android:id="@+id/zhongwen"
-                                android:text="中文"
-                                android:textColor="#fff"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-
-
-
-
-
-
-
-
-
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
+                   </androidx.cardview.widget.CardView>
 
 
 
                 </RelativeLayout>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/color_553E3E3E"
+                    app:cardCornerRadius="5dp"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:visibility="visible"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:visibility="invisible"
+                            android:src="@drawable/jinggao_xiao"
+                            android:layout_height="15dp"/>
+
+
+                        <main.java.com.termux.utils.CustomTextView
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+
+                            android:text="@string/界面选择kjsdhf"
+                            android:textColor="#fff"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+
+
+
+                        <main.java.com.termux.utils.CustomTextView
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:id="@+id/jingjian_mod"
+                            android:background="@drawable/shape_login_btn_true"
+                            android:text="@string/精简模式sdfsd"
+                            android:textColor="#10202f"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+
+
+                        <main.java.com.termux.utils.CustomTextView
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/gaoji_mod"
+                            android:padding="2dp"
+                            android:text="@string/高级模式dfgdf"
+                            android:textColor="#fff"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <include layout="@layout/drawer_layout_left_fuza"
+                    android:visibility="gone"
+                    android:id="@+id/fuza_layout"/>
+
+                <include layout="@layout/drawer_layout_left_jiandan"
+                    android:visibility="visible"
+                    android:id="@+id/jiandan_layout"/>
+
+
+
 
 
 

@@ -923,8 +923,8 @@ Instead of starting the command itself, delete the [/usr/etc/xinhao_han] file so
     <string name="键盘">The keyboard</string>
     <string name="背景">background</string>
     <string name="公告552">Announcement:</string>
-    <string name="本地版本552">Local version :[0.103.103]</string>
-    <string name="云端版本552">Cloud version :[0.103.103]</string>
+    <string name="本地版本552">Local version :[0.103.105]</string>
+    <string name="云端版本552">Cloud version :[0.103.105]</string>
     <string name="架构">Architecture :[unreadable]</string>
     <string name="IP">IP:[unreadable]</string>
     <string name="系统作者">System the author: [no] DFGDFGDFGFDGFDGDFGFDGDFGDFGSDFGHSFDHSDFGSDFGSDFFGDSFGFSDFGSDFGSDFGSDFGSDFGSDFGSDFG</string>
@@ -1062,8 +1062,8 @@ After decompression :1000 MB
     <string name="备份恢复功能将无法使用">"You have rejected, the backup restore function will not be available!"</string>
     <string name="服务器离线sd5fsd5">"The server is offline, please go to group :714730084 to get the latest version"</string>
     <string name="最新版本d52gdf2g2">"Latest version :[......]"</string>
-    <string name="本地版本sdf2sdf5sd">"Local version :[0.103.103]\n Latest version :[-.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.103.103]\n Latest version :[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"Local version :[0.103.105]\n Latest version :[-.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.103.105]\n Latest version :[versionName]"</string>
     <string name="最新版本sa5dfsd">"Latest Version :[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"Latest version :[versionName]/ Capacity: String1"</string>
     <string name="你确定要换成官方版本吗">"Are you sure you want to switch to the official version?"</string>
@@ -1373,7 +1373,7 @@ Is it open or not?"</string>
     <string name="恢复成功如果很短">"Restore successfully [if very short (within 10 seconds) may fail, restore], must operate!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"You must restart the APP to use the new recovery system \n or the system will be abnormal! \n Action steps: Retrace Termux and click Termux to re-enter \n remember!!!!!!"</string>
     <string name="出现了一个错误eed">An error has occurred which causes the software to be unable to be restarted. Please restart it manually.</string>
-    <string name="当前版本ffg">Current version :0.103.103</string>
+    <string name="当前版本ffg">Current version :0.103.105</string>
     <string name="当前版本包含ggb">In the current version contains [packets (2.2 GB)] : PHP, mysql, showdoc, VNC, apache2, nginx, gogs version manager (git), nmap...</string>
     <string name="备份当前操作Linuxvvb">Backup current operating Linux[not recommended for general users]</string>
     <string name="点击备份当前linuxllk">"Click back up the current Linux \n backup directory :/sdcard/ Xinhao /system/\n\n Since this is a developer's backup, the error rate is extremely high. \n is not recommended for ordinary users. You can use [Quick Backup]"</string>
@@ -1573,7 +1573,7 @@ Is it open or not?"</string>
     <string name="脚本">The script</string>
     <string name="管理">management</string>
 
-    <string name="云端版本553">"Cloud version :[0.103.103]\n Local version [—. —. —]"</string>
+    <string name="云端版本553">"Cloud version :[0.103.105]\n Local version [—. —. —]"</string>
 
     <string name="终端开机命令">Terminal boot command</string>
     <string name="目前开">At present [on]</string>
@@ -1692,5 +1692,166 @@ Is it open or not?"</string>
 
     <string name="北京外国语大学">Beijing source</string>
     <string name="北京外国语大学源">Peking University</string>
+
+
+
+
+
+
+
+
+    <string name="界面选择kjsdhf">Interface to select:</string>
+    <string name="精简模式sdfsd">Streamline pattern</string>
+    <string name="高级模式dfgdf">Advanced mode</string>
+
+    <string name="源功能ghjghj110">source</string>
+    <string name="北京大学源222">Beijin source</string>
+    <string name="北京大学源2223">domestic source</string>
+
+
+    <string name="切换系统54545">Switch systems/Switch Linux</string>
+    <string name="切换功能123fddf">Switching function</string>
+    <string name="创建以及切换多个系统ppp">Create and switch multiple Linux systems</string>
+
+
+    <string name="恢复功能555f">Restore</string>
+    <string name="恢复包数据包恢复45">Restore packet/packet/tar.gz restore</string>
+    <string name="恢复下载站54">Restore the download site/restore package /tar.gz</string>
+
+
+    <string name="基础功能fffg">Basis function</string>
+    <string name="rootfs集合">Linux distribution</string>
+
+    <string name="下载站fff">download website</string>
+    <string name="百度云下载站ssdd">Baidu download website</string>
+    <string name="下载UT的图形包">Download UT graphics package, recovery package, such as ubuntu、kali、centOs</string>
+
+    <string name="离线linuxdf">Offline Linux</string>
+    <string name="本地服务器linuxghj">Local server Linux</string>
+    <string name="您需要下载安装yy">You will need to download and install the rootFS server to install Ubuntu, Raspberry PI, etc</string>
+
+    <string name="在线linuxfdf">Online Linux</string>
+    <string name="在线下载各种发行版本fgfg">Download various distributions online</string>
+    <string name="如在线下载sdhlsdg">Such as: Ubuntu, centOs, analog AMD, x86, architecture</string>
+
+    <string name="其他linux5556">Other Linux</string>
+
+    <string name="moe万能linux脚本123">MOE universal LINUX scripts</string>
+    <string name="由MOE提供56456df">Provided by MOE, it supports a variety of commercial distributions as well as graphical desktops</string>
+
+    <string name="由空夏提供的56456dfi">UBUNTU One button graphics system</string>
+    <string name="s564由空夏提供的56dfi">UBUNTU graphics system provided by Sky Summer</string>
+
+
+    <string name="XOM工具脚本sdf">XOM tool scripts</string>
+
+    <string name="由XOM作者提供gfg">tool script provided by the XOM authors</string>
+
+    <string name="模拟windowsdfdf">Simulation of WINDOWS</string>
+
+    <string name="模拟功能123">Simulation function</string>
+
+    <string name="模拟windows板块dfdf">Analog WINDOWS plate</string>
+    <string name="模拟windowsmac板块dfdf">Simulate WINDOWS, MAC, and custom systems</string>
+
+    <string name="DosBox5556">DosBox</string>
+    <string name="DosBox简介df">DosBox functions for Windows3.2</string>
+
+    <string name="alpine功能">Alpine X86 functions</string>
+    <string name="alpine功能简介">Alpine, an x86 architecture emulated using QEMU</string>
+
+    <string name="其他功能5555">Display/Free mapping/others</string>
+
+
+    <string name="显示功能122">Display function</string>
+
+    <string name="Vnc启动fdgd">Vnc configuration starts</string>
+    <string name="Vnc启动高级fdgd">For more advanced VNC configuration, please go to [advanced mode -> common functions -> configuration VNC(advanced)]</string>
+
+    <string name="映射功能556">Mapping function</string>
+    <string name="一键远控">remote control</string>
+    <string name="一键映射UT到">One-key map UT to outer network (free server already carried in script)</string>
+
+
+    <string name="linux文件夹fff">Linux folder</string>
+
+    <string name="打开linux目录fgfgfg">Open the Linux directory</string>
+    <string name="我已阅读">I have read and agree</string>
+    <string name="贡献565656">contribution</string>
+    <string name="贡献565656ff">Treat the author to ice cream~</string>
+    <string name="如果Utermux对您有帮助请我喝杯颗粒吧">An ice cream, please, if that is helpful to you</string>
+
+    <string name="可控制linux目录fff">Can control Linux directory copy, paste, edit files and other functions</string>
+
+    <string name="本页面思路提供者">Page planner \n Wang Yifan \n Moxuan \n1355**0324</string>
+    <string name="UT功能解释kkkl">Long press the bottom TAB [Session] to create a new session \nXINHAO_HAN_LEFT command open the left bar \nXINHAO_HAN_RIGHT command open the right bar \nXINHAO_HAN_Sms to view the SMS command \nXINHAO_HAN_TextUT simple editor</string>
+
+    <string name="许可证sdsd">法律声明:\n
+        1.本软件(UTermux)为开源软件,你可以自由分发、复制、更改,但请遵循GPL协议!\n
+        2.软件遵循GPL协议(http://www.opensource.org/licenses/gpl-2.0.php)\n\n
+        3.本软件(UTermux)的所有功能均为学习交流使用,切勿商用,如用户(使用UTermux用户)的意外操作、有意操作、无意操作等由用户承担!\n
+        4.本软件(UTermux)由第一条例一样为免费学习交流使用，软件内涉及的图标以及字体均来源于互联网。\n
+         4.1.字体为Android默认字体,如使用其他字体请用户(使用UTermux用户)承担所有风险以及法律责任。\n
+         4.2.图标使用为阿里巴巴ICO公用图库，使用该图标的原则是学习与交流,并非商用,如有侵权立即删除。\n
+        5.在本软件(UTermux)内使用的的恢复包、数据包、zip包等都有使用风险，切全部都来源于互联网，请用户酌情使用,如有造成无法挽回的损失,请用户承担风险。\n
+        6.所有恢复包、数据包、zip包UTermux不能控制其内容,如有包内侵权本软件作者不承担任何责任，均由恢复包、数据包、zip包制作者承担(tar.gz备份功能法律声明)。\n
+        7.感谢所有该项目所应用到功能的作者。\n
+        8.使用UTermux会有直接或间接的损害你的设备,如有造成无法挽回的损失由用户(使用Utermux用户)承担,本软件以及作者不承担任何法律等责任\n
+
+
+
+
+
+
+    </string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="自定义命令123">Custom command</string>
+    <string name="自定义方案dfg">Custom scheme</string>
+    <string name="添加一个命令">Add command</string>
+    <string name="添加一个命令解释">When the addition is complete, long press to indicate the "delete" or "modify" commands</string>
+    <string name="请输入您要添加的命令fg">Please enter the command you want to add</string>
+    <string name="请输入命令名称">Please enter the command name</string>
+    <string name="名称不能为空fgfg">name cannot be empty!</string>
+    <string name="命令不能为空yy">command cannot be empty!</string>
+    <string name="添加成功654d6sf">Add a success!</string>
+    <string name="您的命令出错了dfdf">There is something wrong with your command. We cannot fix it. Please fix it manually</string>
+    <string name="清空">empty</string>
+    <string name="已完成清空fff">Cleared, please recreate the command</string>
+    <string name="已完成修改656">Modifications have been completed</string>
+    <string name="配置文件出错dfsdf">There is an error in the configuration file. Fix it in the add command!</string>
+    <string name="删除当前命令fgfg">Delete current command</string>
+    <string name="修改当前命令fgfg">Modify current command</string>
+    <string name="删除成功">Delete the success</string>
+    <string name="修改成功">Modify the success</string>
+    <string name="导入">import</string>
+    <string name="导出">export</string>
+    <string name="导入的配置文件不正确">The imported configuration file is incorrect!</string>
+    <string name="当前没有数据">No data is available for export!</string>
+    <string name="请选择一个配置文件">Please select a profile</string>
+    <string name="请再试一次">Please try again</string>
+    <string name="导入导出命令dfdf">Import export command</string>
+    <string name="导入导出命令dfdf讲解">Import/export the current command configuration file</string>
+    <string name="当前目录下没有配置文件dfgdfjjk">There is no configuration file \n internal storage ->xinhao->command in the current directory</string>
+    <string name="保存成功">Configuration file has been saved successfully [internal storage ->xinhao->command]</string>
+    <string name="已导入配置文件">The configuration file has been imported!</string>
+
 
 </resources>
