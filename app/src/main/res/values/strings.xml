@@ -891,9 +891,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.103.105]</string>
-    <string name="云端版本552">云端版本:[0.103.105]</string>
-    <string name="云端版本553">云端版本:[0.103.105]\n本地版本[-.—.—]</string>
+    <string name="本地版本552">本地版本:[0.103.106]</string>
+    <string name="云端版本552">云端版本:[0.103.106]</string>
+    <string name="云端版本553">云端版本:[0.103.106]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -1036,10 +1036,10 @@
     <string name="启动完成yyy">"启动完成!右下角的+号可以点啦~"</string>
     <string name="正在启动开机命令s5gsd5g">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开"</string>
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
-    <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
+    <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.105]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.105]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.106]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.106]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -1344,7 +1344,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.103.105</string>
+    <string name="当前版本ffg">当前版本:0.103.106</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1674,7 +1674,13 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="捐赠入口sdfgdfg">捐赠入口(长按保存图片到本地)\n注:捐赠为自愿，并不是强制\n谢谢各位请我喝冰阔落~</string>
     <string name="保存图片成功">保存图片成功,请打开相册查看</string>
     <string name="保存图片失败">请检查内存卡权限，保存失败!</string>
-    <string name="捐赠者名单sdfhdfj">捐赠者名单[排名不分前后]:\n
+    <string name="捐赠者名单sdfhdfj">
+        交流群:\n
+        群一(QQ):714730084\n
+        群二(QQ):463233836\n
+        群三(QQ):878847174\n
+        \n
+        捐赠者名单[排名不分前后]:\n
         Outer(qq:8387**536)[¥:2]\n
         hexahedron yell(qq:19869**359)[¥:1]\n
         黑色曼陀罗(qq:24833**368)[¥:200+5+5]\n
@@ -1697,6 +1703,7 @@ xinhao/apk/DosBoxApplication.apk\n
         那一片枫叶 (qq:357**7545)[¥:10]\n
         小朋友很多问号 (qq:3228**1731)[¥:3]\n
         Mayiko (qq:1648**0546)[¥:8.88]\n
+        kz (qq:942**6891)[¥:8.88]\n
 
 
     </string>
@@ -1807,6 +1814,21 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="UT功能解释kkkl">UT功能解释\n长按底部选项卡【会话】创建新的会话\nXINHAO_HAN_LEFT命令打开左侧栏\nXINHAO_HAN_RIGHT 命令打开右侧栏\nXINHAO_HAN_Sms 查看短信命令\nXINHAO_HAN_TextUT 简易编辑器</string>
 
     <string name="许可证sdsd">法律声明:\n
+
+        注意:【切换系统】功能当中的【删除功能可能会清空您的SD卡】\n
+        请关闭sd卡授权在执行该【删除】功能\n
+        如果由你的操作(不局限于【切换系统】的【删除功能】,这里说明的是UTermux的所有功能)失误导致你的SD卡包括:\n
+        照片\n
+        视频\n
+        音频\n
+        以及其它所有数据,由你(UTermux(简称UT)的个人使用用户)自己承担\n
+
+        授权许可:\n
+
+        Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!以及非法用途!\n
+        Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!以及非法用途!\n
+        Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!以及非法用途!\n
+
         1.本软件(UTermux)为开源软件,你可以自由分发、复制、更改,但请遵循GPL协议!\n
         2.软件遵循GPL协议(http://www.opensource.org/licenses/gpl-2.0.php)\n\n
         3.本软件(UTermux)的所有功能均为学习交流使用,切勿商用,如用户(使用UTermux用户)的意外操作、有意操作、无意操作等由用户承担!\n
@@ -1848,7 +1870,7 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
     <string name="自定义命令123">自定义命令</string>
-    <string name="自定义方案dfg">自定义方案</string>
+    <string name="自定义方案dfg">自定义方案(双击命令窗口打开)</string>
     <string name="添加一个命令">添加一个命令</string>
     <string name="添加一个命令解释">添加完成之后,长按表示【删除】或【修改】命令</string>
     <string name="请输入您要添加的命令fg">请输入您要添加的命令</string>
@@ -1885,9 +1907,16 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
 
-    <string name="自动回车hg">自动回车:</string>
+
     <string name="更新日志fff">
         更新日志:\n
+
+        0.103.106更新日志:\n
+        1.增加UT PHP MYSQL服务器\n
+        2.自定义命令可多行执行\n
+        3.增加快捷输入命令方式\n
+
+
         0.103.105 更新日志:\n
         1.增加精简页面\n
             1.1分别为:[基础功能][linux发行版本][自定义命令][模拟windows][显示/免费映射/其它]板块\n
@@ -1897,6 +1926,67 @@ xinhao/apk/DosBoxApplication.apk\n
         1.修复UT_API不能使用问题\n
 
     </string>
+    <string name="自动回车hg">自动回车:</string>
+    <string name="WEB服务器_p">Utermux-PHP WEB服务器</string>
+    <string name="WEB服务器正在运行中yy">正在运行中</string>
+    <string name="进入UTermuxMysql">进入 Mysql</string>
+    <string name="UTphp服务器">轻量服务器</string>
+    <string name="服务器开启梵蒂冈地方">服务器开启/关闭</string>
+    <string name="命令介绍pppll">
+        项目开源地址:https://github.com/DroidPHP/DroidPHP\n
+        项目名称:DroidPHP\n
+        作者名称:DroidPHP\n
+        \n
+        \n
+        服务器端口以及目录\n
+        网站prot:19911 目录【内部存储/xinhao/web_php_html/port_html】\n
+        网站prot:19912 目录【UTermux系统目录】\n
+        网站prot:19913 目录【内部存储/xinhao/web_php_html/port_html_utermux】\n
+        mysql_prot:19914 目录【无】\n
+        服务器配置文件\n
+        mysql用户名:root\n
+        mysql密码:无(可自行设置密码)\n
+        网站配置文件:【内部存储/xinhao/web_config/config】\n
+        mysql配置文件:【内部存储/xinhao/web_config/config】\n
+        php配置文件:【内部存储/xinhao/web_config/config】\n
+    </string>
+
+    <string name="检测第一次启动hgh">检测第一次启动,正在安装环境</string>
+    <string name="没有找到命令dfd">没有找到命令,请在左侧栏【自定义命令】创建</string>
+    <string name="命令出错sdsd">命令出错,请在左侧栏修复</string>
+    <string name="请输入您要添加的命令fgfdfd">请输入您要添加的命令\n如过你想连续执行\n请用&amp;&amp;隔开,例如:\npkg update &amp;&amp;\npkg install vim &amp;&amp;\npkg install git</string>
+
+
+
+
+
+
+
+
+
+
+
+    <string name="打开项目地址sdfsdfsdf">打开开源项目地址</string>
+    <string name="我知不道选哪个df">我知不道选哪个(教程)</string>
+    <string name="打开路径dfgdf">请输入回车键,然后再次进入服务器</string>
+    <string name="安装服务器dfd">安装服务器</string>
+    <string name="卸载服务器">卸载服务器</string>
+    <string name="下载服务器dfdf">下载内置服务器</string>
+    <string name="切换到反面">启动服务器</string>
+    <string name="卸载完成">卸载完成</string>
+    <string name="正在安装">正在安装,请稍后</string>
+    <string name="安装服务器完成fg">安装服务器完成,请点击【启动服务器】</string>
+    <string name="请先安装环境后">请先安装环境后,在进入</string>
+    <string name="当前目录下没有文件dsfsd">当前目录下【内部存储/xinhao/server】没有安装文件</string>
+    <string name="你确定要删除dfgd">你确定要卸载内置服务器吗？</string>
+    <string name="提取码sdfsdfcxvn">提取码:wpq2</string>
+
+
+
+
+
+
+
 
 
 
@@ -1922,6 +2012,7 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
     <string name="删除完成_需要重进才能刷新">删除完成,需要重进才能刷新</string>
+    <string name="web服务正在运行">web服务正在运行</string>
 
     <string-array name="preference_sortby_names">
         <item>Name</item>

@@ -923,8 +923,8 @@ Instead of starting the command itself, delete the [/usr/etc/xinhao_han] file so
     <string name="键盘">The keyboard</string>
     <string name="背景">background</string>
     <string name="公告552">Announcement:</string>
-    <string name="本地版本552">Local version :[0.103.105]</string>
-    <string name="云端版本552">Cloud version :[0.103.105]</string>
+    <string name="本地版本552">Local version :[0.103.106]</string>
+    <string name="云端版本552">Cloud version :[0.103.106]</string>
     <string name="架构">Architecture :[unreadable]</string>
     <string name="IP">IP:[unreadable]</string>
     <string name="系统作者">System the author: [no] DFGDFGDFGFDGFDGDFGFDGDFGDFGSDFGHSFDHSDFGSDFGSDFFGDSFGFSDFGSDFGSDFGSDFGSDFGSDFGSDFG</string>
@@ -1060,10 +1060,10 @@ After decompression :1000 MB
     <string name="启动完成yyy">"Startup done! The + sign in the lower right corner can be clicked ~"</string>
     <string name="正在启动开机命令s5gsd5g">"Launching BootCommand [command directory /home/bootcommand] with '&amp;&amp;' between commands."</string>
     <string name="备份恢复功能将无法使用">"You have rejected, the backup restore function will not be available!"</string>
-    <string name="服务器离线sd5fsd5">"The server is offline, please go to group :714730084 to get the latest version"</string>
+    <string name="服务器离线sd5fsd5">"The server is offline, please click [version update] to get it"</string>
     <string name="最新版本d52gdf2g2">"Latest version :[......]"</string>
-    <string name="本地版本sdf2sdf5sd">"Local version :[0.103.105]\n Latest version :[-.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.103.105]\n Latest version :[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"Local version :[0.103.106]\n Latest version :[-.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.103.106]\n Latest version :[versionName]"</string>
     <string name="最新版本sa5dfsd">"Latest Version :[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"Latest version :[versionName]/ Capacity: String1"</string>
     <string name="你确定要换成官方版本吗">"Are you sure you want to switch to the official version?"</string>
@@ -1373,7 +1373,7 @@ Is it open or not?"</string>
     <string name="恢复成功如果很短">"Restore successfully [if very short (within 10 seconds) may fail, restore], must operate!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"You must restart the APP to use the new recovery system \n or the system will be abnormal! \n Action steps: Retrace Termux and click Termux to re-enter \n remember!!!!!!"</string>
     <string name="出现了一个错误eed">An error has occurred which causes the software to be unable to be restarted. Please restart it manually.</string>
-    <string name="当前版本ffg">Current version :0.103.105</string>
+    <string name="当前版本ffg">Current version :0.103.106</string>
     <string name="当前版本包含ggb">In the current version contains [packets (2.2 GB)] : PHP, mysql, showdoc, VNC, apache2, nginx, gogs version manager (git), nmap...</string>
     <string name="备份当前操作Linuxvvb">Backup current operating Linux[not recommended for general users]</string>
     <string name="点击备份当前linuxllk">"Click back up the current Linux \n backup directory :/sdcard/ Xinhao /system/\n\n Since this is a developer's backup, the error rate is extremely high. \n is not recommended for ordinary users. You can use [Quick Backup]"</string>
@@ -1573,7 +1573,7 @@ Is it open or not?"</string>
     <string name="脚本">The script</string>
     <string name="管理">management</string>
 
-    <string name="云端版本553">"Cloud version :[0.103.105]\n Local version [—. —. —]"</string>
+    <string name="云端版本553">"Cloud version :[0.103.106]\n Local version [—. —. —]"</string>
 
     <string name="终端开机命令">Terminal boot command</string>
     <string name="目前开">At present [on]</string>
@@ -1787,6 +1787,11 @@ Is it open or not?"</string>
     <string name="UT功能解释kkkl">Long press the bottom TAB [Session] to create a new session \nXINHAO_HAN_LEFT command open the left bar \nXINHAO_HAN_RIGHT command open the right bar \nXINHAO_HAN_Sms to view the SMS command \nXINHAO_HAN_TextUT simple editor</string>
 
     <string name="许可证sdsd">法律声明:\n
+
+         Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!\n
+         Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!\n
+         Utermux所有功能只能用于个人学习交流使用，不得用于商业用途!\n
+
         1.本软件(UTermux)为开源软件,你可以自由分发、复制、更改,但请遵循GPL协议!\n
         2.软件遵循GPL协议(http://www.opensource.org/licenses/gpl-2.0.php)\n\n
         3.本软件(UTermux)的所有功能均为学习交流使用,切勿商用,如用户(使用UTermux用户)的意外操作、有意操作、无意操作等由用户承担!\n
@@ -1824,7 +1829,7 @@ Is it open or not?"</string>
 
 
     <string name="自定义命令123">Custom command</string>
-    <string name="自定义方案dfg">Custom scheme</string>
+    <string name="自定义方案dfg">Custom scheme(Double click command window)</string>
     <string name="添加一个命令">Add command</string>
     <string name="添加一个命令解释">When the addition is complete, long press to indicate the "delete" or "modify" commands</string>
     <string name="请输入您要添加的命令fg">Please enter the command you want to add</string>
@@ -1852,6 +1857,51 @@ Is it open or not?"</string>
     <string name="当前目录下没有配置文件dfgdfjjk">There is no configuration file \n internal storage ->xinhao->command in the current directory</string>
     <string name="保存成功">Configuration file has been saved successfully [internal storage ->xinhao->command]</string>
     <string name="已导入配置文件">The configuration file has been imported!</string>
+
+
+
+
+
+    <string name="自动回车hg">Auto CR:</string>
+    <string name="WEB服务器_p">Utermux-PHP WEB server</string>
+    <string name="WEB服务器正在运行中yy">Running</string>
+    <string name="进入UTermuxMysql">In UT Mysql</string>
+    <string name="UTphp服务器">UT_PHP server</string>
+    <string name="服务器开启梵蒂冈地方">server no/off</string>
+    <string name="命令介绍pppll">
+
+         "Project open source address:https://github.com/DroidPHP/DroidPHP\n
+        entry name:DroidPHP\n
+        Author's name:DroidPHP\n
+
+     Server port and directory\n
+
+website prot:19911 Directory [internal storage/Xinhao/Web_ php_ html/port_ html】\n
+
+website prot:19912 Directory [utermux system directory]\n
+
+website prot:19913 Directory [internal storage/Xinhao/Web_php_html/port_html_utermux】\n
+
+mysql_ prot:19914 Directory [none]\n
+
+Server profile\n
+
+MySQL user name: root\n
+
+MySQL password: none (password can be set by yourself)\n
+
+Website configuration file: [internal storage/Xinhao/Web_config/config】\n
+
+MySQL configuration file: [internal storage /Xinhao/Web_config/config】\n
+
+PHP configuration file: [internal storage /Xinhao/Web_config/config】\n"
+    </string>
+
+    <string name="检测第一次启动hgh">Detect first boot, installing environment</string>
+    <string name="没有找到命令dfd">No command found, please create it in the left column [custom command]</string>
+    <string name="命令出错sdsd">Command error, please fix it in the left column</string>
+    <string name="请输入您要添加的命令fgfdfd">Please enter the command you want to add. If you want to execute it continuously, please separate it with &amp; &amp;, e.g:\npkg update &amp;&amp;\npkg install vim &amp;&amp;\npkg install git</string>
+
 
 
 </resources>

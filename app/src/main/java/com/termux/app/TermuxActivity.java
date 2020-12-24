@@ -38,7 +38,6 @@ import android.provider.Settings;
 import android.system.ErrnoException;
 import android.system.Os;
 import android.telephony.TelephonyManager;
-import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -51,10 +50,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.view.autofill.AutofillManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -93,8 +94,8 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
+import com.suke.widget.SwitchButton;
 import com.termux.R;
-import com.termux.api.NfcActivity;
 import com.termux.api.TermuxApiReceiver;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
@@ -104,7 +105,6 @@ import com.termux.terminal.TextStyle;
 import com.termux.view.TerminalRenderer;
 import com.termux.view.TerminalView;
 
-import org.apache.tools.ant.filters.StringInputStream;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -118,7 +118,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -140,7 +139,6 @@ import main.java.com.termux.activity.FunctionActivity;
 import main.java.com.termux.activity.ListDataActivity;
 import main.java.com.termux.activity.LunTanActivity;
 import main.java.com.termux.activity.RepairActivity;
-import main.java.com.termux.activity.RootActivity;
 import main.java.com.termux.activity.SwitchActivity;
 import main.java.com.termux.activity.ThanksActivity;
 import main.java.com.termux.activity.UbuntuListActivity;
@@ -158,10 +156,10 @@ import main.java.com.termux.app.dialog.RootfsDialog;
 import main.java.com.termux.app.dialog.TextJZShowDialog;
 //              ↑
 import main.java.com.termux.app.dialog.TextShowDialog;
+import main.java.com.termux.app.web.WebZip;
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.bean.CreateSystemBean;
 import main.java.com.termux.bean.UpDateBean;
-import main.java.com.termux.core.CoreGuiInstall;
 import main.java.com.termux.core.CoreLinux;
 import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
@@ -175,17 +173,14 @@ import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
 import main.java.com.termux.service.BackService;
 import main.java.com.termux.utils.CustomTextView;
-import main.java.com.termux.utils.LocaleUtils;
 import main.java.com.termux.utils.SaveData;
 import main.java.com.termux.utils.SmsUtils;
 import main.java.com.termux.utils.SystemUtil;
 import main.java.com.termux.utils.UUtils;
 import main.java.com.termux.utils.WindowUtils;
-import main.java.com.termux.view.DownDialog;
 import main.java.com.termux.view.MyDialog;
 import main.java.com.termux.view.MyDrawerLayout;
 import main.java.com.termux.view.MyHorizontalScrollView;
-import main.java.com.termux.weblinux.MainActivity;
 import main.java.com.termux.windows.RunWindowActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -206,7 +201,7 @@ import static main.java.com.termux.service.BackService.BACK_FILES;
  * </ul>
  * about memory leaks.
  */
-public final class TermuxActivity extends Activity implements ServiceConnection, View.OnClickListener, TerminalView.PromptListener {
+public  class TermuxActivity extends Activity implements ServiceConnection, View.OnClickListener, TerminalView.PromptListener {
 
     public static final String TERMUX_FAILSAFE_SESSION_ACTION = "com.termux.app.failsafe_session";
 
@@ -725,7 +720,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         msg.setText(UUtils.getString(R.string.开始启动mysqlsgdfg));
 
 
-        mTerminalView = findViewById(R.id.terminal_view);
+
         mTerminalView.setOnKeyListener(new main.java.com.termux.app.TermuxViewClient(this));
 
 
@@ -1062,6 +1057,16 @@ public final class TermuxActivity extends Activity implements ServiceConnection,
         Intent serviceIntent = new Intent(this, main.java.com.termux.app.TermuxService.class);
         // Start the service and make it run regardless of who is bound to it:
         startService(serviceIntent);
+        UUtils.showLog("开始启动SocketService服务");
+        try {
+
+            startService(new Intent(this, SocketService.class));
+        }catch (Exception e1654){
+            UUtils.showLog("服务启动错误" + e1654.toString());
+        }
+
+
+
         if (!bindService(serviceIntent, this, 0))
             throw new RuntimeException("bindService() failed");
 
@@ -3397,6 +3402,8 @@ other_mod
     private LinearLayout line_rootfs;
     private LinearLayout juanzeng;
     private LinearLayout install_wu;
+    private LinearLayout dialog_install_ppp;
+    private LinearLayout fuwuqi_ll;
     private HorizontalScrollView protem_1;
     private CustomTextView zidongtishi;
 
@@ -3409,6 +3416,8 @@ other_mod
     private CustomTextView windows_mod;
     private CustomTextView other_mod  ;
     private CustomTextView mingling  ;
+    private CustomTextView msg_server_php  ;
+    public CustomTextView jinru_mysql  ;
 
     private View jiandan_layout;
     private View fuza_layout;
@@ -3441,6 +3450,8 @@ other_mod
     private CardView xuanxiangka;
     private CardView daoru_daochu;
     private MinLAdapter mMinLAdapter;
+    private SwitchButton switch_button;
+    private View ut_server;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -3463,10 +3474,13 @@ other_mod
         }
 
 
+
+
         super.onCreate(bundle);
         mTermuxActivity = this;
         //  CoreLinux.getInstall().startCoreLinux(this);
         //insFile();
+
 
 
       //  startActivity(new Intent(this, NfcActivity.class));
@@ -3476,7 +3490,7 @@ other_mod
 
         isHistory();
 
-
+        mTerminalView = findViewById(R.id.terminal_view);
         juanzeng = findViewById(R.id.juanzeng);
         jiandan_mingl_click = findViewById(R.id.jiandan_mingl_click);
         daoru_daochu = findViewById(R.id.daoru_daochu);
@@ -3504,9 +3518,15 @@ other_mod
         jiandan_open_linux_mulu_click   = findViewById(R.id.jiandan_open_linux_mulu_click);
         jiandan_juanzeng_mulu_click   = findViewById(R.id.jiandan_juanzeng_mulu_click);
         mingl_view_5   = findViewById(R.id.mingl_view_5);
+        fuwuqi_ll   = findViewById(R.id.fuwuqi_ll);
+        ut_server   = findViewById(R.id.ut_server);
 
         recyclerView   = findViewById(R.id.recyclerView);
         xuanxiangka   = findViewById(R.id.xuanxiangka);
+        jinru_mysql   = findViewById(R.id.jinru_mysql);
+        switch_button   = findViewById(R.id.switch_button);
+        dialog_install_ppp   = findViewById(R.id.dialog_install_ppp);
+        msg_server_php   = findViewById(R.id.msg_server_php);
 
 
 
@@ -3539,6 +3559,116 @@ other_mod
         rootfs_mod = findViewById(R.id.rootfs_mod);
         windows_mod= findViewById(R.id.windows_mod);
         other_mod  = findViewById(R.id.other_mod);
+
+
+
+        fuwuqi_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //判断环境
+
+
+
+                File fileProot = new File("/data/data/com.termux/files/usr/bin/termux-chroot");
+                File fileWget = new File("/data/data/com.termux/files/usr/bin/wget");
+
+                if (!fileProot.exists() || !fileWget.exists()) {
+
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity.this);
+
+                    ab.setTitle(UUtils.getString(R.string.环境不达要求));
+
+                    ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
+
+                    ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getDrawer().closeDrawer(Gravity.LEFT);
+                            mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ab.create().dismiss();
+                        }
+                    });
+
+                    ab.show();
+
+
+                    return;
+                }
+
+                if(!(new File("/data/data/com.termux/files/home/storage/shared/xinhao/").exists())){
+
+                    getDrawer().closeDrawer(Gravity.LEFT);
+                      UUtils.showMsg(UUtils.getString(R.string.正在疏通所需要的环境));
+                    TermuxActivity.mTerminalView.sendTextToTerminal("echo "+UUtils.getString(R.string.打开路径dfgdf) + "\n");
+                    TermuxActivity.mTerminalView.sendTextToTerminal("termux-setup-storage");
+
+                    return;
+
+                }
+
+
+
+
+
+                if(ut_server.getVisibility() == View.GONE){
+                   ut_server.setVisibility(View.VISIBLE);
+               } else{
+                   ut_server.setVisibility(View.GONE);
+               }
+
+            }
+        });
+
+        if(WebZip.isRun){
+            switch_button.setChecked(true);
+        }else{
+            switch_button.setChecked(false);
+        }
+
+        switch_button.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+
+
+
+                if(isChecked){
+                    WebZip.startServer("8080",dialog_install_ppp,msg_server_php);
+                }else{
+                    WebZip.stopServer();
+                }
+            }
+        });
+
+
+
+        //fuwuqi_ll
+
+       if( TermuxInstaller.determineTermuxArchName().equals("arm") || TermuxInstaller.determineTermuxArchName().equals("aarch64")){
+           fuwuqi_ll.setVisibility(View.VISIBLE);
+       }else{
+           fuwuqi_ll.setVisibility(View.GONE);
+       }
+
+
+
+            Animation anim = AnimationUtils.loadAnimation(this, R.anim.anim);
+
+            LinearInterpolator lir = new LinearInterpolator();
+
+            anim.setInterpolator(lir);
+
+            findViewById(R.id.fuwuqi_ut).startAnimation(anim);
+
         File file5555 = new File(Environment.getExternalStorageDirectory(),"/xinhao/command/");
         if(!file5555.exists()){
             file5555.mkdir();
@@ -3620,6 +3750,8 @@ other_mod
                 textJZShowDialog.setCancelable(true);
             }
         });
+
+        //启动服务
 
         jiandan_open_linux_mulu_click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -6976,6 +7108,7 @@ other_mod
         red = findViewById(R.id.red);
 
         listView = findViewById(R.id.left_drawer_list);
+      //  listView.setBackgroundColor(UUtils.getColor(R.color.color_552B2B2B));
 
         sess_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -10298,7 +10431,6 @@ Solaris(APP美化)
 
         //huadong
         MyDrawerLayout viewById = (MyDrawerLayout) findViewById(R.id.drawer_layout);
-        viewById.setInterceptTouchEventChildId(R.id.huadong);
         return viewById;
     }
 
@@ -10444,6 +10576,7 @@ Solaris(APP美化)
         lv = findViewById(R.id.left_drawer_list);
         lv.setItemChecked(indexOfSession, true);
         lv.smoothScrollToPosition(indexOfSession);
+        lv.setBackgroundColor(UUtils.getColor(R.color.color_552B2B2B));
 
         // session.write(" \n");
         // session.write("cd ~ && chmod 777 .xinhao_history/start_command.sh &&  ./.xinhao_history/start_command.sh & \n");
@@ -10787,7 +10920,7 @@ Solaris(APP美化)
 
                     // CoreLinux.runCmd("history\n");
 
-                    Log.e("获取历史记录", "run: " + CoreLinux.getText());
+                  //  Log.e("获取历史记录", "run: " + CoreLinux.getText());
 
 
 /*

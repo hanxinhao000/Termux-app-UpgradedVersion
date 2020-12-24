@@ -384,7 +384,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:visibility="invisible"
+                    android:visibility="visible"
+                    android:id="@+id/wobuhui"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -397,7 +398,7 @@
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/xiazaifuwuqi" />
+                            android:src="@drawable/jiaocheng_buhui" />
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -416,7 +417,7 @@
                         android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/下载本地服务器df052255"
+                        android:text="@string/我知不道选哪个df"
                         android:textColor="#fff"
                         android:textSize="13sp"
                         android:textStyle="bold" />

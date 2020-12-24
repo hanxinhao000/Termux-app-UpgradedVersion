@@ -448,6 +448,8 @@ public final class TerminalView extends View {
     }
 
 
+
+
     public void sendTextToTerminalToToTo(CharSequence text) {
         stopTextSelectionMode();
         final int textLengthInChars = text.length();
@@ -737,10 +739,41 @@ public final class TerminalView extends View {
         return false;
     }
 
+    private long doubleClick = 0;
+
+    public interface DoubleClickListener{
+        void doubleClicke();
+
+    }
+
+    private  DoubleClickListener mDoubleClickListener;
+    public void setDoubleClickListener(DoubleClickListener mDoubleClickListener){
+        this.mDoubleClickListener = mDoubleClickListener;
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     @TargetApi(23)
     public boolean onTouchEvent(MotionEvent ev) {
+
+        //判断双击
+        if(ev.getAction() == MotionEvent.ACTION_DOWN){
+            if((System.currentTimeMillis() - doubleClick) < 260){
+               if(mDoubleClickListener != null){
+                   mDoubleClickListener.doubleClicke();
+               }
+
+            }
+
+
+            doubleClick = System.currentTimeMillis();
+        }
+
+
+
+
+
+
         if (mEmulator == null) return true;
         final int action = ev.getAction();
 

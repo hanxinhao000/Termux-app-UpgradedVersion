@@ -284,7 +284,7 @@
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="main.java.com.termux.app.TermuxActivity"
+            android:name="main.java.com.termux.app.TermuxActivity2"
             android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|uiMode|keyboard|keyboardHidden|navigation"
             android:label="@string/application_name"
             android:launchMode="singleTask"
@@ -598,6 +598,7 @@
         <service
             android:name="main.java.com.termux.app.TermuxService"
             android:exported="false" />
+        <service android:name="main.java.com.termux.app.SocketService"/>
         <service
             android:name="main.java.com.termux.linux_deploy.ExecService"
             android:enabled="true"

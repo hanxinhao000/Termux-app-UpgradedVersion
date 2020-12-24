@@ -1,0 +1,267 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:paddingTop="5dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="5dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="3dp"
+        android:layout_height="500dp">
+
+
+
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <ImageView
+              android:layout_width="35dp"
+              android:src="@drawable/qiehuan_1"
+              android:id="@+id/zhengmian_viewcvcv"
+              android:layout_alignParentRight="true"
+              android:layout_marginTop="5dp"
+              android:layout_marginRight="5dp"
+              android:layout_height="35dp"/>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_marginLeft="5dp"
+              android:layout_marginTop="5dp"
+              android:layout_height="wrap_content">
+
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center_vertical"
+                  android:layout_height="wrap_content">
+
+                  <com.suke.widget.SwitchButton
+                      android:id="@+id/switch_button"
+                      android:layout_width="wrap_content"
+                      android:layout_height="30dp"/>
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="5dp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginBottom="5dp"
+                      android:padding="2dp"
+                      android:paddingLeft="10dp"
+                      android:textStyle="bold"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:text="@string/服务器开启梵蒂冈地方"
+                      android:layout_alignParentRight="true"
+                      android:textColor="@color/color_FFFFFF"
+                      android:textSize="12sp" />
+
+
+
+
+
+              </LinearLayout>
+
+
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+
+                  <androidx.cardview.widget.CardView
+                      android:layout_width="wrap_content"
+                      android:layout_marginLeft="5dp"
+                      android:paddingTop="5dp"
+                      android:layout_marginTop="10dp"
+                      android:paddingBottom="5dp"
+                      android:layout_marginRight="5dp"
+                      app:cardElevation="0dp"
+                      app:cardBackgroundColor="@color/color_553E3E3E"
+                      app:cardCornerRadius="3dp"
+                      android:layout_height="wrap_content">
+
+
+                      <main.java.com.termux.utils.CustomTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginRight="10dp"
+                          android:layout_marginBottom="5dp"
+                          android:padding="2dp"
+                          android:paddingLeft="10dp"
+                          android:textStyle="bold"
+                          android:paddingTop="10dp"
+                          android:id="@+id/jinru_mysql"
+                          android:paddingBottom="10dp"
+                          android:text="@string/进入UTermuxMysql"
+                          android:layout_alignParentRight="true"
+                          android:textColor="@color/color_FFFFFF"
+                          android:textSize="12sp" />
+
+
+                  </androidx.cardview.widget.CardView>
+
+                  <androidx.cardview.widget.CardView
+                      android:layout_width="wrap_content"
+                      android:layout_marginLeft="5dp"
+                      android:paddingTop="5dp"
+                      android:layout_marginTop="10dp"
+                      android:paddingBottom="5dp"
+                      android:layout_marginRight="5dp"
+                      app:cardElevation="0dp"
+                      app:cardBackgroundColor="@color/color_553E3E3E"
+                      app:cardCornerRadius="3dp"
+                      android:layout_height="wrap_content">
+
+
+                      <main.java.com.termux.utils.CustomTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginRight="10dp"
+                          android:layout_marginBottom="5dp"
+                          android:padding="2dp"
+                          android:paddingLeft="10dp"
+                          android:textStyle="bold"
+                          android:paddingTop="10dp"
+                          android:id="@+id/open_server_url"
+                          android:paddingBottom="10dp"
+                          android:text="@string/打开项目地址sdfsdfsdf"
+                          android:layout_alignParentRight="true"
+                          android:textColor="@color/color_FFFFFF"
+                          android:textSize="12sp" />
+
+
+                  </androidx.cardview.widget.CardView>
+
+              </LinearLayout>
+
+              <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_marginTop="15dp"
+                  android:layout_height="wrap_content">
+
+
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_centerHorizontal="true"
+                      android:layout_centerVertical="true"
+                      android:gravity="center"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+
+
+                      <main.java.com.termux.utils.CustomTextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginRight="10dp"
+                          android:layout_marginBottom="5dp"
+                          android:padding="2dp"
+                          android:paddingLeft="10dp"
+                          android:textStyle="bold"
+                          android:paddingTop="10dp"
+                          android:paddingBottom="10dp"
+                          android:text="@string/命令介绍pppll"
+                          android:layout_alignParentRight="true"
+                          android:textColor="@color/color_5E5E5E"
+                          android:textSize="12sp" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="30dp"/>
+
+                  </LinearLayout>
+
+
+
+
+              </RelativeLayout>
+
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:background="@color/color_2248baf3"
+              android:gravity="center"
+              android:visibility="gone"
+              android:id="@+id/dialog_install_ppp"
+              android:layout_height="match_parent">
+
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:background="@color/color_48baf3"
+                  android:layout_height="wrap_content">
+
+
+
+                  <ProgressBar
+                      android:layout_width="50dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_height="50dp"/>
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="5dp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginBottom="5dp"
+                      android:padding="2dp"
+                      android:paddingLeft="10dp"
+                      android:id="@+id/msg_server_php"
+                      android:textStyle="bold"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:text="@string/检测第一次启动hgh"
+                      android:layout_alignParentRight="true"
+                      android:textColor="@color/color_FFFFFF"
+                      android:textSize="12sp" />
+
+
+
+              </LinearLayout>
+
+
+          </LinearLayout>
+
+
+
+      </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+</RelativeLayout>

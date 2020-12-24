@@ -180,7 +180,7 @@ public final class BackgroundJob {
             }
           //  environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
 
-            environment.add("LANG=zh_CN.UTF-8");
+            environment.add("LANG=en_US.UTF-8");
             environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
             environment.add("PWD=" + cwd);
             environment.add("TMPDIR=" + TermuxService.PREFIX_PATH + "/tmp");

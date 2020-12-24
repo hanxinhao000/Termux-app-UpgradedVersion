@@ -18,6 +18,7 @@
     <main.java.com.termux.view.MyDrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
+        android:background="@color/color_552B2B2B"
         android:layout_height="match_parent"
         android:layout_above="@+id/key_boy_layout"
         android:layout_alignParentTop="true">
@@ -378,7 +379,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Termux[0.103.105]"
+            android:text="Termux[0.103.106]"
             android:textColor="#fff"
             android:textSize="28sp" />
 

@@ -50,6 +50,10 @@ android {
 
         implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
 
+        implementation 'eu.chainfire:libsuperuser:1.1.0.+'
+
+        implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
     }
 
     defaultConfig {
@@ -57,7 +61,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 92
-        versionName "0.103.105"
+        versionName "0.103.106"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
@@ -106,6 +110,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation 'androidx.test.espresso:espresso-idling-resource:3+'
+    implementation files('lib\\commons-lite-1.14.jar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

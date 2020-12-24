@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:text="@string/正在加载00"
             android:textSize="15sp"
+            android:id="@+id/msg_dialog"
             android:layout_marginTop="10dp"
             android:textColor="#fff"
             android:layout_height="wrap_content"/>

@@ -754,6 +754,10 @@ public class UUtils {
 
     }
 
+
+    public static void LogToFile(String str){
+        showLog(str);
+    }
     /**
      * 获取当前手机系统语言。
      *

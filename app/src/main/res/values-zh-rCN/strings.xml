@@ -259,8 +259,8 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.103.105]</string>
-    <string name="云端版本552">云端版本:[0.103.105]</string>
+    <string name="本地版本552">本地版本:[0.103.106]</string>
+    <string name="云端版本552">云端版本:[0.103.106]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -395,10 +395,10 @@
     <string name="启动完成yyy">"启动完成!右下角的+号可以点啦~"</string>
     <string name="正在启动开机命令s5gsd5g">"正在启动开机命令[命令目录/home/BootCommand]命令之间用'&amp;&amp;'隔开"</string>
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
-    <string name="服务器离线sd5fsd5">"服务器离线,请到群:714730084获取最新版本"</string>
+    <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.105]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.105]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.106]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.106]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -708,7 +708,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.103.105</string>
+    <string name="当前版本ffg">当前版本:0.103.106</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1094,28 +1094,10 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="本页面思路提供者">页面策划\n王怡帆\n墨轩\n1355**0324</string>
     <string name="UT功能解释kkkl">UT功能解释\n长按底部选项卡【会话】创建新的会话\nXINHAO_HAN_LEFT命令打开左侧栏\nXINHAO_HAN_RIGHT 命令打开右侧栏\nXINHAO_HAN_Sms 查看短信命令\nXINHAO_HAN_TextUT 简易编辑器</string>
 
-    <string name="许可证sdsd">法律声明:\n
-        1.本软件(UTermux)为开源软件,你可以自由分发、复制、更改,但请遵循GPL协议!\n
-        2.软件遵循GPL协议(http://www.opensource.org/licenses/gpl-2.0.php)\n\n
-        3.本软件(UTermux)的所有功能均为学习交流使用,切勿商用,如用户(使用UTermux用户)的意外操作、有意操作、无意操作等由用户承担!\n
-        4.本软件(UTermux)由第一条例一样为免费学习交流使用，软件内涉及的图标以及字体均来源于互联网。\n
-         4.1.字体为Android默认字体,如使用其他字体请用户(使用UTermux用户)承担所有风险以及法律责任。\n
-         4.2.图标使用为阿里巴巴ICO公用图库，使用该图标的原则是学习与交流,并非商用,如有侵权立即删除。\n
-        5.在本软件(UTermux)内使用的的恢复包、数据包、zip包等都有使用风险，切全部都来源于互联网，请用户酌情使用,如有造成无法挽回的损失,请用户承担风险。\n
-        6.所有恢复包、数据包、zip包UTermux不能控制其内容,如有包内侵权本软件作者不承担任何责任，均由恢复包、数据包、zip包制作者承担(tar.gz备份功能法律声明)。\n
-        7.感谢所有该项目所应用到功能的作者。\n
-        8.使用UTermux会有直接或间接的损害你的设备,如有造成无法挽回的损失由用户(使用Utermux用户)承担,本软件以及作者不承担任何法律等责任\n
-
-
-
-
-
-
-    </string>
 
 
     <string name="自定义命令123">自定义命令</string>
-    <string name="自定义方案dfg">自定义方案</string>
+    <string name="自定义方案dfg">自定义方案(双击命令窗口打开)</string>
     <string name="添加一个命令">添加一个命令</string>
     <string name="添加一个命令解释">添加完成之后,长按表示【删除】或【修改】命令</string>
     <string name="请输入您要添加的命令fg">请输入您要添加的命令</string>
@@ -1143,6 +1125,35 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="当前目录下没有配置文件dfgdfjjk">当前目录下没有配置文件\n内部存储->xinhao->command</string>
     <string name="保存成功">配置文件保存成功【内部存储->xinhao->command】</string>
     <string name="已导入配置文件">已导入配置文件!</string>
+
+
+    <string name="自动回车hg">自动回车:</string>
+    <string name="WEB服务器_p">Utermux-PHP WEB服务器</string>
+    <string name="WEB服务器正在运行中yy">正在运行中</string>
+    <string name="进入UTermuxMysql">进入UT Mysql</string>
+    <string name="UTphp服务器">UT_PHP服务器</string>
+    <string name="服务器开启梵蒂冈地方">服务器开启/关闭</string>
+    <string name="命令介绍pppll">
+        项目开源地址:https://github.com/DroidPHP/DroidPHP\n
+        项目名称:DroidPHP\n
+        作者名称:DroidPHP\n
+        服务器端口以及目录\n
+        网站prot:19911 目录【内部存储/xinhao/web_php_html/port_html】\n
+        网站prot:19912 目录【UTermux系统目录】\n
+        网站prot:19913 目录【内部存储/xinhao/web_php_html/port_html_utermux】\n
+        mysql_prot:19914 目录【无】\n
+        服务器配置文件\n
+        mysql用户名:root\n
+        mysql密码:无(可自行设置密码)\n
+        网站配置文件:【内部存储/xinhao/web_config/config】\n
+        mysql配置文件:【内部存储/xinhao/web_config/config】\n
+        php配置文件:【内部存储/xinhao/web_config/config】\n
+    </string>
+
+    <string name="检测第一次启动hgh">检测第一次启动,正在安装环境</string>
+    <string name="没有找到命令dfd">没有找到命令,请在左侧栏【自定义命令】创建</string>
+    <string name="命令出错sdsd">命令出错,请在左侧栏修复</string>
+    <string name="请输入您要添加的命令fgfdfd">请输入您要添加的命令\n如过你想连续执行\n请用&amp;&amp;隔开,例如:\npkg update &amp;&amp;\npkg install vim &amp;&amp;\npkg install git</string>
 
 
 

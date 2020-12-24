@@ -25,6 +25,16 @@
 
     </style>
 
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/popuwindows_l_r</item>
+    </style>
     <!--自定义BaseDialog样式-->
     <style name="BaseDialog222" parent="@android:style/Theme.Dialog">
         <!-- 无标题 -->

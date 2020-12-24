@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import main.java.com.termux.application.TermuxApplication;
 import main.java.com.termux.floatwindows.TermuxFloatService;
+import main.java.com.termux.utils.UUtils;
 
 public class CoreLinux {
 
@@ -99,7 +100,7 @@ public class CoreLinux {
     }
 
     public static void runCoreLinux() {
-
+        UUtils.showLog("运行状态:开始运行" );
 
         new File(HOME_PATH).mkdirs();
 
@@ -113,7 +114,7 @@ public class CoreLinux {
         final String externalStorageEnv = "EXTERNAL_STORAGE=" + System.getenv("EXTERNAL_STORAGE");
         final String ps1Env = "PS1=$ ";
         final String ldEnv = "LD_LIBRARY_PATH=" + TermuxFloatService.PREFIX_PATH + "/lib";
-        final String langEnv = "LANG=zh_CN.UTF-8";
+        final String langEnv = "LANG=en_US.UTF-8";
         final String pathEnv = "PATH=" + TermuxFloatService.PREFIX_PATH + "/bin:" + TermuxFloatService.PREFIX_PATH + "/bin/applets";
         String[] env = new String[]{termEnv, homeEnv, prefixEnv, ps1Env, ldEnv, langEnv, pathEnv, androidRootEnv, androidDataEnv, externalStorageEnv};
 
@@ -202,12 +203,15 @@ public class CoreLinux {
 
 
     public static boolean getIsRun() {
-        return IS_RUN;
+        if(terminalSession == null){
+            return false;
+        }
+        return terminalSession.isRunning();
     }
 
     public static String getText() {
 
-        return transcriptTextBuilder;
+        return terminalSession.getEmulator().getScreen().getTranscriptText();
     }
 
     public static void runCmd(CharSequence cmd) {

@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_48baf3">#48BAF3</color>
+    <color name="color_2248baf3">#2248BAF3</color>
+    <color name="color_5548baf3">#5548BAF3</color>
+    <color name="color_aa48baf3">#aa48BAF3</color>
     <color name="transparent_70_black">#4C000000</color>
     <color name="color_e5e5e5">#E5E5E5</color>
     <color name="transparent_70_white">#4CFFFFFF</color>
@@ -18,6 +21,7 @@
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
     <color name="color_553E3E3E">#553E3E3E</color>
+    <color name="color_552B2B2B">#552B2B2B</color>
     <color name="color_55005293">#55009688</color>
     <color name="color_FFFFFF">#FFFFFF</color>
     <color name="color_5E5E5E">#5E5E5E</color>

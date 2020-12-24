@@ -163,42 +163,109 @@
                 </RelativeLayout>
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_marginTop="20dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/color_553E3E3E"
-                    app:cardCornerRadius="3dp"
-                    android:layout_height="wrap_content">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:orientation="horizontal"
+                   android:layout_height="wrap_content">
+
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="wrap_content"
+                       android:layout_marginLeft="5dp"
+                       android:paddingTop="5dp"
+                       android:layout_marginTop="20dp"
+                       android:paddingBottom="5dp"
+                       android:layout_marginRight="5dp"
+                       app:cardElevation="0dp"
+                       app:cardBackgroundColor="@color/color_553E3E3E"
+                       app:cardCornerRadius="3dp"
+                       android:layout_height="wrap_content">
 
 
 
-                    <main.java.com.termux.utils.CustomTextView
-                        android:id="@+id/check_up"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="2dp"
-                        android:paddingLeft="10dp"
-                        android:textStyle="bold"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/更新885"
-                        android:layout_alignParentRight="true"
-                        android:textColor="@color/color_FFFFFF"
-                        android:textSize="12sp" />
+                       <main.java.com.termux.utils.CustomTextView
+                           android:id="@+id/check_up"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="5dp"
+                           android:layout_marginLeft="10dp"
+                           android:layout_marginRight="10dp"
+                           android:layout_marginBottom="5dp"
+                           android:padding="2dp"
+                           android:paddingLeft="10dp"
+                           android:textStyle="bold"
+                           android:paddingTop="10dp"
+                           android:paddingBottom="10dp"
+                           android:text="@string/更新885"
+                           android:layout_alignParentRight="true"
+                           android:textColor="@color/color_FFFFFF"
+                           android:textSize="12sp" />
 
 
 
-                </androidx.cardview.widget.CardView>
+                   </androidx.cardview.widget.CardView>
 
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="wrap_content"
+                       android:layout_marginLeft="5dp"
+                       android:paddingTop="5dp"
+                       android:layout_marginTop="20dp"
+                       android:paddingBottom="5dp"
+                       android:layout_marginRight="5dp"
+                       app:cardElevation="0dp"
+                       app:cardBackgroundColor="@color/color_553E3E3E"
+                       app:cardCornerRadius="3dp"
+                       android:layout_height="wrap_content">
+
+
+
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:orientation="horizontal"
+                           android:gravity="center"
+                           android:id="@+id/fuwuqi_ll"
+                           android:layout_height="wrap_content">
+
+
+                           <ImageView
+                               android:layout_width="20dp"
+                               android:src="@drawable/tupian_555"
+                               android:layout_marginLeft="5dp"
+                               android:id="@+id/fuwuqi_ut"
+                               android:layout_height="20dp"/>
+
+                           <main.java.com.termux.utils.CustomTextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="5dp"
+                               android:layout_marginLeft="5dp"
+                               android:layout_marginRight="10dp"
+                               android:layout_marginBottom="5dp"
+                               android:padding="2dp"
+                               android:paddingLeft="10dp"
+                               android:textStyle="bold"
+                               android:paddingTop="10dp"
+                               android:paddingBottom="10dp"
+                               android:text="@string/UTphp服务器"
+                               android:layout_alignParentRight="true"
+                               android:textColor="@color/color_FFFFFF"
+                               android:textSize="12sp" />
+
+
+
+                       </LinearLayout>
+
+
+
+                   </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+               </LinearLayout>
+
+                <include layout="@layout/drawer_layout_include_ut_server" android:id="@+id/ut_server" android:visibility="gone"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -418,6 +485,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
+            android:background="@color/color_552B2B2B"
             android:choiceMode="singleChoice"
             android:layout_above="@+id/function_ll"
             android:longClickable="true"

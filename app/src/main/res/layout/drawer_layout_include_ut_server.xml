@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+    <include layout="@layout/drawer_layout_include_ut_server_zhengmian" android:id="@+id/server_zhengmian"/>
+    <include layout="@layout/drawer_layout_include_ut_server_fanmian" android:id="@+id/server_fanmian" android:visibility="gone"/>
+
+
+
+
+</RelativeLayout>

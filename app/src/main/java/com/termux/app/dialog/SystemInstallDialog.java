@@ -59,6 +59,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
     private LinearLayout download_server;
     private LinearLayout install_location_server;
     private LinearLayout ziyou_install;
+    private LinearLayout wobuhui;
     private TextView title_install;
     private ImageView install_close;
     private Activity activity;
@@ -83,6 +84,7 @@ public class SystemInstallDialog extends BaseDialogCentre {
     void initViewDialog(View mView) {
 
         location_install = mView.findViewById(R.id.location_install);
+        wobuhui = mView.findViewById(R.id.wobuhui);
         file_install = mView.findViewById(R.id.file_install);
         ziyou_install = mView.findViewById(R.id.ziyou_install);
         title_install = mView.findViewById(R.id.title_install);
@@ -115,6 +117,16 @@ public class SystemInstallDialog extends BaseDialogCentre {
                     }
                 });
 
+            }
+        });
+
+        wobuhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setData(Uri.parse("https://tieba.baidu.com/p/7148763812"));//Url 就是你要打开的网址
+                intent.setAction(Intent.ACTION_VIEW);
+                mContext.startActivity(intent); //
             }
         });
 

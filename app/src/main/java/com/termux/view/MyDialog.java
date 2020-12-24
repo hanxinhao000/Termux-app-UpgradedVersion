@@ -19,7 +19,7 @@ public class MyDialog extends Dialog {
     private ProgressBar dialog_pro_prog;
 
     public MyDialog(@NonNull Context context) {
-        super(context);
+        super(context,R.style.BaseDialog222);
         initView(context);
     }
 

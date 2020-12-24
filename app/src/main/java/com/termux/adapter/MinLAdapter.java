@@ -73,114 +73,115 @@ public class MinLAdapter extends RecyclerView.Adapter<MinLViewHolder> {
             }
         });
 
-        minLViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        if(activity != null) {
+            minLViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
 
 
-                MinglingDialog minglingDialog = new MinglingDialog(activity);
-                minglingDialog.show();
+                    MinglingDialog minglingDialog = new MinglingDialog(activity);
+                    minglingDialog.show();
 
-                minglingDialog.xiugai.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    minglingDialog.xiugai.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                        minglingDialog.dismiss();
-
-
-                        MingLShowDialog mingLShowDialog = new MingLShowDialog(activity);
-                        mingLShowDialog.show();
-
-                        mingLShowDialog.name_edit.setText(dataNum.get(position).name);
-                        mingLShowDialog.edit_text.setText(dataNum.get(position).value);
-                        mingLShowDialog.switch_btn.setChecked(dataNum.get(position).isChecked);
+                            minglingDialog.dismiss();
 
 
-                        mingLShowDialog.start.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                            MingLShowDialog mingLShowDialog = new MingLShowDialog(activity);
+                            mingLShowDialog.show();
+
+                            mingLShowDialog.name_edit.setText(dataNum.get(position).name);
+                            mingLShowDialog.edit_text.setText(dataNum.get(position).value);
+                            mingLShowDialog.switch_btn.setChecked(dataNum.get(position).isChecked);
 
 
-
-                                String nameString =  mingLShowDialog.name_edit.getText().toString();
-                                String commitString = mingLShowDialog.edit_text.getText().toString();
-                                if(nameString == null ||nameString.isEmpty()){
-                                    UUtils.showMsg(UUtils.getString(R.string.名称不能为空fgfg));
-                                    return ;
-                                }
-                                if(commitString == null ||commitString.isEmpty()){
-                                    UUtils.showMsg(UUtils.getString(R.string.命令不能为空yy));
-                                    return ;
-                                }
+                            mingLShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
 
-                                try {
-                                    String commi22 = SaveData.getData("commi22");
-                                    MinLBean minLBean = new Gson().fromJson(commi22, MinLBean.class);
-                                    List<MinLBean.DataNum> list = minLBean.data.list;
-
-
-                                    MinLBean.DataNum dataNum = list.get(position);
-
-                                    dataNum.name = mingLShowDialog.name_edit.getText().toString();
-                                    dataNum.value = mingLShowDialog.edit_text.getText().toString();
-                                    dataNum.isChecked =  mingLShowDialog.isChecked;
-
-                                    list.remove(position);
-                                    list.add(position, dataNum);
-
-                                    String s = new Gson().toJson(minLBean);
-                                    SaveData.saveData("commi22", s);
-                                    UUtils.showMsg(UUtils.getString(R.string.修改成功));
-                                    if (mSXListener != null) {
-                                        mSXListener.sx();
+                                    String nameString = mingLShowDialog.name_edit.getText().toString();
+                                    String commitString = mingLShowDialog.edit_text.getText().toString();
+                                    if (nameString == null || nameString.isEmpty()) {
+                                        UUtils.showMsg(UUtils.getString(R.string.名称不能为空fgfg));
+                                        return;
                                     }
-                                    mingLShowDialog.dismiss();
-                                }catch (Exception e){
-                                    e.printStackTrace();
-                                    UUtils.showMsg(UUtils.getString(R.string.请再试一次));
-                                    mingLShowDialog.dismiss();
+                                    if (commitString == null || commitString.isEmpty()) {
+                                        UUtils.showMsg(UUtils.getString(R.string.命令不能为空yy));
+                                        return;
+                                    }
+
+
+                                    try {
+                                        String commi22 = SaveData.getData("commi22");
+                                        MinLBean minLBean = new Gson().fromJson(commi22, MinLBean.class);
+                                        List<MinLBean.DataNum> list = minLBean.data.list;
+
+
+                                        MinLBean.DataNum dataNum = list.get(position);
+
+                                        dataNum.name = mingLShowDialog.name_edit.getText().toString();
+                                        dataNum.value = mingLShowDialog.edit_text.getText().toString();
+                                        dataNum.isChecked = mingLShowDialog.isChecked;
+
+                                        list.remove(position);
+                                        list.add(position, dataNum);
+
+                                        String s = new Gson().toJson(minLBean);
+                                        SaveData.saveData("commi22", s);
+                                        UUtils.showMsg(UUtils.getString(R.string.修改成功));
+                                        if (mSXListener != null) {
+                                            mSXListener.sx();
+                                        }
+                                        mingLShowDialog.dismiss();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        UUtils.showMsg(UUtils.getString(R.string.请再试一次));
+                                        mingLShowDialog.dismiss();
+                                    }
+
+
                                 }
-
-
-                            }
-                        });
+                            });
 
 
                      /*
                         minglingDialog.dismiss();*/
-                    }
-                });
-
-                minglingDialog.delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        String commi22 = SaveData.getData("commi22");
-                        MinLBean minLBean = new Gson().fromJson(commi22, MinLBean.class);
-                        List<MinLBean.DataNum> list = minLBean.data.list;
-
-
-                        list.remove(position);
-
-
-                        String s = new Gson().toJson(minLBean);
-                        SaveData.saveData("commi22", s);
-
-
-                        UUtils.showMsg(UUtils.getString(R.string.删除成功));
-                        if(mSXListener!= null){
-                            mSXListener.sx();
                         }
-                        minglingDialog.dismiss();
-                    }
-                });
+                    });
+
+                    minglingDialog.delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
 
-                return true;
-            }
-        });
+                            String commi22 = SaveData.getData("commi22");
+                            MinLBean minLBean = new Gson().fromJson(commi22, MinLBean.class);
+                            List<MinLBean.DataNum> list = minLBean.data.list;
+
+
+                            list.remove(position);
+
+
+                            String s = new Gson().toJson(minLBean);
+                            SaveData.saveData("commi22", s);
+
+
+                            UUtils.showMsg(UUtils.getString(R.string.删除成功));
+                            if (mSXListener != null) {
+                                mSXListener.sx();
+                            }
+                            minglingDialog.dismiss();
+                        }
+                    });
+
+
+                    return true;
+                }
+            });
+        }
     }
 
     @Override

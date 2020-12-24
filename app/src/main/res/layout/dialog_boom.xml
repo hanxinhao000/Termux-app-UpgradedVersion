@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/color_48baf3"
+    android:orientation="vertical">
+
+
+    <main.java.com.termux.utils.CustomTextView
+        android:layout_width="match_parent"
+        android:background="@color/color_48baf3"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:id="@+id/title"
+        android:text="标题1"
+        android:textColor="@color/color_FFFFFF"
+        android:textSize="12sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/recyclerView"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"/>
+</LinearLayout>

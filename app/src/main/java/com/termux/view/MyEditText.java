@@ -3,6 +3,7 @@ package main.java.com.termux.view;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 /**

@@ -364,7 +364,7 @@ public class TermuxFloatService extends Service {
         final String externalStorageEnv = "EXTERNAL_STORAGE=" + System.getenv("EXTERNAL_STORAGE");
         final String ps1Env = "PS1=$ ";
         final String ldEnv = "LD_LIBRARY_PATH=" + TermuxFloatService.PREFIX_PATH + "/lib";
-        final String langEnv = "LANG=zh_CN.UTF-8";
+        final String langEnv = "LANG=en_US.UTF-8";
         final String pathEnv = "PATH=" + TermuxFloatService.PREFIX_PATH + "/bin:" + TermuxFloatService.PREFIX_PATH + "/bin/applets";
         String[] env = new String[]{termEnv, homeEnv, prefixEnv, ps1Env, ldEnv, langEnv, pathEnv, androidRootEnv, androidDataEnv, externalStorageEnv};
 
