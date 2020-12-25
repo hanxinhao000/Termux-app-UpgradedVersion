@@ -153,6 +153,8 @@ import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.app.dialog.BoomListDialog;
 import main.java.com.termux.app.dialog.BoomWindow;
 import main.java.com.termux.app.dialog.FileInstallServerListDialog;
+import main.java.com.termux.app.dialog.FileListQemuDialog;
+import main.java.com.termux.app.dialog.LoadingDialog;
 import main.java.com.termux.app.dialog.MingLShowDialog;
 import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
@@ -206,9 +208,16 @@ public class TermuxActivity2 extends TermuxActivity {
     private LinearLayout xiezai_server_df;
     private LinearLayout install_server_fwq;
     private LinearLayout download_server_fdgdfg;
+    private LinearLayout moren_qemu_ll;
+    private LinearLayout qemu_files_install;
+    private LinearLayout un_install_qemu;
+    private LinearLayout download_qemu_bd;
     private View server_zhengmian;
     private View server_fanmian;
+    private View qemu_huanjing;
     private ImageView zhengmian_viewcvcv;
+    private RelativeLayout dakai_qemu_huanj;
+    private RelativeLayout qemu_install_jiaoben;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -220,6 +229,13 @@ public class TermuxActivity2 extends TermuxActivity {
         install_server_fwq = findViewById(R.id.install_server_fwq);
         xiezai_server_df = findViewById(R.id.xiezai_server_df);
         download_server_fdgdfg = findViewById(R.id.download_server_fdgdfg);
+        qemu_huanjing = findViewById(R.id.qemu_huanjing);
+        dakai_qemu_huanj = findViewById(R.id.dakai_qemu_huanj);
+        moren_qemu_ll = findViewById(R.id.moren_qemu_ll);
+        qemu_files_install = findViewById(R.id.qemu_files_install);
+        un_install_qemu = findViewById(R.id.un_install_qemu);
+        download_qemu_bd = findViewById(R.id.download_qemu_bd);
+        qemu_install_jiaoben = findViewById(R.id.qemu_install_jiaoben);
 
         onClickTermux();
     }
@@ -230,10 +246,423 @@ public class TermuxActivity2 extends TermuxActivity {
     private void onClickTermux(){
 
         File file = new File(Environment.getExternalStorageDirectory(), "/xinhao/server");
+        File file1 = new File(Environment.getExternalStorageDirectory(), "/xinhao/qemu");
+        File file2 = new File(Environment.getExternalStorageDirectory(), "/xinhao/share");
 
         if(!file.exists()){
             file.mkdirs();
         }
+
+        if(!file1.exists()){
+            file1.mkdirs();
+        }
+
+        if(!file2.exists()){
+            file2.mkdirs();
+        }
+        qemu_install_jiaoben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+                writerFile("qemu.sh",new File("/data/data/com.termux/files/home/qemu.sh"));
+
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("cd ~ \n");
+                mTerminalView.sendTextToTerminal("chmod 777 qemu.sh \n");
+                mTerminalView.sendTextToTerminal("./qemu.sh \n");
+
+            }
+        });
+
+        download_qemu_bd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog.Builder ab = new AlertDialog.Builder(TermuxActivity2.this);
+
+                ab.setTitle(UUtils.getString(R.string.提示));
+
+                /**
+                 *
+                 * 链接: https://pan.baidu.com/s/1_0vhcTNGoCpo-J_y2lWS2g 提取码: 7hm2 复制这段内容后打开百度网盘手机App，操作更方便哦
+                 * --来自百度网盘超级会员v3的分享
+                 *
+                 */
+
+                ab.setMessage(UUtils.getString(R.string.提取码dsf8520520));
+
+                ab.setPositiveButton(UUtils.getString(R.string.前往), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ab.create().dismiss();
+
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("https://pan.baidu.com/s/1_0vhcTNGoCpo-J_y2lWS2g"));//Url 就是你要打开的网址
+                        intent.setAction(Intent.ACTION_VIEW);
+                        startActivity(intent); //启动浏览器
+
+                    }
+                });
+
+                ab.setNegativeButton(UUtils.getString(R.string.取消), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ab.create().dismiss();
+                    }
+                });
+
+                ab.show();
+            }
+        });
+
+
+        un_install_qemu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.你确定要卸载qemu以及所有插件));
+                textShowDialog.start.setText(UUtils.getString(R.string.卸载));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                        File file2 = new File("/data/data/com.termux/files/usr/.unInstallQemu.ini");
+
+                        if(!file2.exists()){
+
+                            UUtils.showMsg( UUtils.getString(R.string.没有找到qemu的卸载配置文件));
+                            return;
+                        }
+
+                        String fileString = UUtils.getFileString(file2);
+
+
+                        deleteFile1(fileString,file2);
+
+                    }
+                });
+
+                textShowDialog.commit.setText(UUtils.getString(R.string.取消));
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                    }
+                });
+
+
+
+
+            }
+        });
+
+        qemu_files_install.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                TextShowDialog textShowDialog1 = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog1.show();
+                textShowDialog1.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog1.edit_text.setText(UUtils.getString(R.string.你确定要提示sdf以及所有插件));
+                textShowDialog1.start.setText(UUtils.getString(R.string.好的));
+                textShowDialog1.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog1.dismiss();
+
+
+                        //pkg install x11-repo unstable-repo qemu-system-x86* -y
+                        if(new File("/data/data/com.termux/files/usr/bin/qemu-system-x86_64").exists() && !(new File("/data/data/com.termux/files/usr/.unInstallQemu.ini").exists())){
+
+                            TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                            textShowDialog.show();
+                            textShowDialog.edit_text.setText(UUtils.getString(R.string.检测到你安装termux默认的));
+                            textShowDialog.start.setText(UUtils.getString(R.string.卸载));
+                            textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    textShowDialog.dismiss();
+                                    mTerminalView.sendTextToTerminal("pkg uninstall x11-repo unstable-repo qemu-system-x86* -y \n");
+                                }
+                            });
+                            textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                            textShowDialog.commit.setText(UUtils.getString(R.string.强制安装));
+                            textShowDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                @Override
+                                public void onCancel(DialogInterface dialog) {
+
+                                    textShowDialog.dismiss();
+
+                                    FileListQemuDialog fileListQemuDialog = new FileListQemuDialog(TermuxActivity2.this);
+                                    fileListQemuDialog.show();
+                                    fileListQemuDialog.setTitleText(UUtils.getString(R.string.请选择一个qemu安装文件));
+                                    fileListQemuDialog.setOnItemFileClickListener(new FileListQemuDialog.OnItemFileClickListener() {
+                                        @Override
+                                        public void onItemClick(File file) {
+                                            // UUtils.showMsg("选中的文件:" + file.getAbsolutePath());
+                                            fileListQemuDialog.dismiss();
+                                            StringBuilder stringBuilder = new StringBuilder();
+                                            LoadingDialog loadingDialog = new LoadingDialog(TermuxActivity2.this);
+                                            loadingDialog.show();
+
+                                            new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    ZipUtils.unZip(file, "/data/data/com.termux/files/usr/", new ZipUtils.ZipNameListener() {
+                                                        @Override
+                                                        public void zip(String FileName, int size, int position) {
+
+                                                            runOnUiThread(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    stringBuilder.append(FileName).append(",");
+
+                                                                    UUtils.showLog("解压:" + FileName);
+                                                                    loadingDialog.msg_dialog.setText(FileName);
+                                                                }
+                                                            });
+
+                                                        }
+
+                                                        @Override
+                                                        public void complete() {
+
+
+                                                            runOnUiThread(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    String string = stringBuilder.toString();
+                                                                    UUtils.showLog("卸载的文件:" + string);
+                                                                    UUtils.showMsg(UUtils.getString(R.string.安装qemu完成sdfsd));
+
+
+
+
+                                                                    UUtils.setFileString(new File("/data/data/com.termux/files/usr/.unInstallQemu.ini"),string);
+                                                                    loadingDialog.dismiss();
+                                                                }
+                                                            });
+                                                            File file2 = new File(("/data/data/com.termux/files/usr/bin/qemu-system-ppc"));
+                                                            if(!(file2.exists())){
+                                                                writerFilePpc(file2);
+                                                            }
+
+                                                            Runtime runtime = Runtime.getRuntime();
+
+                                                            try {
+                                                                runtime.exec("chmod 0755 " + file2.getAbsolutePath());
+                                                            } catch (IOException e) {
+                                                                e.printStackTrace();
+                                                            }
+
+
+                                                        }
+
+                                                        @Override
+                                                        public void progress(long size, long position) {
+
+                                                        }
+                                                    });
+                                                }
+                                            }).start();
+
+                                        }
+                                    });
+
+                                }
+                            });
+                            textShowDialog.cancel.setText(UUtils.getString(R.string.取消));
+                            textShowDialog.cancel.setVisibility(View.VISIBLE);
+                            textShowDialog.setCancelable(false);
+                            textShowDialog.diyige_ll.setVisibility(View.VISIBLE);
+                            textShowDialog.cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    textShowDialog.dismiss();
+                                }
+                            });
+
+
+                        }else{
+
+                            File file3 = new File("/data/data/com.termux/files/usr/.unInstallQemu.ini");
+                            if(file3.exists()){
+                                UUtils.showMsg(UUtils.getString(R.string.请先卸载之前的qemu));
+                                return;
+                            }
+
+                            FileListQemuDialog fileListQemuDialog = new FileListQemuDialog(TermuxActivity2.this);
+                            fileListQemuDialog.show();
+                            fileListQemuDialog.setTitleText(UUtils.getString(R.string.请选择一个qemu安装文件));
+                            fileListQemuDialog.setOnItemFileClickListener(new FileListQemuDialog.OnItemFileClickListener() {
+                                @Override
+                                public void onItemClick(File file) {
+                                    // UUtils.showMsg("选中的文件:" + file.getAbsolutePath());
+                                    fileListQemuDialog.dismiss();
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    LoadingDialog loadingDialog = new LoadingDialog(TermuxActivity2.this);
+                                    loadingDialog.show();
+
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            ZipUtils.unZip(file, "/data/data/com.termux/files/usr/", new ZipUtils.ZipNameListener() {
+                                                @Override
+                                                public void zip(String FileName, int size, int position) {
+
+                                                    runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            stringBuilder.append(FileName).append(",");
+
+                                                            UUtils.showLog("解压:" + FileName);
+                                                            loadingDialog.msg_dialog.setText(FileName);
+                                                        }
+                                                    });
+
+                                                }
+
+                                                @Override
+                                                public void complete() {
+
+
+                                                    runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            String string = stringBuilder.toString();
+                                                            UUtils.showLog("卸载的文件:" + string);
+                                                            UUtils.showMsg(UUtils.getString(R.string.安装qemu完成sdfsd));
+
+
+
+
+                                                            UUtils.setFileString(new File("/data/data/com.termux/files/usr/.unInstallQemu.ini"),string);
+                                                            loadingDialog.dismiss();
+                                                        }
+                                                    });
+                                                    File file2 = new File(("/data/data/com.termux/files/usr/bin/qemu-system-ppc"));
+                                                    if(!(file2.exists())){
+                                                        writerFilePpc(file2);
+                                                    }
+
+                                                    Runtime runtime = Runtime.getRuntime();
+
+                                                    try {
+                                                        runtime.exec("chmod 0755 " + file2.getAbsolutePath());
+                                                    } catch (IOException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+
+                                                }
+
+                                                @Override
+                                                public void progress(long size, long position) {
+
+                                                }
+                                            });
+                                        }
+                                    }).start();
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                });
+
+                textShowDialog1.commit.setText(UUtils.getString(R.string.取消));
+                textShowDialog1.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog1.dismiss();
+                    }
+                });
+
+
+
+
+
+            }
+        });
+
+        moren_qemu_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                File file2 = new File("/data/data/com.termux/files/usr/.unInstallQemu.ini");
+                if(file2.exists()){
+                    UUtils.showMsg(UUtils.getString(R.string.请先卸载之前的qemu));
+                    return;
+                }
+
+                LoadingDialog loadingDialog = new LoadingDialog(TermuxActivity2.this);
+                loadingDialog.show();
+                loadingDialog.setCancelable(false);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        writerFile(new File(("/data/data/com.termux/files/usr/bin/qemu-system-ppc")));
+
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismiss();
+                                TermuxActivity.mTerminalView.sendTextToTerminal("cd ~ && cd .. && cd usr && cd bin && chmod 777 qemu-system-ppc && cd ~\n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("pkg update -y && pkg install x11-repo unstable-repo -y && pkg install qemu-utils qemu-system-x86_64-headless  qemu-system-i386-headless -y &&  termux-setup-storage\n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y\n");
+
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y\n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y\n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y\n");
+                                TermuxActivity.mTerminalView.sendTextToTerminal("y\n");
+                                Toast.makeText(TermuxActivity2.this, UUtils.getString(R.string.默认qemu正在安装dsf), Toast.LENGTH_SHORT).show();
+
+                                getDrawer().closeDrawer(Gravity.LEFT);
+
+                            }
+                        });
+
+                    }
+                }).start();
+
+
+
+            }
+        });
+        dakai_qemu_huanj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(qemu_huanjing.getVisibility() == View.GONE){
+                    qemu_huanjing.setVisibility(View.VISIBLE);
+                }else{
+                    qemu_huanjing.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
 
         jinru_mysql.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -440,5 +869,100 @@ public class TermuxActivity2 extends TermuxActivity {
                 file.delete();
             }
         }
+    }
+
+
+    //写出文件
+    private void writerFile(File mFile) {
+
+        try {
+            InputStream open = getResources().openRawResource(R.raw.qemu_system_ppc);
+
+            int len = 0;
+            byte[] lll = new byte[1024];
+
+            if (!mFile.exists()) {
+                mFile.createNewFile();
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(mFile);
+
+            while ((len = open.read(lll)) != -1) {
+                fileOutputStream.write(lll,0,len);
+            }
+
+            fileOutputStream.flush();
+            open.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+
+    private void deleteFile1(String s,File file){
+
+
+        LoadingDialog loadingDialog = new LoadingDialog(TermuxActivity2.this);
+        loadingDialog.show();
+        try {
+            String[] split = s.split(",");
+
+
+            for (int i = 0; i < split.length; i++) {
+
+
+                boolean delete = new File("/data/data/com.termux/files/usr/" + split[i]).delete();
+
+                loadingDialog.msg_dialog.setText(UUtils.getString(R.string.删除dfgdfg) +" "+ split[i] +delete);
+                UUtils.showLog(UUtils.getString(R.string.删除dfgdfg) +" "+ split[i] + delete);
+
+            }
+
+            //
+
+            UUtils.showMsg(UUtils.getString(R.string.卸载完成sdf43420));
+
+            loadingDialog.dismiss();
+
+            file.delete();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            file.delete();
+            UUtils.showMsg(UUtils.getString(R.string.错误的qemu卸载配置文件));
+            return;
+        }
+
+
+    }
+
+    //写出文件
+    private void writerFilePpc(File mFile) {
+
+        try {
+            InputStream open = getResources().openRawResource(R.raw.qemu_system_ppc);
+
+            int len = 0;
+            byte[] lll = new byte[1024];
+
+            if (!mFile.exists()) {
+                mFile.createNewFile();
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(mFile);
+
+            while ((len = open.read(lll)) != -1) {
+                fileOutputStream.write(lll,0,len);
+            }
+
+            fileOutputStream.flush();
+            open.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+
+        }
+
     }
 }

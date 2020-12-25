@@ -2,6 +2,7 @@ package main.java.com.termux.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -77,6 +78,21 @@ public class UUtils {
 
         mContext = mContextZ;
         mHandler = mHandlerZ;
+
+    }
+
+    public static void copyToClip(String msg){
+
+
+        try{
+
+            ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+
+            clipboardManager.setText(msg);
+            UUtils.showMsg(UUtils.getString(R.string.复制成功));
+        }catch (Exception e){
+            UUtils.showMsg(UUtils.getString(R.string.复制失败));
+        }
 
     }
 

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="wrap_content"
+            android:text="@string/qemu环境功能fgf"
+            android:textStyle="bold"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_height="wrap_content"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:paddingTop="5dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="5dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_553E3E3E"
+        app:cardCornerRadius="3dp"
+        android:layout_height="wrap_content">
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="vertical"
+           android:layout_height="wrap_content">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="horizontal"
+               android:layout_height="wrap_content">
+
+
+
+
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="15dp"
+                   android:id="@+id/moren_qemu_ll"
+                   android:gravity="center"
+                   android:orientation="vertical">
+
+                   <RelativeLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+
+                       <ImageView
+                           android:layout_width="25dp"
+                           android:layout_height="25dp"
+                           android:layout_centerVertical="true"
+                           android:layout_centerHorizontal="true"
+                           android:src="@drawable/moren_qemu" />
+                       <ImageView
+                           android:layout_width="40dp"
+                           android:layout_height="40dp"
+                           android:layout_centerVertical="true"
+                           android:visibility="gone"
+                           android:layout_centerHorizontal="true"
+                           android:src="@drawable/jinzhi_termux" />
+
+                   </RelativeLayout>
+
+
+                   <main.java.com.termux.utils.CustomTextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginBottom="20dp"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:text="@string/安装默认的qemu"
+                       android:textColor="#fff"
+                       android:textSize="13sp"
+                       android:textStyle="bold" />
+
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="15dp"
+                   android:visibility="visible"
+                   android:id="@+id/qemu_files_install"
+                   android:gravity="center"
+                   android:orientation="vertical">
+
+                   <ImageView
+                       android:layout_width="25dp"
+                       android:layout_height="25dp"
+                       android:src="@drawable/emmc_qemu" />
+
+
+                   <main.java.com.termux.utils.CustomTextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginBottom="20dp"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:text="@string/从存储安装dfgd"
+                       android:textColor="#fff"
+                       android:textSize="13sp"
+                       android:textStyle="bold" />
+
+
+               </LinearLayout>
+
+
+
+
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="horizontal"
+               android:visibility="visible"
+               android:layout_height="wrap_content">
+
+
+
+
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="15dp"
+                   android:id="@+id/un_install_qemu"
+                   android:gravity="center"
+                   android:visibility="visible"
+                   android:orientation="vertical">
+
+                   <RelativeLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+
+                       <ImageView
+                           android:layout_width="25dp"
+                           android:layout_height="25dp"
+                           android:layout_centerVertical="true"
+                           android:layout_centerHorizontal="true"
+                           android:src="@drawable/xiezai" />
+                       <ImageView
+                           android:layout_width="40dp"
+                           android:layout_height="40dp"
+                           android:layout_centerVertical="true"
+                           android:visibility="gone"
+                           android:layout_centerHorizontal="true"
+                           android:src="@drawable/jinzhi_termux" />
+
+                   </RelativeLayout>
+
+
+                   <main.java.com.termux.utils.CustomTextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginBottom="20dp"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:text="@string/源码编译安装"
+                       android:textColor="#fff"
+                       android:textSize="13sp"
+                       android:textStyle="bold" />
+
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="15dp"
+                   android:visibility="visible"
+                   android:id="@+id/download_qemu_bd"
+                   android:gravity="center"
+                   android:orientation="vertical">
+
+                   <ImageView
+                       android:layout_width="25dp"
+                       android:layout_height="25dp"
+                       android:src="@drawable/xiazaifuwuqi" />
+
+
+                   <main.java.com.termux.utils.CustomTextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginBottom="20dp"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:text="@string/下载qemu"
+                       android:textColor="#fff"
+                       android:textSize="13sp"
+                       android:textStyle="bold" />
+
+
+               </LinearLayout>
+
+
+
+
+
+           </LinearLayout>
+
+
+
+
+
+       </LinearLayout>
+
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

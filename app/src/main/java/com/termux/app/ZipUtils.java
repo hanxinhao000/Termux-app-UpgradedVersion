@@ -153,7 +153,7 @@ public class ZipUtils {
 
                         Runtime runtime = Runtime.getRuntime();
 
-                        runtime.exec("chmod 0700 " + targetFile.getAbsolutePath());
+                        runtime.exec("chmod 0755 " + targetFile.getAbsolutePath());
 
                     }
                 } catch (Exception e) {

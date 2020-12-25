@@ -474,7 +474,7 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
     private long mSize = 0;
 
     //写入目录
-    private void writerFile() {
+    public void writerFile() {
         mSize = 0;
 
         main.java.com.termux.app.FileWriterUtils.start(this, new main.java.com.termux.app.ZipUtils.ZipNameListener() {
@@ -9891,7 +9891,7 @@ other_mod
     }
 
     //写出文件
-    private void writerFile(String name, File mFile) {
+    public void writerFile(String name, File mFile) {
 
         try {
             InputStream open = getAssets().open(name);
@@ -9918,7 +9918,7 @@ other_mod
 
     }
 
-    private void writerFile(String name, File mFile, int size) {
+    public void writerFile(String name, File mFile, int size) {
 
         try {
             InputStream open = getAssets().open(name);
@@ -11435,7 +11435,7 @@ other_text;
 
 
     //写出文件
-    private void writerFileRaw(File mFile,int id) {
+    public void writerFileRaw(File mFile,int id) {
 
         try {
             InputStream open = getResources().openRawResource(id);

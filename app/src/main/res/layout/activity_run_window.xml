@@ -253,6 +253,8 @@
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
 
+
+
         <main.java.com.termux.utils.CustomTextView
             android:layout_width="match_parent"
             android:background="#5E5E5E"
@@ -1037,6 +1039,17 @@
 
 
       </LinearLayout>
+
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/copy_commit"
+            android:layout_marginLeft="10dp"
+            android:text="@string/提示dsfsdfmmm"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

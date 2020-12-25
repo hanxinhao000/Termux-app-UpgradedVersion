@@ -259,8 +259,8 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.103.106]</string>
-    <string name="云端版本552">云端版本:[0.103.106]</string>
+    <string name="本地版本552">本地版本:[0.103.107]</string>
+    <string name="云端版本552">云端版本:[0.103.107]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -397,8 +397,8 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.106]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.106]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.103.107]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.103.107]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -708,7 +708,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.103.106</string>
+    <string name="当前版本ffg">当前版本:0.103.107</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1131,7 +1131,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="WEB服务器_p">Utermux-PHP WEB服务器</string>
     <string name="WEB服务器正在运行中yy">正在运行中</string>
     <string name="进入UTermuxMysql">进入UT Mysql</string>
-    <string name="UTphp服务器">UT_PHP服务器</string>
+    <string name="UTphp服务器">轻量服务器</string>
     <string name="服务器开启梵蒂冈地方">服务器开启/关闭</string>
     <string name="命令介绍pppll">
         项目开源地址:https://github.com/DroidPHP/DroidPHP\n
@@ -1154,6 +1154,85 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="没有找到命令dfd">没有找到命令,请在左侧栏【自定义命令】创建</string>
     <string name="命令出错sdsd">命令出错,请在左侧栏修复</string>
     <string name="请输入您要添加的命令fgfdfd">请输入您要添加的命令\n如过你想连续执行\n请用&amp;&amp;隔开,例如:\npkg update &amp;&amp;\npkg install vim &amp;&amp;\npkg install git</string>
+
+
+
+
+
+
+
+    <string name="打开项目地址sdfsdfsdf">打开开源项目地址</string>
+    <string name="我知不道选哪个df">我知不道选哪个(教程)</string>
+    <string name="打开路径dfgdf">请输入回车键,然后再次进入服务器</string>
+    <string name="安装服务器dfd">安装服务器</string>
+    <string name="卸载服务器">卸载服务器</string>
+    <string name="下载服务器dfdf">下载内置服务器</string>
+    <string name="切换到反面">启动服务器</string>
+    <string name="卸载完成">卸载完成</string>
+    <string name="正在安装">正在安装,请稍后</string>
+    <string name="安装服务器完成fg">安装服务器完成,请点击【启动服务器】</string>
+    <string name="请先安装环境后">请先安装环境后,在进入</string>
+    <string name="当前目录下没有文件dsfsd">当前目录下【内部存储/xinhao/server】没有安装文件</string>
+    <string name="你确定要删除dfgd">你确定要卸载内置服务器吗？</string>
+    <string name="提取码sdfsdfcxvn">提取码:wpq2</string>
+    <string name="qemu环境管理">QEMU环境管理</string>
+    <string name="管理你的qemu环境">管理你的qemu环境安装、覆盖、等设置</string>
+    <string name="qemu环境功能fgf">QEMU环境功能(proot执行)</string>
+    <string name="安装默认的qemu">安装termux默认的</string>
+    <string name="从存储安装dfgd">存储安装</string>
+    <string name="源码编译安装">卸载qemu</string>
+    <string name="默认qemu正在安装dsf">默认qemu正在安装,请等待安装完成...</string>
+    <string name="当前目录下没有qemu安装文件">当前目录下没有qemu安装文件【内部存储/xinhao/qemu】</string>
+    <string name="请选择一个qemu安装文件">请选择一个qemu安装文件</string>
+    <string name="安装qemu完成sdfsd">安装qemu完成,请点击【模拟windows板块】进行下一步\n请在proot环境当中运行！</string>
+    <string name="没有找到qemu的卸载配置文件">没有找到qemu的卸载配置文件</string>
+    <string name="错误的qemu卸载配置文件">错误的qemu卸载配置文件</string>
+    <string name="删除dfgdfg">卸载:</string>
+    <string name="卸载完成sdf43420">卸载完成</string>
+    <string name="你确定要卸载qemu以及所有插件">你确定要卸载qemu以及所有插件?\n
+        注意：该文件安装可能会覆盖重要系统文件\n
+        卸载后你的系统可能会被破坏!\n
+        建议重新创建一个新的linux系统在执行该选项\n
+
+
+    </string>
+
+    <string name="你确定要提示sdf以及所有插件">重要提示 \n
+
+
+        注意：该文件安装可能会覆盖重要系统文件\n
+        卸载后你的系统可能会被破坏!\n
+        建议重新创建一个新的linux系统在执行该选项\n
+    </string>
+    <string name="下载qemu">下载qemu</string>
+    <string name="提取码dsf8520520">提取码:7hm2</string>
+    <string name="请先卸载之前的qemu">请先卸载之前的qemu,才能再次安装</string>
+    <string name="qemu环境df">qemu环境</string>
+    <string name="qemu脚本安装">qemu脚本模拟Windows</string>
+    <string name="qemu脚本安装简介dfg">使用脚本安装启动windows (不稳定,某些机型可能不支持)</string>
+    <string name="强制安装">强制安装</string>
+    <string name="复制失败">复制失败</string>
+    <string name="复制成功">复制成功</string>
+    <string name="提示dsfsdfmmm">
+        可能会影响性能,或进入不了系统!!\n
+        可能会影响性能,或进入不了系统!\n
+        如果开启慢，请删除掉\n
+        -drive file=fat:rw:/home/storage/shared/xinhao/share\n
+        与虚拟机交互文件放入【内部存储/xinhao/share】目录下\n
+        复制新的文件必须重启虚拟机才能看见文件!!\n
+        复制新的文件必须重启虚拟机才能看见文件!!\n
+        提示:如需要共享文件(虚拟机交互文件)默认已加入\n
+        请在 -vnc前边加入:\n
+        -drive file=fat:rw:/sdcard/xinhao/share\n
+        命令,长按可复制该指令
+    </string>
+    <string name="检测到你安装termux默认的">
+        检测到你安装termux默认的termux Qemu,请卸载后重试\n
+        注意！！！强制安装可能会损坏你当前的termux系统!\n
+        注意！！！强制安装可能会损坏你当前的termux系统!\n
+        注意！！！强制安装可能会损坏你当前的termux系统!\n
+    </string>
+
 
 
 
