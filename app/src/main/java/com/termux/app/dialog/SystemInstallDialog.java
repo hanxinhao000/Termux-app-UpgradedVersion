@@ -481,6 +481,71 @@ public class SystemInstallDialog extends BaseDialogCentre {
                     }
                     activity.runOnUiThread(whenDone);
 
+                    File file3 = new File(UUtils.getContext().getFilesDir().getPath(),"/usr/bin/files_mulu");
+                    if(!file3.exists()){
+                        writerFile("files_mulu",file3);
+                        Os.chmod(file3.getAbsolutePath(), 0700);
+                    }
+
+
+
+                    try {
+                        File file = new File(UUtils.getContext().getFilesDir().getPath(),"/usr/bin/XINHAO_HAN_LEFT");
+                        File file1 = new File(UUtils.getContext().getFilesDir().getPath(),"/usr/bin/XINHAO_HAN_RIGHT");
+                        if(!file.exists()) {
+                            writerFile("XINHAO_HAN_LEFT", file);
+                            Os.chmod(file.getAbsolutePath(), 0700);
+                        }
+                        if(!file1.exists()){
+                            writerFile("XINHAO_HAN_RIGHT",file1);
+                            Os.chmod(file1.getAbsolutePath(), 0700);
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+                    File file32 = new File(UUtils.getContext().getFilesDir().getPath(),"/usr/bin/XINHAO_HAN_TextUT");
+                    if(!(file32.exists())) {
+
+
+                        if (new File(UUtils.getContext().getFilesDir().getPath(),"/usr/bin/pkg").exists()) {
+
+              /*  if (!file3.exists()) {
+                    file3.mkdirs();
+                }*/
+
+                            try {
+                                InputStream xinhao_han_sms = UUtils.getContext().getAssets().open("XINHAO_HAN_TextUT");
+
+                                int len = 0;
+                                file32.createNewFile();
+                                FileOutputStream fileOutputStream = new FileOutputStream(file32);
+                                while ((len = xinhao_han_sms.read()) != -1) {
+                                    fileOutputStream.write(len);
+                                }
+
+                                fileOutputStream.flush();
+                                fileOutputStream.close();
+
+                                Os.chmod(file32.getAbsolutePath(), 0700);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+
+                            }
+                        }
+
+
+
+                    }
+
+
+
                 }catch (Exception e){
 
 
@@ -1007,6 +1072,35 @@ public class SystemInstallDialog extends BaseDialogCentre {
         if (!directory.isDirectory() && !directory.mkdirs()) {
             throw new RuntimeException("Unable to create directory: " + directory.getAbsolutePath());
         }
+    }
+
+    //写出文件
+    public void writerFile(String name, File mFile) {
+
+        try {
+            InputStream open = UUtils.getContext().getAssets().open(name);
+
+            int len = 0;
+
+            if (!mFile.exists()) {
+                mFile.createNewFile();
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(mFile);
+
+            while ((len = open.read()) != -1) {
+                fileOutputStream.write(len);
+            }
+
+            fileOutputStream.flush();
+            open.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            Log.e("XINHAO_HAN", "出错了: " + e.toString() );
+        }
+
     }
 
 }

@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#000"
                 android:textSize="18sp"
-                android:text="当前版本:0.103.107"
+                android:text="当前版本:0.103.108"
                 android:layout_height="wrap_content" />
 
             <main.java.com.termux.utils.CustomTextView

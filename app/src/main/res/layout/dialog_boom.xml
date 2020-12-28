@@ -1,26 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_48baf3"
     android:orientation="vertical">
 
 
-    <main.java.com.termux.utils.CustomTextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/color_48baf3"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:id="@+id/title"
-        android:text="标题1"
-        android:textColor="@color/color_FFFFFF"
-        android:textSize="12sp" />
+        android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_marginTop="5dp"
-        android:id="@+id/recyclerView"
-        android:layout_height="wrap_content"/>
+
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="match_parent"
+            android:background="@color/color_48baf3"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:id="@+id/title"
+            android:text="@string/自动出错kkkl"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="12sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/qiehuan_mingl_zidong_ll"
+            android:id="@+id/recyclerView"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/qiehuan_mingl_zidong_ll"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+
+                android:id="@+id/qiehuan_mingl_zidong"
+
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/color_553E3E3E"
+                app:cardCornerRadius="3dp"
+                android:layout_height="wrap_content">
+
+                <main.java.com.termux.utils.CustomTextView
+                    android:layout_width="match_parent"
+                    android:background="@color/color_48baf3"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/自动命令sd"
+
+                    android:textColor="@color/color_FFFFFF"
+                    android:textSize="12sp" />
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <main.java.com.termux.utils.CustomTextView
+                android:layout_width="match_parent"
+                android:background="@color/color_48baf3"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:id="@+id/qie_huan_string"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:text="@string/当前为自动"
+
+                android:textColor="@color/color_FFFFFF"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="5dp"/>

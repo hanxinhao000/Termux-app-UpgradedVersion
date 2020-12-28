@@ -263,20 +263,39 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
             .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION).build()).build();
     int mBellSoundId;
 
+    public interface FilesMuListener{
+
+        void mulu(String path);
+
+    }
+
+    private FilesMuListener mFilesMuListener;
+    public void serFilesMuListener(FilesMuListener mFilesMuListener){
+        this.mFilesMuListener = mFilesMuListener;
+    }
+
     private final BroadcastReceiver mBroadcastReceiever = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (mIsVisible) {
 
                 String whatToReload = intent.getStringExtra(RELOAD_STYLE_ACTION);
-                //UUtils.showMsg("收到广播...:" + whatToReload);
+              //  UUtils.showMsg("收到广播...:" + whatToReload);
                 if ("storage".equals(whatToReload)) {
                     if (ensureStoragePermissionGranted())
                         main.java.com.termux.app.TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
                     return;
                 }
 
-                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.contains("/data/data/")){
+                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.startsWith("filesShell")){
+
+                    if(mFilesMuListener!= null){
+                        mFilesMuListener.mulu(whatToReload);
+                    }
+                    return;
+                }
+
+                if (whatToReload != null && !(whatToReload.isEmpty()) && whatToReload.startsWith("/data/data/")){
                     main.java.com.termux.app.TermuxInstaller.editTextDialog(whatToReload,TermuxActivity.this);
                     return;
                 }
@@ -8122,59 +8141,6 @@ other_mod
         }
 
 
-        try {
-            File file = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_LEFT");
-            File file1 = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_RIGHT");
-            if(!file.exists()) {
-                writerFile("XINHAO_HAN_LEFT", file);
-            }
-            if(!file1.exists()){
-                writerFile("XINHAO_HAN_RIGHT",file1);
-            }
-
-            Runtime.getRuntime().exec("chmod 777 " + file.getAbsolutePath());
-            Runtime.getRuntime().exec("chmod 777 " + file1.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        File file3 = new File("/data/data/com.termux/files/usr/bin/XINHAO_HAN_TextUT");
-        if(!(file3.exists())) {
-
-
-            if (new File("/data/data/com.termux/files/usr/bin/pkg").exists()) {
-
-              /*  if (!file3.exists()) {
-                    file3.mkdirs();
-                }*/
-
-                try {
-                    InputStream xinhao_han_sms = getAssets().open("XINHAO_HAN_TextUT");
-
-                    int len = 0;
-                    file3.createNewFile();
-                    FileOutputStream fileOutputStream = new FileOutputStream(file3);
-                    while ((len = xinhao_han_sms.read()) != -1) {
-                        fileOutputStream.write(len);
-                    }
-
-                    fileOutputStream.flush();
-                    fileOutputStream.close();
-
-                    Runtime.getRuntime().exec("chmod 777 " + file3.getAbsolutePath());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                    Log.e("XINHAO_HAN", "onCreate: " + e.toString());
-                }
-            }
-
-
-
-        }
-
 
         // startActivity(new Intent(this, DownloadActivity.class));
 
@@ -9914,6 +9880,7 @@ other_mod
         } catch (Exception e) {
 
             e.printStackTrace();
+            Log.e("XINHAO_HAN", "出错了: " + e.toString() );
         }
 
     }

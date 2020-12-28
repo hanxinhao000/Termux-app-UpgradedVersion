@@ -664,6 +664,13 @@ public class TermuxActivity2 extends TermuxActivity {
 
 
 
+
+        try {
+            Runtime.getRuntime().exec("chmod 777 /data/data/com.termux/files/usr/bin/files_mulu");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         jinru_mysql.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -835,7 +842,7 @@ public class TermuxActivity2 extends TermuxActivity {
                     public void close() {
                         popupWindow.dismiss();
                     }
-                }));
+                },TermuxActivity2.this,popupWindow));
                 popupWindow.setOutsideTouchable(true);
               //  popupWindow.setAnimationStyle(R.style.Animation);
                 popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
