@@ -253,6 +253,17 @@
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
 
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/警告测dsfsdf"
+            android:textColor="@color/jinggao"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+
 
 
         <main.java.com.termux.utils.CustomTextView

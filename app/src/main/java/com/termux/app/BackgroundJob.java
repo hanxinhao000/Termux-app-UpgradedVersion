@@ -24,7 +24,7 @@ import main.java.com.termux.utils.SaveData;
 /**
  * A background job launched by Termux.
  */
-public final class BackgroundJob {
+public final class BackgroundJob {//XAJ 1004 5927 408
 
     private static final String LOG_TAG = "termux-task";
 
@@ -181,7 +181,8 @@ public final class BackgroundJob {
           //  environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
 
             environment.add("LANG=en_US.UTF-8");
-            environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
+           // environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
+            environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin");
             environment.add("PWD=" + cwd);
             environment.add("TMPDIR=" + TermuxService.PREFIX_PATH + "/tmp");
         }

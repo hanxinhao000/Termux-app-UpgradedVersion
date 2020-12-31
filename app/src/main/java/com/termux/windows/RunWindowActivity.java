@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -378,6 +379,46 @@ public class RunWindowActivity extends AppCompatActivity implements TermuxData.I
 
             }
         });
+
+
+        File fileProot = new File("/data/data/com.termux/files/usr/bin/termux-chroot");
+        File fileWget = new File("/data/data/com.termux/files/usr/bin/wget");
+
+
+
+        if (!fileProot.exists() || !fileWget.exists()) {
+
+
+            AlertDialog.Builder ab = new AlertDialog.Builder(RunWindowActivity.this);
+
+            ab.setTitle(UUtils.getString(R.string.环境不达要求));
+
+            ab.setMessage(UUtils.getString(R.string.你没有安装tyu65t6y5u));
+
+            ab.setNegativeButton(UUtils.getString(R.string.给我安装), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    TermuxActivity.mTerminalView.sendTextToTerminal("pkg in wget proot -y" + "\n");
+                    ab.create().dismiss();
+                    finish();
+                }
+            });
+
+            ab.setPositiveButton(UUtils.getString(R.string.不安装), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ab.create().dismiss();
+                    finish();
+                }
+            });
+            ab.setCancelable(false);
+
+            ab.show();
+
+
+            return;
+        }
+
 
         if(!mFile2.exists()){
             androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this);

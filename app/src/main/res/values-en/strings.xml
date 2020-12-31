@@ -923,8 +923,8 @@ Instead of starting the command itself, delete the [/usr/etc/xinhao_han] file so
     <string name="键盘">The keyboard</string>
     <string name="背景">background</string>
     <string name="公告552">Announcement:</string>
-    <string name="本地版本552">Local version :[0.103.108]</string>
-    <string name="云端版本552">Cloud version :[0.103.108]</string>
+    <string name="本地版本552">Local version :[0.104.108]</string>
+    <string name="云端版本552">Cloud version :[0.104.108]</string>
     <string name="架构">Architecture :[unreadable]</string>
     <string name="IP">IP:[unreadable]</string>
     <string name="系统作者">System the author: [no] DFGDFGDFGFDGFDGDFGFDGDFGDFGSDFGHSFDHSDFGSDFGSDFFGDSFGFSDFGSDFGSDFGSDFGSDFGSDFGSDFG</string>
@@ -1062,8 +1062,8 @@ After decompression :1000 MB
     <string name="备份恢复功能将无法使用">"You have rejected, the backup restore function will not be available!"</string>
     <string name="服务器离线sd5fsd5">"The server is offline, please click [version update] to get it"</string>
     <string name="最新版本d52gdf2g2">"Latest version :[......]"</string>
-    <string name="本地版本sdf2sdf5sd">"Local version :[0.103.108]\n Latest version :[-.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.103.108]\n Latest version :[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"Local version :[0.104.108]\n Latest version :[-.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"Local version :[0.104.108]\n Latest version :[versionName]"</string>
     <string name="最新版本sa5dfsd">"Latest Version :[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"Latest version :[versionName]/ Capacity: String1"</string>
     <string name="你确定要换成官方版本吗">"Are you sure you want to switch to the official version?"</string>
@@ -1373,7 +1373,7 @@ Is it open or not?"</string>
     <string name="恢复成功如果很短">"Restore successfully [if very short (within 10 seconds) may fail, restore], must operate!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"You must restart the APP to use the new recovery system \n or the system will be abnormal! \n Action steps: Retrace Termux and click Termux to re-enter \n remember!!!!!!"</string>
     <string name="出现了一个错误eed">An error has occurred which causes the software to be unable to be restarted. Please restart it manually.</string>
-    <string name="当前版本ffg">Current version :0.103.108</string>
+    <string name="当前版本ffg">Current version :0.104.108</string>
     <string name="当前版本包含ggb">In the current version contains [packets (2.2 GB)] : PHP, mysql, showdoc, VNC, apache2, nginx, gogs version manager (git), nmap...</string>
     <string name="备份当前操作Linuxvvb">Backup current operating Linux[not recommended for general users]</string>
     <string name="点击备份当前linuxllk">"Click back up the current Linux \n backup directory :/sdcard/ Xinhao /system/\n\n Since this is a developer's backup, the error rate is extremely high. \n is not recommended for ordinary users. You can use [Quick Backup]"</string>
@@ -1573,7 +1573,7 @@ Is it open or not?"</string>
     <string name="脚本">The script</string>
     <string name="管理">management</string>
 
-    <string name="云端版本553">"Cloud version :[0.103.108]\n Local version [—. —. —]"</string>
+    <string name="云端版本553">"Cloud version :[0.104.108]\n Local version [—. —. —]"</string>
 
     <string name="终端开机命令">Terminal boot command</string>
     <string name="目前开">At present [on]</string>

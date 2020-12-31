@@ -98,9 +98,10 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
         final MatrixCursor result = new MatrixCursor(projection != null ? projection : DEFAULT_DOCUMENT_PROJECTION);
         final File parent = getFileForDocId(parentDocumentId);
         for (File file : parent.listFiles()) {
-            if (!file.getName().startsWith(".")) {
+      /*      if (!file.getName().startsWith(".")) {
                 includeFile(result, null, file);
-            }
+            }*/
+            includeFile(result, null, file);
         }
         return result;
     }
@@ -186,8 +187,9 @@ public class TermuxDocumentsProvider extends DocumentsProvider {
             } catch (IOException e) {
                 isInsideHome = true;
             }
-            final boolean isHidden = file.getName().startsWith(".");
-            if (isInsideHome && !isHidden) {
+//            final boolean isHidden = file.getName().startsWith(".");
+//            if (isInsideHome && !isHidden) {
+            if (isInsideHome) {
                 if (file.isDirectory()) {
                     Collections.addAll(pending, file.listFiles());
                 } else {
