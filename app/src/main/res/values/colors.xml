@@ -43,6 +43,9 @@
     <color name="md_black_1000">#000000</color>
     <color name="md_white_1000">#ffffff</color>
 
+    <color name="color_10202f">#10202F</color>
+    <color name="color_2E84E6">#2E84E6</color>
+
     <color name="hint_color">#AAA</color>
 
     <color name="back">#e6e5e5</color>
@@ -52,4 +55,5 @@
     <!-- Borderless button colors -->
     <color name="press">#400099CC</color>
     <color name="focus">#800099CC</color>
+
 </resources>

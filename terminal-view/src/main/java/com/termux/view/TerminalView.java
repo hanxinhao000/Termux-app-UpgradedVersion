@@ -48,7 +48,11 @@ import com.termux.terminal.TerminalSession;
 import com.termux.terminal.WcWidth;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import androidx.annotation.RequiresApi;
 
@@ -280,7 +284,7 @@ public final class TerminalView extends View {
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        // Using InputType.NULL is the most correct input type and avoids issues with other hacks.
+/*        // Using InputType.NULL is the most correct input type and avoids issues with other hacks.
         //
         // Previous keyboard issues:
         // https://github.com/termux/termux-packages/issues/25
@@ -291,7 +295,12 @@ public final class TerminalView extends View {
 
         // Note that IME_ACTION_NONE cannot be used as that makes it impossible to input newlines using the on-screen
         // keyboard on Android TV (see https://github.com/termux/termux-app/issues/221).
-        outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;
+        outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;*/
+
+        Properties props = getProperties();
+        if (props.getProperty("enforce-char-based-input", "false").equals("true")) {
+            // Some keyboards seems do not reset the internal state on TYPE_NULL.	            // Some keyboards seems do not reset the internal state on TYPE_NULL.
+        }
 
         return new BaseInputConnection(this, true) {
 
@@ -335,6 +344,37 @@ public final class TerminalView extends View {
         };
     }
 
+
+
+    private Properties getProperties() {
+        File propsFile;
+        Properties props = new Properties();
+        String possiblePropLocations[] = {
+            getContext().getFilesDir() + "/home/.termux/termux.properties",
+            getContext().getFilesDir() + "/home/.config/termux/termux.properties"
+        };
+
+
+        try {
+
+            propsFile = new File(possiblePropLocations[0]);
+            int i = 1;
+            while (!propsFile.exists() && i < possiblePropLocations.length) {
+                propsFile = new File(possiblePropLocations[i]);
+                i += 1;
+            }
+
+            if (propsFile.isFile() && propsFile.canRead()) {
+                try (FileInputStream in = new FileInputStream(propsFile)) {
+                    props.load(new InputStreamReader(in, StandardCharsets.UTF_8));
+                }
+            }
+        } catch (Exception e) {
+            Log.e("termux", "Error loading props", e);
+        }
+
+        return props;
+    }
     private String inputString = "";
 
     public interface PromptListener {
@@ -812,6 +852,9 @@ public final class TerminalView extends View {
 
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
+
+        Properties props = getProperties();
+
         if (LOG_KEY_EVENTS)
             Log.i(EmulatorDebug.LOG_TAG, "onKeyPreIme(keyCode=" + keyCode + ", event=" + event + ")");
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -827,6 +870,11 @@ public final class TerminalView extends View {
                         return onKeyUp(keyCode, event);
                 }
             }
+        } else if (props.getProperty("ctrl-space-workaround", "false").equals("true") &&
+            keyCode == KeyEvent.KEYCODE_SPACE && event.isCtrlPressed()) {
+            /* ctrl + space does not work on some ROMs without this workaround.
+               However, this breaks it on devices where it works out of the box. */
+            return onKeyDown(keyCode, event);
         }
         return super.onKeyPreIme(keyCode, event);
     }
@@ -1549,8 +1597,8 @@ public final class TerminalView extends View {
             final ActionMode.Callback callback = new ActionMode.Callback() {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                    int show = MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT;
-
+                  //  int show = MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT; 0.104.108 版本代码
+                    int show = MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT;
                     ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                     menu.add(Menu.NONE, 1, Menu.NONE, R.string.copy_text).setShowAsAction(show);
                     menu.add(Menu.NONE, 2, Menu.NONE, R.string.paste_text).setEnabled(clipboard.hasPrimaryClip()).setShowAsAction(show);

@@ -891,9 +891,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.104.108]</string>
-    <string name="云端版本552">云端版本:[0.104.108]</string>
-    <string name="云端版本553">云端版本:[0.104.108]\n本地版本[-.—.—]</string>
+    <string name="本地版本552">本地版本:[0.105.109]</string>
+    <string name="云端版本552">云端版本:[0.105.109]</string>
+    <string name="云端版本553">云端版本:[0.105.109]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -1038,8 +1038,8 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.104.108]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.104.108]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.105.109]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.105.109]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -1344,7 +1344,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.104.108</string>
+    <string name="当前版本ffg">当前版本:0.105.109</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1915,6 +1915,33 @@ xinhao/apk/DosBoxApplication.apk\n
 
         更新日志:\n
 
+        0.105.109更新日志:\n
+
+         UT更新:\n
+           1.更新兼容性问题\n
+           2.根据Moe的指引,将:\n
+           apt update &amp;&amp; apt install -y curl ; bash -c "$(curl -LfsS gitee.com/mo2/linux/raw/master/debian.sh)"\n
+           更改为:\n
+           apt update ; apt install -y curl ; bash -c "$(curl -LfsS gitee.com/mo2/linux/raw/master/debian.sh)"\n
+           3.更改双击窗口弹窗\n
+           4.更新qemu脚本\n
+        \n
+        \n
+         官方更新:\n
+           1.[未加入]应用：禁用"ProtectedPermissions"测试\n
+           2.[已加入]终端视图：使用SHOW_AS_ACTION_ALWAYS发出的静音警告\n
+           3.[已加入]应用程序：为其他键输入字段设置ImportantForAutofill ="no"\n
+           4.[已加入,兼容未知]终端视图：mv代码以获取其自身功能的属性\n
+           5.[已加入]终端视图：添加"ctrl-space-workaround"属性 …\n
+           6.[未加入,此功能只是更改了链接play商店地址]F-Droid URL for Termux:Styling\n
+           7.[已加入]终端视图：添加"ctrl-space-workaround"属性 …\n
+           8.[已加入]终端仿真器：测试：避免有关未模拟方法的错误\n
+           9.[未加入]终端仿真器：测试：将空格更改为制表符以保持一致性\n
+           10.其它的都是一些官方文档指引更改
+
+\n
+        \n
+
         0.104.108更新日志:\n
         同步官方升级,官方升级如下:\n
         1.系统版本由v32更改为v33\n
@@ -2083,6 +2110,11 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
     <string name="警告测dsfsdf">警告:如果出现【system call bad】请在终端执行【termux-chroot】后在进入!</string>
+
+
+    <string name="搜索文件">搜索文件</string>
+    <string name="再次输入您要搜索的文件">在此输入您要搜索的文件</string>
+
 
 
 

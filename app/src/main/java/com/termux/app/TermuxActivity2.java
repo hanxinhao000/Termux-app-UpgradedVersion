@@ -837,18 +837,53 @@ public class TermuxActivity2 extends TermuxActivity {
 
 
                 PopupWindow popupWindow = new PopupWindow();
-                popupWindow.setContentView(new BoomWindow().getView(new BoomMinLAdapter.CloseLiftListener() {
+                final BoomWindow[] boomWindow = {new BoomWindow()};
+
+
+
+                popupWindow.setContentView(boomWindow[0].getView(new BoomMinLAdapter.CloseLiftListener() {
                     @Override
                     public void close() {
                         popupWindow.dismiss();
                     }
                 },TermuxActivity2.this,popupWindow));
+
+
                 popupWindow.setOutsideTouchable(true);
               //  popupWindow.setAnimationStyle(R.style.Animation);
                 popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
                 popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-                popupWindow.showAsDropDown(mTerminalView);
+                popupWindow.showAsDropDown(mTerminalView,0,- boomWindow[0].getHigh());
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        boomWindow[0] = null;
+                    }
+                });
 
+
+                boomWindow[0].popu_windows_huihua.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        addNewSession(false, null);
+                        popupWindow.dismiss();
+
+                    }
+                });
+                boomWindow[0].popu_windows_jianpan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+                        getDrawer().closeDrawers();
+
+                        //popupWindow.dismiss();
+
+
+                    }
+                });
             }
         });
 

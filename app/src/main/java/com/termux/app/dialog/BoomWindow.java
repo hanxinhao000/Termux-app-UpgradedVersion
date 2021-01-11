@@ -1,6 +1,10 @@
 package main.java.com.termux.app.dialog;
 
+import android.content.Context;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -32,19 +36,64 @@ import main.java.com.termux.utils.UUtils;
 public class BoomWindow  {
 
 
-    CustomTextView title;
-    RecyclerView recyclerView;
-    CardView qiehuan_mingl_zidong;
-    CustomTextView qie_huan_string;
+    public CustomTextView title;
+    public RecyclerView recyclerView;
+    public CardView qiehuan_mingl_zidong;
+    public CustomTextView qie_huan_string;
+    public EditText file_name;
+    public LinearLayout search123456;
+    public LinearLayout popu_windows_jianpan;
+    public LinearLayout popu_windows_huihua;
+    private View mView;
+
+
+    public int high = 0;
+
+    public int getHigh(){
+
+
+            return dp2px(UUtils.getContext(),40);
+
+
+
+    }
+
     public View getView(BoomMinLAdapter.CloseLiftListener closeLiftListener, TermuxActivity2 termuxActivity2,PopupWindow popupWindow){
 
 
-        View mView = UUtils.getViewLay(R.layout.dialog_boom);
+        mView = UUtils.getViewLay(R.layout.dialog_boom);
+
+        calculateViewMeasure(mView);
 
         title = mView.findViewById(R.id.title);
         recyclerView = mView.findViewById(R.id.recyclerView);
         qiehuan_mingl_zidong = mView.findViewById(R.id.qiehuan_mingl_zidong);
         qie_huan_string = mView.findViewById(R.id.qie_huan_string);
+        file_name = mView.findViewById(R.id.file_name);
+        search123456 = mView.findViewById(R.id.search123456);
+
+
+        popu_windows_jianpan = mView.findViewById(R.id.popu_windows_jianpan);
+
+
+        popu_windows_huihua = mView.findViewById(R.id.popu_windows_huihua);
+
+        search123456.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String string = file_name.getText().toString();
+                if(string == null && string.isEmpty()){
+                    UUtils.showMsg(UUtils.getString(R.string.文件名不能为空));
+                    return;
+                }
+
+                TermuxActivity.mTerminalView.sendTextToTerminal("find / -name " + string);
+
+                popupWindow.dismiss();
+
+            }
+        });
+
 
         qiehuan_mingl_zidong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,4 +313,19 @@ public class BoomWindow  {
     }
 
 
+    private  void calculateViewMeasure(View view) {
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.EXACTLY);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.EXACTLY);
+        view.measure(w, h);
+    }
+
+    public  int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    public  int dp2px(Context context, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+            context.getResources().getDisplayMetrics());
+    }
 }

@@ -1077,13 +1077,13 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
         // Start the service and make it run regardless of who is bound to it:
         startService(serviceIntent);
         UUtils.showLog("开始启动SocketService服务");
-        try {
+     /*   try {
 
             startService(new Intent(this, SocketService.class));
         }catch (Exception e1654){
             UUtils.showLog("服务启动错误" + e1654.toString());
         }
-
+*/
 
 
         if (!bindService(serviceIntent, this, 0))
@@ -4090,7 +4090,7 @@ other_mod
             @Override
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
-                mTerminalView.sendTextToTerminal("apt install -y curl && bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+                mTerminalView.sendTextToTerminal("apt install -y curl ; bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
 
             }
         });
@@ -4825,7 +4825,7 @@ other_mod
                 //apt install -y curl
 
                 getDrawer().closeDrawer(Gravity.LEFT);
-                mTerminalView.sendTextToTerminal("apt install -y curl && bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+                mTerminalView.sendTextToTerminal("apt install -y curl ; bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
             }
         });
 
@@ -7993,7 +7993,7 @@ other_mod
 
     //来回切换
 
-    private void qiehuan(int index) {
+    public void qiehuan(int index) {
 
         //0会话
         //1功能
