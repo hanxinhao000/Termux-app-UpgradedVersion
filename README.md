@@ -8,6 +8,9 @@
 
 
 # Termux upgrade version
+
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/wx_utermux.jpg"  height="720" width="360">
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/zfb_utermux.jpg"  height="720" width="360">
  
 - # [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
 
