@@ -1,19 +1,21 @@
 #!/data/data/com.termux/files/usr/bin/bash
-
+cd $(dirname $0)
 clear
 echo -e "\n\e[33m更新内容
-	可在系统内直接安装qemu，每个系统的qemu版本不一样
-	增加默认识别光盘启动，然后是系统盘
-	因部分系统镜像不支持usb鼠标，增加usb鼠标选项
+	自动判断是否已安装配置pulseaudio(支持声音输出)
+	可加载分驱，但出现过系统镜像原因，加载不成功
+	增加显卡与声卡选项内容
+	增加自定义逻辑cpu
+	增加计算机类型q35选项，如进入系统失败，请使用默认pc
 	修改了一些细节\e[0m\n
 注意事项
-	
-	受termux(termux)环境影响，偶尔模拟出来的运行速度极慢
-	加载分驱（不支持5.0以上版本）
+		
+	本脚本是方便大家简易配置，所有参数都是经多次测试通过，可运行大部分系统，由于兼容问题，性能不作保证，专业玩家请自行操作
+	运行速度不稳定，受termux(utermux)环境影响，偶尔模拟出来的运行速度极慢
 	声音输出（不支持termux与utermux）
-	sdl输出显示，需先开启xsdl(不支持termux与utermux）
-	如果声音出错，请退出termux(utermux)，重新打开apps
-	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好\n"
+	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）
+	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好
+	virtio是需要复杂操作，故不支持\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
 		qemu-system-x86_64 --version
@@ -31,9 +33,6 @@ command+=" --link2symlink"
 command+=" -S bullseye-qemu"
 command+=" -b /sdcard"
 command+=" -b bullseye-qemu/root:/dev/shm"
-## uncomment the following line to have access to the home directory of termux
-#command+=" -b /data/data/com.termux/files/home:/root"
-## uncomment the following line to mount /sdcard/xinhao directly to /
 command+=" -b /sdcard/xinhao"
 command+=" -w /root"
 command+=" /usr/bin/env -i"
@@ -52,6 +51,8 @@ fi
 }
 ##################
 SYS_DOWN() {
+	echo -e "${YELLOW}即将下载系统(约占500m空间)${RES}"
+	sleep 2
 sys_name=bullseye-qemu
                 DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/debian/bullseye/arm64/default/"
 		BAGNAME="rootfs.tar.xz"
@@ -85,15 +86,18 @@ deb http://mirrors.bfsu.edu.cn/debian/ bullseye-updates main contrib non-free
 deb http://mirrors.bfsu.edu.cn/debian/ bullseye-backports main contrib non-free
 deb http://mirrors.bfsu.edu.cn/debian-security bullseye-security main contrib non-free' >$sys_name/etc/apt/sources.list
 EOF
+curl -O http://down.archserver.top:81/utqemu.sh 2>/dev/null
 cp utqemu.sh $sys_name/root/utqemu.sh
 sed -i "s/qemu-system-x86-64-headless/qemu-system-x86 xserver-xorg x11-utils/" $sys_name/root/utqemu.sh
-sed -i 's/qemu-system-i386-headless/-y \&\& apt --reinstall install pulseaudio -y/' $sys_name/root/utqemu.sh
-sed -i '/^MAIN()/,$d' $sys_name/root/utqemu.sh
-echo 'MAIN(){
-QEMU_SYSTEM
-}
-MAIN "$@"' >>$sys_name/root/utqemu.sh
-sed -i "1i\. utqemu.sh" $sys_name/etc/profile 
+sed -i 's/qemu-system-i386-headless/-y \&\& apt --reinstall install pulseaudio/' $sys_name/root/utqemu.sh
+#sed -i '/^MAIN()/,$d' $sys_name/root/utqemu.sh
+#echo 'MAIN(){
+#QEMU_SYSTEM
+#}
+#MAIN "$@"' >>$sys_name/root/utqemu.sh
+echo "bash utqemu.sh" >>$sys_name/etc/profile
+echo -e "${YELLOW}系统已下载，请登录系统继续完成qemu的安装${RES}"
+sleep 2
 }
 ##################
 ######################
@@ -117,6 +121,29 @@ case $input in
 *) ;; esac
 }
 #####################
+PULSEAUDIO() {
+	uname -a | grep 'Android' -q
+	if [ $? == 0 ]; then
+	dpkg -l | grep pulseaudio -q 2>/dev/null
+if [ $? != 0 ]; then
+	echo -e "检测到你未安装pulseaudio，为保证声音正常输出，将自动安装"
+	sleep 2
+	apt update && apt install pulseaudio -y
+if grep -q "anonymous" ${PREFIX}/etc/pulse/default.pa ;
+then
+        echo "module already present"
+else
+        echo "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" >> ${PREFIX}/etc/pulse/default.pa
+                                fi
+if grep -q "exit-idle" ${PREFIX}/etc/pulse/daemon.conf ; then
+sed -i '/exit-idle/d' ${PREFIX}/etc/pulse/daemon.conf
+echo "exit-idle-time = -1" >> ${PREFIX}/etc/pulse/daemon.conf
+fi
+fi
+	fi
+}
+
+
 ##################
 QEMU_SYSTEM() {
 echo -e "
@@ -132,7 +159,7 @@ case $input in
 	if [ $? == 0 ]; then
 	apt update && apt --fix-broken install -y && apt install qemu-system-x86-64-headless qemu-system-i386-headless -y
 else
-	apt update && apt install qemu-system-x86 xserver-xorg x11-utils && apt --reinstall install pulseaudio
+	apt update && apt install qemu-system-x86 xserver-xorg x11-utils -y && apt --reinstall install pulseaudio -y
 	fi
         QEMU_SYSTEM
         ;;
@@ -177,56 +204,90 @@ else
         CONFIRM
         pkill -9 qemu-system-x86
 	pkill -9 qemu-system-i38
-        case $(dpkg --print-architecture) in
-                x86_64|amd64|i*86|x86)
-                        echo -e "${YELLOW}检测到你的cpu支持kvm加速
-,如你已加入kvm内核,可尝试开启${RES}
-                        1) 使用kvm加速(如启动失败，请选取消加速)
-                        2) 取消加速\n"
-                        read -r -p "请选择:" input
-                        case $input in
-                                1) set -- "${@}" "-enable-kvm" ;;
-                                *) ;;
-esac
- ;;
-                        *) qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
+        qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
 				if [ $? != 0 ]; then
 		set -- "${@}" "--accel" "tcg,thread=multi"
 	else
-		#set -- "${@}" "-machine" "q35"
-		set -- "${@}" "--accel" "tcg"
-		fi ;;
-esac
+		echo -e "请选择计算机类型"
+		read -r -p "1)pc默认 2)q35" input
+		case $input in
+			1|"") set -- "${@}" "--accel" "tcg" ;;
+			2) echo -e ${RED}"如果无法进入系统，请选择pc${RES}"
+				set -- "${@}" "-machine" "q35,accel=kvm:xen:hax:tcg" ;;
+		esac
+#		set -- "${@}" "-machine" "q35"
+		fi
 echo -n -e "请输入${YELLOW}系统镜像${RES}全名（例如andows.img）hda_name:"
 read hda_name
-qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
-if [ $? != 0 ]; then
+#qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
+#if [ $? != 0 ]; then
 	echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）hdb_name:"
 	read hdb_name
-fi
+#fi
 echo -n -e "请输入${YELLOW}光盘${RES}全名,不加载请直接回车（例如DVD.iso）iso_name:"
 read iso_name
         echo -n "请输入模拟的内存大小，以m为单位（1g=1024m ， 例如512）mem:"
         read mem
         set -- "${@}" "-m" "$mem"
         set -- "${@}" "-rtc" "base=localtime"
-        read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270" input
+	echo -e "是否自定义cpu数量"
+	read -r -p "1)是  回车)默认配置" input
+	case $input in
+		1) CPU=0
+			while [ $CPU -eq 0 ]
+do
+	echo -n -e "请输入逻辑cpu参数，分别为核心、线程、插槽个数，输入三位数字(例如2核1线2插槽,不能有0 则输212)"
+	read SMP     
+	CORES=`echo $SMP | cut -b 1`   
+	THREADS=`echo $SMP | cut -b 2`    
+	SOCKETS=`echo $SMP | cut -b 3`    
+	let CPU=$CORES*$THREADS*$SOCKETS 2>/dev/null
+done
+echo -e "${YELLOW}$CORES核心$THREADS线程$SOCKETS插槽${RES}"
+_SMP="$CPU,cores=$CORES,threads=$THREADS,sockets=$SOCKETS"
+;;
+2|"") _SMP="" ;;
+esac
+	read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS" input
         case $input in
         1) set -- "${@}" "-cpu" "core2duo"
-                set -- "${@}" "-smp" "2,cores=2,threads=1,sockets=1" ;;
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+		else
+                set -- "${@}" "-smp" "2,cores=2,threads=1,sockets=1"
+		fi ;;
         2) set -- "${@}" "-cpu" "athlon"
-                set -- "${@}" "-smp" "2,cores=2,threads=1,sockets=1" ;;
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+		else
+                set -- "${@}" "-smp" "2,cores=2,threads=1,sockets=1"
+			fi ;;
         3) set -- "${@}" "-cpu" "pentium2"
-                set -- "${@}" "-smp" "1,cores=1,threads=1,sockets=1" ;;
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+		else
+                set -- "${@}" "-smp" "1,cores=1,threads=1,sockets=1"
+			fi ;;
         4) set -- "${@}" "-cpu" "n270"
-                set -- "${@}" "-smp" "2,cores=1,threads=2,sockets=1" ;;
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+                set -- "${@}" "-smp" "2,cores=1,threads=2,sockets=1"
+		fi ;;
+	5) set -- "${@}" "-cpu" "Skylake-Server-IBRS" 
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+		else
+		set -- "${@}" "-smp" "4,cores=2,threads=1,sockets=2"
+			fi ;;
         *)      set -- "${@}" "-cpu" "max"
                 set -- "${@}" "-smp" "4" ;;
 esac
-        read -r -p "请选择显卡 1)cirrus 2)vmware" input
+read -r -p "请选择显卡 1)cirrus 2)vmware 3)std 4)virtio" input
         case $input in
-                1) set -- "${@}" "-vga" "cirrus" ;;
-                *) set -- "${@}" "-vga" "vmware" ;;
+                1|"") set -- "${@}" "-vga" "cirrus" ;;
+                2) set -- "${@}" "-vga" "vmware" ;;
+		3) set -- "${@}" "-vga" "std" ;;
+		4) set -- "${@}" "-vga" "virtio" ;;
         esac
         read -r -p "请选择网卡 1)e1000 2)rtl8139 0)不加载" input
         case $input in
@@ -243,12 +304,13 @@ esac
                 esac
 		qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
                 if [ $? != 0 ]; then
-                        read -r -p "请选择声卡 1)ac97 2)sb16 3)es1370 0)不加载" input
+			read -r -p "请选择声卡 1)ac97 2)sb16 3)es1370 4)hda 0)不加载" input
                         case $input in
                 1|"") set -- "${@}" "-soundhw" "ac97" ;;
                 2) set -- "${@}" "-soundhw" "sb16" ;;
                 0) ;;
                 3) set -- "${@}" "-soundhw" "es1370" ;;
+		4) set -- "${@}" "-soundhw" "hda" ;;
 esac
                 set -- "${@}" "-hda" "/sdcard/xinhao/windows/$hda_name"
                 if [ -n "$hdb_name" ]; then
@@ -261,21 +323,30 @@ esac
                 set -- "${@}" "-boot" "order=dc"
 
         else
-                read -r -p "请选择声卡 1)es1370 2)sb16 3)ac97(推荐) 0)不加载" input
+		read -r -p "请选择声卡 1)es1370 2)sb16 3)hda 4)ac97(推荐) 0)不加载" input
                         case $input in
                         1) set -- "${@}" "-device" "ES1370" ;;
                         2) set -- "${@}" "-device" "sb16" ;;
+			3) set -- "${@}" "-device" "intel-hda" "-device" "hda-duplex" ;;
                         0) ;;
-                        *) set -- "${@}" "-device" "AC97" ;;
+                        4|"") set -- "${@}" "-device" "AC97" ;;
                 esac
-		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=ide,format=raw,index=0,media=disk"
+#		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=ide,format=raw,index=0,media=disk"
+#		set -- "${@}" "-hda" "/sdcard/xinhao/windows/$hda_name"
+		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=ide,index=0,media=disk"
 		if [ -n "$hdb_name" ]; then
-			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,format=raw,index=1,media=disk"
+#			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,format=raw,index=1,media=disk"
+#			set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"
+		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,index=1,media=disk"
 		fi
 		if [ -n "$iso_name" ]; then
-			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,format=raw,index=2,media=cdrom"
+#			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,format=raw,index=2,media=cdrom"
+#			set -- "${@}" "-cdrom" "/sdcard/xinhao/windows/$iso_name"
+			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,index=2,media=cdrom"
 		fi
-		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,format=raw"
+#		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,format=raw"
+#		set -- "${@}" "-hdd" "fat:rw:/sdcard/xinhao/share/"
+		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,index=3,media=disk"
 		set -- "${@}" "-boot" "order=dc,menu=on,strict=off"
 		fi
         set -- "$QEMU_SYS" "${@}"
@@ -287,9 +358,12 @@ esac
 }
 ###################
 MAIN() {
+	PULSEAUDIO
+	uname -a | grep 'Android' -q
+	if [ $? == 0 ]; then
 	echo -e "\n请选择qemu-system-x86的运行方式\n
 	1) 直接运行，termux(utermux)目前版本为5.0以上，暂不支持声音输出，其他系统的版本各不一样
-	2) 系统运行5.0以上版本，将单独下载约占500m的系统
+	2) 独立系统运行5.0以上版本
 	3) 退出\n"
 	read -r -p "请选择:" input
 	case $input in
@@ -306,6 +380,9 @@ fi
 	*) INVALID_INPUT
 		MAIN ;;
 esac
+else
+	QEMU_SYSTEM
+	fi
 }
 ####################
 MAIN "$@"

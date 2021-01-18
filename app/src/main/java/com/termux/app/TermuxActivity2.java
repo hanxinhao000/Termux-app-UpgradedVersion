@@ -158,7 +158,7 @@ import main.java.com.termux.app.dialog.LoadingDialog;
 import main.java.com.termux.app.dialog.MingLShowDialog;
 import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
-import main.java.com.termux.app.dialog.TextJZShowDialog;
+//import main.java.com.termux.app.dialog.TextJZShowDialog;
 import main.java.com.termux.app.dialog.TextShowDialog;
 import main.java.com.termux.app.web.Constants;
 import main.java.com.termux.app.web.WebZip;

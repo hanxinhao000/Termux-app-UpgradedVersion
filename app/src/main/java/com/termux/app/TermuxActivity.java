@@ -152,9 +152,7 @@ import main.java.com.termux.android_cm.LauncherActivity;
 import main.java.com.termux.app.dialog.MingLShowDialog;
 import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
-//可删除，无用代码 ↓
-import main.java.com.termux.app.dialog.TextJZShowDialog;
-//              ↑
+
 import main.java.com.termux.app.dialog.TextShowDialog;
 import main.java.com.termux.app.web.WebZip;
 import main.java.com.termux.application.TermuxApplication;
@@ -3762,11 +3760,15 @@ other_mod
                 //如报错,注释即可,无用代码
 
                 //可注释/删除
-                TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
+    /*            TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
                 //可注释/删除
                 textJZShowDialog.show();
                 //可注释/删除
-                textJZShowDialog.setCancelable(true);
+                textJZShowDialog.setCancelable(true);*/
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity.this);
+                textShowDialog.show();
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.入口已关闭));
+
             }
         });
 
@@ -4409,11 +4411,14 @@ other_mod
                 //如报错,注释即可,无用代码
 
                 //可注释/删除
-                TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
+       /*         TextJZShowDialog textJZShowDialog = new TextJZShowDialog(TermuxActivity.this);
                 //可注释/删除
                 textJZShowDialog.show();
                 //可注释/删除
-                textJZShowDialog.setCancelable(true);
+                textJZShowDialog.setCancelable(true);*/
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity.this);
+                textShowDialog.show();
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.入口已关闭));
             }
         });
 
