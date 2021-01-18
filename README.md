@@ -1,3 +1,12 @@
+# 如果该软件对您有用,请作者喝一杯冰阔落吧~
+
+
+
+
+
+
+
+
 # Termux upgrade version
  
 - # [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
