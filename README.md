@@ -1,10 +1,16 @@
+
+
+
+
+
 # Termux upgrade version
+
  
 - # [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
 
 # img 
 
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/1702015bf4e1cc464b2cee85658dcd2.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/2c0806ab578ab360ba85d0863f70755.jpg" height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/82abdf7f5b82cb56bd69aa9c26bc156.jpg" height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/Termux%20-%200.75.90.jpg" height="720" width="360">
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/0c99db3f4e17634a93ffbf4ee4c61e1.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/3e525b8e0a139b8b91ebf8ce600fd20.jpg" height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/b0ffe8afd859915444cf10e70b06597.jpg" height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/cca0cb3f93cce46c18537bc1ed31d12.jpg" height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/9a3659878c454bd136cdcafc8ca94bb.jpg" height="720" width="360">
 
 
 
@@ -42,6 +48,11 @@
 ## 3.termux-float:https://github.com/termux/termux-float
 ## 4.AnLinux     :https://github.com/EXALAB/AnLinux-App
 ## 5.other       :Thank you to all the authors cited in the project
+
+
+# 如果该软件对您有用,请作者喝一杯冰阔落吧~
+
+<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/wx_utermux.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/zfb_utermux.jpg"  height="720" width="360">
 
 
 
