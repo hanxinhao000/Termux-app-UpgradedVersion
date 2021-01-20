@@ -178,7 +178,7 @@ public final class BackgroundJob {//XAJ 1004 5927 408
                     environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
                 }
             }
-          //  environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+            environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
 
             environment.add("LANG=en_US.UTF-8");
             environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");

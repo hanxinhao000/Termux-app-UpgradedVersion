@@ -2122,7 +2122,8 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
 
-
+    <string name="使用atilo">作者:YadominJinta|使用Atilo来安装 如:ubuntu、Alpine、CentOS\n长按打开作者地址</string>
+    <string name="使用atilo信息">作者:YadominJinta \nGitHub地址:https://github.com/YadominJinta/atilo\n本脚本是未经过作者同意添加的\n侵删</string>
 
 
 

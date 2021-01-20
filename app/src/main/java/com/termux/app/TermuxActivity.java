@@ -8814,10 +8814,12 @@ other_mod
             case 4:
 
                 //nethunter.sh
-                File fileContos = new File("/data/data/com.termux/files/home/atilo");
+          /*      File fileContos = new File("/data/data/com.termux/files/home/atilo");
                 writerFile("atilo", fileContos);
                 execFile(new File("/data/data/com.termux/files/home/atilo"), "./atilo install centos");
+*/
 
+                mTerminalView.sendTextToTerminal("echo \"deb [trusted=yes arch=all] https://yadominjinta.github.io/files/ termux extras\" >> $PREFIX/etc/apt/sources.list.d/atilo.list && apt update && apt install atilo \n");
 
                 break;
             case 5:

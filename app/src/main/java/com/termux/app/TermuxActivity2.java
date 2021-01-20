@@ -218,6 +218,7 @@ public class TermuxActivity2 extends TermuxActivity {
     private ImageView zhengmian_viewcvcv;
     private RelativeLayout dakai_qemu_huanj;
     private RelativeLayout qemu_install_jiaoben;
+    private CardView atilo;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -236,6 +237,7 @@ public class TermuxActivity2 extends TermuxActivity {
         un_install_qemu = findViewById(R.id.un_install_qemu);
         download_qemu_bd = findViewById(R.id.download_qemu_bd);
         qemu_install_jiaoben = findViewById(R.id.qemu_install_jiaoben);
+        atilo = findViewById(R.id.atilo);
 
         onClickTermux();
     }
@@ -273,6 +275,35 @@ public class TermuxActivity2 extends TermuxActivity {
                 mTerminalView.sendTextToTerminal("chmod 777 qemu.sh \n");
                 mTerminalView.sendTextToTerminal("./qemu.sh \n");
 
+            }
+        });
+
+        atilo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mTerminalView.sendTextToTerminal("echo \"deb [trusted=yes arch=all] https://yadominjinta.github.io/files/ termux extras\" >> $PREFIX/etc/apt/sources.list.d/atilo.list && apt update && apt install atilo \n");
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+
+
+
+            }
+        });
+
+        atilo.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.使用atilo信息));
+
+
+
+                return true;
             }
         });
 
