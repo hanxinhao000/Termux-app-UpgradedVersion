@@ -5,16 +5,25 @@
  Termux and Utermux
 
  Termux (safety)
+ 
  Utermux(not secure)
+ 
  Termux(stability)
+ 
  Utermux(not stability)
+ 
  Termux(Senior developer)
+ 
  UTermux(Junior developer)
 
-Functionality set(core function)
+# Functionality set(core function)
+
 1.Backup recovery（tar.gz）
+
 2.One-click to install scripts
+
 3.Custom command
+
 4.Simulation of Windows（qemu）
 
 #  original author
