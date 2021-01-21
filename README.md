@@ -34,6 +34,10 @@ author homepage: https://github.com/termux
 
 package name:    com.termux
 
+# Utermux package name
+
+package name:    com.termux
+
 ## Project reference:
 ## 1.Termux      :https://github.com/termux/termux-app
 ## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
