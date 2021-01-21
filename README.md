@@ -43,6 +43,7 @@ package name:    com.termux
 UTermux : 
 
  1.Beijing : https://mirrors.bfsu.edu.cn/
+ 
  2.Qinghua : https://mirrors.tuna.tsinghua.edu.cn/
 
 
