@@ -1,8 +1,6 @@
 
 
-# 根据建议，下次更新将更改包名为： 
 
-# 由 com.termux 为 com.utermux
 
 # function
 
