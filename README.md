@@ -107,7 +107,7 @@ UTermux :
 <img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/wx_utermux.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/zfb_utermux.jpg"  height="720" width="360">
 
 
-# 往期贡献
+# 往期贡献[It can be suspended at any time]
 
         Outer(qq:8387**536)[¥:2]
         
