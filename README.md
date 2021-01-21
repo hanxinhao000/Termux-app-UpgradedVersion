@@ -49,7 +49,7 @@ UTermux :
  2.Qinghua : https://mirrors.tuna.tsinghua.edu.cn/
 
 
-## Project reference:
+## Reference implementation:
 ## 1.Termux      :https://github.com/termux/termux-app
 ## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
 ## 3.termux-float:https://github.com/termux/termux-float
