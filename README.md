@@ -38,6 +38,14 @@ package name:    com.termux
 
 package name:    com.termux
 
+# Traffic（source）
+
+UTermux : 
+
+ 1.Beijing : https://mirrors.bfsu.edu.cn/
+ 2.Qinghua : https://mirrors.tuna.tsinghua.edu.cn/
+
+
 ## Project reference:
 ## 1.Termux      :https://github.com/termux/termux-app
 ## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
