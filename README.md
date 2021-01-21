@@ -1,5 +1,36 @@
 
 
+# function
+
+ Termux and Utermux
+
+ Termux (safety)
+ Utermux(not secure)
+ Termux(stability)
+ Utermux(not stability)
+ Termux(Senior developer)
+ UTermux(Junior developer)
+
+Functionality set(core function)
+1.Backup recovery（tar.gz）
+2.One-click to install scripts
+3.Custom command
+4.Simulation of Windows（qemu）
+
+#  original author
+
+Author link:     https://github.com/termux/termux-app
+
+author homepage: https://github.com/termux
+
+package name:    com.termux
+
+## Project reference:
+## 1.Termux      :https://github.com/termux/termux-app
+## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
+## 3.termux-float:https://github.com/termux/termux-float
+## 4.AnLinux     :https://github.com/EXALAB/AnLinux-App
+## 5.other       :Thank you to all the authors cited in the project
 
 
 
@@ -7,6 +38,8 @@
 
  
 - # [中文](https://github.com/hanxinhao000/Termux-app-UpgradedVersion/blob/master/README_CH.md)
+
+
 
 # img 
 
@@ -42,12 +75,7 @@
 ## 1 qq group :714730084
 ## 2 qq group :463233836
 
-## Project reference:
-## 1.Termux      :https://github.com/termux/termux-app
-## 2.UserlAnd    :https://github.com/CypherpunkArmory/UserLAnd
-## 3.termux-float:https://github.com/termux/termux-float
-## 4.AnLinux     :https://github.com/EXALAB/AnLinux-App
-## 5.other       :Thank you to all the authors cited in the project
+
 
 
 # 如果该软件对您有用,请作者喝一杯冰阔落吧~
