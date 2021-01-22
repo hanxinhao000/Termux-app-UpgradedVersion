@@ -14,7 +14,8 @@ echo -e "\n\e[33m更新内容
 	q35主板与sata，virtio硬盘接口由于系统原因，可能导致启动不成功
 	运行速度不稳定，受termux(utermux)环境影响，偶尔模拟出来的运行速度极慢
 	声音输出（不支持termux与utermux环境下的模拟）
-	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）\n"
+	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）
+	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
 		qemu-system-x86_64 --version | head -n 1
@@ -148,6 +149,7 @@ WEB_SERVER() {
 		if [ ! $(command -v python) ]; then
 			echo -e "\n检测到你未安装所需要的包python,将先为你安装上"
 			apt update && apt install python
+		fi
 		else
 if [ ! $(command -v python3) ]; then
                 echo -e "\n检测到你未安装所需要的包python,将先为你安装上"
@@ -156,7 +158,6 @@ if [ ! $(command -v python3) ]; then
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >/root/.config/pip/pip.conf
         fi
 		fi
-	fi
         `ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1` 2>/dev/null
         if [ $? != 0 ]; then
                 IP=$(ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1)
