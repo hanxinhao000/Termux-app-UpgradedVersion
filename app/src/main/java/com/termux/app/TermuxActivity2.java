@@ -199,10 +199,6 @@ import static main.java.com.termux.service.BackService.BACK_FILES;
 
 public class TermuxActivity2 extends TermuxActivity {
 
-
-
-
-
     private CustomTextView open_server_url;
     private LinearLayout start_fanmian;
     private LinearLayout xiezai_server_df;
@@ -219,6 +215,7 @@ public class TermuxActivity2 extends TermuxActivity {
     private RelativeLayout dakai_qemu_huanj;
     private RelativeLayout qemu_install_jiaoben;
     private CardView atilo;
+    private CardView rootfs_rootdfdf;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -238,6 +235,7 @@ public class TermuxActivity2 extends TermuxActivity {
         download_qemu_bd = findViewById(R.id.download_qemu_bd);
         qemu_install_jiaoben = findViewById(R.id.qemu_install_jiaoben);
         atilo = findViewById(R.id.atilo);
+        rootfs_rootdfdf = findViewById(R.id.rootfs_rootdfdf);
 
         onClickTermux();
     }
@@ -347,6 +345,51 @@ public class TermuxActivity2 extends TermuxActivity {
                 });
 
                 ab.show();
+            }
+        });
+
+        rootfs_rootdfdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDrawer().closeDrawer(Gravity.LEFT);
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.这个rootfs可能会损坏你的系统));
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.commit.setText(UUtils.getString(R.string.我接受));
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+
+                        writerFile("root.sh",new File("/data/data/com.termux/files/home/root.sh"));
+                        writerFile("sudo_root.sh",new File("/data/data/com.termux/files/usr/bin/sudo"));
+
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd .. \n");
+                        mTerminalView.sendTextToTerminal("cd usr \n");
+                        mTerminalView.sendTextToTerminal("cd bin \n");
+                        mTerminalView.sendTextToTerminal("chmod 777 sudo \n");
+
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("chmod 777 root.sh \n");
+                        mTerminalView.sendTextToTerminal("pkg update && pkg install wget && pkg install proot && pkg install ncurses-utils && ./root.sh \n");
+                    }
+                });
+
+                textShowDialog.start.setText(UUtils.getString(R.string.我不同意));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                    }
+                });
+
             }
         });
 

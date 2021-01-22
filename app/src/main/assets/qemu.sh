@@ -2,23 +2,22 @@
 cd $(dirname $0)
 clear
 echo -e "\n\e[33m更新内容
-	自动判断是否已安装配置pulseaudio(支持声音输出)
-	可加载分驱，但出现过系统镜像原因，加载不成功
-	增加显卡与声卡选项内容
-	增加自定义逻辑cpu
-	增加计算机类型q35选项，如进入系统失败，请使用默认pc
+	新增让手机变成网页服务器，使模拟系统可以访问手机，突破共享文件夹500m的限制
+	qemu5.0以上版本增加硬盘接口sata选项，仍在测试阶段(读取速度有待考证)
+	qemu5.0以上版增加硬盘接口virtio选项，系统需已安装virtio驱动，否则无法启动，同样是测试阶段
 	修改了一些细节\e[0m\n
 注意事项
 		
 	本脚本是方便大家简易配置，所有参数都是经多次测试通过，可运行大部分系统，由于兼容问题，性能不作保证，专业玩家请自行操作
+	qemu5.0以上版本较旧版本多主板q35，硬盘接口的选项
+	如遇到使用异常，请尝试所有选择项直接回车以获得默认参数
+	q35主板与sata，virtio硬盘接口由于系统原因，可能导致启动不成功
 	运行速度不稳定，受termux(utermux)环境影响，偶尔模拟出来的运行速度极慢
-	声音输出（不支持termux与utermux）
-	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）
-	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好
-	virtio是需要复杂操作，故不支持\n"
+	声音输出（不支持termux与utermux环境下的模拟）
+	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
-		qemu-system-x86_64 --version
+		qemu-system-x86_64 --version | head -n 1
 	fi
 #################
 
@@ -33,7 +32,7 @@ command+=" --link2symlink"
 command+=" -S bullseye-qemu"
 command+=" -b /sdcard"
 command+=" -b bullseye-qemu/root:/dev/shm"
-command+=" -b /sdcard/xinhao"
+command+=" -b /sdcard:/root/sdcard"
 command+=" -w /root"
 command+=" /usr/bin/env -i"
 command+=" HOME=/root"
@@ -142,7 +141,39 @@ fi
 fi
 	fi
 }
-
+##################
+WEB_SERVER() {
+	uname -a | grep 'Android' -q
+	if [ $? == 0 ]; then
+		if [ ! $(command -v python) ]; then
+			echo -e "\n检测到你未安装所需要的包python,将先为你安装上"
+			apt update && apt install python
+		else
+if [ ! $(command -v python3) ]; then
+                echo -e "\n检测到你未安装所需要的包python,将先为你安装上"
+                sleep 2
+                apt update && apt install python3 python3-pip -y && mkdir -p /root/.config/pip && echo "[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >/root/.config/pip/pip.conf
+        fi
+		fi
+	fi
+        `ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1` 2>/dev/null
+        if [ $? != 0 ]; then
+                IP=$(ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1)
+        else
+                `ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6` 2>/dev/null
+                if [ $? -ne 0 ]; then
+                        IP=$(ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6)
+                else
+                        IP=$(ip a | grep inet | grep wlan | cut -d "/" -f 1 | cut -d " " -f 6)
+                        fi
+        fi
+        echo -e "已完成配置，请尝试用浏览器打开并输入地址\n
+        ${YELLOW}http://$IP:8080${RES}\n
+        如需关闭，请按ctrl+c，然后输pkill python3或直接exit退出shell\n"
+        python3 -m http.server 8080 &
+        sleep 2
+}
 
 ##################
 QEMU_SYSTEM() {
@@ -150,7 +181,8 @@ echo -e "
 1) 安装qemu-system-x86_64，并联动更新模拟器所需应用\n${YELLOW}(由于qemu的依赖问题，安装过程可能会失败，请尝试重新安装)${RES}
 2) 创建windows镜像目录
 3) 启动qemu-system-x86_64模拟器
-4) 退出\n"
+4) 让termux成为网页服务器
+5) 退出\n"
 read -r -p "请选择:" input
 case $input in
 	1)  echo -e "${YELLOW}安装过程中，如遇到询问选择，请输(y)，安装过程极易出错，请重试安装${RES}"
@@ -159,7 +191,7 @@ case $input in
 	if [ $? == 0 ]; then
 	apt update && apt --fix-broken install -y && apt install qemu-system-x86-64-headless qemu-system-i386-headless -y
 else
-	apt update && apt install qemu-system-x86 xserver-xorg x11-utils -y && apt --reinstall install pulseaudio -y
+	apt update && apt install qemu-system-x86 xserver-xorg x11-utils samba -y && apt --reinstall install pulseaudio -y
 	fi
         QEMU_SYSTEM
         ;;
@@ -181,7 +213,7 @@ else
 3) export PULSE_SERVER=tcp:127.0.0.1:4713
 	read -r -p "请选择显示输出方式 1)vnc 2)xsdl(不推荐)" input
 	case $input in
-		1|"") echo "vncviewer地址为127.0.0.1:0"
+		1|"") echo -e "${YELLOW}vncviewer地址为127.0.0.1:0${RES}"
 			sleep 1
 			set -- "${@}" "-vnc" ":0" ;;
 		2) echo "需先打开xsdl再继续此操作"
@@ -206,12 +238,18 @@ else
 	pkill -9 qemu-system-i38
         qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
 				if [ $? != 0 ]; then
-		set -- "${@}" "--accel" "tcg,thread=multi"
+		case $(dpkg --print-architecture) in
+                        arm*|aarch64) set -- "${@}" "--accel" "tcg,thread=multi" ;;
+                *) set -- "${@}" "-machine" "pc,accel=kvm:xen:hax:tcg" ;;
+esac
 	else
-		echo -e "请选择计算机类型"
+		echo -e "请选择计算机类型，因系统原因，q35可能导致启动不成功"
 		read -r -p "1)pc默认 2)q35" input
 		case $input in
-			1|"") set -- "${@}" "--accel" "tcg" ;;
+			1|"") case $(dpkg --print-architecture) in
+			arm*|aarch64) set -- "${@}" "--accel" "tcg" ;;
+                *) set -- "${@}" "-machine" "pc,accel=kvm:xen:hax:tcg" ;;
+	esac ;;
 			2) echo -e ${RED}"如果无法进入系统，请选择pc${RES}"
 				set -- "${@}" "-machine" "q35,accel=kvm:xen:hax:tcg" ;;
 		esac
@@ -226,14 +264,16 @@ read hda_name
 #fi
 echo -n -e "请输入${YELLOW}光盘${RES}全名,不加载请直接回车（例如DVD.iso）iso_name:"
 read iso_name
+#		set -- "${@}" "-net" "nic" "-net" "user,smb=/sdcard/xinhao/"
         echo -n "请输入模拟的内存大小，以m为单位（1g=1024m ， 例如512）mem:"
         read mem
         set -- "${@}" "-m" "$mem"
         set -- "${@}" "-rtc" "base=localtime"
 	echo -e "是否自定义cpu数量"
-	read -r -p "1)是  回车)默认配置" input
+	read -r -p "1)默认配置 2)自定义" input
 	case $input in
-		1) CPU=0
+		1|"") _SMP="" ;;
+		2) CPU=0
 			while [ $CPU -eq 0 ]
 do
 	echo -n -e "请输入逻辑cpu参数，分别为核心、线程、插槽个数，输入三位数字(例如2核1线2插槽,不能有0 则输212)"
@@ -244,9 +284,7 @@ do
 	let CPU=$CORES*$THREADS*$SOCKETS 2>/dev/null
 done
 echo -e "${YELLOW}$CORES核心$THREADS线程$SOCKETS插槽${RES}"
-_SMP="$CPU,cores=$CORES,threads=$THREADS,sockets=$SOCKETS"
-;;
-2|"") _SMP="" ;;
+_SMP="$CPU,cores=$CORES,threads=$THREADS,sockets=$SOCKETS" ;;
 esac
 	read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS" input
         case $input in
@@ -271,6 +309,7 @@ esac
         4) set -- "${@}" "-cpu" "n270"
 		if [ -n "$_SMP" ]; then
 			set -- "${@}" "-smp" "$_SMP"
+		else
                 set -- "${@}" "-smp" "2,cores=1,threads=2,sockets=1"
 		fi ;;
 	5) set -- "${@}" "-cpu" "Skylake-Server-IBRS" 
@@ -280,27 +319,31 @@ esac
 		set -- "${@}" "-smp" "4,cores=2,threads=1,sockets=2"
 			fi ;;
         *)      set -- "${@}" "-cpu" "max"
-                set -- "${@}" "-smp" "4" ;;
+		if [ -n "$CPU" ]; then
+                set -- "${@}" "-smp" "$CPU"
+	else
+		set -- "${@}" "-smp" "4"
+		fi ;;
 esac
 read -r -p "请选择显卡 1)cirrus 2)vmware 3)std 4)virtio" input
         case $input in
-                1|"") set -- "${@}" "-vga" "cirrus" ;;
+                1) set -- "${@}" "-vga" "cirrus" ;;
                 2) set -- "${@}" "-vga" "vmware" ;;
-		3) set -- "${@}" "-vga" "std" ;;
+		3|"") set -- "${@}" "-vga" "std" ;;
 		4) set -- "${@}" "-vga" "virtio" ;;
         esac
         read -r -p "请选择网卡 1)e1000 2)rtl8139 0)不加载" input
         case $input in
-                        1) set -- "${@}" "-net" "user"
+                        1|"") set -- "${@}" "-net" "user"
                                 set -- "${@}" "-net" "nic,model=e1000" ;;
                         0) ;;
-                        *) set -- "${@}" "-net" "user"
+                        2) set -- "${@}" "-net" "user"
                                 set -- "${@}" "-net" "nic,model=rtl8139" ;;
                 esac
-		read -r -p "是否加载usb鼠标 1)加载 0)不加载" input
+		read -r -p "是否加载usb鼠标,少部分系统可能不支持 1)加载 0)不加载" input
                 case $input in
-                        1|"") set -- "${@}" "-usb" "-device" "usb-tablet" ;;
-                        2) ;;
+                        1) set -- "${@}" "-usb" "-device" "usb-tablet" ;;
+                        2|"") ;;
                 esac
 		qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
                 if [ $? != 0 ]; then
@@ -331,28 +374,93 @@ esac
                         0) ;;
                         4|"") set -- "${@}" "-device" "AC97" ;;
                 esac
+		echo -e "请选择是否选择硬盘接口,因系统原因,sata可能导致启动不成功,virtio需系统已装驱动,回车为兼容方式"
+		read -r -p "1)ide 2)sata 3)virtio " input
+		case $input in
+			1)
+#STANDARD-INCORRECT
 #		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=ide,format=raw,index=0,media=disk"
+
+#TRADITIONAL
 #		set -- "${@}" "-hda" "/sdcard/xinhao/windows/$hda_name"
+
+#STANDARD-CORRECT  
 		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=ide,index=0,media=disk"
+#VIRTIO
+#		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=virtio,id=drive-virtio-disk,aio=threads,cache=none"
 		if [ -n "$hdb_name" ]; then
-#			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,format=raw,index=1,media=disk"
-#			set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"
+#                       set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,format=raw,index=1,media=disk"
+#                       set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"                                           
 		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,index=1,media=disk"
 		fi
-		if [ -n "$iso_name" ]; then
-#			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,format=raw,index=2,media=cdrom"
-#			set -- "${@}" "-cdrom" "/sdcard/xinhao/windows/$iso_name"
-			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,index=2,media=cdrom"
+		if [ -n "$iso_name" ]; then     
+#                       set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,format=raw,index=2,media=cdrom"
+#                       set -- "${@}" "-cdrom" "/sdcard/xinhao/windows/$iso_name"          
+                       set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,if=ide,index=2,media=cdrom"  
+		fi                            
+#               set -- "${@}" "-hdd" "fat:rw:/sdcard/xinhao/share/"                                                        
+		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,index=3,media=disk" ;;
+
+
+		2)
+#		set -- "${@}" "-drive" "id=systemdisk,if=none,file=/sdcard/xinhao/windows/$hda_name" 
+#		set -- "${@}" "-device" "ich9-ahci,id=sata"
+#		set -- "${@}" "-device" "ide-hd,bus=sata.0,drive=systemdisk"
+
+#SATA        
+		set -- "${@}" "-drive" "id=disk,file=/sdcard/xinhao/windows/$hda_name,if=none"
+		set -- "${@}" "-device" "ahci,id=ahci"
+		set -- "${@}" "-device" "ide-hd,drive=disk,bus=ahci.0"
+
+		if [ -n "$hdb_name" ]; then
+#		set -- "${@}" "-drive" "id=ESP,if=none,file=/sdcard/xinhao/windows/$hdb_name"
+#		set -- "${@}" "-device" "ide-hd,bus=sata.1,drive=ESP"
+		set -- "${@}" "-drive" "id=installmedia,file=/sdcard/xinhao/windows/$hdb_name,if=none" 
+		set -- "${@}" "-device" "ide-hd,drive=installmedia,bus=ahci.1"
 		fi
-#		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,format=raw"
-#		set -- "${@}" "-hdd" "fat:rw:/sdcard/xinhao/share/"
-		set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,if=ide,index=3,media=disk"
+		if [ -n "$iso_name" ]; then
+#		set -- "${@}" "-drive" "id=cdrom,if=none,file=/sdcard/xinhao/windows/$iso_name"
+#		set -- "${@}" "-device" "ide-cd,bus=sata.2,drive=cdrom"
+		set -- "${@}" "-drive" "id=cdrom,file=/sdcard/xinhao/windows/$iso_name,if=none"     
+		set -- "${@}" "-device" "ide-cd,drive=cdrom,bus=ahci.2"
+		fi
+
+#		set -- "${@}" "-drive" "id=InstallMedia,format=raw,if=none,file=fat:rw:/sdcard/xinhao/share/"
+#		set -- "${@}" "-device" "ide-hd,bus=sata.3,drive=InstallMedia" 
+		
+#		set -- "${@}" "-drive" "if=none,format=raw,id=disk1,file=fat:rw:/sdcard/xinhao/share/"
+#		set -- "${@}" "-device" "ich9-usb-ehci1,id=usb"
+#		set -- "${@}" "-device" "usb-storage,bus=usb.0,drive=disk1"
+
+		set -- "${@}" "-usb" "-drive" "if=none,format=raw,id=disk1,file=fat:rw:/sdcard/xinhao/share/"
+#		set -- "${@}" "-machine" "usb=on"
+		set -- "${@}" "-device" "usb-storage,drive=disk1"	;;
+	3) set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,index=0,media=disk,if=virtio"
+#	       	set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=virtio,id=drive-virtio-disk,aio=threads,cache=none"
+if [ -n "$hdb_name" ]; then
+			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,index=1,media=disk,if=virtio" 
+		fi
+		if [ -n "$iso_name" ]; then
+			set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$iso_name,index=2,media=cdrom"
+		fi
+			set -- "${@}" "-drive" "file=fat:rw:/sdcard/xinhao/share,index=3,media=disk,if=virtio"
+;;
+		*) set -- "${@}" "-hda" "/sdcard/xinhao/windows/$hda_name" 
+	if [ -n "$hdb_name" ]; then
+		set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"
+		fi
+		if [ -n "$iso_name" ]; then
+			set -- "${@}" "-cdrom" "/sdcard/xinhao/windows/$iso_name"
+			fi
+			set -- "${@}" "-hdd" "fat:rw:/sdcard/xinhao/share/" ;;
+esac
 		set -- "${@}" "-boot" "order=dc,menu=on,strict=off"
 		fi
         set -- "$QEMU_SYS" "${@}"
         "${@}" &
         ;;
-4) exit 1 ;;
+4) WEB_SERVER ;;
+5) exit 1 ;;
 *) INVALID_INPUT && QEMU_SYSTEM ;;
 esac
 }
