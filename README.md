@@ -98,12 +98,9 @@ UTermux :
 
 
 
-# 如果该软件对您有用,请作者喝一杯冰阔落吧~
-
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/wx_utermux.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/zfb_utermux.jpg"  height="720" width="360">
 
 
-# 往期贡献[It can be suspended at any time]
+# 往期贡献[terminated]
 
         Outer(qq:8387**536)[¥:2]
         
