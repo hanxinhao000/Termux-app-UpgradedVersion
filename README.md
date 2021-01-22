@@ -1,5 +1,5 @@
 
-# Note: This is only an unstable beta release. It is not allowed to be released on any app store. It is only for testing and communication
+# Note: This is only an unstable beta release. It is not allowed to be released on any app store. It is only for testing and learning exchange
 
 # Unless you have the consent of the original author
 
