@@ -1,26 +1,6 @@
 
-# Note: This is only an unstable beta release. It is not allowed to be released on any app store. It is only for testing and learning exchange
-
-# Unless you have the consent of the original author
-
-# Author link:     https://github.com/termux/termux-app
 
 
-# function
-
- Termux and Utermux
-
- Termux (safety)
- 
- Utermux(not secure)
- 
- Termux(stability)
- 
- Utermux(not stability)
- 
- Termux(Senior developer)
- 
- UTermux(Junior developer)
 
 # Functionality set(core function)
 
@@ -44,9 +24,6 @@ package name:    com.termux
 
 package name:    com.termux
 
-# (刚开始其实也想替换包名，意识到这个问题的时候项目已经非常庞大了,很多东西写的不是很规范,多而又杂,需要花费很多精力去更改的，而我的工作需要我,这个只是我个人闲暇时间写的,感到十分抱歉,而且这个软件是以兴趣爱好，学习教育为目的,)
-
-# 而且很多termux 的自带应用指向地址都是/data/data/com.termux的,如果更改包名会使Utermux失去作用
 
 # Traffic（source）
 
@@ -98,12 +75,9 @@ UTermux :
 
 
 
-# 如果该软件对您有用,请作者喝一杯冰阔落吧~
-
-<img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/wx_utermux.jpg"  height="720" width="360"><img src="https://raw.githubusercontent.com/hanxinhao000/Termux-app-UpgradedVersion/master/img/zfb_utermux.jpg"  height="720" width="360">
 
 
-# 往期贡献[It can be suspended at any time]
+# 往期贡献[terminated]
 
         Outer(qq:8387**536)[¥:2]
         
