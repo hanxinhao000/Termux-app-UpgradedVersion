@@ -42,36 +42,6 @@ ARCH_(){
 		sleep 1
 		exit ;;
 esac
-cat >/dev/null<<-EOF
-if [ "$(dpkg --print-architecture)" = "aarch64" ];then
-		ARCH=arm64
-		echo "aarch64"
-        elif [ "$(dpkg --print-architecture)" = "arm64" ];then
-		ARCH=arm64
-		echo "arm64"
-        elif [ "$(dpkg --print-architecture)" = "x86_64" ];then
-		ARCH=amd64
-		echo "x86_64"
-        elif [ "$(dpkg --print-architecture)" = "x86" ];then
-		ARCH=i386
-		echo "x86"
-        elif [ "$(dpkg --print-architecture)" = "amd64" ];then
-		ARCH=amd64
-		echo "amd64"
-        elif [ "$(dpkg --print-architecture)" = "i686" ];then
-		ARCH=i386
-		echo "i686"
-        elif [ "$(dpkg --print-architecture)" = "i386" ];then
-		ARCH=i386
-		echo "i386"
-        elif [ "$(dpkg --print-architecture)" = "i586" ];then
-		ARCH=i386
-		echo "i586"
-        else
-            printf 'unknown architecture\n'
-            exit 1
-        fi
-EOF
 }
 #####################
 INVALID_INPUT() {
@@ -101,6 +71,7 @@ case $input in
 	1) echo -e "\n选择debian哪个版本\n
 		1) buster\n
 		2) bullseye\n
+		3) sid\n
 		9) 返回主目录\n
 		0) 退出\n"
 		read -r -p "请选择:" input
@@ -111,6 +82,9 @@ case $input in
 	2) echo "即将下载安装debian(bullseye)"        
 		sys_name=bullseye  
 		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/debian/bullseye/$ARCH/default/" ;;
+	3) echo "即将下载安装debian(sid)"
+		sys_name=sid
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/debian/sid/$ARCH/default/" ;;
 		9) MAIN ;;
 		0) echo -e "\nexit"
 			sleep 1                           
@@ -119,8 +93,9 @@ case $input in
 		SYS_SELECT ;;
 esac ;;
 2) echo -e "\n选择ubuntu哪个版本\n                             
-	1) bionic\n                                          
-	2) focal\n                                       
+	1) bionic\n
+	2) focal\n
+	3) groovy\n
 	9) 返回主目录\n                                     
 	0) 退出\n"                                          
 	read -r -p "请选择:" input                          
@@ -131,6 +106,9 @@ esac ;;
 	2) echo "即将下载安装ubuntu(focal)"
 		sys_name=focal
 		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/focal/$ARCH/default/" ;;
+	3) echo "即将下载安装ubuntu(groovy)"
+		sys_name=groovy
+		DEF_CUR="https://mirrors.bfsu.edu.cn/lxc-images/images/ubuntu/groovy/$ARCH/default/" ;;
 	9) MAIN ;;                         
 		0) echo -e "\nexit"     
 			sleep 1                               
@@ -181,7 +159,8 @@ read -r -p "请选择:" input
 case $input in
 	1) echo -e "\n选择debian哪个版本\n          
 		1) buster\n                          
-		2) bullseye\n                     
+		2) bullseye\n
+		3) sid\n
 		9) 返回主目录\n                    
 		0) 退出\n"                    
 		read -r -p "请选择:" input           
@@ -192,6 +171,9 @@ case $input in
 	2) echo "即将下载安装debian(bullseye)"   
 		sys_name=bullseye
 		DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/debian/bullseye/$ARCH/default/" ;;
+	3) echo "即将下载安装debian(sid)"
+		sys_name=sid
+		DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/debian/sid/$ARCH/default/" ;;
 	9) MAIN ;;                          
 	0) echo -e "\nexit..."              
 		sleep 1                     
@@ -201,7 +183,8 @@ case $input in
 esac ;;
 	2) echo -e "\n选择ubuntu哪个版本\n            
 		1) bionic\n                        
-		2) focal\n                         
+		2) focal\n
+		3) groovy\n
 		9) 返回主目录\n                      
 		0) 退出\n"                           
 		read -r -p "请选择:" input                
@@ -212,6 +195,9 @@ esac ;;
         2) echo "即将下载安装ubuntu(focal)"
                 sys_name=focal
                 DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/focal/$ARCH/default/" ;;
+	3) echo "即将下载安装ubuntu(groovy)"
+		sys_name=groovy
+		DEF_CUR="https://mirrors.tuna.tsinghua.edu.cn/lxc-images/images/ubuntu/groovy/$ARCH/default/" ;;
 	9) MAIN ;;                                       
 	0) echo -e "\nexit..."                           
 		sleep 1                                 

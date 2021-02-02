@@ -259,8 +259,8 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.105.115]</string>
-    <string name="云端版本552">云端版本:[0.105.115]</string>
+    <string name="本地版本552">本地版本:[0.106.116]</string>
+    <string name="云端版本552">云端版本:[0.106.116]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -397,8 +397,8 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.105.115]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.105.115]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.106.116]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.106.116]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -708,7 +708,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.105.115</string>
+    <string name="当前版本ffg">当前版本:0.106.116</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>

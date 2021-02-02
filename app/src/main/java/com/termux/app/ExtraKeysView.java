@@ -6,10 +6,12 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.PopupWindow;
@@ -27,6 +29,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import main.java.com.termux.application.TermuxApplication;
 
 /**
@@ -92,21 +95,51 @@ public final class ExtraKeysView extends GridLayout {
         put("F12", KeyEvent.KEYCODE_F12);
     }};
 
-    public static void sendKey(View view, String keyName) {
-       // Toast.makeText(TermuxApplication.mContext, keyName, Toast.LENGTH_SHORT).show();
-        Log.e("XINHAO_HAN_KEY", "键盘值N: " + keyName );
-
+    private void sendKey(View view, String keyName, boolean forceCtrlDown, boolean forceLeftAltDown) {
         TerminalView terminalView = view.findViewById(R.id.terminal_view);
-        if (keyCodesForString.containsKey(keyName)) {
+        if ("KEYBOARD".equals(keyName)) {
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(0, 0);
+        } else if ("DRAWER".equals(keyName)) {
+            DrawerLayout drawer = view.findViewById(R.id.drawer_layout);
+            drawer.openDrawer(Gravity.LEFT);
+        } else if (keyCodesForString.containsKey(keyName)) {
             int keyCode = keyCodesForString.get(keyName);
-            Log.e("XINHAO_HAN_KEY", "键盘值C: " + keyCode );
-            terminalView.onKeyDown(keyCode, new KeyEvent(KeyEvent.ACTION_UP, keyCode));
-            // view.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, keyCode));
+            int metaState = 0;
+            if (forceCtrlDown) {
+                metaState |= KeyEvent.META_CTRL_ON | KeyEvent.META_CTRL_LEFT_ON;
+            }
+            if (forceLeftAltDown) {
+                metaState |= KeyEvent.META_ALT_ON | KeyEvent.META_ALT_LEFT_ON;
+            }
+            KeyEvent keyEvent = new KeyEvent(0, 0, KeyEvent.ACTION_UP, keyCode, 0, metaState);
+            terminalView.onKeyDown(keyCode, keyEvent);
         } else {
             // not a control char
-            TerminalSession session = terminalView.getCurrentSession();
-            if (session != null && keyName.length() > 0)
-                session.write(keyName);
+            keyName.codePoints().forEach(codePoint -> {
+                terminalView.inputCodePoint(codePoint, forceCtrlDown, forceLeftAltDown);
+            });
+        }
+    }
+
+    private void sendKey(View view, ExtraKeyButton buttonInfo) {
+        if (buttonInfo.isMacro()) {
+            String[] keys = buttonInfo.getKey().split(" ");
+            boolean ctrlDown = false;
+            boolean altDown = false;
+            for (String key : keys) {
+                if ("CTRL".equals(key)) {
+                    ctrlDown = true;
+                } else if ("ALT".equals(key)) {
+                    altDown = true;
+                } else {
+                    sendKey(view, key, ctrlDown, altDown);
+                    ctrlDown = false;
+                    altDown = false;
+                }
+            }
+        } else {
+            sendKey(view, buttonInfo.getKey(), false, false);
         }
     }
 
@@ -318,12 +351,12 @@ public final class ExtraKeysView extends GridLayout {
     /**
      * General util function to compute the longest column length in a matrix.
      */
-    static int maximumLength(String[][] matrix) {
+    static int maximumLength(Object[][] matrix) {
         int m = 0;
-        for (String[] aMatrix : matrix) m = Math.max(m, aMatrix.length);
+        for (Object[] row : matrix)
+            m = Math.max(m, row.length);
         return m;
     }
-
     /**
      * Reload the view given parameters in termux.properties
      *
@@ -340,27 +373,27 @@ public final class ExtraKeysView extends GridLayout {
      *                "-_-" will input the string "-_-"
      */
     @SuppressLint("ClickableViewAccessibility")
-    void reload(String[][] buttons, CharDisplayMap charDisplayMap) {
-        for (SpecialButtonState state : specialButtons.values())
+    void reload(ExtraKeysInfos infos) {
+        if(infos == null)
+            return;
+
+        for(SpecialButtonState state : specialButtons.values())
             state.button = null;
 
         removeAllViews();
 
-        replaceAliases(buttons); // modifies the array
+        ExtraKeyButton[][] buttons = infos.getMatrix();
 
-        final int rows = buttons.length;
-        final int cols = maximumLength(buttons);
+        setRowCount(buttons.length);
+        setColumnCount(maximumLength(buttons));
 
-        setRowCount(rows);
-        setColumnCount(cols);
-
-        for (int row = 0; row < rows; row++) {
+        for (int row = 0; row < buttons.length; row++) {
             for (int col = 0; col < buttons[row].length; col++) {
-                final String buttonText = buttons[row][col];
+                final ExtraKeyButton buttonInfo = buttons[row][col];
 
                 Button button;
-                if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonText)) {
-                    SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonText)); // for valueOf: https://stackoverflow.com/a/604426/1980630
+                if(Arrays.asList("CTRL", "ALT", "FN").contains(buttonInfo.getKey())) {
+                    SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonInfo.getKey())); // for valueOf: https://stackoverflow.com/a/604426/1980630
                     state.isOn = true;
                     button = state.button = new ToggleButton(getContext(), null, android.R.attr.buttonBarButtonStyle);
                     button.setClickable(true);
@@ -368,41 +401,32 @@ public final class ExtraKeysView extends GridLayout {
                     button = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
                 }
 
-                final String displayedText = charDisplayMap.get(buttonText, buttonText);
-                button.setText(displayedText);
+                button.setText(buttonInfo.getDisplay());
                 button.setTextColor(TEXT_COLOR);
                 button.setPadding(0, 0, 0, 0);
 
                 final Button finalButton = button;
                 button.setOnClickListener(v -> {
-
-
                     if (Settings.System.getInt(getContext().getContentResolver(),
                         Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0) {
 
-                        // Depending on DnD settings, value can be >1 but 0 means "disabled".
-                        if (Settings.Global.getInt(getContext().getContentResolver(), "zen_mode", 0) < 1) {
-                            if (Build.VERSION.SDK_INT >= 28) {
+                        if (Build.VERSION.SDK_INT >= 28) {
+                            finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                        } else {
+                            // Perform haptic feedback only if no total silence mode enabled.
+                            if (Settings.Global.getInt(getContext().getContentResolver(), "zen_mode", 0) != 2) {
                                 finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                            } else {
-                                // Perform haptic feedback only if no total silence mode enabled.
-                                if (Settings.Global.getInt(getContext().getContentResolver(), "zen_mode", 0) != 2) {
-                                    finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                                }
                             }
                         }
-
                     }
 
-                    // finalButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     View root = getRootView();
-                    if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonText)) {
+                    if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonInfo.getKey())) {
                         ToggleButton self = (ToggleButton) finalButton;
                         self.setChecked(self.isChecked());
                         self.setTextColor(self.isChecked() ? INTERESTING_COLOR : TEXT_COLOR);
-                        //Toast.makeText(TermuxApplication.mContext, "123", Toast.LENGTH_SHORT).show();
                     } else {
-                        sendKey(root, buttonText);
+                        sendKey(root, buttonInfo);
                     }
                 });
 
@@ -412,22 +436,26 @@ public final class ExtraKeysView extends GridLayout {
                         case MotionEvent.ACTION_DOWN:
                             longPressCount = 0;
                             v.setBackgroundColor(BUTTON_PRESSED_COLOR);
-                            if (Arrays.asList("UP", "DOWN", "LEFT", "RIGHT").contains(buttonText)) {
+                            if (Arrays.asList("UP", "DOWN", "LEFT", "RIGHT", "BKSP", "DEL").contains(buttonInfo.getKey())) {
+                                // autorepeat
                                 scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
                                 scheduledExecutor.scheduleWithFixedDelay(() -> {
                                     longPressCount++;
-                                    sendKey(root, buttonText);
+                                    sendKey(root, buttonInfo);
                                 }, 400, 80, TimeUnit.MILLISECONDS);
                             }
                             return true;
 
                         case MotionEvent.ACTION_MOVE:
-                            // These two keys have a Move-Up button appearing
-                            if (Arrays.asList("/", "-").contains(buttonText)) {
+                            if (buttonInfo.getPopup() != null) {
                                 if (popupWindow == null && event.getY() < 0) {
+                                    if (scheduledExecutor != null) {
+                                        scheduledExecutor.shutdownNow();
+                                        scheduledExecutor = null;
+                                    }
                                     v.setBackgroundColor(BUTTON_COLOR);
-                                    String text = "-".equals(buttonText) ? "|" : "\\";
-                                    popup(v, text);
+                                    String extraButtonDisplayedText = buttonInfo.getPopup().getDisplay();
+                                    popup(v, extraButtonDisplayedText);
                                 }
                                 if (popupWindow != null && event.getY() > 0) {
                                     v.setBackgroundColor(BUTTON_PRESSED_COLOR);
@@ -437,33 +465,33 @@ public final class ExtraKeysView extends GridLayout {
                             }
                             return true;
 
-
                         case MotionEvent.ACTION_CANCEL:
-
                             v.setBackgroundColor(BUTTON_COLOR);
                             if (scheduledExecutor != null) {
                                 scheduledExecutor.shutdownNow();
                                 scheduledExecutor = null;
                             }
                             return true;
-
                         case MotionEvent.ACTION_UP:
                             v.setBackgroundColor(BUTTON_COLOR);
                             if (scheduledExecutor != null) {
                                 scheduledExecutor.shutdownNow();
                                 scheduledExecutor = null;
                             }
-                            if (longPressCount == 0) {
-                                if (popupWindow != null && Arrays.asList("/", "-").contains(buttonText)) {
+                            if (longPressCount == 0 || popupWindow != null) {
+                                if (popupWindow != null) {
                                     popupWindow.setContentView(null);
                                     popupWindow.dismiss();
                                     popupWindow = null;
-                                    sendKey(root, "-".equals(buttonText) ? "|" : "\\");
+                                    if (buttonInfo.getPopup() != null) {
+                                        sendKey(root, buttonInfo.getPopup());
+                                    }
                                 } else {
                                     v.performClick();
                                 }
                             }
                             return true;
+
                         default:
                             return true;
                     }
@@ -471,11 +499,7 @@ public final class ExtraKeysView extends GridLayout {
 
                 LayoutParams param = new GridLayout.LayoutParams();
                 param.width = 0;
-                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) { // special handle api 21
-                    param.height = (int) (37.5 * getResources().getDisplayMetrics().density + 0.5); // 37.5 equal to R.id.viewpager layout_height / rows in DP
-                } else {
-                    param.height = 0;
-                }
+                param.height = 0;
                 param.setMargins(0, 0, 0, 0);
                 param.columnSpec = GridLayout.spec(col, GridLayout.FILL, 1.f);
                 param.rowSpec = GridLayout.spec(row, GridLayout.FILL, 1.f);
@@ -485,6 +509,7 @@ public final class ExtraKeysView extends GridLayout {
             }
         }
     }
+
 
 
     //初始化颜色

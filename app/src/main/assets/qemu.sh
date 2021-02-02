@@ -1,29 +1,76 @@
 #!/data/data/com.termux/files/usr/bin/bash
 cd $(dirname $0)
+####################
+INFO() {
 clear
-echo -e "\n\e[33m更新内容
-	新增让手机变成网页服务器，使模拟系统可以访问手机，突破共享文件夹500m的限制
-	qemu5.0以上版本增加硬盘接口sata选项，仍在测试阶段(读取速度有待考证)
-	qemu5.0以上版增加硬盘接口virtio选项，系统需已安装virtio驱动，否则无法启动，同样是测试阶段
-	修改了一些细节\e[0m\n
-注意事项
-		
+echo -e "\n\e[33m更新内容\e[0m
+	增加spice视频输出选项，注意：spice一旦断开连接，再次连上后，鼠键不能用（不支持termux与utermux环境）
+	增加qxl显卡选项，需安装virtio驱动才能发挥特性功能
+	增加vietio显卡选项，3D功能由于参数问题，只能在电脑上使用，未经测试，具体信息请查阅关于utqemu。
+	增加了一些未经完全测试通过的参数配置
+	修改了一些细节\n
+\e[33m注意事项\e[0m		
 	本脚本是方便大家简易配置，所有参数都是经多次测试通过，可运行大部分系统，由于兼容问题，性能不作保证，专业玩家请自行操作
 	qemu5.0以上版本较旧版本多主板q35，硬盘接口的选项
-	如遇到使用异常，请尝试所有选择项直接回车以获得默认参数
 	q35主板与sata，virtio硬盘接口由于系统原因，可能导致启动不成功
+	如遇到使用异常，请尝试所有选择项直接回车以获得默认参数
 	运行速度不稳定，受termux(utermux)环境影响，偶尔模拟出来的运行速度极慢
-	声音输出（不支持termux与utermux环境下的模拟）
+	声音输出（不支持termux与utermux环境）
 	sdl输出显示，需先开启xsdl(不支持termux与utermux环境）
 	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
 		qemu-system-x86_64 --version | head -n 1
 	fi
-#################
+}
+###################
+ABOUT_VIRTIO(){
+	clear
+printf "%s
+${YELLOW}关于utqemu脚本${RES}
+	最初是为utermux写下的qemu-system-x86脚本，目的是增加utermux可选功能，给使用者提供简易快捷的启动。为适配常用镜像格式，脚本的参数选用是比较常用。我是业余的，专业的参数配置并不懂，脚本参数都是来自官方网站、百度与群友。qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富，欢迎群友体验使用。
 
+${YELLOW}关于virtio驱动${RES}
+	引用官方说法：QEMU为用户提供并行虚拟化块设备和网络设备的能力，其是借助virtio驱动实现的，拥有更好的性能表现以及更低的开销。
+
+${YELLOW}virtio驱动的安装${RES}
+	需下载好virtio驱动光盘，virtio磁盘接口安装程序比较多，其他驱动与普通的硬件驱动一样安装，本脚本已加入qxl显卡，virtio显卡，virtio网卡，virtio磁盘选项。
+
+${YELLOW}关于virtio显卡3D加速${RES}
+	virtio显卡因参数问题，未发挥其特性功能。经过多次测试，作出的参数配置如下，当你选择virtio显卡时，vnc，sdl，spice输出不再有效，但仍会按你的上述选择作出以下配置。sdl将以-display sdl,gl=on输出（因系统的qemu源默认未编译sdl内容，所以选项未得到测试验证）。而spice则以wiki上的标准参数-display gtk,gl=on输出，但virtio显卡并不被识别。所以，vnc除了spice上的参数外，我还加入了-vga qxl来兼容virtio显卡输出。至于效果如何，有待验证。
+
+${YELLOW}系统镜像的磁盘驱动安装介绍：${RES}
+	1)先创建一个新的磁盘镜像，用于搜索virtio驱动，参数如下
+qemu-img create -f qcow2 fake.qcow2 1G
+	2)挂载fake磁盘（处于virtio模式下），带有驱动的CD-ROM，运行原本的Windows客户机（boot磁盘依旧是处于IDE模式中），参数如下
+qemu-system-x86_64 -m 4G -drive file=系统镜像,if=ide -drive file=fake.qcow2,if=virtio -cdrom virtio驱动.iso
+	3)开机Windows会自动检测fake磁盘，并搜索适配的驱动。如果失败了，前往Device Manager，找到SCSI驱动器（带有感叹号图标，应处于打开状态），点击Update driver并选择虚拟的CD-ROM。不要定位到CD-ROM内的文件夹了，只选择CD-ROM设备就行，Windows会自动找到合适的驱动的。
+	4)关机并重新启动它，现在可以以virtio模式挂载boot磁盘
+qemu-system-x86_64 -m 4G -drive file=系统镜像,if=virtio
+
+"
+CONFIRM
+MAIN
+}
+####################
+
+YELLOW="\e[1;33m"
+GREEN="\e[1;32m"
+RED="\e[1;31m" 
+BLUE="\e[1;34m"
+PINK="\e[0;35m"  
+WHITE="\e[0;37m"
+RES="\e[0m"
+####################
+ARCH_CHECK() {
+case $(dpkg --print-architecture) in
+	arm*|aarch64|i*86) ;;
+	*) echo -e "${RED}不支持你设备的架构${RES}" ;;
+esac
+}
+#################
 LOGIN() {
-pulseaudio --start &
+pulseaudio --start & 2>/dev/null
 echo "" &
 echo "欢迎来到bullseye-qemu系统" &
 unset LD_PRELOAD
@@ -100,15 +147,6 @@ echo -e "${YELLOW}系统已下载，请登录系统继续完成qemu的安装${RE
 sleep 2
 }
 ##################
-######################
-YELLOW="\e[1;33m"
-GREEN="\e[1;32m"
-RED="\e[1;31m"
-BLUE="\e[1;34m"
-PINK="\e[0;35m"
-WHITE="\e[0;37m"
-RES="\e[0m"
-#####################
 
 #####################
 INVALID_INPUT() {
@@ -121,9 +159,24 @@ case $input in
 *) ;; esac
 }
 #####################
-PULSEAUDIO() {
+SYSTEM_CHECK() {
 	uname -a | grep 'Android' -q
 	if [ $? == 0 ]; then
+		grep -E 'bfsu|tsinghua|ustc|tencent|utqemucheck' ${PREFIX}/etc/apt/sources.list              
+		if [ $? != 0 ]; then  
+			echo -e "${YELLOW}检测到你使用的可能为非国内源，为保证正常使用，建议切换为国内源${RES}\n  
+			1) 换国内源    
+			2) 不换"   
+			read -r -p "是否换国内源:" input   
+			case $input in    
+				1|"") echo "换国内源" 
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list 
+sed -i 's@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list 
+sed -i 's@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && pkg update -n ;;  
+2) echo "#utqemucheck" >>${PREFIX}/etc/apt/sources.list
+	MAIN ;;  
+esac                                                    
+		fi
 	dpkg -l | grep pulseaudio -q 2>/dev/null
 if [ $? != 0 ]; then
 	echo -e "检测到你未安装pulseaudio，为保证声音正常输出，将自动安装"
@@ -140,6 +193,9 @@ sed -i '/exit-idle/d' ${PREFIX}/etc/pulse/daemon.conf
 echo "exit-idle-time = -1" >> ${PREFIX}/etc/pulse/daemon.conf
 fi
 fi
+if [ ! $(command -v proot) ]; then
+	apt update && apt install proot -y
+fi
 	fi
 }
 ##################
@@ -148,7 +204,7 @@ WEB_SERVER() {
 	if [ $? == 0 ]; then
 		if [ ! $(command -v python) ]; then
 			echo -e "\n检测到你未安装所需要的包python,将先为你安装上"
-			apt update && apt install python
+			apt update && apt install python -y
 		fi
 		else
 if [ ! $(command -v python3) ]; then
@@ -179,11 +235,12 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >/root/.config/pip/pip.con
 ##################
 QEMU_SYSTEM() {
 echo -e "
-1) 安装qemu-system-x86_64，并联动更新模拟器所需应用\n${YELLOW}(由于qemu的依赖问题，安装过程可能会失败，请尝试重新安装)${RES}
+1) 安装qemu-system-x86_64，并联动更新模拟器所需应用\n\e[33m(由于qemu的依赖问题，安装过程可能会失败，请尝试重新安装)${RES}
 2) 创建windows镜像目录
 3) 启动qemu-system-x86_64模拟器
-4) 让termux成为网页服务器
-5) 退出\n"
+4) 让termux成为网页服务器(使模拟系统可以通过浏览器访问手机内容)
+5) 关于utqemu
+0) 退出\n"
 read -r -p "请选择:" input
 case $input in
 	1)  echo -e "${YELLOW}安装过程中，如遇到询问选择，请输(y)，安装过程极易出错，请重试安装${RES}"
@@ -192,7 +249,8 @@ case $input in
 	if [ $? == 0 ]; then
 	apt update && apt --fix-broken install -y && apt install qemu-system-x86-64-headless qemu-system-i386-headless -y
 else
-	apt update && apt install qemu-system-x86 xserver-xorg x11-utils samba -y && apt --reinstall install pulseaudio -y
+	apt update && apt install qemu-system-x86 xserver-xorg x11-utils -y && apt --reinstall install pulseaudio -y
+#apt install samba
 	fi
         QEMU_SYSTEM
         ;;
@@ -211,16 +269,50 @@ else
         CONFIRM
         QEMU_SYSTEM
         ;;
-3) export PULSE_SERVER=tcp:127.0.0.1:4713
-	read -r -p "请选择显示输出方式 1)vnc 2)xsdl(不推荐)" input
+3) if [ ! $(command -v qemu-system-x86_64) ]; then
+	echo -e "\n${GREEN}检测到你未安装qemu，请先执行安装选项${RES}"
+	sleep 2
+	QEMU_SYSTEM
+fi
+	uname -a | grep 'Android' -q 
+	if [ $? == 0 ]; then
+		echo -e "${YELLOW}vncviewer地址为127.0.0.1:0${RES}"     
+		sleep 1     
+		export PULSE_SERVER=tcp:127.0.0.1:4713  
+		set -- "${@}" "-vnc" ":0"
+	else
+cat >/dev/null<<-'EOF'
+ports=$(netstat | grep localhost | cut -d ":" -f 2 | cut -d " " -f 1 | head -n 1 )
+i=5900
+while [ "$i" == "$ports" ]
+do
+sleep 0.1
+let i++
+done
+echo "$i"
+EOF
+	read -r -p "请选择显示输出方式 1)vnc 2)xsdl 3)spice " input
 	case $input in
 		1|"") echo -e "${YELLOW}vncviewer地址为127.0.0.1:0${RES}"
 			sleep 1
-			set -- "${@}" "-vnc" ":0" ;;
+			display=vnc
+			export PULSE_SERVER=tcp:127.0.0.1:4713
+#			set -- "${@}" "-vnc" ":0"
+			;;
 		2) echo "需先打开xsdl再继续此操作"
 			sleep 1
-			export DISPLAY=127.0.0.1:0 ;;
+			display=xsdl
+			export PULSE_SERVER=tcp:127.0.0.1:4713
+#			export DISPLAY=127.0.0.1:0 
+			;;
+		3) echo -e "${YELLOW}aspice地址为127.0.0.1:0${RES}
+\e[33m请勿随意切换aspice，如出现系统界面无法控制，只能重开qemu${RES}"
+sleep 1
+display=spice
+#			set -- "${@}" "-spice" "port=5900,addr=127.0.0.1,disable-ticketing,seamless-migration=on"
+;;
 	esac
+	fi
 	echo -e "\n请选择启动哪个模拟器\n
         1) qemu-system-x86_64
         2) qemu-system-i386\n"
@@ -245,7 +337,7 @@ else
 esac
 	else
 		echo -e "请选择计算机类型，因系统原因，q35可能导致启动不成功"
-		read -r -p "1)pc默认 2)q35" input
+		read -r -p "1)pc默认 2)q35 " input
 		case $input in
 			1|"") case $(dpkg --print-architecture) in
 			arm*|aarch64) set -- "${@}" "--accel" "tcg" ;;
@@ -254,30 +346,27 @@ esac
 			2) echo -e ${RED}"如果无法进入系统，请选择pc${RES}"
 				set -- "${@}" "-machine" "q35,accel=kvm:xen:hax:tcg" ;;
 		esac
-#		set -- "${@}" "-machine" "q35"
 		fi
 echo -n -e "请输入${YELLOW}系统镜像${RES}全名（例如andows.img）hda_name:"
 read hda_name
-#qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
-#if [ $? != 0 ]; then
 	echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）hdb_name:"
 	read hdb_name
-#fi
 echo -n -e "请输入${YELLOW}光盘${RES}全名,不加载请直接回车（例如DVD.iso）iso_name:"
 read iso_name
 #		set -- "${@}" "-net" "nic" "-net" "user,smb=/sdcard/xinhao/"
-        echo -n "请输入模拟的内存大小，以m为单位（1g=1024m ， 例如512）mem:"
+        echo -n "请输入模拟的内存大小，以m为单位（1g=1024m，例如512）mem:"
         read mem
         set -- "${@}" "-m" "$mem"
         set -- "${@}" "-rtc" "base=localtime"
+	set -- "${@}" "-nodefaults"
 	echo -e "是否自定义cpu数量"
-	read -r -p "1)默认配置 2)自定义" input
+	read -r -p "1)默认配置 2)自定义 " input
 	case $input in
 		1|"") _SMP="" ;;
 		2) CPU=0
 			while [ $CPU -eq 0 ]
 do
-	echo -n -e "请输入逻辑cpu参数，分别为核心、线程、插槽个数，输入三位数字(例如2核1线2插槽,不能有0 则输212)"
+	echo -n -e "请输入逻辑cpu参数，分别为核心、线程、插槽个数，输入三位数字(例如2核1线2插槽,不能有0 则输212) "
 	read SMP     
 	CORES=`echo $SMP | cut -b 1`   
 	THREADS=`echo $SMP | cut -b 2`    
@@ -287,7 +376,7 @@ done
 echo -e "${YELLOW}$CORES核心$THREADS线程$SOCKETS插槽${RES}"
 _SMP="$CPU,cores=$CORES,threads=$THREADS,sockets=$SOCKETS" ;;
 esac
-	read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS" input
+read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS 6)Nehalem-IBRS " input
         case $input in
         1) set -- "${@}" "-cpu" "core2duo"
 		if [ -n "$_SMP" ]; then
@@ -313,11 +402,17 @@ esac
 		else
                 set -- "${@}" "-smp" "2,cores=1,threads=2,sockets=1"
 		fi ;;
-	5) set -- "${@}" "-cpu" "Skylake-Server-IBRS" 
+	5) set -- "${@}" "-cpu" "Skylake-Server-IBRS"
 		if [ -n "$_SMP" ]; then
 			set -- "${@}" "-smp" "$_SMP"
 		else
 		set -- "${@}" "-smp" "4,cores=2,threads=1,sockets=2"
+			fi ;;
+	6) set -- "${@}" "-cpu" "Nehalem-IBRS"
+		if [ -n "$_SMP" ]; then
+			set -- "${@}" "-smp" "$_SMP"
+		else
+			set -- "${@}" "-smp" "8,cores=8,threads=1,sockets=1"
 			fi ;;
         *)      set -- "${@}" "-cpu" "max"
 		if [ -n "$CPU" ]; then
@@ -326,29 +421,75 @@ esac
 		set -- "${@}" "-smp" "4"
 		fi ;;
 esac
-read -r -p "请选择显卡 1)cirrus 2)vmware 3)std 4)virtio" input
-        case $input in
-                1) set -- "${@}" "-vga" "cirrus" ;;
-                2) set -- "${@}" "-vga" "vmware" ;;
-		3|"") set -- "${@}" "-vga" "std" ;;
+	uname -a | grep 'Android' -q 
+	if [ $? == 0 ]; then
+read -r -p "请选择显卡 1)cirrus 2)vmware 3)std 4)virtio " input
+	case $input in 
+		1) set -- "${@}" "-vga" "cirrus" ;;
+		2) read -r -p "1)不开启3D功能 2)开启3D功能 " input
+			case $input in
+				1|"") set -- "${@}" "-vga" "vmware"     ;;
+				2) set -- "${@}" "-device" "vmware-svga,vgamem_mb=256" ;;
+			esac ;;
+		3|"") set -- "${@}" "-vga" "std" ;; 
 		4) set -- "${@}" "-vga" "virtio" ;;
         esac
-        read -r -p "请选择网卡 1)e1000 2)rtl8139 0)不加载" input
+else
+	read -r -p "请选择显卡 1)cirrus 2)vmware 3)std 4)virtio 5)qxl " input
+        case $input in
+                1) set -- "${@}" "-vga" "cirrus" ;;
+                2) read -r -p "1)不开启3D功能 2)开启3D功能 " input
+			case $input in
+				1|"") set -- "${@}" "-vga" "vmware"     ;;
+				2) set -- "${@}" "-device" "vmware-svga,vgamem_mb=256" ;;
+			esac ;;
+		3|"") set -- "${@}" "-vga" "std" ;;
+		4) 
+			echo -e "${YELLOW}virtio显卡带3D功能，但因使用的系统环境原因，目前只能通过电脑启用，如果真想尝试，可在图形界面打开(需32位色彩，否则出现花屏)。${RES}"
+			read -r -p "1)不开启3D功能 2)开启3D功能 " input 
+case $input in
+		1|"") set -- "${@}" "-vga" "virtio" ;;
+		2) 
+			case $display in
+			xsdl) set -- "${@}" "-vga" "virtio" "-display" "sdl,gl=on" ;;
+			vnc) set -- "${@}" "-vga" "qxl" "-display" "gtk,gl=on" "-device" "virtio-gpu-pci,virgl=on" ;;
+#				    set -- "${@}" "-vga" "virtio" "-display" "gtk,gl=on" ;;
+			spice) set -- "${@}" "-vga" "virtio" "-display" "gtk,gl=on" ;;
+		esac 
+		unset display ;;
+esac ;;
+
+
+		5) case $display in
+			spice) read -r -p "1)常规使用 2)spice传输协议使用 " input
+			case $input in
+			1|"") set -- "${@}" "-vga" "qxl" ;;
+		2) set -- "${@}" "-vga" "qxl" "-device" "virtio-serial-pci" "-device" "virtserialport,chardev=spicechannel0,name=com.redhat.spice.0" "-chardev" "spicevmc,id=spicechannel0,name=vdagent" ;;
+        esac ;;
+
+*) set -- "${@}" "-vga" "qxl" ;;
+esac
+esac
+	fi
+	read -r -p "请选择网卡 1)e1000 2)rtl8139 3)virtio 0)不加载 " input
         case $input in
                         1|"") set -- "${@}" "-net" "user"
                                 set -- "${@}" "-net" "nic,model=e1000" ;;
                         0) ;;
                         2) set -- "${@}" "-net" "user"
                                 set -- "${@}" "-net" "nic,model=rtl8139" ;;
+			3) set -- "${@}" "-net" "user"
+				set -- "${@}" "-net" "nic,model=virtio" ;;
                 esac
-		read -r -p "是否加载usb鼠标,少部分系统可能不支持 1)加载 0)不加载" input
+		read -r -p "是否加载usb鼠标,少部分系统可能不支持 1)加载 0)不加载 " input
                 case $input in
                         1) set -- "${@}" "-usb" "-device" "usb-tablet" ;;
                         2|"") ;;
                 esac
 		qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
                 if [ $? != 0 ]; then
-			read -r -p "请选择声卡 1)ac97 2)sb16 3)es1370 4)hda 0)不加载" input
+			set -- "${@}" "-realtime" "mlock=off"
+			read -r -p "请选择声卡 1)ac97 2)sb16 3)es1370 4)hda 0)不加载 " input
                         case $input in
                 1|"") set -- "${@}" "-soundhw" "ac97" ;;
                 2) set -- "${@}" "-soundhw" "sb16" ;;
@@ -367,7 +508,9 @@ esac
                 set -- "${@}" "-boot" "order=dc"
 
         else
-		read -r -p "请选择声卡 1)es1370 2)sb16 3)hda 4)ac97(推荐) 0)不加载" input
+		set -- "${@}" "-overcommit" "mem-lock=off"
+		set -- "${@}" "-overcommit" "cpu-pm=off"
+		read -r -p "请选择声卡 1)es1370 2)sb16 3)hda 4)ac97(推荐) 0)不加载 " input
                         case $input in
                         1) set -- "${@}" "-device" "ES1370" ;;
                         2) set -- "${@}" "-device" "sb16" ;;
@@ -391,7 +534,8 @@ esac
 #		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hda_name,if=virtio,id=drive-virtio-disk,aio=threads,cache=none"
 		if [ -n "$hdb_name" ]; then
 #                       set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,format=raw,index=1,media=disk"
-#                       set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"                                           
+#                       set -- "${@}" "-hdb" "/sdcard/xinhao/windows/$hdb_name"    
+#set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=virtio"
 		set -- "${@}" "-drive" "file=/sdcard/xinhao/windows/$hdb_name,if=ide,index=1,media=disk"
 		fi
 		if [ -n "$iso_name" ]; then     
@@ -457,23 +601,37 @@ if [ -n "$hdb_name" ]; then
 esac
 		set -- "${@}" "-boot" "order=dc,menu=on,strict=off"
 		fi
+
+		if [ -n "$display" ]; then
+			case $display in
+				vnc) set -- "${@}" "-vnc" ":0" ;;
+				xsdl) export DISPLAY=127.0.0.1:0 ;;
+				spice) set -- "${@}" "-spice" "port=5900,addr=127.0.0.1,disable-ticketing,seamless-migration=on" ;;
+			esac
+		fi
+
+
+
         set -- "$QEMU_SYS" "${@}"
         "${@}" &
         ;;
 4) WEB_SERVER ;;
-5) exit 1 ;;
+5) ABOUT_VIRTIO ;;
+0) exit 1 ;;
 *) INVALID_INPUT && QEMU_SYSTEM ;;
 esac
 }
 ###################
 MAIN() {
-	PULSEAUDIO
+	ARCH_CHECK
+	SYSTEM_CHECK
+	INFO
 	uname -a | grep 'Android' -q
 	if [ $? == 0 ]; then
-	echo -e "\n请选择qemu-system-x86的运行方式\n
-	1) 直接运行，termux(utermux)目前版本为5.0以上，暂不支持声音输出，其他系统的版本各不一样
+	echo -e "\n\e[33m请选择qemu-system-x86的运行环境\e[0m\n
+	1) 直接运行，termux(utermux)目前版本为5.0以上，暂不支持声音输出，\e[33m其他系统的版本各不一样，一些功能参数可能没被编译进去${RES}
 	2) 独立系统运行5.0以上版本
-	3) 退出\n"
+	0) 退出\n"
 	read -r -p "请选择:" input
 	case $input in
 		2) uname -a | grep 'Android' -q
@@ -485,7 +643,7 @@ fi
 	fi
 	LOGIN ;;
 	1) QEMU_SYSTEM ;;
-	3) exit 1 ;;
+	0) exit 1 ;;
 	*) INVALID_INPUT
 		MAIN ;;
 esac

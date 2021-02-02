@@ -321,7 +321,7 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
                 mSettings.reloadFromProperties(TermuxActivity.this);
 
                 if (mExtraKeysView != null) {
-                    mExtraKeysView.reload(mSettings.mExtraKeys, main.java.com.termux.app.ExtraKeysView.defaultCharDisplay);
+                    mExtraKeysView.reload(mSettings.mExtraKeys);
                 }
             }
         }
@@ -946,7 +946,7 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
 
 
         ViewGroup.LayoutParams layoutParams = viewPager.getLayoutParams();
-        layoutParams.height = layoutParams.height * mSettings.mExtraKeys.length;
+        layoutParams.height = layoutParams.height * (mSettings.mExtraKeys == null ? 0 : mSettings.mExtraKeys.getMatrix().length);
         viewPager.setLayoutParams(layoutParams);
 
         viewPager.setAdapter(new PagerAdapter() {
@@ -967,7 +967,14 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
                 View layout;
                 if (position == 0) {
                     layout = mExtraKeysView = (main.java.com.termux.app.ExtraKeysView) inflater.inflate(R.layout.extra_keys_main, collection, false);
-                    mExtraKeysView.reload(mSettings.mExtraKeys, main.java.com.termux.app.ExtraKeysView.defaultCharDisplay);
+                    mExtraKeysView.reload(mSettings.mExtraKeys);
+
+
+
+                    // apply extra keys fix if enabled in prefs
+                    if (mSettings.isUsingFullScreen() && mSettings.isUsingFullScreenWorkAround()) {
+                        FullScreenWorkAround.apply(TermuxActivity.this);
+                    }
 
                     String back_color_view = SaveData.getData("back_color_view");
 
@@ -1095,7 +1102,9 @@ public  class TermuxActivity extends Activity implements ServiceConnection, View
         start_copy.setVisibility(View.GONE);
     }
 
-
+    public int getNavBarHeight() {
+        return mNavBarHeight;
+    }
     private AnimatorSet mRightOutAnimatorSet, mLeftInAnimatorSet;
 
     private boolean mIsShowBack = false;  //是否显示背面
@@ -3469,7 +3478,7 @@ other_mod
     private MinLAdapter mMinLAdapter;
     private SwitchButton switch_button;
     private View ut_server;
-
+    int mNavBarHeight;
     @Override
     public void onCreate(Bundle bundle) {
         mSettings = new main.java.com.termux.app.TermuxPreferences(this);
@@ -3482,6 +3491,17 @@ other_mod
 
 
         getImei();
+
+        View content = findViewById(android.R.id.content);
+        content.setOnApplyWindowInsetsListener((v, insets) -> {
+            mNavBarHeight = insets.getSystemWindowInsetBottom();
+            return insets;
+        });
+
+        if (mSettings.isUsingFullScreen()) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
 
 
         File file5 = new File(Environment.getExternalStorageDirectory(), "/xinhao/online_system/");

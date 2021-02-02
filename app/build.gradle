@@ -58,10 +58,10 @@ android {
 
     defaultConfig {
         applicationId "com.termux"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 92
-        versionName "0.105.115"
+        versionName "0.106.116"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }

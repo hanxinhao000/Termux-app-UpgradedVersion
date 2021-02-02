@@ -358,7 +358,7 @@ public final class TerminalView extends View {
         try {
 
             propsFile = new File(possiblePropLocations[0]);
-            int i = 1;
+            int i = 0;
             while (!propsFile.exists() && i < possiblePropLocations.length) {
                 propsFile = new File(possiblePropLocations[i]);
                 i += 1;
@@ -947,7 +947,7 @@ public final class TerminalView extends View {
         return true;
     }
 
-    void inputCodePoint(int codePoint, boolean controlDownFromEvent, boolean leftAltDownFromEvent) {
+   public void inputCodePoint(int codePoint, boolean controlDownFromEvent, boolean leftAltDownFromEvent) {
         if (LOG_KEY_EVENTS) {
             Log.i(EmulatorDebug.LOG_TAG, "inputCodePoint(codePoint=" + codePoint + ", controlDownFromEvent=" + controlDownFromEvent + ", leftAltDownFromEvent="
                 + leftAltDownFromEvent + ")");
