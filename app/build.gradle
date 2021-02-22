@@ -54,6 +54,10 @@ android {
 
         implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 
+
+        implementation "com.umeng.umsdk:common:9.3.6" //（必选）
+        implementation "com.umeng.umsdk:asms:1.2.0" // asms包依赖(必选)
+
     }
 
     defaultConfig {
@@ -61,7 +65,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 92
-        versionName "0.106.116"
+        versionName "0.108.119"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }

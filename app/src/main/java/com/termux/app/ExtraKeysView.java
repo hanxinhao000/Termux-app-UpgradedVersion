@@ -22,12 +22,16 @@ import com.termux.R;
 import com.termux.terminal.TerminalSession;
 import com.termux.view.TerminalView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import main.java.com.termux.application.TermuxApplication;
@@ -164,14 +168,30 @@ public final class ExtraKeysView extends GridLayout {
 
     private static class SpecialButtonState {
         boolean isOn = false;
-        ToggleButton button = null;
+        boolean isActive = false;
+        List<Button> buttons = new ArrayList<>();
+
+        void setIsActive(boolean value) {
+            isActive = value;
+            buttons.forEach(button -> button.setTextColor(value ? INTERESTING_COLOR : TEXT_COLOR));
+        }
     }
 
-    private Map<SpecialButton, SpecialButtonState> specialButtons = new HashMap<SpecialButton, SpecialButtonState>() {{
+    private final Map<SpecialButton, SpecialButtonState> specialButtons = new HashMap<SpecialButton, SpecialButtonState>() {{
         put(SpecialButton.CTRL, new SpecialButtonState());
         put(SpecialButton.ALT, new SpecialButtonState());
         put(SpecialButton.FN, new SpecialButtonState());
     }};
+
+
+    private final Set<String> specialButtonsKeys = specialButtons.keySet().stream().map(Enum::name).collect(Collectors.toSet());
+
+    private boolean isSpecialButton(ExtraKeyButton button) {
+        return specialButtonsKeys.contains(button.getKey());
+    }
+
+
+
 
     private ScheduledExecutorService scheduledExecutor;
     private PopupWindow popupWindow;
@@ -182,29 +202,45 @@ public final class ExtraKeysView extends GridLayout {
         if (state == null)
             throw new RuntimeException("Must be a valid special button (see source)");
 
-        if (!state.isOn)
+        if (!state.isOn || !state.isActive)
             return false;
 
-        if (state.button == null) {
-            return false;
-        }
+        state.setIsActive(false);
 
-        if (state.button.isPressed())
+     /*   if (state.button.isPressed())
             return true;
 
         if (!state.button.isChecked())
-            return false;
+            return false;*/
 
-        state.button.setChecked(false);
-        state.button.setTextColor(TEXT_COLOR);
+       /* state.button.setChecked(false);
+        state.button.setTextColor(TEXT_COLOR);*/
         return true;
     }
 
-    void popup(View view, String text) {
+    private Button createSpecialButton(String buttonKey, boolean needUpdate) {
+        SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonKey));
+        state.isOn = true;
+        Button button = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
+        button.setTextColor(state.isActive ? INTERESTING_COLOR : TEXT_COLOR);
+        if (needUpdate) {
+            state.buttons.add(button);
+        }
+        return button;
+    }
+
+    void popup(View view, ExtraKeyButton extraButton) {
+
         int width = view.getMeasuredWidth();
         int height = view.getMeasuredHeight();
-        Button button = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
-        button.setText(text);
+        Button button;
+        if(isSpecialButton(extraButton)) {
+            button = createSpecialButton(extraButton.getKey(), false);
+        }else {
+            button = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
+            button.setTextColor(TEXT_COLOR);
+        }
+        button.setText(extraButton.getDisplay());
         button.setTextColor(TEXT_COLOR);
         button.setPadding(0, 0, 0, 0);
         button.setMinHeight(0);
@@ -378,7 +414,7 @@ public final class ExtraKeysView extends GridLayout {
             return;
 
         for(SpecialButtonState state : specialButtons.values())
-            state.button = null;
+            state.buttons = new ArrayList<>();
 
         removeAllViews();
 
@@ -392,11 +428,9 @@ public final class ExtraKeysView extends GridLayout {
                 final ExtraKeyButton buttonInfo = buttons[row][col];
 
                 Button button;
-                if(Arrays.asList("CTRL", "ALT", "FN").contains(buttonInfo.getKey())) {
-                    SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonInfo.getKey())); // for valueOf: https://stackoverflow.com/a/604426/1980630
-                    state.isOn = true;
-                    button = state.button = new ToggleButton(getContext(), null, android.R.attr.buttonBarButtonStyle);
-                    button.setClickable(true);
+                if(isSpecialButton(buttonInfo)) {
+                    button = createSpecialButton(buttonInfo.getKey(), true);
+                  //  button.setClickable(true);
                 } else {
                     button = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
                 }
@@ -421,10 +455,9 @@ public final class ExtraKeysView extends GridLayout {
                     }
 
                     View root = getRootView();
-                    if (Arrays.asList("CTRL", "ALT", "FN").contains(buttonInfo.getKey())) {
-                        ToggleButton self = (ToggleButton) finalButton;
-                        self.setChecked(self.isChecked());
-                        self.setTextColor(self.isChecked() ? INTERESTING_COLOR : TEXT_COLOR);
+                    if (isSpecialButton(buttonInfo)) {
+                        SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonInfo.getKey()));
+                        state.setIsActive(!state.isActive);
                     } else {
                         sendKey(root, buttonInfo);
                     }
@@ -454,8 +487,7 @@ public final class ExtraKeysView extends GridLayout {
                                         scheduledExecutor = null;
                                     }
                                     v.setBackgroundColor(BUTTON_COLOR);
-                                    String extraButtonDisplayedText = buttonInfo.getPopup().getDisplay();
-                                    popup(v, extraButtonDisplayedText);
+                                    popup(v, buttonInfo.getPopup());
                                 }
                                 if (popupWindow != null && event.getY() > 0) {
                                     v.setBackgroundColor(BUTTON_PRESSED_COLOR);
@@ -484,7 +516,12 @@ public final class ExtraKeysView extends GridLayout {
                                     popupWindow.dismiss();
                                     popupWindow = null;
                                     if (buttonInfo.getPopup() != null) {
-                                        sendKey(root, buttonInfo.getPopup());
+                                        if (isSpecialButton(buttonInfo.getPopup())) {
+                                            SpecialButtonState state = specialButtons.get(SpecialButton.valueOf(buttonInfo.getPopup().getKey()));
+                                            state.setIsActive(!state.isActive);
+                                        } else {
+                                            sendKey(root, buttonInfo.getPopup());
+                                        }
                                     }
                                 } else {
                                     v.performClick();

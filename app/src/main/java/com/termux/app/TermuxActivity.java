@@ -104,6 +104,7 @@ import com.termux.terminal.TerminalSession.SessionChangedCallback;
 import com.termux.terminal.TextStyle;
 import com.termux.view.TerminalRenderer;
 import com.termux.view.TerminalView;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,9 +122,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -149,6 +152,8 @@ import main.java.com.termux.adapter.ItemSelectAdapter;
 import main.java.com.termux.adapter.MinLAdapter;
 import main.java.com.termux.adapter.databean.MinLBean;
 import main.java.com.termux.android_cm.LauncherActivity;
+import main.java.com.termux.app.dialog.LoadingDialog;
+import main.java.com.termux.app.dialog.LoadingSHDialog;
 import main.java.com.termux.app.dialog.MingLShowDialog;
 import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
@@ -163,9 +168,11 @@ import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
 import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.datat.UrlDataHtml;
+import main.java.com.termux.download.HttpUtil;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
+import main.java.com.termux.http.HttpURL;
 import main.java.com.termux.http.UpDateHttpCode;
 import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
@@ -4080,6 +4087,11 @@ other_mod
             @Override
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("UTermux的qemu脚本统计","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "QEMU_UT", music);
+
                 startActivity(new Intent(TermuxActivity.this, RunWindowActivity.class));
             }
         });
@@ -4112,7 +4124,21 @@ other_mod
             @Override
             public void onClick(View v) {
                 getDrawer().closeDrawer(Gravity.LEFT);
-                mTerminalView.sendTextToTerminal("apt install -y curl ; bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+
+
+
+                LoadingSHDialog loadingDialog = new LoadingSHDialog(TermuxActivity.this);
+                loadingDialog.show();
+
+
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("pkg install -y curl ; bash -c \"$(curl -L gitee.com/mo2/linux/raw/2/2)\" \n");
+                loadingDialog.offLineRommand(arrayList);
+
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("MOE","脚本安装");
+                loadingDialog.startURL(HttpURL.MOE_URL,null,music,"MOE","MOE");
 
             }
         });
@@ -4158,6 +4184,10 @@ other_mod
                 }
 
 
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("UTermux的在线下载linux统计","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "LINUX_ONLINE", music);
 
 
                 writerFile("termux_toolx.sh",new File("/data/data/com.termux/files/home/termux_toolx.sh"));
@@ -4341,6 +4371,11 @@ other_mod
                         writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
                         Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
 
+
+                        Map<String, Object> music = new HashMap<String, Object>();
+                        music.put("北京源","open");
+                        MobclickAgent.onEventObject(TermuxActivity.this, "BEIJIN_CODE", music);
+
                         mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list &&" +
                             "sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list &&" +
                             "sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.bfsu.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list &&" +
@@ -4369,12 +4404,20 @@ other_mod
         jingjian_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("简单模式","切换到简单");
+                MobclickAgent.onEventObject(TermuxActivity.this, "MODE_JD", music);
                 mianbanSwitch1(0);
             }
         });
         gaoji_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("高级模式","切换到高级");
+                MobclickAgent.onEventObject(TermuxActivity.this, "MODE_GJ", music);
+
                 mianbanSwitch1(1);
             }
         });
@@ -4390,6 +4433,9 @@ other_mod
         jichu_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("基础页面","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "jichu", music);
                 mianbanSwitch2(0);
             }
         });
@@ -4397,24 +4443,36 @@ other_mod
         rootfs_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("linux发行集合","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "linux_btn", music);
                 mianbanSwitch2(1);
             }
         });
         mingling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("自定义命令","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "mingling", music);
                 mianbanSwitch2(2);
             }
         });
         windows_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("模拟WINDOWS","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "windows_mod", music);
                 mianbanSwitch2(3);
             }
         });
         other_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("显示_免费映射_其它","open");
+                MobclickAgent.onEventObject(TermuxActivity.this, "windows_mod", music);
                 mianbanSwitch2(4);
             }
         });
@@ -4849,8 +4907,19 @@ other_mod
             public void onClick(View v) {
                 //apt install -y curl
 
-                getDrawer().closeDrawer(Gravity.LEFT);
-                mTerminalView.sendTextToTerminal("apt install -y curl ; bash -c \"$(curl -LfsS 'https://gitee.com/mo2/linux/raw/master/debian.sh')\" \n");
+                LoadingSHDialog loadingDialog = new LoadingSHDialog(TermuxActivity.this);
+                loadingDialog.show();
+
+
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("pkg install -y curl ; bash -c \"$(curl -L gitee.com/mo2/linux/raw/2/2)\" \n");
+                loadingDialog.offLineRommand(arrayList);
+
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("MOE","脚本安装");
+                loadingDialog.startURL(HttpURL.MOE_URL,null,music,"MOE","MOE");
+
             }
         });
 
@@ -5326,6 +5395,11 @@ other_mod
                         writerFile("qh_science.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list"));
                         writerFile("qh_game.list", new File("/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list"));
                         Toast.makeText(TermuxActivity.this, "切换到清华源成功!", Toast.LENGTH_SHORT).show();*/
+
+                        Map<String, Object> music = new HashMap<String, Object>();
+                        music.put("清华源","open");
+
+                        MobclickAgent.onEventObject(TermuxActivity.this, "QINGHUA_CODE", music);
 
                         mTerminalView.sendTextToTerminal("sed -i 's@^\\(deb.*stable main\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && sed -i 's@^\\(deb.*games stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list && sed -i 's@^\\(deb.*science stable\\)$@#\\1\\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list && apt update && apt upgrade \n");
 
@@ -10435,7 +10509,15 @@ Solaris(APP美化)
         } else {
             //TerminalSession newSession = mTermService.createTermSession(null, null, null, failSafe);
             TerminalSession currentSession = getCurrentTermSession();
-            String workingDirectory = (currentSession == null) ? null : currentSession.getCwd();
+          //  String workingDirectory = (currentSession == null) ? null : currentSession.getCwd();
+
+
+            String workingDirectory;
+            if (currentSession == null) {
+                workingDirectory = mSettings.mDefaultWorkingDir;
+            } else {
+                workingDirectory = currentSession.getCwd();
+            }
             //标记2345
             TerminalSession newSession = mTermService.createTermSession(null, null, workingDirectory, failSafe);
             if (sessionName != null) {

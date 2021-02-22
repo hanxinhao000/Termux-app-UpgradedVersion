@@ -3157,7 +3157,7 @@
                       android:layout_height="wrap_content"
                       android:padding="2dp"
                       android:background="@drawable/shape_login_btn_true"
-                      android:text="ENGLISH"
+                      android:text="open"
                       android:id="@+id/english"
                       android:textColor="#10202f"
                       android:textSize="10sp"
@@ -3172,9 +3172,8 @@
                       android:layout_marginBottom="10dp"
                       android:layout_height="wrap_content"
                       android:padding="2dp"
-
                       android:id="@+id/zhongwen"
-                      android:text="中文"
+                      android:text="close"
                       android:textColor="#fff"
                       android:textSize="10sp"
                       android:textStyle="bold" />
@@ -3190,6 +3189,81 @@
 
 
               </LinearLayout>
+
+
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center_vertical"
+                  android:visibility="visible"
+                  android:layout_height="wrap_content">
+
+                  <ImageView
+                      android:layout_width="15dp"
+                      android:visibility="invisible"
+                      android:src="@drawable/jinggao_xiao"
+                      android:layout_height="15dp"/>
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="12dp"
+                      android:layout_marginTop="10dp"
+                      android:gravity="center_horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+
+                      android:text="@string/语言5558"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="50dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:background="@drawable/shape_login_btn_true"
+                      android:text="open"
+                      android:id="@+id/open_xue"
+                      android:textColor="#10202f"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+
+                  <main.java.com.termux.utils.CustomTextView
+                      android:layout_marginLeft="25dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_marginBottom="10dp"
+                      android:layout_height="wrap_content"
+                      android:padding="2dp"
+                      android:id="@+id/close_xue"
+                      android:text="close"
+                      android:textColor="#fff"
+                      android:textSize="10sp"
+                      android:textStyle="bold" />
+
+
+
+
+
+
+
+
+
+
+
+              </LinearLayout>
+
 
 
           </LinearLayout>

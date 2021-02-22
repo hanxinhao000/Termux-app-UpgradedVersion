@@ -38,22 +38,25 @@ public class HttpUtil {
         doAsync(request, callback);
     }
 
-    public void getContentLength(String url, Callback callback) throws IOException {
+    public Call getContentLength(String url, Callback callback)  {
         // 创建一个Request
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-        doAsync(request, callback);
+       return doAsync(request, callback);
     }
 
     /**
      * 异步请求
      */
-    private void doAsync(Request request, Callback callback) throws IOException {
+    private Call doAsync(Request request, Callback callback)  {
         //创建请求会话
         Call call = mOkHttpClient.newCall(request);
         //同步执行会话请求
         call.enqueue(callback);
+
+        return call;
+
     }
 
     /**
@@ -92,5 +95,6 @@ public class HttpUtil {
                 .writeTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS);
         mOkHttpClient = builder.build();
+
     }
 }

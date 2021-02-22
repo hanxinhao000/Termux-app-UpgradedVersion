@@ -1,10 +1,12 @@
 package main.java.com.termux.datat;
 
+import main.java.com.termux.http.HttpURL;
+
 public class UrlDataHtml {
 
 
-    public static final String IP = "http://134.122.188.130:29952";
+    public static final String IP = HttpURL.IP;
 
-    public static final String VISITION = "/xinhao.json";
+    public static final String VISITION = HttpURL.VISITION;
 
 }

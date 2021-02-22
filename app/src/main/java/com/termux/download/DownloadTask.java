@@ -138,7 +138,7 @@ public class DownloadTask extends Handler {
                     mListner.error();
                 }
             });
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             resetStutus();
         }

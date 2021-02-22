@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.termux.BuildConfig;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -143,7 +145,7 @@ public final class BackgroundJob {//XAJ 1004 5927 408
         if (cwd == null) cwd = TermuxService.HOME_PATH;
 
         List<String> environment = new ArrayList<>();
-
+        environment.add("TERMUX_VERSION=" + BuildConfig.VERSION_NAME);
         environment.add("TERM=xterm-256color");
         environment.add("HOME=" + TermuxService.HOME_PATH);
         environment.add("PREFIX=" + TermuxService.PREFIX_PATH);

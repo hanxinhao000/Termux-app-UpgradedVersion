@@ -63,6 +63,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -94,6 +95,7 @@ import com.termux.terminal.TerminalSession.SessionChangedCallback;
 import com.termux.terminal.TextStyle;
 import com.termux.view.TerminalRenderer;
 import com.termux.view.TerminalView;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,9 +113,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -155,6 +159,7 @@ import main.java.com.termux.app.dialog.BoomWindow;
 import main.java.com.termux.app.dialog.FileInstallServerListDialog;
 import main.java.com.termux.app.dialog.FileListQemuDialog;
 import main.java.com.termux.app.dialog.LoadingDialog;
+import main.java.com.termux.app.dialog.LoadingSHDialog;
 import main.java.com.termux.app.dialog.MingLShowDialog;
 import main.java.com.termux.app.dialog.MinglingDaoruDaoChuDialog;
 import main.java.com.termux.app.dialog.RootfsDialog;
@@ -170,9 +175,11 @@ import main.java.com.termux.datat.DataBean;
 import main.java.com.termux.datat.ServiceDataBean;
 import main.java.com.termux.datat.TermuxData;
 import main.java.com.termux.datat.UrlDataHtml;
+import main.java.com.termux.download.HttpUtil;
 import main.java.com.termux.filemanage.filemanager.FileManagerActivity;
 import main.java.com.termux.floatwindows.TermuxFloatService;
 import main.java.com.termux.http.CheckUpDateCodeUtils;
+import main.java.com.termux.http.HttpURL;
 import main.java.com.termux.http.UpDateHttpCode;
 import main.java.com.termux.key.KeyData;
 import main.java.com.termux.listener.SmsMsgListener;
@@ -186,6 +193,7 @@ import main.java.com.termux.utils.WindowUtils;
 import main.java.com.termux.view.MyDialog;
 import main.java.com.termux.view.MyDrawerLayout;
 import main.java.com.termux.view.MyHorizontalScrollView;
+import main.java.com.termux.view.xiayu.SnowView;
 import main.java.com.termux.windows.RunWindowActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -195,6 +203,16 @@ import okhttp3.Response;
 
 import static main.java.com.termux.app.TermuxService.getEnvironmentPrefix;
 import static main.java.com.termux.service.BackService.BACK_FILES;
+
+/**
+ *
+ *  加入 qemu脚本 完成
+ *
+ *  加入 在Termux中输入:wget https://assets.huoyinetwork.cn/Flyos/3.0/setup.sh && sh setup.sh
+ *
+ *
+ *
+ */
 
 
 public class TermuxActivity2 extends TermuxActivity {
@@ -208,14 +226,23 @@ public class TermuxActivity2 extends TermuxActivity {
     private LinearLayout qemu_files_install;
     private LinearLayout un_install_qemu;
     private LinearLayout download_qemu_bd;
+    private FrameLayout snow_line;
     private View server_zhengmian;
     private View server_fanmian;
     private View qemu_huanjing;
     private ImageView zhengmian_viewcvcv;
+    private ImageView red_img_flyos_1;
+    private ImageView red_img_flyos;
     private RelativeLayout dakai_qemu_huanj;
     private RelativeLayout qemu_install_jiaoben;
+    private RelativeLayout vs_code;
     private CardView atilo;
     private CardView rootfs_rootdfdf;
+
+    private CustomTextView open_xue;
+    private CustomTextView close_xue;
+    private RelativeLayout jiandan_flyos_linux_click;
+    private RelativeLayout jiandan_my_world_linux_click;
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -236,8 +263,27 @@ public class TermuxActivity2 extends TermuxActivity {
         qemu_install_jiaoben = findViewById(R.id.qemu_install_jiaoben);
         atilo = findViewById(R.id.atilo);
         rootfs_rootdfdf = findViewById(R.id.rootfs_rootdfdf);
+        vs_code = findViewById(R.id.vs_code);
+        jiandan_flyos_linux_click = findViewById(R.id.jiandan_flyos_linux_click);
+        red_img_flyos_1 = findViewById(R.id.red_img_flyos_1);
+        red_img_flyos = findViewById(R.id.red_img_flyos);
+        jiandan_my_world_linux_click = findViewById(R.id.jiandan_my_world_linux_click);
+
+        open_xue = findViewById(R.id.open_xue);
+        close_xue = findViewById(R.id.close_xue);
+        snow_line = findViewById(R.id.snow_line);
+
+
+
 
         onClickTermux();
+
+
+
+        
+
+
+
     }
 
 
@@ -260,19 +306,185 @@ public class TermuxActivity2 extends TermuxActivity {
         if(!file2.exists()){
             file2.mkdirs();
         }
+
+        jiandan_my_world_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            /*    if(true){
+                    UUtils.showMsg(UUtils.getString(R.string.内容暂时不可访问));
+                    return;
+                }
+*/
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.setCancelable(true);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.请注意公共dfdsfsd));
+                textShowDialog.start.setText(UUtils.getString(R.string.我承担的双方各));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Map<String, Object> music = new HashMap<String, Object>();
+                        music.put("QQ为3038839957上传的我的世界服务器统计","open");
+                        MobclickAgent.onEventObject(TermuxActivity2.this, "MY_WORLD", music);
+
+                        getDrawer().closeDrawer(Gravity.LEFT);
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("cd ~ \n");
+                        mTerminalView.sendTextToTerminal("pkg update && pkg install wget && wget http://s3642508.smlie.icu/setup.sh && sh setup.sh \n");
+
+                        textShowDialog.dismiss();
+                        //getDrawer().closeDrawer(Gravity.LEFT);
+                    }
+                });
+                textShowDialog.commit.setText(UUtils.getString(R.string.我不同意));
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+
+                    }
+                });
+
+
+
+            }
+        });
         qemu_install_jiaoben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 getDrawer().closeDrawer(Gravity.LEFT);
-                writerFile("qemu.sh",new File("/data/data/com.termux/files/home/qemu.sh"));
+
+                LoadingSHDialog loadingDialog = new LoadingSHDialog(TermuxActivity2.this);
+                loadingDialog.show();
+
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("cd ~");
+                arrayList.add("cd ~");
+                arrayList.add("cd ~");
+                arrayList.add("chmod 777 qemu.sh");
+                arrayList.add("./qemu.sh");
+                loadingDialog.offLineRommand(arrayList);
+
+
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("海的qemu脚本统计","open");
+                File file3 = new File("/data/data/com.termux/files/home/qemu.sh");
+                loadingDialog.startShFileURL(HttpURL.HAO_QEMU_URL,null,music,"QEMU_HAI","OFF_LINE_QEMU_HAI",file3,file3,"qemu.sh");
+
+
+
+            }
+        });
+
+
+        String xue_state = SaveData.getData("xue_state");
+
+        if(xue_state == null || xue_state.isEmpty() || xue_state.equals("def")|| xue_state.equals("close")){
+
+
+            //snow_line
+            try {
+                indexSwitchXue(1);
+                snow_line.removeAllViews();
+                SaveData.saveData("xue_state", "close");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }else{
+
+            try {
+                indexSwitchXue(0);
+                SnowView snowView = new SnowView(this);
+                snow_line.removeAllViews();
+                snow_line.addView(snowView);
+
+                SaveData.saveData("xue_state","open");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+        open_xue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("雪花","open");
+                MobclickAgent.onEventObject(TermuxActivity2.this, "xuehua", music);
+
+                try {
+                    indexSwitchXue(0);
+                    SnowView snowView = new SnowView(TermuxActivity2.this);
+                    snow_line.removeAllViews();
+                    snow_line.addView(snowView);
+                    SaveData.saveData("xue_state", "open");
+                    UUtils.showMsg(UUtils.getString(R.string.如果在切换后));
+                }catch (Exception e){
+                    e.printStackTrace();
+                    UUtils.showMsg(UUtils.getString(R.string.您的机型不支持));
+                }
+
+
+
+            }
+        });
+
+        close_xue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("雪花","close");
+                MobclickAgent.onEventObject(TermuxActivity2.this, "xuehua", music);
+                try {
+                    indexSwitchXue(1);
+                    snow_line.removeAllViews();
+                    SaveData.saveData("xue_state", "close");
+                    UUtils.showMsg(UUtils.getString(R.string.如果在切换后));
+                }catch (Exception e){
+                    e.printStackTrace();
+                    UUtils.showMsg(UUtils.getString(R.string.您的机型不支持));
+                }
+            }
+        });
+        vs_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //code-server -- auth none --disable-telemetry
+
+                getDrawer().closeDrawer(Gravity.LEFT);
+                writerFile("start_vscode.sh",new File("/data/data/com.termux/files/home/vs_code.sh"));
 
                 mTerminalView.sendTextToTerminal("cd ~ \n");
                 mTerminalView.sendTextToTerminal("cd ~ \n");
                 mTerminalView.sendTextToTerminal("cd ~ \n");
-                mTerminalView.sendTextToTerminal("chmod 777 qemu.sh \n");
-                mTerminalView.sendTextToTerminal("./qemu.sh \n");
+                mTerminalView.sendTextToTerminal("chmod 777 vs_code.sh \n");
+                mTerminalView.sendTextToTerminal("./vs_code.sh \n");
 
+            }
+        });
+
+        vs_code.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.vscode脚本作者));
+
+
+                return true;
             }
         });
 
@@ -281,8 +493,142 @@ public class TermuxActivity2 extends TermuxActivity {
             public void onClick(View v) {
 
                 mTerminalView.sendTextToTerminal("echo \"deb [trusted=yes arch=all] https://yadominjinta.github.io/files/ termux extras\" >> $PREFIX/etc/apt/sources.list.d/atilo.list && apt update && apt install atilo \n");
-
                 getDrawer().closeDrawer(Gravity.LEFT);
+
+            }
+        });
+
+        jiandan_flyos_linux_click.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("FLYOS","打开");
+                MobclickAgent.onEventObject(TermuxActivity2.this, "FLYOS_MSG", music);
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.flyos作者信息));
+
+
+                return true;
+            }
+        });
+
+        String flyos = SaveData.getData("flyos");
+
+        if(flyos == null || flyos.isEmpty() || flyos.equals("def")){
+            red_img_flyos_1.setVisibility(View.VISIBLE);
+            red_img_flyos.setVisibility(View.VISIBLE);
+        }else{
+            red_img_flyos_1.setVisibility(View.GONE);
+            red_img_flyos.setVisibility(View.GONE);
+        }
+
+        jiandan_flyos_linux_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                textShowDialog.show();
+                textShowDialog.setCancelable(true);
+                textShowDialog.edit_text.setText(UUtils.getString(R.string.提示kkkldskfdsf));
+                textShowDialog.start.setText(UUtils.getString(R.string.不创建opop));
+                textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+
+
+                        red_img_flyos_1.setVisibility(View.GONE);
+                        red_img_flyos.setVisibility(View.GONE);
+
+                        SaveData.saveData("flyos","true");
+
+
+                        File file3 = new File(Environment.getExternalStorageDirectory(),"/.FlyOS/Keys");
+                        File file4 = new File(Environment.getExternalStorageDirectory(),"/.FlyOS/Keys/fpro.fk");
+
+                        if(!file3.exists()){
+                            if(!file3.mkdirs()){
+                                UUtils.showMsg(UUtils.getString(R.string.系统没有激活));
+                            }
+                        }
+                        if(!file4.exists()){
+                            try {
+                                if(!file4.createNewFile()){
+                                    UUtils.showMsg(UUtils.getString(R.string.系统没有激活));
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                UUtils.showMsg(UUtils.getString(R.string.系统没有激活) + e.toString());
+                            }
+                        }
+
+
+                        TextShowDialog textShowDialog = new TextShowDialog(TermuxActivity2.this);
+                        textShowDialog.show();
+                        textShowDialog.setCancelable(true);
+                        textShowDialog.edit_text.setText(UUtils.getString(R.string.请注意flyos));
+                        textShowDialog.start.setText(UUtils.getString(R.string.我承担的双方各));
+                        textShowDialog.start.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+
+
+                                LoadingSHDialog loadingDialog = new LoadingSHDialog(TermuxActivity2.this);
+                                loadingDialog.show();
+
+
+                                ArrayList<String> arrayList = new ArrayList<>();
+                                arrayList.add("cd ~");
+                                arrayList.add("cd ~");
+                                arrayList.add("cd ~");
+                                arrayList.add("pkg update && pkg install wget && wget http://flyosgeek.com/gosetup.sh && sh gosetup.sh && echo \"请重启UTermux生效\" && echo \"如果需要输入开机密码,请回车即可\"\n");
+                                loadingDialog.offLineRommand(arrayList);
+
+
+                                ArrayList<String> zj = new ArrayList<>();
+                                zj.add("echo \"请重启UTermux生效\"");
+                                zj.add("echo \"如果需要输入开机密码,请回车即可\"");
+
+
+                                Map<String, Object> music = new HashMap<String, Object>();
+                                music.put("FLYOS","安装");
+                                loadingDialog.startURL(HttpURL.FLYOS_URL,zj,music,"FLYOS_INSTALL","FLYOS_INSTALL_OFFLINE");
+
+                                textShowDialog.dismiss();
+                                getDrawer().closeDrawer(Gravity.LEFT);
+                            }
+                        });
+                        textShowDialog.commit.setText(UUtils.getString(R.string.我不同意));
+                        textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                        textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                textShowDialog.dismiss();
+
+                            }
+                        });
+
+                    }
+                });
+                textShowDialog.commit.setText(UUtils.getString(R.string.创建ghjg));
+                textShowDialog.commit_ll.setVisibility(View.VISIBLE);
+                textShowDialog.commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textShowDialog.dismiss();
+                        startActivity(new Intent(TermuxActivity2.this,SwitchActivity.class));
+                        getDrawer().closeDrawer(Gravity.LEFT);
+
+                    }
+                });
+
+
 
 
 
@@ -362,6 +708,12 @@ public class TermuxActivity2 extends TermuxActivity {
                     @Override
                     public void onClick(View v) {
                         textShowDialog.dismiss();
+
+
+                        Map<String, Object> music = new HashMap<String, Object>();
+                        music.put("UTermux的在线下载linux统计_ROOT","open");
+                        MobclickAgent.onEventObject(TermuxActivity2.this, "LINUX_ROOT_ONLINE", music);
+
 
                         writerFile("root.sh",new File("/data/data/com.termux/files/home/root.sh"));
                         writerFile("sudo_root.sh",new File("/data/data/com.termux/files/usr/bin/sudo"));
@@ -906,8 +1258,10 @@ public class TermuxActivity2 extends TermuxActivity {
         mTerminalView.setDoubleClickListener(new TerminalView.DoubleClickListener() {
             @Override
             public void doubleClicke() {
+                Map<String, Object> music = new HashMap<String, Object>();
+                music.put("双击快捷打开自定义命令","open");
 
-
+                MobclickAgent.onEventObject(TermuxActivity2.this, "UTERMUX_DOUBLE", music);
 
 
                 PopupWindow popupWindow = new PopupWindow();
@@ -953,7 +1307,7 @@ public class TermuxActivity2 extends TermuxActivity {
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                         getDrawer().closeDrawers();
 
-                        //popupWindow.dismiss();
+                        popupWindow.dismiss();
 
 
                     }
@@ -1077,6 +1431,28 @@ public class TermuxActivity2 extends TermuxActivity {
             open.close();
             fileOutputStream.close();
         } catch (Exception e) {
+
+        }
+
+    }
+
+
+    private void indexSwitchXue(int index){
+        open_xue.setTextColor(Color.parseColor("#ffffff"));
+        close_xue.setTextColor(Color.parseColor("#ffffff"));
+        open_xue.setBackgroundColor(Color.parseColor("#00000000"));
+        close_xue.setBackgroundColor(Color.parseColor("#00000000"));
+
+        switch (index){
+
+            case 0:
+                open_xue.setTextColor(Color.parseColor("#10202f"));
+                open_xue.setBackgroundResource(R.drawable.shape_login_btn_true);
+                break;
+            case 1:
+                close_xue.setTextColor(Color.parseColor("#10202f"));
+                close_xue.setBackgroundResource(R.drawable.shape_login_btn_true);
+                break;
 
         }
 

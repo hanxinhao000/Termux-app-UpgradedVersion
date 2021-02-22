@@ -52,6 +52,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import androidx.annotation.RequiresApi;
@@ -801,6 +803,9 @@ public final class TerminalView extends View {
             if((System.currentTimeMillis() - doubleClick) < 260){
                if(mDoubleClickListener != null){
                    mDoubleClickListener.doubleClicke();
+
+
+
                }
 
             }
@@ -905,6 +910,7 @@ public final class TerminalView extends View {
         if (controlDownFromEvent) keyMod |= KeyHandler.KEYMOD_CTRL;
         if (event.isAltPressed()) keyMod |= KeyHandler.KEYMOD_ALT;
         if (event.isShiftPressed()) keyMod |= KeyHandler.KEYMOD_SHIFT;
+        if (event.isNumLockOn()) keyMod |= KeyHandler.KEYMOD_NUM_LOCK;
         if (!event.isFunctionPressed() && handleKeyCode(keyCode, keyMod)) {
             if (LOG_KEY_EVENTS) Log.i(EmulatorDebug.LOG_TAG, "handleKeyCode() took key event");
             return true;

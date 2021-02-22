@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.termux.R;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -33,8 +35,9 @@ public class TermuxApplication extends FileManagerApplication {
         mHandler = new Handler();
         UUtils.initUUtils(mContext,mHandler);
         //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
-
-
+        UMConfigure.setLogEnabled(true);
+        UMConfigure.init(this, "602f78b2425ec25f10f82077", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
     /*    try {
             Typeface fromFile = Typeface.createFromFile("/data/data/com.termux/files/home/.termux/font.ttf");
             Field field = Typeface.class.getDeclaredField("SERIF");
@@ -52,6 +55,7 @@ public class TermuxApplication extends FileManagerApplication {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable e) {
+
 
                 Intent intent = new Intent(TermuxApplication.mContext, UncaughtExceptionHandlerActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -51,19 +51,36 @@
                       android:textStyle="bold" />
 
 
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
 
-                  <main.java.com.termux.utils.CustomTextView
-                      android:layout_marginLeft="12dp"
-                      android:layout_marginTop="10dp"
-                      android:layout_width="wrap_content"
-                      android:layout_marginBottom="10dp"
-                      android:layout_height="wrap_content"
-                      android:padding="2dp"
-                      android:id="@+id/rootfs_mod"
-                      android:text="@string/rootfs集合"
-                      android:textColor="#fff"
-                      android:textSize="10sp"
-                      android:textStyle="bold" />
+                      <main.java.com.termux.utils.CustomTextView
+                          android:layout_marginLeft="12dp"
+                          android:layout_marginTop="10dp"
+                          android:layout_width="wrap_content"
+                          android:layout_marginBottom="10dp"
+                          android:layout_height="wrap_content"
+                          android:padding="2dp"
+                          android:id="@+id/rootfs_mod"
+                          android:text="@string/rootfs集合"
+                          android:textColor="#fff"
+                          android:textSize="10sp"
+                          android:textStyle="bold" />
+
+                      <ImageView
+                          android:layout_width="8dp"
+                          android:src="@drawable/shape_red_yuan"
+                          android:layout_marginRight="1dp"
+                          android:id="@+id/red_img_flyos"
+                          android:layout_toRightOf="@+id/rootfs_mod"
+                          android:layout_marginTop="5dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_height="8dp"/>
+
+                  </RelativeLayout>
+
+
 
 
 

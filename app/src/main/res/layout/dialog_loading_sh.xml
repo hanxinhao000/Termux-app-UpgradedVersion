@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#2b2b2b"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="wrap_content"
+            android:text="@string/选择在线与本地"
+            android:textSize="15sp"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_centerVertical="true"
+        android:layout_height="100dp">
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/正在加载00dsfsdf"
+            android:textSize="15sp"
+            android:id="@+id/msg_dialog"
+            android:layout_marginTop="10dp"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"/>
+
+
+
+        <main.java.com.termux.utils.CustomTextView
+            android:layout_width="wrap_content"
+            android:background="@drawable/shape_login_btn_true_lan"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:id="@+id/online"
+            android:paddingBottom="3dp"
+            android:textSize="12sp"
+            android:text="@string/使用离线安装"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

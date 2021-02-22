@@ -68,6 +68,8 @@ public final class TermuxPreferences {
     private boolean mScreenAlwaysOn;
     private int mFontSize;
 
+    String mDefaultWorkingDir;
+
     private boolean mUseFullScreen;
     private boolean mUseFullScreenWorkAround;
 
@@ -208,22 +210,15 @@ public final class TermuxPreferences {
                 mUseDarkUI = nightMode == Configuration.UI_MODE_NIGHT_YES;
         }
 
-        switch (props.getProperty("fullscreen", "").toLowerCase()) {
-            case "true":
-                mUseFullScreen = true;
-                break;
-            case "false":
-            default:
-                mUseFullScreen = false;
-        }
+        mUseFullScreen = "true".equals(props.getProperty("fullscreen", "false").toLowerCase());
+        mUseFullScreenWorkAround = "true".equals(props.getProperty("use-fullscreen-workaround", "false").toLowerCase());
 
-        switch (props.getProperty("use-fullscreen-workaround", "").toLowerCase()) {
-            case "true":
-                mUseFullScreenWorkAround = true;
-                break;
-            case "false":
-            default:
-                mUseFullScreenWorkAround = false;
+        mDefaultWorkingDir = props.getProperty("default-working-directory", TermuxService.HOME_PATH);
+        File workDir = new File(mDefaultWorkingDir);
+        if (!workDir.exists() || !workDir.isDirectory()) {
+            // Fallback to home directory if user configured working directory is not exist
+            // or is a regular file.
+            mDefaultWorkingDir = TermuxService.HOME_PATH;
         }
 
         String defaultExtraKeys = SaveData.getData("key_box");

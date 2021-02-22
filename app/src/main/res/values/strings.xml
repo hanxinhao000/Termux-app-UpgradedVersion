@@ -891,9 +891,9 @@
     <string name="键盘">键盘</string>
     <string name="背景">背景</string>
     <string name="公告552">公告:</string>
-    <string name="本地版本552">本地版本:[0.106.116]</string>
-    <string name="云端版本552">云端版本:[0.106.116]</string>
-    <string name="云端版本553">云端版本:[0.106.116]\n本地版本[-.—.—]</string>
+    <string name="本地版本552">本地版本:[0.108.119]</string>
+    <string name="云端版本552">云端版本:[0.108.119]</string>
+    <string name="云端版本553">云端版本:[0.108.119]\n本地版本[-.—.—]</string>
     <string name="架构">架构:[无法读取]</string>
     <string name="IP">IP:[无法读取]</string>
     <string name="系统作者">系统作者:[暂无]dfgdfgdfgfdgfdgdfgfdgdfgdfgsdfghsfdhsdfgsdfgsdffgdsfgfsdfgsdfgsdfgsdfgsdfgsdfgsdfg</string>
@@ -1010,7 +1010,7 @@
     <string name="修复so异常">"修复so异常"</string>
     <string name="面板透明度">"面板透明度\n[背景图会被覆盖]:"</string>
     <string name="面板抽屉模式">"        面板抽屉模式:"</string>
-    <string name="语言5558">"                       语言:"</string>
+    <string name="语言5558">"背景下雪"</string>
     <string name="折叠557">"折叠"</string>
     <string name="ENGLISH5553">ENGLISH</string>
     <string name="中文5553">中文</string>
@@ -1038,8 +1038,8 @@
     <string name="备份恢复功能将无法使用">"你已拒绝，备份恢复功能将无法使用!"</string>
     <string name="服务器离线sd5fsd5">"服务器离线,请点击【版本更新】获取"</string>
     <string name="最新版本d52gdf2g2">"最新版本:[-.--.--]"</string>
-    <string name="本地版本sdf2sdf5sd">"本地版本:[0.106.116]\n最新版本:[-.--.--]"</string>
-    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.106.116]\n最新版本:[versionName]"</string>
+    <string name="本地版本sdf2sdf5sd">"本地版本:[0.108.119]\n最新版本:[-.--.--]"</string>
+    <string name="本地版本sdfgdsgsdf5asdf5">"本地版本:[0.108.119]\n最新版本:[versionName]"</string>
     <string name="最新版本sa5dfsd">"最新版本:[versionName]"</string>
     <string name="最新版本asdfasdf8552665">"最新版本:[versionName]/装机量:string1"</string>
     <string name="你确定要换成官方版本吗">"你确定要换成官方版本吗？"</string>
@@ -1344,7 +1344,7 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="恢复成功如果很短">"恢复成功[如果很短(10秒之内)可能失败,重新恢复],必须操作!"</string>
     <string name="你必须重启APP才能使用新的恢复系统">"你必须重启APP才能使用新的恢复系统\n否则系统将异常!\n操作步骤:大退Termux,再点击Termux重新进入\n切记!!!!!!!!!!"</string>
     <string name="出现了一个错误eed">"出现了一个错误,导致软件不能重启,请手动重启[大退UTermux即可]!"</string>
-    <string name="当前版本ffg">当前版本:0.106.116</string>
+    <string name="当前版本ffg">当前版本:0.108.119</string>
     <string name="当前版本包含ggb">当前版本包含[数据包中(2.2GB)]:php,mysql,showdoc,vnc,apache2,nginx,gogs(git版本管理器),nmap…</string>
     <string name="备份当前操作Linuxvvb">备份当前操作Linux[不推荐一般用户使用]</string>
     <string name="点击备份当前linuxllk">点击备份当前linux \n备份目录:/sdcard/xinhao/system/\n\n由于这个是开发者适用的备份，出错几率极高不推荐一般用户使用\n您可以使用[急速备份]</string>
@@ -1757,6 +1757,72 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="本地服务器linuxghj">本地服务器linux</string>
     <string name="您需要下载安装yy">您需要下载安装rootfs服务器,才能安装 ubuntu、树莓派、等系统</string>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="flyos简介">FlyOS极客的宝贝，部署Linux，建站，跑虚拟机，WEB管理，开发IDE，人工智能项目等等..........长按查看更多</string>
+    <string name="flyos">FLYOS</string>
+    <string name="flyos作者信息">FlyOS介绍:\n
+FlyOS是安卓手机的一款神器，极客的宝贝 原汁原味的完整Linux系统 FlyOS Console:(主功能) Web面板(一键手机建站)，部署原汁原味的GNU/Linux发行版，部署Android,Windows虚拟机，使用FlyChat聊天，可以使用web在线管理手机的功能，远程遥控，一键安装软件包，开发FlyOS(.fpk)程序，开发人工智能项目，部署GUI环境，网络安全测试........... 还有几十种功能，等你安装发现！\n
+FlyOS官网:http://flyosgeek.com\n
+Github:https://github.com/xingyujie/flyos\n
+作者QQ:2072769652\n
+作者Telegram:+16167999429\n
+官方QQ群(有问题记得加群):440406148\n
+官方Telegram群:t.me/flyospro(建议加QQ群)\n
+**安装FlyOS会清除您现在Termux的数据！\n
+感谢您对FlyOS的支持！\n
+有Bug请反馈到:Github issues\n
+https://github.com/xingyujie/flyos/issues</string>
+
+    <string name="请注意flyos">法律声明:\n此脚本为学习交流使用\n使用此脚本并非UTermux强制\n如果在使用当中无论出现错误操作、有意操作、或者其它\n出现的法律责任都由使用者(使用UTermux的用户)承担\n\n这是一个与UTermux脱离的脚本\n内容可能会被原作者更改\n作者项目地址:\nhttp://flyosgeek.com/</string>
+
+    <string name="提示kkkldskfdsf">您的当前容器系统可能会遭到破坏!!!\n\n是否需要创建一个新的容器?\n强烈建议您创建新的容器\n如果您已创建新的容器,请忽略该提示\n\n强烈建议您重新创建一个linux系统来运行本脚本!!!!!!!\n否则您的当前容器系统可能会遭到破坏!!!!!\n</string>
+    <string name="不创建opop">不创建</string>
+    <string name="创建ghjg">创建</string>
+
+
+
+    <string name="请注意公共dfdsfsd">法律声明:\n此脚本为学习交流使用\n使用此脚本并非UTermux强制\n如果在使用当中无论出现错误操作、有意操作、或者其它\n出现的法律责任都由使用者(使用UTermux的用户)承担\n\n这是一个与UTermux脱离的脚本\n内容可能会被原作者更改\n</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="在线linuxfdf">在线linux</string>
     <string name="在线下载各种发行版本fgfg">在线下载各种发行版本</string>
     <string name="如在线下载sdhlsdg">如：ubuntu、centOs、模拟amd、x86、架构</string>
@@ -1849,7 +1915,9 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
 
-
+    <string name="一键vscode">一键安装Vs Code</string>
+    <string name="一键vscode简介">【长按】打开作者信息【点击】安装,【使用】在浏览器打开【127.0.0.1:8080】</string>
+    <string name="vscode脚本作者">作者:CrazyHer\n主页:https://github.com/CrazyHer\n项目地址:https://github.com/CrazyHer/Deploy-codeserver-on-termux\n该脚本是未经过作者同意的\n侵删</string>
 
 
 
@@ -1903,10 +1971,12 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
 
+    <string name="系统没有激活">系统没有激活,你没有SD卡权限</string>
+    <string name="我的世界服务器">我的世界服务器</string>
+    <string name="我的世界服务器提供">由root@ubuntu(3038839957)提供,提供一键我的世界开服\n如有版权问题,第一时间立刻下架</string>
 
 
-
-
+    <string name="内容暂时不可访问">内容暂时不可访问</string>
 
     <string name="更新日志fff">
 
@@ -1914,6 +1984,28 @@ xinhao/apk/DosBoxApplication.apk\n
 
 
         更新日志:\n
+
+        0.108.119更新日志:\n
+        1.紧急修复FLYOS服务器迁移问题
+        2.更新qemu脚本
+
+
+        0.108.118更新日志:\n
+        1.同步更新官方TermuxOs系统
+
+        0.107.118更新日志:\n
+        1.TermuxOs更改为:2021-r1  \n
+        2.增加FlyOS \n
+        3.更新qemu脚本
+        \n
+
+        0.107.117更新日志:\n
+        1.增加vscode一键安装脚本  \n
+        \n
+
+        0.107.116更新日志:\n
+        1.同步官方升级  \n
+        \n
 
         0.106.116更新日志:\n
 
@@ -2167,9 +2259,38 @@ xinhao/apk/DosBoxApplication.apk\n
     <string name="切换8885">切换</string>
 
 
+
+
+
+
+    <string name="正在加载00dsfsdf">正在从服务器拉取数据,请稍后…</string>
+    <string name="使用离线安装">使用离线安装</string>
+    <string name="选择在线与本地">选择在线与本地</string>
+
+
+
+
+
+    <string name="如果在切换后">如果在切换后调起输入法卡顿,请退出本页面重新进入即可</string>
+    <string name="您的机型不支持">机型不支持,开启失败</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="删除完成_需要重进才能刷新">删除完成,需要重进才能刷新</string>
     <string name="web服务正在运行">web服务正在运行</string>
     <string name="我接受">我接受</string>
+    <string name="服务器未响应">服务器未响应,使用本地脚本下载安装</string>
 
 
     <string-array name="preference_sortby_names">
