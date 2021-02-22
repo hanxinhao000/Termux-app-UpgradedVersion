@@ -36,7 +36,8 @@ public class TermuxApplication extends FileManagerApplication {
         UUtils.initUUtils(mContext,mHandler);
         //   YouDaoApplication.init(this, "53ccfce3d4dabd06");
         UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this, "602f78b2425ec25f10f82077", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        // 加入友盟统计
+        UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
         MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
     /*    try {
             Typeface fromFile = Typeface.createFromFile("/data/data/com.termux/files/home/.termux/font.ttf");
