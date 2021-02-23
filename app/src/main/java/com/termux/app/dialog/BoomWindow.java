@@ -39,6 +39,7 @@ public class BoomWindow  {
     public CustomTextView title;
     public RecyclerView recyclerView;
     public CardView qiehuan_mingl_zidong;
+    public CardView qiehuan_command_zidong;
     public CustomTextView qie_huan_string;
     public EditText file_name;
     public LinearLayout search123456;
@@ -71,6 +72,20 @@ public class BoomWindow  {
         qie_huan_string = mView.findViewById(R.id.qie_huan_string);
         file_name = mView.findViewById(R.id.file_name);
         search123456 = mView.findViewById(R.id.search123456);
+        qiehuan_command_zidong = mView.findViewById(R.id.qiehuan_command_zidong);
+
+
+        qiehuan_command_zidong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                //命令
+                CommandDialog commandDialog = new CommandDialog(termuxActivity2);
+                commandDialog.show();
+                commandDialog.setCancelable(false);
+
+            }
+        });
 
 
         popu_windows_jianpan = mView.findViewById(R.id.popu_windows_jianpan);

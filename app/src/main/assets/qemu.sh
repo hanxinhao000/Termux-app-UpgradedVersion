@@ -4,9 +4,10 @@ cd $(dirname $0)
 INFO() {
 clear
 echo -e "\n\e[33m更新内容\e[0m
-	增加自定义创建空白磁盘（不支持termux与utermux环境）
-	增加virtio磁盘接口的驱动安装模式(与virtio驱动相关选项的区别是模式可自助定义参数，让计算机启动更快)
-	增加x86架构的手机、平板、电脑设备标识修改，以便在相关设备使用脚本(通常脚本会自动识别，无需特意修改标识)
+	
+	修正各种模式下声音的输出
+	增加局域网vnc显示(为减少效率的影响，暂不支持声音输出)
+	修正图形界面下使用本脚本
 	增加了一些未经完全测试通过的参数配置
 	修改了一些细节\n"
 }
@@ -16,12 +17,10 @@ clear
 echo -e "\n\e[33m注意事项\e[0m
 	本脚本是方便大家简易配置，所有参数都是经多次测试通过，可运行大部分系统，由于兼容问题，性能不作保证，专业玩家请自行操作
 	qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富
-	virtio显卡选项，3D功能由于参数问题，只能在电脑上使用，未经测试，具体内容请查阅关于utqemu。
 	q35主板与sata，virtio硬盘接口由于系统原因，可能导致启动不成功
-	如遇到使用异常，请尝试所有选择项直接回车以获得默认参数
-	运行速度不稳定，受termux(utermux)环境影响，偶尔模拟出来的运行速度极慢
+	如遇到使用异常，可尝试所有选择项直接回车以获得默认参数
 	声音输出（不支持termux与utermux环境）
-	sdl输出显示，非真正的参数输出，传输的只是信号，需先开启xsdl(不支持termux与utermux环境）
+	sdl输出显示，源地址并未编译qemu的sdl，这里只是通过信号输出，需先开启xsdl(不支持termux与utermux环境）
 	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
@@ -29,12 +28,17 @@ echo -e "\n\e[33m注意事项\e[0m
 	fi
 }
 ###################
-ABOUT_VIRTIO(){
+ABOUT_UTQEMU(){
 	clear
 printf "%s
 ${YELLOW}关于utqemu脚本${RES}
-	最初是为utermux写下的qemu-system-x86脚本，目的是增加utermux可选功能，给使用者提供简易快捷的启动。我是业余爱好者，非专业人士，所以内容比较乱，请勿吐槽。为适配常用镜像格式，脚本的参数选用是比较常用。我是业余的，专业的参数配置并不懂，脚本参数都是来自官方网站、百度与群友。qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富，欢迎群友体验使用。
-
+	最初是为utermux写下的qemu-system-x86脚本，目的是增加utermux可选功能，给使用者提供简易快捷的启动。我是业余爱好者，非专业人士，所以内容比较乱，请勿吐槽。为适配常用镜像格式，脚本的参数选用是比较常用。我是业余的，专业的参数配置并不懂，脚本参数都是来自官方网站、百度与群友。qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富，欢迎群友体验使用。\n"
+CONFIRM
+QEMU_SYSTEM	
+}
+ABOUT_VIRTIO(){
+clear
+printf "%s
 ${YELLOW}关于virtio驱动${RES}
 	引用官方说法：QEMU为用户提供并行虚拟化块设备和网络设备的能力，其是借助virtio驱动实现的，拥有更好的性能表现以及更低的开销。
 
@@ -55,7 +59,7 @@ qemu-system-x86_64 -m 4G -drive file=系统镜像,if=virtio
 
 "
 CONFIRM
-QEMU_SYSTEM
+VIRTIO
 }
 ####################
 
@@ -66,6 +70,18 @@ BLUE="\e[1;34m"
 PINK="\e[0;35m"  
 WHITE="\e[0;37m"
 RES="\e[0m"
+####################
+`ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1` 2>/dev/null
+if [ $? != 0 ]; then
+	IP=$(ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1)
+else
+	`ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6` 2>/dev/null
+	if [ $? -ne 0 ]; then
+		IP=$(ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6)
+	else
+		IP=$(ip a | grep inet | grep wlan | cut -d "/" -f 1 | cut -d " " -f 6)
+	fi
+fi
 ####################
 if [ `whoami` != "root" ];then
 	sudo="sudo"
@@ -97,7 +113,7 @@ ARCH_CHECK() {
 			ARCH=computer ;;
 	esac
 elif
-	grep -E -q 'Z3560|Z5800' "/proc/cpuinfo" 2>/dev/null; then
+	grep -E -q 'Z3560|Z5800|Z2580' "/proc/cpuinfo" 2>/dev/null; then
 	read -r -p "请确认你使用的是否手机平板 1) 是 2)否 " input
 	case $input in
 		1) echo "tablet" >${HOME}/.utqemu_
@@ -269,17 +285,6 @@ if [ ! $(command -v python3) ]; then
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >/root/.config/pip/pip.conf
         fi
 		fi
-        `ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1` 2>/dev/null
-        if [ $? != 0 ]; then
-                IP=$(ip a | grep 192 | cut -d " " -f 6 | cut -d "/" -f 1)
-        else
-                `ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6` 2>/dev/null
-                if [ $? -ne 0 ]; then
-                        IP=$(ip a | grep inet | grep rmnet | cut -d "/" -f 1 | cut -d " " -f 6)
-                else
-                        IP=$(ip a | grep inet | grep wlan | cut -d "/" -f 1 | cut -d " " -f 6)
-                        fi
-        fi
         echo -e "已完成配置，请尝试用浏览器打开并输入地址\n
         ${YELLOW}http://$IP:8080${RES}\n
         如需关闭，请按ctrl+c，然后输pkill python3或直接exit退出shell\n"
@@ -306,7 +311,7 @@ echo -n "请输入你拟创建的磁盘容量，以G为单位(例如4g则输4): 
 	read capacity
 	qemu-img create -f qcow2 ${DIRECT}/xinhao/windows/${disk_name}.qcow2 ${capacity}G
 	if [ -f ${DIRECT}/xinhao/windows/${disk_name}.qcow2 ]; then
-	echo -e "${GREEN}已为你创建qcow2格式磁盘${disk_name}.qcow2 容量${capacity}G，仍需你登录系统，通过磁盘管理进行格式化并分区方可正常使用${RES}"
+	echo -e "${GREEN}已为你创建qcow2格式磁盘${disk_name}.qcow2 容量${capacity}G，仍需你登录系统，在控制面板通过磁盘管理进行格式化并分区方可正常使用${RES}"
 else
 	echo -e "${RED}创建失败，请重试${RES}"
 	fi
@@ -375,7 +380,6 @@ fi
 	sleep 2
 	QEMU_SYSTEM
 fi
-#	export PULSE_SERVER=tcp:127.0.0.1:4713
 	uname -a | grep 'Android' -q 
 	if [ $? == 0 ]; then
 		echo -e "\n${YELLOW}vncviewer地址为127.0.0.1:0${RES}"     
@@ -395,9 +399,9 @@ fi
 		fi
 case $ARCH in
 	tablet) echo ""
-read -r -p "请选择显示输出方式 1)vnc 2)sdl 3)spice 9)返回 0)退出 " input
+		read -r -p "请选择显示输出方式 1)vnc 2)sdl 3)spice 4)图形界面下 5)局域网vnc 9)返回 0)退出 " input
 	case $input in
-		1|"") echo -e "\n${YELLOW}vncviewer地址为127.0.0.1:0${RES}\n"
+		1|"") echo -e "\n${YELLOW}vncviewer地址为127.0.0.1:0${RES}"
 			sleep 1
 			display=vnc
 			;;
@@ -410,6 +414,10 @@ read -r -p "请选择显示输出方式 1)vnc 2)sdl 3)spice 9)返回 0)退出 " 
 sleep 1
 display=spice
 ;;
+		4) display=gtk_ ;;
+		5) display=wlan_vnc
+			echo -e "\n${YELLOW}为减少效率的影响，暂不支持声音输出\n输出显示的设备vnc地址为$IP:0${RES}"
+			sleep 1 ;;
 		9) QEMU_SYSTEM ;;
 		0) exit 1 ;;
 		*) INVALID_INPUT
@@ -440,8 +448,7 @@ SELECT_EMU() {
 	echo -e "\n请选择启动哪个模拟器\n
         1) qemu-system-x86_64
         2) qemu-system-i386
-	3) 磁盘接口virtio驱动安装模式(测试阶段)
-	\n"
+	3) 磁盘接口virtio驱动安装模式(测试阶段)	\n"
 	read -r -p "请选择: " input
         case $input in
                 1) QEMU_SYS=qemu-system-x86_64 ;;
@@ -465,7 +472,6 @@ SELECT_EMU() {
 		*) SELECT_EMU ;;
 	esac
 	echo -e "${GREEN}请确认系统镜像已放入手机目录/xinhao/windows里${RES}"
-        CONFIRM
         pkill -9 qemu-system-x86
 	pkill -9 qemu-system-i38
         qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
@@ -626,15 +632,23 @@ case $input in
 ;;
 		2) case $display in
 			xsdl) set -- "${@}" "-vga" "virtio" "-display" "sdl,gl=on" ;;
-			vnc) 
+			vnc|wlan_vnc) 
 				set -- "${@}" "-vga" "qxl" "-display" "gtk,gl=on" "-device" "virtio-gpu-pci,virgl=on"
 #				set -- "${@}" "-device" "qxl" "-vga" "virtio" "-display" "gtk,gl=on"
 		 ;;
 			spice) set -- "${@}" "-vga" "virtio" "-display" "gtk,gl=on" ;;
-			amd) set -- "${@}" "-vga" "virtio" "-display" "gtk,gl=on" ;;
+			amd|gtk_) set -- "${@}" "-vga" "virtio" "-display" "gtk,gl=on" ;;
 		esac
 		unset display
-		display=3d ;;
+		case $ARCH in
+			computer) ;;
+			*) env | grep 'PULSE_SERVER' -q
+			       if [ $? != 0 ]; then
+			       export PULSE_SERVER=tcp:127.0.0.1:4713
+			       fi ;;
+	       esac	       
+#		display=3d
+	       	;;
 esac ;;
 
 
@@ -802,14 +816,19 @@ esac
 
 		if [ -n "$display" ]; then
 			case $display in
+				wlan_vnc) set -- "${@}" "-vnc" "$IP:0" ;;
 				vnc) set -- "${@}" "-vnc" ":0"
 					export PULSE_SERVER=tcp:127.0.0.1:4713 ;;
 				xsdl) export DISPLAY=127.0.0.1:0
 					export PULSE_SERVER=tcp:127.0.0.1:4713 ;;
 				spice) set -- "${@}" "-spice" "port=5900,addr=127.0.0.1,disable-ticketing,seamless-migration=on"
 					export PULSE_SERVER=tcp:127.0.0.1:4713 ;;
-				amd) set -- "${@}" "-display" "gtk,gl=off"
-				unset PULSE_SERVER ;;
+				amd) set -- "${@}" "-display" "gtk,gl=off" ;;
+				gtk_) set -- "${@}" "-display" "gtk,gl=off"
+					env | grep 'PULSE_SERVER' -q
+					if [ $? != 0 ]; then
+						export PULSE_SERVER=tcp:127.0.0.1:4713
+						fi ;;
 			esac
 		fi
 
@@ -839,7 +858,7 @@ export PULSE_SERVER=tcp:127.0.0.1:4713
 ${@}
 EOF
 ;;
-				amd|3d)
+				amd|gtk_|"")
 cat >/usr/local/bin/$script_name <<-EOF
 pkill -9 qemu-system-x86
 pkill -9 qemu-system-i38
@@ -861,7 +880,7 @@ esac
 8) INFO
 	CONFIRM
 	QEMU_SYSTEM	;;
-9) ABOUT_VIRTIO ;;
+9) ABOUT_UTQEMU ;;
 0) exit 1 ;;
 *) INVALID_INPUT && QEMU_SYSTEM ;;
 esac
@@ -877,7 +896,8 @@ uname -a | grep 'Android' -q
 if [ $? != 0 ]; then
 echo -e "2) 为磁盘接口添加virtio驱动（需另外下载virtio驱动光盘）"
 fi
-echo -e "9) 返回主目录
+echo -e "8) 关于virtio
+9) 返回主目录
 0) 退出\n"
 
 read -r -p "请选择: " input
@@ -957,6 +977,7 @@ qemu-system-x86_64 -m 1g -drive file=${DIRECT}/xinhao/windows/$hda_name,if=ide -
 else
 	INVALID_INPUT && VIRTIO
 fi ;;
+8) ABOUT_VIRTIO ;;
 9) QEMU_SYSTEM ;;
 0) exit 1 ;;
 *) INVALID_INPUT && VIRTIO ;;

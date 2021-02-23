@@ -23,6 +23,7 @@
     <color name="md_blue_grey_900">#263238</color>
     <color name="color_553E3E3E">#553E3E3E</color>
     <color name="color_552B2B2B">#552B2B2B</color>
+    <color name="color_2B2B2B">#2B2B2B</color>
     <color name="color_55005293">#55009688</color>
     <color name="color_FFFFFF">#FFFFFF</color>
     <color name="color_5E5E5E">#5E5E5E</color>
@@ -45,7 +46,10 @@
     <color name="md_white_1000">#ffffff</color>
 
     <color name="color_10202f">#10202F</color>
+    <color name="color_1B3650">#1B3650</color>
     <color name="color_2E84E6">#2E84E6</color>
+    <color name="color_66AAF8">#66AAF8</color>
+    <color name="color_8CFF5A">#8CFF5A</color>
 
     <color name="hint_color">#AAA</color>
 
