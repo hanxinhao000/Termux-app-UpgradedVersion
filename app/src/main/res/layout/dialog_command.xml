@@ -78,6 +78,7 @@
         android:layout_alignParentRight="true"
         android:layout_above="@+id/close_img"
         android:src="@drawable/fanhui"
+        android:visibility="gone"
         android:layout_height="25dp"/>
 
     <ImageView

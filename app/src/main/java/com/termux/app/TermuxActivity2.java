@@ -236,6 +236,7 @@ public class TermuxActivity2 extends TermuxActivity {
     private RelativeLayout dakai_qemu_huanj;
     private RelativeLayout qemu_install_jiaoben;
     private RelativeLayout vs_code;
+    private RelativeLayout hjbl;
     private CardView atilo;
     private CardView rootfs_rootdfdf;
 
@@ -268,6 +269,7 @@ public class TermuxActivity2 extends TermuxActivity {
         red_img_flyos_1 = findViewById(R.id.red_img_flyos_1);
         red_img_flyos = findViewById(R.id.red_img_flyos);
         jiandan_my_world_linux_click = findViewById(R.id.jiandan_my_world_linux_click);
+        hjbl = findViewById(R.id.hjbl);
 
         open_xue = findViewById(R.id.open_xue);
         close_xue = findViewById(R.id.close_xue);
@@ -307,6 +309,20 @@ public class TermuxActivity2 extends TermuxActivity {
             file2.mkdirs();
         }
 
+
+        hjbl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //环境变量设置
+
+
+                startActivity(new Intent(TermuxActivity2.this,HJActivity.class));
+
+
+
+
+            }
+        });
         jiandan_my_world_linux_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

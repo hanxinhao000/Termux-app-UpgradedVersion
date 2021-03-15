@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.termux.BuildConfig;
 
 import java.io.BufferedReader;
@@ -21,7 +22,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import main.java.com.termux.bean.PATHBean;
 import main.java.com.termux.utils.SaveData;
+import main.java.com.termux.utils.UUtils;
 
 /**
  * A background job launched by Termux.
@@ -144,8 +147,14 @@ public final class BackgroundJob {//XAJ 1004 5927 408
 
         if (cwd == null) cwd = TermuxService.HOME_PATH;
 
+        //取出命令
+
+
+
+
         List<String> environment = new ArrayList<>();
         environment.add("TERMUX_VERSION=" + BuildConfig.VERSION_NAME);
+        environment.add("UTERMUX=TRUE");
         environment.add("TERM=xterm-256color");
         environment.add("HOME=" + TermuxService.HOME_PATH);
         environment.add("PREFIX=" + TermuxService.PREFIX_PATH);
@@ -166,9 +175,51 @@ public final class BackgroundJob {//XAJ 1004 5927 408
 /*        addToEnvIfPresent(environment, "ANDROID_RUNTIME_ROOT");
         addToEnvIfPresent(environment, "ANDROID_TZDATA_ROOT");*/
 
+        try{
+
+
+            String path_other = SaveData.getData("path_other");
+            if(path_other ==null || path_other.isEmpty() || path_other.equals("def")){
+                //空
+
+            }else{
+                PATHBean pathBean = new Gson().fromJson(path_other, PATHBean.class);
+                for (int i = 0; i < pathBean.getData().size(); i++) {
+                    PATHBean.Data data = pathBean.getData().get(i);
+
+                    environment.add(data.getPathKey() + "=" + data.getPathValue());
+
+                }
+
+
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            UUtils.showMsg("严重:无法应用当前环境变量设置!");
+        }
+
         if (failSafe) {
             // Keep the default path so that system binaries can be used in the failsafe session.
-            environment.add("PATH= " + System.getenv("PATH"));
+            try{
+
+                String path_linux = SaveData.getData("path_linux");
+                if(path_linux ==null || path_linux.isEmpty() || path_linux.equals("def")){
+                    //空
+                    environment.add("PATH= " + System.getenv("PATH"));
+                }else{
+
+                    environment.add("PATH= " + System.getenv("PATH") + ":" + path_linux);
+
+                }
+
+            }catch (Exception e){
+
+                e.printStackTrace();
+                environment.add("PATH= " + System.getenv("PATH"));
+            }
+
         } else {
 
             if(SaveData.getData("start_launcher").equals("def")) {
@@ -183,8 +234,26 @@ public final class BackgroundJob {//XAJ 1004 5927 408
             environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
 
             environment.add("LANG=en_US.UTF-8");
-            environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
-            environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin");
+
+            try{
+
+                String path_linux = SaveData.getData("path_linux");
+                if(path_linux ==null || path_linux.isEmpty() || path_linux.equals("def")){
+                    //空
+                     environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets" );
+                     environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin");
+                }else{
+                    environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets:" + path_linux);
+                    environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + path_linux);
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+                environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin:" + TermuxService.PREFIX_PATH + "/bin/applets");
+                environment.add("PATH=" + TermuxService.PREFIX_PATH + "/bin");
+            }
+
+
             environment.add("PWD=" + cwd);
             environment.add("TMPDIR=" + TermuxService.PREFIX_PATH + "/tmp");
         }

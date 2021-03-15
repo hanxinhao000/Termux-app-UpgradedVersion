@@ -4,10 +4,6 @@ cd $(dirname $0)
 INFO() {
 clear
 echo -e "\n\e[33m更新内容\e[0m
-	简化磁盘接口virtio驱动安装模式，无需创建加载分区，默认为共享文件夹
-	优化使用快捷脚本的提示
-	新增qcow2与vmdk格式转换选项
-	新增vmdk空磁盘创建
 	修正virtio驱动光盘链接
 	增加5.0以上版本可加载双光盘模式(该模式下分区加载选项会被替代)
 	增加优先硬盘或光盘启动的顺序选择
@@ -27,7 +23,7 @@ echo -e "\n\e[33m注意事项\e[0m
 	qemu5.0以下模拟xp较好，qemu5.0以上对win7以上模拟较好\n"
 	if [ $(command -v qemu-system-x86_64) ]; then
 		echo -e "\e[33m检测到你已安装qemu-system-x86，版本是\e[0m"
-echo -e "\e[32m$(qemu-system-x86_64 --version | head -n 1)\e[0m"
+		qemu-system-x86_64 --version | head -n 1
 	fi
 }
 ###################
@@ -35,7 +31,7 @@ ABOUT_UTQEMU(){
 	clear
 printf "%s
 ${YELLOW}关于utqemu脚本${RES}
-	最初是为utermux写下的qemu-system-x86脚本，目的是增加utermux可选功能，给使用者提供简易快捷的启动。我是业余爱好者，非专业人士，所以内容比较乱，请勿吐槽。为适配常用镜像格式，脚本的参数选用是比较常用。业余的我，专业的参数配置并不懂，脚本参数都是来自官方网站、百度与群友。qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富，欢迎群友体验使用。\n"
+	最初是为utermux写下的qemu-system-x86脚本，目的是增加utermux可选功能，给使用者提供简易快捷的启动。我是业余爱好者，非专业人士，所以内容比较乱，请勿吐槽。为适配常用镜像格式，脚本的参数选用是比较常用。我是业余的，专业的参数配置并不懂，脚本参数都是来自官方网站、百度与群友。qemu5.0以上的版本较旧版本变化比较大，所以5.0后的参数选项比较丰富，欢迎群友体验使用。\n"
 CONFIRM
 QEMU_SYSTEM	
 }
@@ -49,7 +45,7 @@ ${YELLOW}virtio驱动的安装${RES}
 	需下载好virtio驱动光盘，virtio磁盘接口安装程序比较多，其他驱动与普通的硬件驱动一样安装，本脚本已加入qxl显卡，virtio显卡，virtio网卡，virtio磁盘选项。
 
 ${YELLOW}关于virtio显卡3D加速${RES}
-	virtio显卡因参数问题，未发挥其特性功能。3D模式需在gtk或sdl下才能开启，sdl模块在系统源默认是未编译。gtk则可在图形界面中启动。经过多次测试，作出的参数配置如下。当你选择virtio显卡中的3D模式时，vnc，sdl，spice输出端口不再有效，但仍会按你的上述选择作出以下配置。sdl将以-display sdl,gl=on输出（因系统的qemu源默认未编译sdl内容，所以选项未得到测试验证）。而spice则以wiki上的标准参数-display gtk,gl=on输出，但virtio显卡并不被识别。vnc除了spice上的参数外，我还加入了-vga qxl来兼容virtio显卡输出（我成功在图形界面中开启gl，但存在bug）。这个3D模式应该是在linux系统下加载，而非windows系统。
+	virtio显卡因参数问题，未发挥其特性功能。3D模式需在gtk或sdl下才能开启，sdl模块在系统源默认是未编译。gtk则可在图形界面中启动。经过多次测试，作出的参数配置如下。当你选择virtio显卡中的3D模式时，vnc，sdl，spice输出端口不再有效，但仍会按你的上述选择作出以下配置。sdl将以-display sdl,gl=on输出（因系统的qemu源默认未编译sdl内容，所以选项未得到测试验证）。而spice则以wiki上的标准参数-display gtk,gl=on输出，但virtio显卡并不被识别。vnc除了spice上的参数外，我还加入了-vga qxl来兼容virtio显卡输出（我成功在图形界面中开启gl，但存在bug）。至于效果如何，有待验证。
 
 ${YELLOW}系统镜像的磁盘驱动安装介绍：${RES}
 	1)先创建一个新的磁盘镜像，用于搜索virtio驱动，参数如下
@@ -68,9 +64,9 @@ VIRTIO
 
 YELLOW="\e[1;33m"
 GREEN="\e[1;32m"
-RED="\e[1;31m"
+RED="\e[1;31m" 
 BLUE="\e[1;34m"
-PINK="\e[0;35m"
+PINK="\e[0;35m"  
 WHITE="\e[0;37m"
 RES="\e[0m"
 ####################
@@ -208,7 +204,7 @@ echo -e "${BLUE}正在解压系统包${RES}"
 nameserver 223.6.6.6" >$sys_name/etc/resolv.conf
         echo "export  TZ='Asia/Shanghai'" >> $sys_name/root/.bashrc
 	echo "deb http://mirrors.ustc.edu.cn/debian sid main contrib non-free" >$sys_name/etc/apt/sources.list
-	cat >/dev/null <<EOF
+cat >/dev/null <<-EOF
 echo 'deb http://mirrors.bfsu.edu.cn/debian/ bullseye main contrib non-free
 deb http://mirrors.bfsu.edu.cn/debian/ bullseye-updates main contrib non-free
 deb http://mirrors.bfsu.edu.cn/debian/ bullseye-backports main contrib non-free
@@ -293,28 +289,13 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >/root/.config/pip/pip.con
 ##################
 QEMU_ETC() {
 
-	echo -e "\n1) 创建空磁盘(目前支持qcow2,vmdk)
-2) 转换镜像磁盘格式(仅支持qcow2,vmdk,其他格式未验证)
-3) 修改设备标识(手机、平板、电脑)
-4) 修改源
+	echo -e "\n1) 创建空磁盘
+2) 修改设备标识(手机、平板、电脑)
 9) 返回
 0) 退出\n"
 	read -r -p "请选择: " input
 	case $input in
-		1) if [ ! $(command -v qemu-img) ]; then
-			apt update && apt install qemu-img
-		fi
-			echo -e "\n对于普通玩家这两个格式没什么区别，不用纠结"
-			read -r -p "请选择格式 1)qcow2 2)vmdk :" input
-			case $input in
-				1|"") echo -e "${YELLOW}qcow2${RES}"
-					FORMAT=qcow2	;;
-				2) echo -e "${YELLOW}vmdk${RES}"
-					FORMAT=vmdk ;;
-				*) INVALID_INPUT
-					QEMU_ETC ;;
-			esac
-			sleep 1
+		1)
 			while [ ! -n "$disk_name" ]
 			do
 				echo -e -n "\n请为磁盘起个名字(不能为空): "
@@ -322,64 +303,14 @@ QEMU_ETC() {
 done
 echo -n "请输入你拟创建的磁盘容量，以G为单位(例如4g则输4): "
 	read capacity
-	qemu-img create -f $FORMAT ${DIRECT}/xinhao/windows/${disk_name}.$FORMAT ${capacity}G
-	if [ -f ${DIRECT}/xinhao/windows/${disk_name}.$FORMAT ]; then
-	echo -e "${GREEN}已为你创建$FORMAT格式磁盘${disk_name}.$FORMAT 容量${capacity}G，仍需你登录系统，在控制面板通过磁盘管理进行格式化并分区方可正常使用${RES}"
+	qemu-img create -f qcow2 ${DIRECT}/xinhao/windows/${disk_name}.qcow2 ${capacity}G
+	if [ -f ${DIRECT}/xinhao/windows/${disk_name}.qcow2 ]; then
+	echo -e "${GREEN}已为你创建qcow2格式磁盘${disk_name}.qcow2 容量${capacity}G，仍需你登录系统，在控制面板通过磁盘管理进行格式化并分区方可正常使用${RES}"
 else
 	echo -e "${RED}创建失败，请重试${RES}"
 	fi
 	CONFIRM ;;
-2) if [ ! $(command -v qemu-img) ]; then
-	apt update && apt install qemu-img
-fi
-	echo ""
-	read -r -p "请选择转换后格式 1)qcow2 2)vmdk :" input
-	case $input in
-	1) echo -e "转换为${YELLOW}qcow2${RES}格式"
-		FORMAT=qcow2 ;;
-	2) echo -e "转换为${YELLOW}vmdk${RES}格式"
-		FORMAT=vmdk ;;
-	*) INVALID_INPUT
-		QEMU_ETC ;;
-esac
-echo -e "\n已为你列出镜像文件夹中的文件（仅供参考）\n"
-ls ${DIRECT}/xinhao/windows
-sleep 1
-	while ( [ "$FORMAT_" != '0' ] && [ ! -f "${DIRECT}/xinhao/windows/$FORMAT_" ] ) 
-do
-	if [ -n "$FORMAT_" ]; then
-		echo -e "\n${RED}未匹配到镜像，请重试${RES}"
-		sleep 1
-		fi
-		echo -en "\n请输入原镜像格式全名(例如andows.img) ,退出请输${YELLOW}0${RES} "
-		read  FORMAT_
-	done
-	if [ $FORMAT_ == '0' ]; then
-		exit 0
-	fi
-	if [ -f ${DIRECT}/xinhao/windows/${FORMAT_%%.*}.$FORMAT ]; then
-		echo -e "\n${RED}检测到目录下已有转换后同名文件名，请确认，以免造成误操作${RES}"
-		read -r -p "1)继续 9)返回 0)退出 " input
-		case $input in
-			1) ;;
-			0) exit 0 ;;
-			*) unset FORMAT_
-				unset FORMAT
-				QEMU_ETC ;;
-		esac
-		fi
-	echo -e "\e[33m转换过程需要点时间，请耐心等待...${RES}"
-	case "${FORMAT_##*.}" in
-		img) qemu-img convert -f raw -O $FORMAT ${DIRECT}/xinhao/windows/$FORMAT_ ${DIRECT}/xinhao/windows/${FORMAT_%%.*}.$FORMAT ;;
-		*) qemu-img convert -f "${FORMAT_##*.}" ${DIRECT}/xinhao/windows/$FORMAT_ -O $FORMAT ${DIRECT}/xinhao/windows/${FORMAT_%%.*}.$FORMAT ;;
-	esac
-	if [ -f ${DIRECT}/xinhao/windows/${FORMAT_%%.*}.$FORMAT ]; then
-		echo -e "\n${GREEN}已转换，${FORMAT_%%.*}.$FORMAT${RES}\n"
-	else
-		echo -e "\n${RED}转换失败${RES}\n"
-	fi
-		sleep 1 ;;
-3) read -r -p "1)手机平板 2)电脑 " input
+2) read -r -p "1)手机平板 2)电脑 " input
 	case $input in
 		1) echo "tablet" >${HOME}/.utqemu_ ;;
 		2) echo "computer" >${HOME}/.utqemu_ ;;
@@ -387,26 +318,11 @@ do
 			sleep 2
 			QEMU_ETC ;;
 	esac ;;
-4) read -r -p "1)中科源 2)北外源 9)返回主目录 0)退出 " input
-	case $input in
-		1) echo "deb http://mirrors.ustc.edu.cn/debian sid main contrib non-free" >/etc/apt/sources.list && apt update ;;
-		2) echo 'deb http://mirrors.bfsu.edu.cn/debian/ bullseye main contrib non-free
-deb http://mirrors.bfsu.edu.cn/debian/ bullseye-updates main contrib non-free
-deb http://mirrors.bfsu.edu.cn/debian/ bullseye-backports main contrib non-free
-deb http://mirrors.bfsu.edu.cn/debian-security bullseye-security main contrib non-free' >/etc/apt/sources.list && apt update ;;
-		9) QEMU_SYSTEM ;;
-		0) exit 1 ;;
-		*) INVALID_INPUT && QEMU_ETC ;;
-esac ;;
-		9) unset FORMAT_
-			unset FORMAT
-			QEMU_SYSTEM ;;
+		9) ;;
 		0) exit 1 ;;
 	*) INVALID_INPUT && QEMU_ETC ;;
 esac
-	unset FORMAT_
-	unset FORMAT
-	QEMU_ETC
+	QEMU_SYSTEM
 }
 ##################
 QEMU_SYSTEM() {
@@ -416,13 +332,10 @@ echo -e "
 1) 安装qemu-system-x86_64，并联动更新模拟器所需应用\n\e[33m(由于qemu的依赖问题，安装过程可能会失败，请尝试重新安装)${RES}
 2) 创建windows镜像目录
 3) 启动qemu-system-x86_64模拟器
-4) 让termux成为网页服务器\n(使模拟系统可以通过浏览器访问本机内容)
-5) virtio驱动相关"
-case $SYS in
-	ANDROID) ;;
-	*) echo -e "6) 应用维护" ;;
-esac
-echo -e "7) 查看日志
+4) 让termux成为网页服务器\n(使模拟系统可以通过浏览器访问手机内容)
+5) virtio驱动相关
+6) 应用维护
+7) 查看日志
 8) 更新内容
 9) 关于utqemu
 0) 退出\n"
@@ -473,23 +386,7 @@ fi
 		read script_name
 		if [ -n "$script_name" ]; then
 			if [ $(command -v $script_name) ]; then
-				printf "%s\n"
-#cat $(which $script_name)
-
-if grep 'vnc' $(which $script_name); then
-	printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开vncviewer 127.0.0.1:0"
-	elif grep -q 'DISPLAY' $(which $script_name); then
-		grep '\-cpu' $(which $script_name)
-		printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开xsdl"
-		elif grep '\-spice' $(which $script_name); then
-			printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开aspice 127.0.0.1:0"
-		else
-			grep '\-cpu' $(which $script_name)
-			printf "%s\n${GREEN}模拟器已启动"
-fi
-printf "%s\n${YELLOW}如启动失败请ctrl+c退回shell，并查阅日志${RES}"
-sleep 1
-$script_name >/dev/null 2>>${HOME}/.utqemu_log
+				$script_name
 				exit 1
 			else
 				echo -e "\n${RED}未获取到你的快捷脚本${RES}\n"
@@ -500,20 +397,20 @@ case $ARCH in
 	tablet) echo ""
 		read -r -p "请选择显示输出方式 1)vnc 2)sdl 3)spice 4)图形界面下 5)局域网vnc 9)返回 0)退出 " input
 	case $input in
-		1|"") echo -e "\n${YELLOW}vnc输出${RES}"
+		1|"") echo -e "\n${YELLOW}vncviewer地址为127.0.0.1:0${RES}"
+			sleep 1
 			display=vnc
 			;;
-		2) echo -e "sdl信号输出，需先打开xsdl再继续此操作
-"
+		2) echo "需先打开xsdl再继续此操作"
+			sleep 1
 			display=xsdl
 			;;
-		3) echo -e "${YELLOW}spice输出${RES}
+		3) echo -e "${YELLOW}aspice地址为127.0.0.1:0${RES}
 \e[33m请勿随意切换aspice，如出现系统界面无法控制，只能重开qemu${RES}"
 sleep 1
 display=spice
 ;;
-		4) echo -e "\n${YELLOW}窗口输出${RES}"
-			display=gtk_ ;;
+		4) display=gtk_ ;;
 		5) display=wlan_vnc
 			echo -e "\n${YELLOW}为减少效率的影响，暂不支持声音输出\n输出显示的设备vnc地址为$IP:0${RES}"
 			sleep 1 ;;
@@ -521,8 +418,7 @@ display=spice
 		0) exit 1 ;;
 		*) INVALID_INPUT
 			QEMU_SYSTEM ;;
-	esac
-	sleep 1 ;;
+	esac ;;
 	computer)
 		display=amd ;;
 esac
@@ -531,7 +427,7 @@ esac
 ##################
 SELECT_EMU_MODE() {
 
-	echo -e "\n请选择启动哪个模拟器${RES}\n
+	echo -e "\n${YELLOW}#####virtio磁盘接口驱动安装模式#####${RES}\n\n请选择启动哪个模拟器\n
 	1) qemu-system-x86_64
 	2) qemu-system-i386\n"
 	read -r -p "请选择: " input
@@ -544,12 +440,6 @@ SELECT_EMU_MODE() {
 esac
 }
 ##################
-LIST() {
-	echo -e "已为你列出镜像文件夹中的常用镜像格式文件（仅供参考）\e[33m"
-	ls ${DIRECT}/xinhao/windows | egrep "\.blkdebug|\.blkverify|\.bochs|\.cloop|\.cow|\.tftp|\.ftps|\.ftp|\.https|\.http|\.dmg|\.nbd|\.parallels|\.qcow|\.qcow2|\.qed|\.host_cdrom|\.host_floppy|\.host_device|\.file|\.raw|\.sheepdog|\.vdi|\.vmdk|\.vpc|\.vvfat|\.img|\.XBZJ|\.vhd|\.iso"
-	sleep 1
-}
-##################
 SELECT_EMU() {
 	echo -e "\n请选择启动哪个模拟器\n
         1) qemu-system-x86_64
@@ -559,8 +449,7 @@ SELECT_EMU() {
         case $input in
                 1) QEMU_SYS=qemu-system-x86_64 ;;
                 2) QEMU_SYS=qemu-system-i386 ;;
-		3) echo -e "\n${GREEN}你选择了磁盘接口virtio驱动安装模式，此模式下的系统磁盘接口为ide，共享文件接口为virtio，请务必准备好virtio驱动光盘\n如启动安装失败，也请在(VIRTIO驱动相关)选项中进行兼容启动安装${RES}"
-#echo -e "${GREEN}你选择了磁盘接口virtio驱动安装模式，此模式下的系统磁盘接口为ide，分区接口为virtio，请务必准备好分区镜像(可为空盘)及virtio驱动光盘\n空盘可在(VIRTIO驱动相关)选项中创建，如启动安装失败，也请在(VIRTIO驱动相关)选项中进行兼容启动安装${RES}"
+		3) echo -e "${GREEN}你选择了磁盘接口virtio驱动安装模式，此模式下的系统磁盘接口为ide，分区接口为virtio，请务必准备好分区镜像(可为空盘)及virtio驱动光盘\n空盘可在(VIRTIO驱动相关)选项中创建，如启动安装失败，也请在(VIRTIO驱动相关)选项中进行兼容启动安装${RES}"
 			read -r -p "1)继续 9)返回 0)退出 " input
 			case $input in
 				1) QEMU_MODE=VIRTIO_MODE
@@ -577,18 +466,11 @@ SELECT_EMU() {
 ###################
 	case $QEMU_MODE in
 		VIRTIO_MODE) SELECT_EMU_MODE ;;
-		*) case $SYS in
-			QEMU_PRE) SELECT_EMU_MODE ;;
-			*) SELECT_EMU ;;
-		esac ;;
-
+		*) SELECT_EMU ;;
 	esac
-	echo -e "\n${GREEN}请确认系统镜像已放入手机目录/xinhao/windows里${RES}\n"
-	sleep 1
-#       pkill -9 qemu-system-x86
-#	pkill -9 qemu-system-i38
-	killall qemu-system-x86 2>/dev/null
-	killall qemu-system-i38 2>/dev/null
+	echo -e "${GREEN}请确认系统镜像已放入手机目录/xinhao/windows里${RES}"
+        pkill -9 qemu-system-x86
+	pkill -9 qemu-system-i38
         qemu-system-x86_64 --version | grep ':5' -q || uname -a | grep 'Android' -q
 				if [ $? != 0 ]; then
 		case $(dpkg --print-architecture) in
@@ -597,24 +479,26 @@ SELECT_EMU() {
 esac
 	else
 		echo -e "请选择计算机类型，因系统原因，q35可能导致启动不成功"
-#kernel-irqchip=on|off|split中断控制器
 		read -r -p "1)pc默认 2)q35 " input
 		case $input in
-			1|"") 
-			#	set -- "${@}" "-machine" "pc-i440fx-3.1,accel=kvm:xen:hax:tcg,usb=off,vmport=off,dump-guest-core=off,kernel_irqchip=off" ;;
-	set -- "${@}" "-machine" "pc,accel=kvm:xen:hax:tcg,usb=off,vmport=off,dump-guest-core=off" ;;
+			1|"") case $(dpkg --print-architecture) in
+			arm*|aarch64) set -- "${@}" "--accel" "tcg" ;;
+                *) set -- "${@}" "-machine" "pc,accel=kvm:xen:hax:tcg" ;;
+	esac ;;
 			2) echo -e ${BLUE}"如果无法进入系统，请选择pc${RES}\n"
-				set -- "${@}" "-machine" "q35,accel=kvm:xen:hax:tcg,usb=off,vmport=off,dump-guest-core=off" ;;
+				set -- "${@}" "-machine" "q35,accel=kvm:xen:hax:tcg" ;;
 		esac
 		fi
-		LIST
+echo -e "已为你列出镜像文件夹中的常用镜像格式文件（仅供参考）\e[33m"
+ls ${DIRECT}/xinhao/windows | egrep "\.blkdebug|\.blkverify|\.bochs|\.cloop|\.cow|\.tftp|\.ftps|\.ftp|\.https|\.http|\.dmg|\.nbd|\.parallels|\.qcow|\.qcow2|\.qed|\.host_cdrom|\.host_floppy|\.host_device|\.file|\.raw|\.sheepdog|\.vdi|\.vmdk|\.vpc|\.vvfat|\.img|\.XBZJ|\.vhd|\.iso"
+sleep 1
 while ( [ "$hda_name" != '0' ] && [ ! -f "${DIRECT}/xinhao/windows/$hda_name" ] )
 do
 	if [ -n "$hda_name" ]; then
 		echo -e "\n${RED}未匹配到镜像，请重试${RES}"
 		sleep 1
 	fi
-	echo -n -e "${RES}\n请输入${YELLOW}系统镜像${RES}全名（例如andows.img），退出请输${YELLOW}0${RES}，请输入: "
+	echo -n -e "${RES}\n请输入${YELLOW}系统镜像${RES}全名（例如andows.img），退出请输${YELLOW}0${RES}，请输入hda_name: "
 	read  hda_name
 done
 	if [ $hda_name == '0' ]; then
@@ -624,29 +508,26 @@ done
 		QEMU_ADV) 
 			case $QEMU_MODE in
 				"")
-				read -r -p "1)加载分区镜像 2)加载双光盘 ,不加载请直接回车 " input
+				read -r -p "1)加载分区镜像 2)加载双光盘 回车)不加载 " input
 			case $input in
-				1) echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）: "
+				1) echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）hdb_name: "
 					read hdb_name ;;
-				2) echo -n -e "请输入${YELLOW}第一个光盘${RES}全名,不加载请直接回车（例如DVD.iso）: "
+				2) echo -n -e "请输入${YELLOW}第一个光盘${RES}全名,不加载请直接回车（例如DVD.iso）iso1_name: "
 					read iso1_name ;;
 				*) ;;
 			esac ;;
-			VIRTIO_MODE) ;;
-#	echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）: "
-#		read hdb_name ;;
+			VIRTIO_MODE) echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）hdb_name: "
+				read hdb_name ;;
 	esac ;;
-*) echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）: "
+*) echo -n -e "请输入${YELLOW}分区镜像${RES}全名,不加载请直接回车（例如hdb.img）hdb_name: "
 	read hdb_name ;;
 esac
-	echo -n -e "请输入${YELLOW}光盘${RES}全名,不加载请直接回车（例如DVD.iso）: "
+	echo -n -e "请输入${YELLOW}光盘${RES}全名,不加载请直接回车（例如DVD.iso）iso_name: "
 	read iso_name
 #		set -- "${@}" "-net" "nic" "-net" "user,smb=${DIRECT}/xinhao/"
-        echo -n "请输入模拟的内存大小，以m为单位（1g=1024m，例如512）: "
+        echo -n "请输入模拟的内存大小，以m为单位（1g=1024m，例如512）mem: "
         read mem
-#内存
         set -- "${@}" "-m" "$mem"
-#时间设置
 #       set -- "${@}" "-rtc" "base=utc,driftfix=slew"
 	set -- "${@}" "-rtc" "base=localtime,clock=host"
 	set -- "${@}" "-full-screen"
@@ -654,19 +535,11 @@ esac
 	set -- "${@}" "-nodefaults"
 #不加载用户自定义的配置文件。
 	set -- "${@}" "-no-user-config"
-#重定向虚拟串口到主机设备
-	set -- "${@}" "-serial" "none"
-#重定向虚拟并口到主机设备
-	set -- "${@}" "-parallel" "none"
 #更改消息的格式，时间戳
 	set -- "${@}" "-msg" "timestamp=on"
-#使用bzImage内核映像
-#	set -- "${@}" "-kernel" "bzImage"
-#使用cmdline作为内核命令行
-#	set -- "${@}" "-append" "cmdline"
 	case $QEMU_SYS in
 		qemu-system-i386)
-#高精度定时器,仅i386
+#高精度定时器
 	set -- "${@}" "-no-hpet" ;;
 		*) ;;
 esac
@@ -692,7 +565,6 @@ case $SYS in
 read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS 6)Nehalem-IBRS 7)Dhyana " input ;;
 	QEMU_PRE) read -r -p "请选择cpu 1)core2duo 2)athlon 3)pentium2 4)n270 5)Skylake-Server-IBRS 6)Nehalem-IBRS " input ;;
 esac
-#部分cpu id flags：fpu –板载FPU，vme –虚拟模式扩展，de –调试扩展，pse –页面大小扩展，tsc –时间戳计数器，msr –特定于模型的寄存器，pae –物理地址扩展，cx8 – CMPXCHG8指令，apic–板载APIC，sep– SYSENTER/SYSEXIT，mtrr –存储器类型范围寄存器，pge – Page Global Enable，mca –Machine Check Architecture，cmov – CMOV instructions（附加FCMOVcc，带有FPU的FCOMI），pat –页面属性表，pse36 – 36位PSE，clflush – CLFLUSH指令，dts –调试存储，acpi –ACPI via MSR，mmx –多媒体扩展，fxsr – FXSAVE/FXRSTOR, CR4.OSFXSR，sse – SSE，sse2 – SSE2，ss – CPU自侦听，ht –超线程，tm –自动时钟控制，ia64 – IA-64处理器，pbe –等待中断启用，mmxext – AMD MMX扩展，fxsr_opt – FXSAVE / FXRSTOR优化，rdtscp – RDTSCP，lm –长模式（x86-64），3dnowext – AMD 3DNow扩展，k8 –皓龙，速龙64，k7 –速龙，pebs –基于精确事件的采样，bts –分支跟踪存储，nonstop_tsc – TSC不会在C状态下停止，PNI – SSE-3，pclmulqdq – PCLMULQDQ指令，dtes64 – 64位调试存储，监控器–监控/等待支持，ds_cpl – CPL Qual.调试存储，vmx –英特尔虚拟化技术(VT技术)，smx –更安全的模式，est –增强的SpeedStep，tm2 –温度监控器2，ssse3 –补充SSE-3，cid –上下文ID，cx16 – CMPXCHG16B，xptr –发送任务优先级消息，dca –直接缓存访问，sse4_1 – SSE-4.1，sse4_2 – SSE-4.2，x2apic – x2APIC，aes – AES指令集，xsave – XSAVE / XRSTOR / XSETBV / XGETBV，avx –高级矢量扩展，hypervisor–在hypervisor上运行，svm –AMD的虚拟化技术(AMD-V)，extapic –扩展的APIC空间，cr8legacy – 32位模式下的CR8，abm –高级bit操作，ibs –基于Sampling的采样，sse5 – SSE-5，wdt –看门狗定时器
         case $input in
         1) set -- "${@}" "-cpu" "core2duo"
 		if [ -n "$_SMP" ]; then
@@ -779,9 +651,7 @@ case $input in
 			set -- "${@}" "-vga" "virtio"
 #			set -- "${@}" "-device" "virtio-vga,virgl=on"
 ;;
-		2) echo -e "\n${YELLOW}你选择virtio显卡3D参数，该模式只能在图>形界面(桌面)显示${RES}"
-			CONFIRM
-			case $display in
+		2) case $display in
 			xsdl) set -- "${@}" "-vga" "virtio" "-display" "sdl,gl=on" ;;
 			vnc|wlan_vnc) 
 				set -- "${@}" "-vga" "qxl" "-display" "gtk,gl=on" "-device" "virtio-gpu-pci,virgl=on"
@@ -862,12 +732,12 @@ esac
 ####################
 case $(dpkg --print-architecture) in
 	i*86|x86*|amd64)
-		read -r -p "过量内存使用(默认关闭) 1)开启 2)关闭 " input
+		read -r -p "过量内存使用(默认关闭) 1)开启 2)关闭" input
 		case $input in
 			1) set -- "${@}" "-overcommit" "mem-lock=on" ;;
 			*) set -- "${@}" "-overcommit" "mem-lock=off" ;;
 		esac
-		read -r -p "过量cpu电源控制(默认关闭) 1) 开启 2)关闭 " input
+		read -r -p "过量cpu电源控制(默认关闭) 1) 开启 2)关闭" input
 		case $input in
 			1) set -- "${@}" "-overcommit" "cpu-pm=on" ;;
 			*) set -- "${@}" "-overcommit" "cpu-pm=off" ;;
@@ -887,8 +757,7 @@ esac
 	case $QEMU_MODE in
 		VIRTIO_MODE)
 		set -- "${@}" "-drive" "file=${DIRECT}/xinhao/windows/$hda_name,if=ide"
-#		set -- "${@}" "-drive" "file=${DIRECT}/xinhao/windows/$hdb_name,if=virtio"
-		set -- "${@}" "-drive" "file=fat:rw:${DIRECT}/xinhao/share,if=virtio"
+		set -- "${@}" "-drive" "file=${DIRECT}/xinhao/windows/$hdb_name,if=virtio"
 		set -- "${@}" "-cdrom" "${DIRECT}/xinhao/windows/$iso_name" ;;
 		*)
 		echo -e "请选择磁盘接口,因系统原因,sata可能导致启动不成功,virtio需系统已装驱动,回车为兼容方式"
@@ -1006,53 +875,43 @@ esac
 		fi
 
         set -- "$QEMU_SYS" "${@}"
-	uname -a | grep 'Android' -q 
+	uname -a | grep 'Android' -q
 	if [ $? != 0 ]; then
-		case $display in
-		wlan_vnc) ;;
-		*)
 	echo -e "${YELLOW}是否创建本次参数的快捷脚本${RES}"
 	read -r -p "1)是 2)否 " input
 	case $input in
 		1) echo -n "请给脚本起个名字: "
 			read script_name
 			case $display in
-				xsdl)
+				xsdl) 
 cat >/usr/local/bin/$script_name <<-EOF
-killall qemu-system-x86 2>/dev/null
-killall qemu-system-i38 2>/dev/null
-#pkill -9 qemu-system-x86
-#pkill -9 qemu-system-i38
+pkill -9 qemu-system-x86
+pkill -9 qemu-system-i38
 export PULSE_SERVER=tcp:127.0.0.1:4713
 export DISPLAY=127.0.0.1:0
 ${@}
 EOF
 ;;
-				vnc|spice|xsdl) 
+				vnc|spice) 
 cat >/usr/local/bin/$script_name <<-EOF
-killall qemu-system-x86 2>/dev/null
-killall qemu-system-i38 2>/dev/null
-#pkill -9 qemu-system-x86
-#pkill -9 qemu-system-i38
+pkill -9 qemu-system-x86
+pkill -9 qemu-system-i38
 export PULSE_SERVER=tcp:127.0.0.1:4713
 ${@}
 EOF
 ;;
 				amd|gtk_|"")
 cat >/usr/local/bin/$script_name <<-EOF
-killall qemu-system-x86 2>/dev/null
-killall qemu-system-i38 2>/dev/null
-#pkill -9 qemu-system-x86
-#pkill -9 qemu-system-i38
+pkill -9 qemu-system-x86
+pkill -9 qemu-system-i38
 ${@}
 EOF
 ;;
 esac
-chmod +x /usr/local/bin/$script_name
-echo -e "${GREEN}已保存本次参数的脚本，下次可直接输$script_name启动qemu${RES}"
-sleep 2 ;;
+	chmod +x /usr/local/bin/$script_name
+	echo -e "${GREEN}已保存本次参数的脚本，下次可直接输$script_name启动qemu${RES}"
+	sleep 2 ;;
 		2|"") ;;
-esac ;;
 esac
 	fi
 	printf "%s\n"
@@ -1060,8 +919,8 @@ esac
 	${@}
 	EOF
 	case $display in
-		vnc) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开vncviewer 127.0.0.1:0" ;;
-		wlan_vnc) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开vncviewer $IP:0" ;;
+		vnc) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开vnc 127.0.0.1:0" ;;
+		wlan_vnc) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开vnc $IP:0" ;;
 		xsdl) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开xsdl" ;;
 		spice) printf "%s\n${BLUE}模拟器已启动\n${GREEN}请打开aspice 127.0.0.1:0" ;;
 		*) printf "%s\n${GREEN}模拟器已启动" ;;
@@ -1072,16 +931,11 @@ esac
         ;;
 4) WEB_SERVER ;;
 5) VIRTIO ;;
-6) case $SYS in
-	ANDROID) INVALID_INPUT
-	QEMU_SYSTEM ;;
-*) QEMU_ETC ;;
-esac ;;
+6) QEMU_ETC ;;
 7) if [ -e ${HOME}/.utqemu_log ]; then
 	echo -e "\n按空格下一页，退出请按q\n"
 	CONFIRM
 	more ${HOME}/.utqemu_log
-	echo -e "\n\e[33m到底了\e[0m"
 	read -r -p "是否删除日志 1)是 0)否 " input
 	case $input in
 		1) rm ${HOME}/.utqemu_log 2>/dev/null ;;
@@ -1107,11 +961,10 @@ VIRTIO() {
 
 echo -e "
 1) 下载virtio驱动光盘"
-	case $SYS in
-		QEMU_ADV)
-echo -e "2) 为磁盘接口添加virtio驱动（需另外下载virtio驱动光盘）" ;;
-*) ;;
-esac
+uname -a | grep 'Android' -q
+if [ $? != 0 ]; then
+echo -e "2) 为磁盘接口添加virtio驱动（需另外下载virtio驱动光盘）"
+fi
 echo -e "8) 关于virtio
 9) 返回主目录
 0) 退出\n"
@@ -1143,8 +996,8 @@ QEMU_SYSTEM
 fi
                 ;;
 
-	2) case $SYS in
-		QEMU_ADV)
+	2) uname -a | grep 'Android' -q
+		if [ $? != 0 ]; then
 		echo -e "\n${GREEN}本次操作默认vnc输出，地址127.0.0.1:0\n请确认系统镜像与virtio驱动盘已放入手机目录/xinhao/windows里${RES}"
 	CONFIRM
 	if [ ! -e "${DIRECT}/xinhao/windows" ]; then
@@ -1152,10 +1005,8 @@ fi
 		sleep 2
 		QEMU_SYSTEM
 	fi
-killall qemu-system-x86 2>/dev/null
-killall qemu-system-i38 2>/dev/null
-#	pkill -9 qemu-system-x86
-#	pkill -9 qemu-system-i38
+	pkill -9 qemu-system-x86
+	pkill -9 qemu-system-i38
 	if [ ! -e "${DIRECT}/xinhao/windows/fake.qcow2" ]; then
 	echo -e "\n将为你创建一个新的磁盘镜像，用于搜索virtio驱动\n"
 	sleep 2
@@ -1177,7 +1028,7 @@ else
 		echo -e "\n${RED}未匹配到镜像，请重试${RES}"
 		sleep 1
 	fi
-	echo -n -e "${RES}\n请输入${YELLOW}系统镜像${RES}全名（例如andows.img）请输入: "
+	echo -n -e "${RES}\n请输入${YELLOW}系统镜像${RES}全名（例如andows.img）请输入hda_name: "
 	read hda_name
 done
 	while [ ! -f "${DIRECT}/xinhao/windows/$iso_name" ]
@@ -1191,10 +1042,10 @@ done
 done
 	echo -e "\e[33m即将开机，参数是默认的，开机过程会比较慢，Windows会自动检测fake磁盘，并搜索适配的驱动。如果失败了，前往Device Manager，找到SCSI驱动器（带有感叹号图标，应处于打开状态），点击Update driver并选择虚拟的CD-ROM。不要定位到CD-ROM内的文件夹了，只选择CD-ROM设备就行，Windows会自动找到合适的驱动的。完成后请关机，然后正常启动qemu-system-x86_64(qemu-system-i386)方式并选择磁盘接口virtio。${RES}"
 	CONFIRM
-qemu-system-x86_64 -m 1g -drive file=${DIRECT}/xinhao/windows/$hda_name,if=ide -drive file=${DIRECT}/xinhao/windows/fake.qcow2,if=virtio -cdrom ${DIRECT}/xinhao/windows/$iso_name -vnc :0;;
-*)	INVALID_INPUT && VIRTIO
-;;
-esac ;;
+qemu-system-x86_64 -m 1g -drive file=${DIRECT}/xinhao/windows/$hda_name,if=ide -drive file=${DIRECT}/xinhao/windows/fake.qcow2,if=virtio -cdrom ${DIRECT}/xinhao/windows/$iso_name -vnc :0
+else
+	INVALID_INPUT && VIRTIO
+fi ;;
 8) ABOUT_VIRTIO ;;
 9) QEMU_SYSTEM ;;
 0) exit 1 ;;
@@ -1210,8 +1061,8 @@ MAIN() {
 	uname -a | grep 'Android' -q
 	if [ $? == 0 ]; then
 	echo -e "\n\e[33m请选择qemu-system-x86的运行环境\e[0m\n
-	1) 直接运行，termux(utermux)目前版本为5.0以上，由于termux源的qemu编译的功能不全，强烈建议在容器上使用qemu，\e[33m其他系统的版本各不一样，一些功能参数可能没被编译进去${RES}
-	2) 独立系统(容器)运行5.0以上版本
+	1) 直接运行，termux(utermux)目前版本为5.0以上，暂不支持声音输出，\e[33m其他系统的版本各不一样，一些功能参数可能没被编译进去${RES}
+	2) 独立系统运行5.0以上版本
 	0) 退出\n"
 	read -r -p "请选择:" input
 	case $input in
