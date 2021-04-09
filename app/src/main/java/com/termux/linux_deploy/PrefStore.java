@@ -41,7 +41,7 @@ public class PrefStore {
      * @return version, format versionName-versionCode
      */
     static String getVersion(Context c) {
-        return BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE;
+        return BuildConfig.VERSION_NAME + "-108" ;
     }
 
     /**

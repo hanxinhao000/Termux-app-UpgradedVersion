@@ -161,6 +161,7 @@ public final class BackgroundJob {//XAJ 1004 5927 408
         environment.add("BOOTCLASSPATH=" + System.getenv("BOOTCLASSPATH"));
         environment.add("ANDROID_ROOT=" + System.getenv("ANDROID_ROOT"));
         environment.add("ANDROID_DATA=" + System.getenv("ANDROID_DATA"));
+
         // EXTERNAL_STORAGE is needed for /system/bin/am to work on at least
         // Samsung S7 - see https://plus.google.com/110070148244138185604/posts/gp8Lk3aCGp3.
         environment.add("EXTERNAL_STORAGE=" + System.getenv("EXTERNAL_STORAGE"));
@@ -224,14 +225,14 @@ public final class BackgroundJob {//XAJ 1004 5927 408
 
             if(SaveData.getData("start_launcher").equals("def")) {
                 if (shouldAddLdLibraryPath()) {
-                    environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+                   // environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
                 }
             }else{
                 if (shouldAddLdLibraryPath1()) {
-                    environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+                   // environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
                 }
             }
-            environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
+          //  environment.add("LD_LIBRARY_PATH=" + TermuxService.PREFIX_PATH + "/lib");
 
             environment.add("LANG=en_US.UTF-8");
 

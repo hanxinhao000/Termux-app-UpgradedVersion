@@ -65,7 +65,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 92
-        versionName "0.108.121"
+        versionName "0.108.122"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
@@ -89,6 +89,7 @@ android {
 
     lintOptions {
         abortOnError false
+        disable 'ProtectedPermissions'
     }
 
 
